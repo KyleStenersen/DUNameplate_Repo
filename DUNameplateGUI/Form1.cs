@@ -13,6 +13,9 @@ namespace DUNameplateGUI
     public partial class Form1 : Form
     {
         private string tag1Line1Str;
+        private string tag1Line2Str;
+        private string tag1Line3Str;
+        private string tag1Line4Str;
 
         public Form1()
         {
@@ -24,21 +27,62 @@ namespace DUNameplateGUI
         {
             tag1Line1Str = tag1Line1.Text;
 
-            if (tag1Line1Str.Except("ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890 ,/-.#").Any())
-            {
-                MessageBox.Show("Invalid character; Only A-Z, 1-9, and ,./-# available.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            checkInvalidChars(ref tag1Line1Str);
 
-            if (tag1Line1.TextLength > 23)
+            if (tag1Line1Str.Length > 23)
             {
-                MessageBox.Show("Too many characters; 23 max for line 1", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Too many characters; 23 max", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }    
+        }
+
+        private void tag1Line2_TextChanged(object sender, EventArgs e)
+        {
+            tag1Line2Str = tag1Line2.Text;
+
+            checkInvalidChars(ref tag1Line2Str);
+
+            if (tag1Line2Str.Length > 19)
+            {
+                MessageBox.Show("Too many characters; 19 max", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void tag1Line3_TextChanged(object sender, EventArgs e)
+        {
+            tag1Line3Str = tag1Line3.Text;
+
+            checkInvalidChars(ref tag1Line3Str);
+
+            if (tag1Line3Str.Length > 19)
+            {
+                MessageBox.Show("Too many characters; 19 max", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void tag1Line4_TextChanged(object sender, EventArgs e)
+        {
+            tag1Line4Str = tag1Line4.Text;
+
+            checkInvalidChars(ref tag1Line4Str);
+
+            if (tag1Line4Str.Length > 23)
+            {
+                MessageBox.Show("Too many characters; 23 max", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void printTag1Btn_Click(object sender, EventArgs e)
         {
             tag1Line1Str = tag1Line1Str.ToUpper();
             tag1Line1Str = tag1Line1Str.Replace("+","");
+
+            tag1Line2Str = tag1Line2Str.ToUpper();
+            tag1Line2Str = tag1Line2Str.Replace("+", "");
+
+            tag1Line3Str = tag1Line3Str.ToUpper();
+            tag1Line3Str = tag1Line3Str.Replace("+", "");
+
+            tag1Line4Str = tag1Line4Str.ToUpper();
+            tag1Line4Str = tag1Line4Str.Replace("+", "");
+
             MessageBox.Show("a" + tag1Line1Str);
             //serialPort1.Write("a" + tag1Line1Str);
         }
@@ -46,6 +90,25 @@ namespace DUNameplateGUI
         private void ledBtn_Click(object sender, EventArgs e)
         {
             //serialPort1.Write("b");
+        }
+
+        private void checkInvalidChars(ref string checkStr)
+        {
+            if (checkStr == null)
+            {
+                return;
+            }
+
+            if (checkStr.Except("ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890 ,/-.#").Any())
+            {
+                MessageBox.Show("Invalid character; Only A-Z, 1-9, and ,./-# available.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        public static string Reverse(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
 
     }
