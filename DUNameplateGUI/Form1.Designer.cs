@@ -107,7 +107,7 @@
             this.Controls.Add(this.ledBtn);
             this.Controls.Add(this.printTag1Btn);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = " ";
             this.ResumeLayout(false);
             this.PerformLayout();
 
