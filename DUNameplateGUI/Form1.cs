@@ -83,7 +83,12 @@ namespace DUNameplateGUI
         private void printTag1Btn_Click(object sender, EventArgs e)
         {
 
-            if (tag1L1==null && tag1L2==null && tag1L3==null && tag1L4==null)
+            tag1L1 = tag1Line1.Text;
+            tag1L2 = tag1Line2.Text;
+            tag1L3 = tag1Line3.Text;
+            tag1L4 = tag1Line4.Text;
+
+            if (String.IsNullOrWhiteSpace(tag1L1) && String.IsNullOrWhiteSpace(tag1L2) && String.IsNullOrWhiteSpace(tag1L3) && String.IsNullOrWhiteSpace(tag1L4))
             {
                 //error out
                 return;
@@ -97,7 +102,7 @@ namespace DUNameplateGUI
                 return;
             }
 
-            if (errorIfTooLong(ref tag1L1,1)==true || errorIfTooLong(ref tag1L2,2)== true || errorIfTooLong(ref tag1L3, 3) == true || errorIfTooLong(ref tag1L4, 4) == true)
+            if (errorIfTooLong(ref tag1L1, 1) == true || errorIfTooLong(ref tag1L2, 2) == true || errorIfTooLong(ref tag1L3, 3) == true || errorIfTooLong(ref tag1L4, 4) == true)
             {
                 //error out
                 MessageBox.Show("Tag line too long", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -108,31 +113,48 @@ namespace DUNameplateGUI
             {
                 tag1L1 = (tag1L1 + "!");
             }
+            else
+            {
+                tag1L1 = "!";
+            }
 
-            if (tag1L2 != null)
+                if (tag1L2 != null)
             {
                 reverseLine(ref tag1L2);
                 tag1L2 = (tag1L2 + "!");
+            }
+            else
+            {
+                tag1L2 = "!";
             }
 
             if (tag1L3 != null)
             {
                 tag1L3 = (tag1L3 + "!");
             }
+            else
+            {
+                tag1L3 = "!";
+            }
 
             if (tag1L4 != null)
-            {
+            { 
                 reverseLine(ref tag1L4);
-            }        
-            
+            }
+
             string tag1Text = (tag1L1 + tag1L2 + tag1L3 + tag1L4);
 
-            tag1Text.ToUpper();
+            tag1Text = tag1Text.ToUpper();
             tag1Text = ( "<" + "a" + tag1Text + ">");
 
 
             MessageBox.Show(tag1Text);
             //serialPort1.Write("a" + tag1Line1Str);
+
+            tag1L1 = null;
+            tag1L2 = null;
+            tag1L3 = null;
+            tag1L4 = null;
         }
 
         private void ledBtn_Click(object sender, EventArgs e)
