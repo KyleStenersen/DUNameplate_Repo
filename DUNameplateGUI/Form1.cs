@@ -27,41 +27,62 @@ namespace DUNameplateGUI
         {
             tag1L1 = tag1Line1.Text;
 
-            checkInvalidChars(ref tag1L1);
-
-            errorIfTooLong(ref tag1L1, 1);
+            if (checkInvalidChars(ref tag1L1) == true || errorIfTooLong(ref tag1L1, 1) == true)
+            {
+                tag1Line1.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                tag1Line1.BackColor = Color.White;
+            }
         }
+
 
         private void tag1Line2_TextChanged(object sender, EventArgs e)
         {
             tag1L2 = tag1Line2.Text;
 
-            checkInvalidChars(ref tag1L2);
-
-            errorIfTooLong(ref tag1L2, 2);
+            if (checkInvalidChars(ref tag1L2) == true || errorIfTooLong(ref tag1L2, 2) == true)
+            {
+                tag1Line2.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                tag1Line2.BackColor = Color.White;
+            }
         }
 
         private void tag1Line3_TextChanged(object sender, EventArgs e)
         {
             tag1L3 = tag1Line3.Text;
 
-            checkInvalidChars(ref tag1L3);
-
-            errorIfTooLong(ref tag1L3, 3);
+            if (checkInvalidChars(ref tag1L3) == true || errorIfTooLong(ref tag1L3, 3) == true)
+            {
+                tag1Line3.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                tag1Line3.BackColor = Color.White;
+            }
         }
 
         private void tag1Line4_TextChanged(object sender, EventArgs e)
         {
             tag1L4 = tag1Line4.Text;
 
-            checkInvalidChars(ref tag1L4);
-
-            errorIfTooLong(ref tag1L4, 4);
+            if (checkInvalidChars(ref tag1L4) == true || errorIfTooLong(ref tag1L4, 4) == true)
+            {
+                tag1Line4.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                tag1Line4.BackColor = Color.White;
+            }
         }
 
         private void printTag1Btn_Click(object sender, EventArgs e)
         {
-            
+
             if (tag1L1==null && tag1L2==null && tag1L3==null && tag1L4==null)
             {
                 //error out
@@ -72,12 +93,14 @@ namespace DUNameplateGUI
             if (checkInvalidChars(ref tag1TextTester) == true)
             {
                 //error out
+                MessageBox.Show("Invalid character; Only A-Z, 1-9, and ,./-# available.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (errorIfTooLong(ref tag1L1,1)==true || errorIfTooLong(ref tag1L2,2)== true || errorIfTooLong(ref tag1L3, 3) == true || errorIfTooLong(ref tag1L4, 4) == true)
             {
                 //error out
+                MessageBox.Show("Tag line too long", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -105,7 +128,7 @@ namespace DUNameplateGUI
             string tag1Text = (tag1L1 + tag1L2 + tag1L3 + tag1L4);
 
             tag1Text.ToUpper();
-            tag1Text = ( "a" + tag1Text);
+            tag1Text = ( "<" + "a" + tag1Text + ">");
 
 
             MessageBox.Show(tag1Text);
@@ -125,7 +148,6 @@ namespace DUNameplateGUI
             
             if (checkStr.Except("ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890 ,/-.#").Any())
             {
-                MessageBox.Show("Invalid character; Only A-Z, 1-9, and ,./-# available.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;            
             }
             
@@ -147,7 +169,6 @@ namespace DUNameplateGUI
 
                 if (s != null && s.Length > 23)
                 {
-                    MessageBox.Show("Too many characters in line# " + lineNum + "; 23 max", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return true;
                 }
             }
@@ -156,7 +177,7 @@ namespace DUNameplateGUI
             {
                 if (s != null && s.Length > 19)
                 {
-                    MessageBox.Show("Too many characters in line# " + lineNum + "; 19 max", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("Too many characters in line# " + lineNum + "; 19 max", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return true;
                 }
             }
@@ -164,6 +185,5 @@ namespace DUNameplateGUI
             return false;
 
         }
-
     }
 }

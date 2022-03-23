@@ -62,23 +62,23 @@
             // 
             this.tag1Line1.Location = new System.Drawing.Point(214, 38);
             this.tag1Line1.Name = "tag1Line1";
-            this.tag1Line1.Size = new System.Drawing.Size(167, 22);
+            this.tag1Line1.Size = new System.Drawing.Size(238, 22);
             this.tag1Line1.TabIndex = 2;
             this.tag1Line1.TextChanged += new System.EventHandler(this.tag1Line1_TextChanged);
             // 
             // tag1Line2
             // 
-            this.tag1Line2.Location = new System.Drawing.Point(230, 66);
+            this.tag1Line2.Location = new System.Drawing.Point(235, 66);
             this.tag1Line2.Name = "tag1Line2";
-            this.tag1Line2.Size = new System.Drawing.Size(141, 22);
+            this.tag1Line2.Size = new System.Drawing.Size(198, 22);
             this.tag1Line2.TabIndex = 3;
             this.tag1Line2.TextChanged += new System.EventHandler(this.tag1Line2_TextChanged);
             // 
             // tag1Line3
             // 
-            this.tag1Line3.Location = new System.Drawing.Point(230, 94);
+            this.tag1Line3.Location = new System.Drawing.Point(235, 94);
             this.tag1Line3.Name = "tag1Line3";
-            this.tag1Line3.Size = new System.Drawing.Size(141, 22);
+            this.tag1Line3.Size = new System.Drawing.Size(198, 22);
             this.tag1Line3.TabIndex = 4;
             this.tag1Line3.TextChanged += new System.EventHandler(this.tag1Line3_TextChanged);
             // 
@@ -86,7 +86,7 @@
             // 
             this.tag1Line4.Location = new System.Drawing.Point(214, 122);
             this.tag1Line4.Name = "tag1Line4";
-            this.tag1Line4.Size = new System.Drawing.Size(167, 22);
+            this.tag1Line4.Size = new System.Drawing.Size(238, 22);
             this.tag1Line4.TabIndex = 5;
             this.tag1Line4.TextChanged += new System.EventHandler(this.tag1Line4_TextChanged);
             // 
