@@ -10,14 +10,17 @@ using System.Windows.Forms;
 
 namespace DUNameplateGUI
 {
-    public partial class Form1 : Form
+    public partial class GUI_MAIN_FORM : Form
     {
         private string tag1Line1String;
         private string tag1Line2String;
         private string tag1Line3String;
         private string tag1Line4String;
+        private int TAG_LINE_NUMBER;
 
-        public Form1()
+        CheckText checkText = new CheckText();
+
+        public GUI_MAIN_FORM()
         {
             InitializeComponent();
             //serialPort1.Open();
@@ -25,71 +28,45 @@ namespace DUNameplateGUI
 
         private void tag1Line1Box_TextChanged(object sender, EventArgs e)
         {
-            redTextBoxIfInputError(ref tag1Line1String, ref tag1Line1Box);
+            TAG_LINE_NUMBER = 1;
+            checkText.redTextBoxIfInputError(ref tag1Line1String, ref tag1Line1Box, TAG_LINE_NUMBER);
         }
 
-        private void tag1Line2_TextChanged(object sender, EventArgs e)
+        private void tag1Line2Box_TextChanged(object sender, EventArgs e)
         {
-            tag1Line2String = tag1Line2.Text;
-
-            if (checkInvalidChars(ref tag1Line2String) == true || errorIfTooLong(ref tag1Line2String, 2) == true)
-            {
-                tag1Line2.BackColor = Color.MistyRose;
-            }
-            else
-            {
-                tag1Line2.BackColor = Color.White;
-            }
+            TAG_LINE_NUMBER = 2;
+            checkText.redTextBoxIfInputError(ref tag1Line2String, ref tag1Line2Box, TAG_LINE_NUMBER);
         }
 
-        private void tag1Line3_TextChanged(object sender, EventArgs e)
+        private void tag1Line3Box_TextChanged(object sender, EventArgs e)
         {
-            tag1Line3String = tag1Line3.Text;
-
-            if (checkInvalidChars(ref tag1Line3String) == true || errorIfTooLong(ref tag1Line3String, 3) == true)
-            {
-                tag1Line3.BackColor = Color.MistyRose;
-            }
-            else
-            {
-                tag1Line3.BackColor = Color.White;
-            }
+            TAG_LINE_NUMBER = 3;
+            checkText.redTextBoxIfInputError(ref tag1Line3String, ref tag1Line3Box, TAG_LINE_NUMBER);
         }
 
-        private void tag1Line4_TextChanged(object sender, EventArgs e)
+        private void tag1Line4Box_TextChanged(object sender, EventArgs e)
         {
-            tag1Line4String = tag1Line4.Text;
-
-            if (checkInvalidChars(ref tag1Line4String) == true || errorIfTooLong(ref tag1Line4String, 4) == true)
-            {
-                tag1Line4.BackColor = Color.MistyRose;
-            }
-            else
-            {
-                tag1Line4.BackColor = Color.White;
-            }
+            TAG_LINE_NUMBER = 4;
+            checkText.redTextBoxIfInputError(ref tag1Line4String, ref tag1Line4Box, TAG_LINE_NUMBER);
         }
 
         private void printTagsBtn_Click(object sender, EventArgs e)
         {
 
             tag1Line1String = tag1Line1Box.Text;
-            tag1Line2String = tag1Line2.Text;
-            tag1Line3String = tag1Line3.Text;
-            tag1Line4String = tag1Line4.Text;
+            tag1Line2String = tag1Line2Box.Text;
+            tag1Line3String = tag1Line3Box.Text;
+            tag1Line4String = tag1Line4Box.Text;
 
-            if (checkAllLinesForErrors() == true)
+            string[] arrayOfTag1Lines;
+            arrayOfTag1Lines = new string[4] { tag1Line1String, tag1Line2String, tag1Line3String, tag1Line4String };
+
+            if (checkText.allLinesOfTagForErrors(ref arrayOfTag1Lines) == true)
             {
                 return;
             }
 
-            addNewLineChar(ref tag1Line1String);
-
-            addNewLineCharAndReverse(ref tag1Line2String);
-
-            addNewLineChar(ref tag1Line3String);
-
-            addNewLineCharAndReverse(ref tag1Line4String);
+            addNewLineCharsAndReverseOddLinesAll();
 
             string tag1Text = (tag1Line1String + tag1Line2String + tag1Line3String + tag1Line4String);
 
@@ -114,97 +91,12 @@ namespace DUNameplateGUI
        
         // SUPPORT FUNCTIONS ------------------------------------
 
-        void redTextBoxIfInputError(ref string currentTagLineStr, ref TextBox currentTextBox)
-        {
-            currentTagLineStr = currentTextBox.Text;
 
-            if (checkInvalidChars(ref currentTagLineStr) == true || errorIfTooLong(ref currentTagLineStr, 1) == true)
-            {
-                currentTextBox.BackColor = Color.MistyRose;
-            }
-            else
-            {
-                currentTextBox.BackColor = Color.White;
-            }
-        }
-
-        private Boolean checkInvalidChars(ref string checkStr)
+        private void reverseLine(ref string tagLineStr)
         {
-            
-            if (checkStr.Except("ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890 ,/-.#").Any())
-            {
-                return true;            
-            }
-            
-            return false;
-
-        }
-        private void reverseLine(ref string s)
-        {
-            char[] charArray = s.ToCharArray();
+            char[] charArray = tagLineStr.ToCharArray();
             Array.Reverse(charArray);
-            s = new string(charArray);
-        }
-
-        private Boolean errorIfTooLong(ref string s, int lineNum)
-        {
-
-            if (lineNum == 1 || lineNum == 4)
-            {
-
-                if (s != null && s.Length > 23)
-                {
-                    return true;
-                }
-            }
-
-            if (lineNum == 2 || lineNum == 3)
-            {
-                if (s != null && s.Length > 19)
-                {
-                    //MessageBox.Show("Too many characters in line# " + lineNum + "; 19 max", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return true;
-                }
-            }
-
-            return false;
-
-        }
-
-        Boolean checkAllLinesForTooLong()
-        {
-            if (errorIfTooLong(ref tag1Line1String, 1) == true || errorIfTooLong(ref tag1Line2String, 2) == true || errorIfTooLong(ref tag1Line3String, 3) == true || errorIfTooLong(ref tag1Line4String, 4) == true)
-            {
-                //error out
-                MessageBox.Show("Tag line too long", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return true;
-            }
-
-            return false;
-        }
-
-        Boolean checkAllLinesForInvalidChars()
-        {
-            string tag1TextTester = (tag1Line1String + tag1Line2String + tag1Line3String + tag1Line4String);
-            if (checkInvalidChars(ref tag1TextTester) == true)
-            {
-                //error out
-                MessageBox.Show("Invalid character; Only A-Z, 1-9, and ,./-# available.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return true;
-            }
-     
-            return false; 
-        }
-
-        Boolean checkForAllLinesEmpty()
-        {
-            if (String.IsNullOrWhiteSpace(tag1Line1String) && String.IsNullOrWhiteSpace(tag1Line2String) && String.IsNullOrWhiteSpace(tag1Line3String) && String.IsNullOrWhiteSpace(tag1Line4String))
-            {
-                //error out
-                return true;
-            }
-
-            return false;
+            tagLineStr = new string(charArray);
         }
 
         void addNewLineChar(ref string tagLineStr)
@@ -232,25 +124,128 @@ namespace DUNameplateGUI
             }
         }
 
-        Boolean checkAllLinesForErrors()
+
+        void addNewLineCharsAndReverseOddLinesAll()
         {
-            if (checkForAllLinesEmpty() == true)
-            {
-                return true;
-            }
-       
-            if (checkAllLinesForInvalidChars() == true)
-            {
-                return true;
-            }
+            addNewLineChar(ref tag1Line1String);
 
-            if (checkAllLinesForTooLong() == true)
-            {
-                return true;
-            }
+            addNewLineCharAndReverse(ref tag1Line2String);
 
-            return false;
+            addNewLineChar(ref tag1Line3String);
+
+            addNewLineCharAndReverse(ref tag1Line4String);
         }
+    }
+}
+
+public class CheckText
+{
+    public Boolean allLinesOfTagForErrors(ref string[] arrayOfCurrentTagLines)
+    {
+        if (checkForAllLinesEmpty(ref arrayOfCurrentTagLines) == true)
+        {
+            return true;
+        }
+
+        if (checkAllLinesForInvalidChars(ref arrayOfCurrentTagLines) == true)
+        {
+            return true;
+        }
+
+        if (checkAllLinesForTooLong(ref arrayOfCurrentTagLines) == true)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public Boolean invalidChars(ref string checkStr)
+    {
+
+        if (checkStr.Except("ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890 ,/-.#").Any())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void redTextBoxIfInputError(ref string currentTagLineStr, ref TextBox currentTextBox, int currentLineNumber)
+    {
+        currentTagLineStr = currentTextBox.Text;
+
+        if (invalidChars(ref currentTagLineStr) == true || errorIfTooLong(ref currentTagLineStr, currentLineNumber) == true)
+        {
+            currentTextBox.BackColor = Color.MistyRose;
+        }
+        else
+        {
+            currentTextBox.BackColor = Color.White;
+        }
+    }
+
+    Boolean checkAllLinesForTooLong(ref string[] arrayOfCurrentTagLines)
+    {
+        for (int i = 0; i < arrayOfCurrentTagLines.Length; i++)
+        {
+            if (errorIfTooLong(ref arrayOfCurrentTagLines[i], i+1) == true)
+            {
+                //error out
+                MessageBox.Show("Tag line too long", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    Boolean checkAllLinesForInvalidChars(ref string[] arrayOfCurrentTagLines)
+    {
+        string tag1TextTester = (arrayOfCurrentTagLines[0] + arrayOfCurrentTagLines[1] + arrayOfCurrentTagLines[2] + arrayOfCurrentTagLines[3]);
+        if (invalidChars(ref tag1TextTester) == true)
+        {
+            //error out
+            MessageBox.Show("Invalid character; Only A-Z, 1-9, and ,./-# available.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return true;
+        }
+
+        return false;
+    }
+
+    Boolean checkForAllLinesEmpty(ref string[] arrayOfCurrentTagLines)
+    {
+        if (String.IsNullOrWhiteSpace(arrayOfCurrentTagLines[0]) && String.IsNullOrWhiteSpace(arrayOfCurrentTagLines[1]) && String.IsNullOrWhiteSpace(arrayOfCurrentTagLines[2]) && String.IsNullOrWhiteSpace(arrayOfCurrentTagLines[3]))
+        {
+            //error out
+            return true;
+        }
+
+        return false;
+    }
+
+    private Boolean errorIfTooLong(ref string tagLineString, int lineNum)
+    {
+
+        if (lineNum == 1 || lineNum == 4)
+        {
+
+            if (tagLineString != null && tagLineString.Length > 23)
+            {
+                return true;
+            }
+        }
+
+        if (lineNum == 2 || lineNum == 3)
+        {
+            if (tagLineString != null && tagLineString.Length > 19)
+            {
+                //MessageBox.Show("Too many characters in line# " + lineNum + "; 19 max", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }
+        }
+
+        return false;
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace DUNameplateGUI
 {
-    partial class Form1
+    partial class GUI_MAIN_FORM
     {
         /// <summary>
         /// Required designer variable.
@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.printTagsBtn = new System.Windows.Forms.Button();
             this.tag1Line1Box = new System.Windows.Forms.TextBox();
-            this.tag1Line2 = new System.Windows.Forms.TextBox();
-            this.tag1Line3 = new System.Windows.Forms.TextBox();
-            this.tag1Line4 = new System.Windows.Forms.TextBox();
+            this.tag1Line2Box = new System.Windows.Forms.TextBox();
+            this.tag1Line3Box = new System.Windows.Forms.TextBox();
+            this.tag1Line4Box = new System.Windows.Forms.TextBox();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.ledBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -53,33 +53,33 @@
             // 
             this.tag1Line1Box.Location = new System.Drawing.Point(214, 38);
             this.tag1Line1Box.Name = "tag1Line1Box";
-            this.tag1Line1Box.Size = new System.Drawing.Size(238, 22);
+            this.tag1Line1Box.Size = new System.Drawing.Size(307, 22);
             this.tag1Line1Box.TabIndex = 2;
             this.tag1Line1Box.TextChanged += new System.EventHandler(this.tag1Line1Box_TextChanged);
             // 
-            // tag1Line2
+            // tag1Line2Box
             // 
-            this.tag1Line2.Location = new System.Drawing.Point(235, 66);
-            this.tag1Line2.Name = "tag1Line2";
-            this.tag1Line2.Size = new System.Drawing.Size(198, 22);
-            this.tag1Line2.TabIndex = 3;
-            this.tag1Line2.TextChanged += new System.EventHandler(this.tag1Line2_TextChanged);
+            this.tag1Line2Box.Location = new System.Drawing.Point(240, 66);
+            this.tag1Line2Box.Name = "tag1Line2Box";
+            this.tag1Line2Box.Size = new System.Drawing.Size(257, 22);
+            this.tag1Line2Box.TabIndex = 3;
+            this.tag1Line2Box.TextChanged += new System.EventHandler(this.tag1Line2Box_TextChanged);
             // 
-            // tag1Line3
+            // tag1Line3Box
             // 
-            this.tag1Line3.Location = new System.Drawing.Point(235, 94);
-            this.tag1Line3.Name = "tag1Line3";
-            this.tag1Line3.Size = new System.Drawing.Size(198, 22);
-            this.tag1Line3.TabIndex = 4;
-            this.tag1Line3.TextChanged += new System.EventHandler(this.tag1Line3_TextChanged);
+            this.tag1Line3Box.Location = new System.Drawing.Point(240, 94);
+            this.tag1Line3Box.Name = "tag1Line3Box";
+            this.tag1Line3Box.Size = new System.Drawing.Size(257, 22);
+            this.tag1Line3Box.TabIndex = 4;
+            this.tag1Line3Box.TextChanged += new System.EventHandler(this.tag1Line3Box_TextChanged);
             // 
-            // tag1Line4
+            // tag1Line4Box
             // 
-            this.tag1Line4.Location = new System.Drawing.Point(214, 122);
-            this.tag1Line4.Name = "tag1Line4";
-            this.tag1Line4.Size = new System.Drawing.Size(238, 22);
-            this.tag1Line4.TabIndex = 5;
-            this.tag1Line4.TextChanged += new System.EventHandler(this.tag1Line4_TextChanged);
+            this.tag1Line4Box.Location = new System.Drawing.Point(214, 122);
+            this.tag1Line4Box.Name = "tag1Line4Box";
+            this.tag1Line4Box.Size = new System.Drawing.Size(307, 22);
+            this.tag1Line4Box.TabIndex = 5;
+            this.tag1Line4Box.TextChanged += new System.EventHandler(this.tag1Line4Box_TextChanged);
             // 
             // serialPort1
             // 
@@ -111,9 +111,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1277, 644);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.tag1Line4);
-            this.Controls.Add(this.tag1Line3);
-            this.Controls.Add(this.tag1Line2);
+            this.Controls.Add(this.tag1Line4Box);
+            this.Controls.Add(this.tag1Line3Box);
+            this.Controls.Add(this.tag1Line2Box);
             this.Controls.Add(this.tag1Line1Box);
             this.Controls.Add(this.ledBtn);
             this.Controls.Add(this.printTagsBtn);
@@ -128,9 +128,9 @@
 
         private System.Windows.Forms.Button printTagsBtn;
         private System.Windows.Forms.TextBox tag1Line1Box;
-        private System.Windows.Forms.TextBox tag1Line2;
-        private System.Windows.Forms.TextBox tag1Line3;
-        private System.Windows.Forms.TextBox tag1Line4;
+        private System.Windows.Forms.TextBox tag1Line2Box;
+        private System.Windows.Forms.TextBox tag1Line3Box;
+        private System.Windows.Forms.TextBox tag1Line4Box;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Button ledBtn;
         private System.Windows.Forms.Button button1;
