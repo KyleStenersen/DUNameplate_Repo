@@ -117,8 +117,13 @@
             this.Controls.Add(this.tag1Line0Box);
             this.Controls.Add(this.ledBtn);
             this.Controls.Add(this.printTagsBtn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.HelpButton = true;
             this.Name = "GUI_MAIN_FORM";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

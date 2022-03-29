@@ -61,10 +61,7 @@ namespace DUNameplateGUI
         private void printTagsBtn_Click(object sender, EventArgs e)
         {
 
-            if (checkTagText.allLinesOfTagForErrors(ref arrayOfTag1Lines) == true)
-            {
-                return;
-            }
+            if (checkTagText.allLinesOfTagForErrors(ref arrayOfTag1Lines) == true) return;           
 
             editTagText.addNewLineCharsAndReverseOddLinesAll(ref arrayOfTag1Lines);
 
