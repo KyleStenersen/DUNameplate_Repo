@@ -9,3 +9,15 @@ C:\Users\kmstenersen\Desktop\VS PROJECTS\DUNameplateGUI_Repo\DUNameplateGUI\obj\
 C:\Users\kmstenersen\Desktop\VS PROJECTS\DUNameplateGUI_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.exe
 C:\Users\kmstenersen\Desktop\VS PROJECTS\DUNameplateGUI_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.pdb
 C:\Users\kmstenersen\Desktop\VS PROJECTS\DUNameplateGUI_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.GUI_MAIN_FORM.resources
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\bin\Debug\DUNameplateGUI.exe.config
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\bin\Debug\DUNameplateGUI.exe
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\bin\Debug\DUNameplateGUI.pdb
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.csproj.AssemblyReference.cache
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.Properties.Resources.resources
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.exe
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.pdb
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.MAIN_FORM.resources
+C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.SETTINGS_FORM.resources

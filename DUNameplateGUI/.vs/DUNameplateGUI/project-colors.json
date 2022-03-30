@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "fcd6432d-cc65-49e7-a087-2cf795480eb1": {
+      "ProjectGuid": "fcd6432d-cc65-49e7-a087-2cf795480eb1",
+      "DisplayName": "DUNameplateGUI",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
