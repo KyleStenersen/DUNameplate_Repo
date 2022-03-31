@@ -13,6 +13,15 @@ public class EditTagText
         addNewLineCharAndReverse(ref arrayOfCurrentTagLines[3]);
     }
 
+    public void emptyTag(ref string[] arrayOfCurrentTagLines, ref System.Windows.Forms.TextBox[] arrayOfCurrentTextboxes)
+    {
+        for (int i = 0; i < arrayOfCurrentTagLines.Length; i++)
+        {
+            arrayOfCurrentTagLines[i] = null;
+            arrayOfCurrentTextboxes[i].Text = null;
+        }
+    }
+
     //SUPPORT FUNCTIONS ---------------------
 
     private void reverseLine(ref string tagLineStr)

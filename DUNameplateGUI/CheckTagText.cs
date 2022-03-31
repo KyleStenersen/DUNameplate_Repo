@@ -54,7 +54,7 @@ public class CheckTagText
     {
         for (int i = 0; i < arrayOfCurrentTagLines.Length; i++)
         {
-            if (errorIfTooLong(ref arrayOfCurrentTagLines[i], i+1) == true)
+            if (errorIfTooLong(ref arrayOfCurrentTagLines[i], i) == true)
             {
                 //error out
                 MessageBox.Show("Tag line too long", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);

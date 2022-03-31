@@ -16,7 +16,7 @@ namespace DUNameplateGUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GUI_MAIN_FORM());
+            Application.Run(new MAIN_FORM());
         }
     }
 }

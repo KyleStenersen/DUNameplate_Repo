@@ -8,64 +8,67 @@ using System.Windows.Forms;
 
 namespace DUNameplateGUI
 {
-    public partial class GUI_MAIN_FORM : Form
+    public partial class MAIN_FORM : Form
     {
         private string tag1Line0String;
         private string tag1Line1String;
         private string tag1Line2String;
         private string tag1Line3String;
-        string[] arrayOfTag1Lines;
+        TextBox[] arrayOfTagTextBoxes;
+        string[] arrayOfTagLines;
         private int TAG_LINE_NUMBER;
 
 
         CheckTagText checkTagText = new CheckTagText();
         EditTagText editTagText = new EditTagText();
 
-        public GUI_MAIN_FORM()
+        public MAIN_FORM()
         {
             InitializeComponent();
             //serialPort1.Open();
 
-            tag1Line0String = tag1Line0Box.Text;
-            tag1Line1String = tag1Line1Box.Text;
-            tag1Line2String = tag1Line2Box.Text;
-            tag1Line3String = tag1Line3Box.Text;
-
-            arrayOfTag1Lines = new string[4] { tag1Line0String, tag1Line1String, tag1Line2String, tag1Line3String };
+            arrayOfTagTextBoxes = new TextBox[4] { tag1Line0Box, tag1Line1Box, tag1Line2Box, tag1Line3Box };
+            arrayOfTagLines = new string[4];
+            
+            for (int i = 0; i < arrayOfTagTextBoxes.Length; i++)
+                arrayOfTagLines[i]=arrayOfTagTextBoxes[i].Text;
+            
         }
 
         private void tag1Line0Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 0;
-            checkTagText.redTextBoxIfInputError(ref arrayOfTag1Lines[TAG_LINE_NUMBER], ref tag1Line0Box, TAG_LINE_NUMBER);
+            checkTagText.redTextBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
 
         private void tag1Line1Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 1;
-            checkTagText.redTextBoxIfInputError(ref arrayOfTag1Lines[TAG_LINE_NUMBER], ref tag1Line1Box, TAG_LINE_NUMBER);
+            checkTagText.redTextBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
 
         private void tag1Line2Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 2;
-            checkTagText.redTextBoxIfInputError(ref arrayOfTag1Lines[TAG_LINE_NUMBER], ref tag1Line2Box, TAG_LINE_NUMBER);
+            checkTagText.redTextBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
 
         private void tag1Line3Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 3;
-            checkTagText.redTextBoxIfInputError(ref arrayOfTag1Lines[TAG_LINE_NUMBER], ref tag1Line3Box, TAG_LINE_NUMBER);
+            checkTagText.redTextBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
 
         private void printTagsBtn_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < arrayOfTagTextBoxes.Length; i++)
+                arrayOfTagLines[i] = arrayOfTagTextBoxes[i].Text;
 
-            if (checkTagText.allLinesOfTagForErrors(ref arrayOfTag1Lines) == true) return;           
+            if (checkTagText.allLinesOfTagForErrors(ref arrayOfTagLines) == true) return;           
 
-            editTagText.addNewLineCharsAndReverseOddLinesAll(ref arrayOfTag1Lines);
+            editTagText.addNewLineCharsAndReverseOddLinesAll(ref arrayOfTagLines);
 
-            string tag1Text = (arrayOfTag1Lines[0] + arrayOfTag1Lines[1] + arrayOfTag1Lines[2] + arrayOfTag1Lines[3]);
+            string tag1Text = (arrayOfTagLines[0] + arrayOfTagLines[1] + arrayOfTagLines[2] + arrayOfTagLines[3]);
 
             tag1Text = tag1Text.ToUpper();
             tag1Text = ("<" + "a" + tag1Text + ">");
@@ -73,16 +76,19 @@ namespace DUNameplateGUI
 
             MessageBox.Show(tag1Text);
             //serialPort1.Write(tag1Text);
-
-            tag1Line0String = null;
-            tag1Line1String = null;
-            tag1Line2String = null;
-            tag1Line3String = null;
+            
         }
 
-        private void ledBtn_Click(object sender, EventArgs e)
+
+        private void settingsBtn_Click(object sender, EventArgs e)
         {
-            //serialPort1.Write("b");
+            SETTINGS_FORM settings_form = new SETTINGS_FORM();
+            settings_form.ShowDialog();
+        }
+
+        private void clearTagBtn_Click(object sender, EventArgs e)
+        {
+            editTagText.emptyTag(ref arrayOfTagLines, ref arrayOfTagTextBoxes);
         }
     }
 }
