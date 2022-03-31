@@ -10,10 +10,6 @@ namespace DUNameplateGUI
 {
     public partial class MAIN_FORM : Form
     {
-        private string tag1Line0String;
-        private string tag1Line1String;
-        private string tag1Line2String;
-        private string tag1Line3String;
         TextBox[] arrayOfTagTextBoxes;
         string[] arrayOfTagLines;
         private int TAG_LINE_NUMBER;

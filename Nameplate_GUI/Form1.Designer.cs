@@ -110,7 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1277, 644);
+            this.ClientSize = new System.Drawing.Size(777, 321);
             this.Controls.Add(this.clearTagBtn);
             this.Controls.Add(this.settingsBtn);
             this.Controls.Add(this.tag1Line3Box);
