@@ -34,9 +34,10 @@
             this.tag1Line1Box = new System.Windows.Forms.TextBox();
             this.tag1Line2Box = new System.Windows.Forms.TextBox();
             this.tag1Line3Box = new System.Windows.Forms.TextBox();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.settingsBtn = new System.Windows.Forms.Button();
             this.clearTagBtn = new System.Windows.Forms.Button();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.ledBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // printTagsBtn
@@ -81,11 +82,6 @@
             this.tag1Line3Box.TabIndex = 5;
             this.tag1Line3Box.TextChanged += new System.EventHandler(this.tag1Line3Box_TextChanged);
             // 
-            // serialPort1
-            // 
-            this.serialPort1.BaudRate = 115200;
-            this.serialPort1.PortName = "COM9";
-            // 
             // settingsBtn
             // 
             this.settingsBtn.Location = new System.Drawing.Point(78, 228);
@@ -106,12 +102,27 @@
             this.clearTagBtn.UseVisualStyleBackColor = true;
             this.clearTagBtn.Click += new System.EventHandler(this.clearTagBtn_Click);
             // 
+            // serialPort1
+            // 
+            this.serialPort1.BaudRate = 115200;
+            // 
+            // ledBtn
+            // 
+            this.ledBtn.Location = new System.Drawing.Point(214, 228);
+            this.ledBtn.Name = "ledBtn";
+            this.ledBtn.Size = new System.Drawing.Size(103, 28);
+            this.ledBtn.TabIndex = 6;
+            this.ledBtn.Text = "LED";
+            this.ledBtn.UseVisualStyleBackColor = true;
+            this.ledBtn.Click += new System.EventHandler(this.ledBtn_Click);
+            // 
             // MAIN_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 321);
             this.Controls.Add(this.clearTagBtn);
+            this.Controls.Add(this.ledBtn);
             this.Controls.Add(this.settingsBtn);
             this.Controls.Add(this.tag1Line3Box);
             this.Controls.Add(this.tag1Line2Box);
@@ -137,9 +148,10 @@
         private System.Windows.Forms.TextBox tag1Line1Box;
         private System.Windows.Forms.TextBox tag1Line2Box;
         private System.Windows.Forms.TextBox tag1Line3Box;
-        private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Button settingsBtn;
         private System.Windows.Forms.Button clearTagBtn;
+        private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Button ledBtn;
     }
 }
 

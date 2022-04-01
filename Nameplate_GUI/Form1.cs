@@ -17,18 +17,18 @@ namespace DUNameplateGUI
 
         CheckTagText checkTagText = new CheckTagText();
         EditTagText editTagText = new EditTagText();
+        SerialComm serialCommF1 = new SerialComm();
 
         public MAIN_FORM()
         {
+            //Running these once on startup
+
             InitializeComponent();
-            //serialPort1.Open();
 
             arrayOfTagTextBoxes = new TextBox[4] { tag1Line0Box, tag1Line1Box, tag1Line2Box, tag1Line3Box };
             arrayOfTagLines = new string[4];
-            
-            for (int i = 0; i < arrayOfTagTextBoxes.Length; i++)
-                arrayOfTagLines[i]=arrayOfTagTextBoxes[i].Text;
-            
+
+            //serialCommF1.sendSettings();
         }
 
         private void tag1Line0Box_TextChanged(object sender, EventArgs e)
@@ -71,10 +71,9 @@ namespace DUNameplateGUI
 
 
             MessageBox.Show(tag1Text);
-            //serialPort1.Write(tag1Text);
+            //serialCommF1.sendString(tag1Text);
             
         }
-
 
         private void settingsBtn_Click(object sender, EventArgs e)
         {
@@ -85,6 +84,11 @@ namespace DUNameplateGUI
         private void clearTagBtn_Click(object sender, EventArgs e)
         {
             editTagText.emptyTag(ref arrayOfTagLines, ref arrayOfTagTextBoxes);
+        }
+
+        private void ledBtn_Click(object sender, EventArgs e)
+        {
+            //serialCommF1.sendString("<b>");
         }
     }
 }

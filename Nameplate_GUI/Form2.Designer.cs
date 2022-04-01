@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.settingsCloseBtn = new System.Windows.Forms.Button();
+            this.settingsSaveCloseBtn = new System.Windows.Forms.Button();
             this.xOffsetBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,15 +57,15 @@
             this.resetDefaultsBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // settingsCloseBtn
+            // settingsSaveCloseBtn
             // 
-            this.settingsCloseBtn.Location = new System.Drawing.Point(40, 332);
-            this.settingsCloseBtn.Name = "settingsCloseBtn";
-            this.settingsCloseBtn.Size = new System.Drawing.Size(111, 29);
-            this.settingsCloseBtn.TabIndex = 0;
-            this.settingsCloseBtn.Text = "Save/Close";
-            this.settingsCloseBtn.UseVisualStyleBackColor = true;
-            this.settingsCloseBtn.Click += new System.EventHandler(this.settingsCloseBtn_Click);
+            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(40, 332);
+            this.settingsSaveCloseBtn.Name = "settingsSaveCloseBtn";
+            this.settingsSaveCloseBtn.Size = new System.Drawing.Size(111, 29);
+            this.settingsSaveCloseBtn.TabIndex = 0;
+            this.settingsSaveCloseBtn.Text = "Save/Close";
+            this.settingsSaveCloseBtn.UseVisualStyleBackColor = true;
+            this.settingsSaveCloseBtn.Click += new System.EventHandler(this.settingsSaveCloseBtn_Click);
             // 
             // xOffsetBox
             // 
@@ -328,7 +328,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.xOffsetBox);
             this.Controls.Add(this.resetDefaultsBtn);
-            this.Controls.Add(this.settingsCloseBtn);
+            this.Controls.Add(this.settingsSaveCloseBtn);
             this.Name = "SETTINGS_FORM";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
@@ -341,7 +341,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button settingsCloseBtn;
+        private System.Windows.Forms.Button settingsSaveCloseBtn;
         private System.Windows.Forms.TextBox xOffsetBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

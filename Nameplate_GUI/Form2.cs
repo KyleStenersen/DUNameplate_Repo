@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +12,7 @@ namespace DUNameplateGUI
     public partial class SETTINGS_FORM : Form
     {
         CheckSettings checkSettings = new CheckSettings();
+        SerialComm serialCommF2 = new SerialComm();
 
         const float X_OFFSET_MIN = 0.000F;
         const float X_OFFSET_MAX = 3.400F;
@@ -75,7 +75,7 @@ namespace DUNameplateGUI
             checkSettings.textBoxEntryError(ref charSpaceingBox, CHAR_SPACEING_MAX, CHAR_SPACEING_MIN);
         }
 
-        private void settingsCloseBtn_Click(object sender, EventArgs e)
+        private void settingsSaveCloseBtn_Click(object sender, EventArgs e)
         {
 
             if (checkSettings.textBoxEntryError(ref xOffsetBox, X_OFFSET_MAX, X_OFFSET_MIN) == true)
@@ -126,6 +126,7 @@ namespace DUNameplateGUI
 
 
             Properties.Settings.Default.Save();
+            serialCommF2.sendSettings();
             this.Close();
         }
 
@@ -161,36 +162,6 @@ namespace DUNameplateGUI
                 charSpaceingBox.Clear();
             }
         }
-    }
-}
 
-
-public class CheckSettings
-{ 
-    public Boolean textBoxEntryError(ref TextBox currentBox, float valueMax, float valueMin)
-    {
-        if (String.IsNullOrWhiteSpace(currentBox.Text))
-        {
-            currentBox.BackColor = Color.White;
-            return false; //succeed out
-        }
-
-        float textBoxFloat;
-        Boolean parseable = float.TryParse(currentBox.Text, out textBoxFloat);
-
-        if (parseable == false)
-        {
-            currentBox.BackColor = Color.MistyRose;
-            return true; //error out
-        }
-
-        if (valueMin > textBoxFloat || valueMax < textBoxFloat)
-        {
-            currentBox.BackColor = Color.MistyRose;
-            return true; //error out
-        }
-
-        currentBox.BackColor = Color.White;
-        return false;
     }
 }
