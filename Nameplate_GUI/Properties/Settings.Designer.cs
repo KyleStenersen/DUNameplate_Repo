@@ -50,36 +50,36 @@ namespace DUNameplateGUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.9")]
-        public float plateSpacingSet {
+        public float plateSpaceingSet {
             get {
-                return ((float)(this["plateSpacingSet"]));
+                return ((float)(this["plateSpaceingSet"]));
             }
             set {
-                this["plateSpacingSet"] = value;
+                this["plateSpaceingSet"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.14")]
-        public float lineSpacingSet {
+        public float lineSpaceingSet {
             get {
-                return ((float)(this["lineSpacingSet"]));
+                return ((float)(this["lineSpaceingSet"]));
             }
             set {
-                this["lineSpacingSet"] = value;
+                this["lineSpaceingSet"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.11")]
-        public float charSpacingSet {
+        public float charSpaceingSet {
             get {
-                return ((float)(this["charSpacingSet"]));
+                return ((float)(this["charSpaceingSet"]));
             }
             set {
-                this["charSpacingSet"] = value;
+                this["charSpaceingSet"] = value;
             }
         }
     }

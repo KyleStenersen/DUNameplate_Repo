@@ -21,3 +21,15 @@ C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.
 C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.pdb
 C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.MAIN_FORM.resources
 C:\Users\admin\Desktop\DUNampelate_Repo\DUNameplateGUI\obj\Debug\DUNameplateGUI.SETTINGS_FORM.resources
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\bin\Debug\DUNameplateGUI.exe.config
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\bin\Debug\DUNameplateGUI.exe
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\bin\Debug\DUNameplateGUI.pdb
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\obj\Debug\DUNameplateGUI.csproj.AssemblyReference.cache
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\obj\Debug\DUNameplateGUI.csproj.SuggestedBindingRedirects.cache
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\obj\Debug\DUNameplateGUI.MAIN_FORM.resources
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\obj\Debug\DUNameplateGUI.SETTINGS_FORM.resources
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\obj\Debug\DUNameplateGUI.Properties.Resources.resources
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\obj\Debug\DUNameplateGUI.csproj.GenerateResource.cache
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\obj\Debug\DUNameplateGUI.csproj.CoreCompileInputs.cache
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\obj\Debug\DUNameplateGUI.exe
+C:\Users\kmstenersen\Desktop\DUNameplate_Repo\Nameplate_GUI\obj\Debug\DUNameplateGUI.pdb

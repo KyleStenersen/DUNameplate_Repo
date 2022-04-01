@@ -40,27 +40,28 @@
             this.plateSpaceingBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.plateSpacingDefault = new System.Windows.Forms.Label();
+            this.plateSpaceingDefault = new System.Windows.Forms.Label();
             this.lineSpaceingBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.lineSpacingDefault = new System.Windows.Forms.Label();
-            this.charSpacingBox = new System.Windows.Forms.TextBox();
+            this.lineSpaceingDefault = new System.Windows.Forms.Label();
+            this.charSpaceingBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.charSpacingDefault = new System.Windows.Forms.Label();
+            this.charSpaceingDefault = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.resetDefaultsBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // settingsCloseBtn
             // 
-            this.settingsCloseBtn.Location = new System.Drawing.Point(12, 337);
+            this.settingsCloseBtn.Location = new System.Drawing.Point(40, 332);
             this.settingsCloseBtn.Name = "settingsCloseBtn";
-            this.settingsCloseBtn.Size = new System.Drawing.Size(105, 29);
+            this.settingsCloseBtn.Size = new System.Drawing.Size(111, 29);
             this.settingsCloseBtn.TabIndex = 0;
             this.settingsCloseBtn.Text = "Save/Close";
             this.settingsCloseBtn.UseVisualStyleBackColor = true;
@@ -72,6 +73,7 @@
             this.xOffsetBox.Name = "xOffsetBox";
             this.xOffsetBox.Size = new System.Drawing.Size(100, 22);
             this.xOffsetBox.TabIndex = 1;
+            this.xOffsetBox.Leave += new System.EventHandler(this.xOffsetBox_Leave);
             // 
             // label1
             // 
@@ -94,7 +96,7 @@
             // xOffsetDefault
             // 
             this.xOffsetDefault.AutoSize = true;
-            this.xOffsetDefault.Location = new System.Drawing.Point(228, 50);
+            this.xOffsetDefault.Location = new System.Drawing.Point(219, 50);
             this.xOffsetDefault.Name = "xOffsetDefault";
             this.xOffsetDefault.Size = new System.Drawing.Size(24, 16);
             this.xOffsetDefault.TabIndex = 2;
@@ -106,16 +108,16 @@
             this.yOffsetBox.Name = "yOffsetBox";
             this.yOffsetBox.Size = new System.Drawing.Size(100, 22);
             this.yOffsetBox.TabIndex = 1;
-            this.yOffsetBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.yOffsetBox.Leave += new System.EventHandler(this.yOffsetBox_Leave);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(37, 84);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(206, 16);
+            this.label4.Size = new System.Drawing.Size(230, 16);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Y OFFSET (home to top of tag #1)";
+            this.label4.Text = "Y OFFSET (home to top line of tag #1)";
             // 
             // label5
             // 
@@ -125,17 +127,15 @@
             this.label5.Size = new System.Drawing.Size(52, 16);
             this.label5.TabIndex = 2;
             this.label5.Text = "Default:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // yOffsetDefault
             // 
             this.yOffsetDefault.AutoSize = true;
-            this.yOffsetDefault.Location = new System.Drawing.Point(228, 109);
+            this.yOffsetDefault.Location = new System.Drawing.Point(219, 109);
             this.yOffsetDefault.Name = "yOffsetDefault";
             this.yOffsetDefault.Size = new System.Drawing.Size(24, 16);
             this.yOffsetDefault.TabIndex = 2;
             this.yOffsetDefault.Text = "0.6";
-            this.yOffsetDefault.Click += new System.EventHandler(this.label6_Click);
             // 
             // plateSpaceingBox
             // 
@@ -143,7 +143,7 @@
             this.plateSpaceingBox.Name = "plateSpaceingBox";
             this.plateSpaceingBox.Size = new System.Drawing.Size(100, 22);
             this.plateSpaceingBox.TabIndex = 1;
-            this.plateSpaceingBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.plateSpaceingBox.Leave += new System.EventHandler(this.plateSpaceingBox_Leave);
             // 
             // label7
             // 
@@ -162,17 +162,15 @@
             this.label8.Size = new System.Drawing.Size(52, 16);
             this.label8.TabIndex = 2;
             this.label8.Text = "Default:";
-            this.label8.Click += new System.EventHandler(this.label5_Click);
             // 
-            // plateSpacingDefault
+            // plateSpaceingDefault
             // 
-            this.plateSpacingDefault.AutoSize = true;
-            this.plateSpacingDefault.Location = new System.Drawing.Point(228, 166);
-            this.plateSpacingDefault.Name = "plateSpacingDefault";
-            this.plateSpacingDefault.Size = new System.Drawing.Size(24, 16);
-            this.plateSpacingDefault.TabIndex = 2;
-            this.plateSpacingDefault.Text = "0.9";
-            this.plateSpacingDefault.Click += new System.EventHandler(this.label6_Click);
+            this.plateSpaceingDefault.AutoSize = true;
+            this.plateSpaceingDefault.Location = new System.Drawing.Point(219, 166);
+            this.plateSpaceingDefault.Name = "plateSpaceingDefault";
+            this.plateSpaceingDefault.Size = new System.Drawing.Size(24, 16);
+            this.plateSpaceingDefault.TabIndex = 2;
+            this.plateSpaceingDefault.Text = "0.9";
             // 
             // lineSpaceingBox
             // 
@@ -180,7 +178,7 @@
             this.lineSpaceingBox.Name = "lineSpaceingBox";
             this.lineSpaceingBox.Size = new System.Drawing.Size(100, 22);
             this.lineSpaceingBox.TabIndex = 1;
-            this.lineSpaceingBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.lineSpaceingBox.Leave += new System.EventHandler(this.lineSpaceingBox_Leave);
             // 
             // label10
             // 
@@ -199,25 +197,23 @@
             this.label11.Size = new System.Drawing.Size(52, 16);
             this.label11.TabIndex = 2;
             this.label11.Text = "Default:";
-            this.label11.Click += new System.EventHandler(this.label5_Click);
             // 
-            // lineSpacingDefault
+            // lineSpaceingDefault
             // 
-            this.lineSpacingDefault.AutoSize = true;
-            this.lineSpacingDefault.Location = new System.Drawing.Point(228, 228);
-            this.lineSpacingDefault.Name = "lineSpacingDefault";
-            this.lineSpacingDefault.Size = new System.Drawing.Size(31, 16);
-            this.lineSpacingDefault.TabIndex = 2;
-            this.lineSpacingDefault.Text = "0.14";
-            this.lineSpacingDefault.Click += new System.EventHandler(this.label6_Click);
+            this.lineSpaceingDefault.AutoSize = true;
+            this.lineSpaceingDefault.Location = new System.Drawing.Point(219, 228);
+            this.lineSpaceingDefault.Name = "lineSpaceingDefault";
+            this.lineSpaceingDefault.Size = new System.Drawing.Size(31, 16);
+            this.lineSpaceingDefault.TabIndex = 2;
+            this.lineSpaceingDefault.Text = "0.14";
             // 
-            // charSpacingBox
+            // charSpaceingBox
             // 
-            this.charSpacingBox.Location = new System.Drawing.Point(40, 282);
-            this.charSpacingBox.Name = "charSpacingBox";
-            this.charSpacingBox.Size = new System.Drawing.Size(100, 22);
-            this.charSpacingBox.TabIndex = 1;
-            this.charSpacingBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.charSpaceingBox.Location = new System.Drawing.Point(40, 282);
+            this.charSpaceingBox.Name = "charSpaceingBox";
+            this.charSpaceingBox.Size = new System.Drawing.Size(100, 22);
+            this.charSpaceingBox.TabIndex = 1;
+            this.charSpaceingBox.Leave += new System.EventHandler(this.charSpaceingBox_Leave);
             // 
             // label13
             // 
@@ -236,22 +232,20 @@
             this.label14.Size = new System.Drawing.Size(52, 16);
             this.label14.TabIndex = 2;
             this.label14.Text = "Default:";
-            this.label14.Click += new System.EventHandler(this.label5_Click);
             // 
-            // charSpacingDefault
+            // charSpaceingDefault
             // 
-            this.charSpacingDefault.AutoSize = true;
-            this.charSpacingDefault.Location = new System.Drawing.Point(228, 288);
-            this.charSpacingDefault.Name = "charSpacingDefault";
-            this.charSpacingDefault.Size = new System.Drawing.Size(31, 16);
-            this.charSpacingDefault.TabIndex = 2;
-            this.charSpacingDefault.Text = "0.11";
-            this.charSpacingDefault.Click += new System.EventHandler(this.label6_Click);
+            this.charSpaceingDefault.AutoSize = true;
+            this.charSpaceingDefault.Location = new System.Drawing.Point(219, 288);
+            this.charSpaceingDefault.Name = "charSpaceingDefault";
+            this.charSpaceingDefault.Size = new System.Drawing.Size(31, 16);
+            this.charSpaceingDefault.TabIndex = 2;
+            this.charSpaceingDefault.Text = "0.11";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(282, 50);
+            this.label16.Location = new System.Drawing.Point(273, 50);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(20, 16);
             this.label16.TabIndex = 2;
@@ -260,54 +254,60 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(282, 109);
+            this.label17.Location = new System.Drawing.Point(273, 109);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(20, 16);
             this.label17.TabIndex = 2;
             this.label17.Text = "in.";
-            this.label17.Click += new System.EventHandler(this.label6_Click);
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(282, 166);
+            this.label18.Location = new System.Drawing.Point(273, 166);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(20, 16);
             this.label18.TabIndex = 2;
             this.label18.Text = "in.";
-            this.label18.Click += new System.EventHandler(this.label6_Click);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(282, 228);
+            this.label19.Location = new System.Drawing.Point(273, 228);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(20, 16);
             this.label19.TabIndex = 2;
             this.label19.Text = "in.";
-            this.label19.Click += new System.EventHandler(this.label6_Click);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(282, 288);
+            this.label20.Location = new System.Drawing.Point(273, 288);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(20, 16);
             this.label20.TabIndex = 2;
             this.label20.Text = "in.";
-            this.label20.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // resetDefaultsBtn
+            // 
+            this.resetDefaultsBtn.Location = new System.Drawing.Point(174, 332);
+            this.resetDefaultsBtn.Name = "resetDefaultsBtn";
+            this.resetDefaultsBtn.Size = new System.Drawing.Size(119, 29);
+            this.resetDefaultsBtn.TabIndex = 0;
+            this.resetDefaultsBtn.Text = "Reset Defaults";
+            this.resetDefaultsBtn.UseVisualStyleBackColor = true;
+            this.resetDefaultsBtn.Click += new System.EventHandler(this.resetDefaultsBtn_Click);
             // 
             // SETTINGS_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 383);
+            this.ClientSize = new System.Drawing.Size(334, 383);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.charSpacingDefault);
+            this.Controls.Add(this.charSpaceingDefault);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.lineSpacingDefault);
+            this.Controls.Add(this.lineSpaceingDefault);
             this.Controls.Add(this.label18);
-            this.Controls.Add(this.plateSpacingDefault);
+            this.Controls.Add(this.plateSpaceingDefault);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.yOffsetDefault);
             this.Controls.Add(this.label16);
@@ -319,7 +319,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.charSpacingBox);
+            this.Controls.Add(this.charSpaceingBox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lineSpaceingBox);
             this.Controls.Add(this.label4);
@@ -327,10 +327,13 @@
             this.Controls.Add(this.yOffsetBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.xOffsetBox);
+            this.Controls.Add(this.resetDefaultsBtn);
             this.Controls.Add(this.settingsCloseBtn);
             this.Name = "SETTINGS_FORM";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.SETTINGS_FORM_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,19 +353,20 @@
         private System.Windows.Forms.TextBox plateSpaceingBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label plateSpacingDefault;
+        private System.Windows.Forms.Label plateSpaceingDefault;
         private System.Windows.Forms.TextBox lineSpaceingBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label lineSpacingDefault;
-        private System.Windows.Forms.TextBox charSpacingBox;
+        private System.Windows.Forms.Label lineSpaceingDefault;
+        private System.Windows.Forms.TextBox charSpaceingBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label charSpacingDefault;
+        private System.Windows.Forms.Label charSpaceingDefault;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button resetDefaultsBtn;
     }
 }

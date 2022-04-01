@@ -101,7 +101,7 @@ public class CheckTagText
             }
         }
 
-        if (lineNum == 2 || lineNum == 2)
+        if (lineNum == 1 || lineNum == 2)
         {
             if (tagLineString != null && tagLineString.Length > 19)
             {
