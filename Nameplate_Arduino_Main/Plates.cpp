@@ -4,11 +4,11 @@ float yAbsolute = 0;
 float xAbsolute = 0;
 float* Y_ABS_POINTER = &yAbsolute;
 float* X_ABS_POINTER = &xAbsolute;
-float X_CENTER_COLUMN_1 = 1.8;
+float X_CENTER_COLUMN_1 = X_OFFSET;
+float Y_OFFSET_1;
+float xOffset_1;
 int lineLengthArray[5];
 int lineNum = 0;
-float LETTER_SPACING = 0.11;
-float LINE_SPACING = 0.14;
 int SWITCH_SIDE = -1;
 int plateSide = 1;
 
@@ -20,26 +20,20 @@ int plateSide = 1;
 Motor motorP;
 Text textP;
 
-Plates::Plates(){
-  //letterWarmUpAndGo_W();
-}
+Plates::Plates(){}
 
 void Plates::printOne(char* plateText)
 {
+  xyHome();
   textP.setupHashMap();
   textP.analyzeInputString(plateText, lineLengthArray);
 
-  plateSide = 1;
-  int i = 0;
-  float xOffset1 = X_CENTER_COLUMN_1 - halfCurrentLine(lineNum);
-  float yOffset1 = .6;
+  plateSide = 1;      //sign toggled for direction of indenting
+  int i = 0;          //counter that updates for each incoming character
+  xOffset_1 = X_CENTER_COLUMN_1 - halfCurrentLine(lineNum);    //starting position in x is half of the current tagline away from the center of the tag
+  Y_OFFSET_1 = Y_OFFSET;    //starting position in y
   
-  motorP.stampMotorOn();
-  motorP.xOn();
-  motorP.xGo(xOffset1, X_ABS_POINTER);  
-  motorP.yOn(); 
-  motorP.yGo(yOffset1, Y_ABS_POINTER); 
-  motorP.letterOn();
+  motorsOn_GoToPrintStart();
   
   while (i < strlen(plateText))
   {
@@ -52,13 +46,13 @@ void Plates::printOne(char* plateText)
       
     if (angleToMove == SPACE_BAR) 
     {
-      motorP.xGo(plateSide*LETTER_SPACING, X_ABS_POINTER);
+      motorP.xGo(plateSide*LETTER_SPACEING, X_ABS_POINTER);
       i++;
       continue;
     }
     if (angleToMove == NEW_LINE)
     {
-      motorP.yGo(LINE_SPACING, Y_ABS_POINTER);
+      motorP.yGo(LINE_SPACEING, Y_ABS_POINTER);
       lineNum++;
       
       float lineStart = X_CENTER_COLUMN_1 + (halfCurrentLine(lineNum) * plateSide);
@@ -79,7 +73,7 @@ void Plates::printOne(char* plateText)
     
     motorP.letterGo(angleToMove);
     motorP.stamp();
-    motorP.xGo((plateSide*LETTER_SPACING), X_ABS_POINTER);
+    motorP.xGo((plateSide*LETTER_SPACEING), X_ABS_POINTER);
     i++;
   } 
 
@@ -87,13 +81,8 @@ void Plates::printOne(char* plateText)
     Serial.println(xAbsolute);
     Serial.print("yAbsolute = ");
     Serial.println(yAbsolute); 
-       
-  
-  motorP.xOff();
-  motorP.yOff();
-  motorP.letterOff();
-  //-------
-  motorP.stampMotorOff();
+
+    killAllMotors();   
 }
 
 
@@ -150,25 +139,39 @@ void Plates::spinL(int lDeg)
 }
 
 void Plates::killAllMotors(){
-  //motorP.stampMotorOff();
+  motorP.stampMotorOff();
   motorP.xOff();
   motorP.yOff();
   motorP.letterOff();
+}
+
+void Plates::homeMachine(){
+  xyHome();
+  letterWarmUpAndGo_W();
 }
 
 //Private Functions-------------------
 
 float Plates::halfCurrentLine(int lineNumber)
 {
-  return (((lineLengthArray[lineNumber]-1) * LETTER_SPACING) / 2);
+  return (((lineLengthArray[lineNumber]-1) * LETTER_SPACEING) / 2);
 }
 
-//void Plates::letterWarmUpAndGo_W()
-//{
-//  motorP.letterOn();
-//  motorP.letterGo(45);
-//  motorP.letterGo(-90);
-//  motorP.letterGo(180);
-//  int angleToMove = textP.relativeAngleFromLetter('W');
-//  motorP.letterGo(angleToMove);
-//}
+void Plates::letterWarmUpAndGo_W()
+{
+  motorP.letterOn();
+  motorP.letterGo(45);
+  motorP.letterGo(-90);
+  motorP.letterGo(180);
+  goToALetter("W");
+}
+
+void Plates::motorsOn_GoToPrintStart()
+{
+  motorP.stampMotorOn();
+  motorP.xOn();
+  motorP.xGo(xOffset_1, X_ABS_POINTER);  
+  motorP.yOn(); 
+  motorP.yGo(Y_OFFSET_1, Y_ABS_POINTER); 
+  motorP.letterOn();
+}

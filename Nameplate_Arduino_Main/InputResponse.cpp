@@ -10,6 +10,7 @@
 // ‘s’ plates.stampTest() - stamp machine motion once
 // ‘b’ flip onboard LED on and off
 // ‘e’ encoder.encoder.getAngle() - prints current encoder angle to serial monitor
+// 'p' 
 
 
 #include "InputResponse.h"
@@ -80,10 +81,40 @@ void InputResponse::chooseAction(const char* fullInputString)
     }
     break;
 
-    case 'e':
-    encoderIR.encoderSetup();
-    Serial.println(encoderIR.getAngle());
+    case 'p':    
+    char * stringTokenIndex;
+  
+    stringTokenIndex = strtok(actionInfo,",");
+    X_OFFSET = atof(stringTokenIndex);  
+ 
+    stringTokenIndex = strtok(NULL, ","); 
+    Y_OFFSET = atof(stringTokenIndex);  
+
+    stringTokenIndex = strtok(NULL, ",");
+    NAMEPLATE_SPACEING = atof(stringTokenIndex);
+
+    stringTokenIndex = strtok(NULL, ",");
+    LINE_SPACEING = atof(stringTokenIndex);
+
+    stringTokenIndex = strtok(NULL, ",");
+    LETTER_SPACEING = atof(stringTokenIndex);
+     
     serialOpsIR.emptySerial();
     break;
+
+    case 'd':
+    Serial.println("...");
+    Serial.print("X_OFFSET = ");
+    Serial.println(X_OFFSET);
+    Serial.print("Y_OFFSET = ");
+    Serial.println(Y_OFFSET);
+    Serial.print("NAMEPLATE_SPACEING = ");
+    Serial.println(NAMEPLATE_SPACEING);
+    Serial.print("LINE_SPACEING = ");
+    Serial.println(LINE_SPACEING);
+    Serial.print("LETTER_SPACEING = ");
+    Serial.println(LETTER_SPACEING);
+    Serial.println("...");    
+    break;   
   }
 }

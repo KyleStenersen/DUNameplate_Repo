@@ -15,12 +15,19 @@
 #include "SerialOps.h"
 #include "InputResponse.h"
 #include "Encoder.h"
+#include "GlobalSettings.h"
 
 Motor motor;
 Plates plates;
 SerialOps serialOps;
 InputResponse inputResponse;
 Encoder encoder;
+
+float X_OFFSET = 1.8;
+float Y_OFFSET = 0.6;
+float NAMEPLATE_SPACEING = 0.9;
+float LINE_SPACEING = 0.14;
+float LETTER_SPACEING = 0.11;
 
 
 // -----------------
@@ -42,6 +49,7 @@ void setup() {
   digitalWrite(13,LOW);
   motor.motorSetupAll();
   encoder.encoderSetup();
+  plates.homeMachine();
   pinMode(10, INPUT);
   pinMode(21, INPUT);
  // attachInterrupt(10,stall,RISING);

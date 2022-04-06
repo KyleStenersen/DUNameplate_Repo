@@ -28,7 +28,7 @@ namespace DUNameplateGUI
             arrayOfTagTextBoxes = new TextBox[4] { tag1Line0Box, tag1Line1Box, tag1Line2Box, tag1Line3Box };
             arrayOfTagLines = new string[4];
 
-            //serialCommF1.sendSettings();
+            serialCommF1.sendSettings();
         }
 
         private void tag1Line0Box_TextChanged(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace DUNameplateGUI
 
 
             MessageBox.Show(tag1Text);
-            //serialCommF1.sendString(tag1Text);
+            serialCommF1.sendString(tag1Text);
             
         }
 
