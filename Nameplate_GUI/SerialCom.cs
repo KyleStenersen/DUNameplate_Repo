@@ -1,20 +1,18 @@
 ﻿using System.Windows.Forms;
 using System.IO.Ports;
 
-public class SerialComm
+public class SerialCom
 {
-    static SerialPort serialPort1;
+    private static SerialPort serialPort1 = new SerialPort();
 
-    public SerialComm()
+    public void setupPort()
     {
-        serialPort1 = new SerialPort();
         serialPort1.BaudRate = 115200;
         serialPort1.PortName = "COM9";
         serialPort1.ReadTimeout = -1;
         serialPort1.WriteTimeout = -1;
         serialPort1.Open();
     }
-
     public void sendSettings()
     {
         MessageBox.Show("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +

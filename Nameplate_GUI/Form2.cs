@@ -12,7 +12,7 @@ namespace DUNameplateGUI
     public partial class SETTINGS_FORM : Form
     {
         CheckSettings checkSettings = new CheckSettings();
-        SerialComm serialCommF2 = new SerialComm();
+        SerialCom serialComF2 = new SerialCom();
 
         const float X_OFFSET_MIN = 0.000F;
         const float X_OFFSET_MAX = 3.400F;
@@ -126,7 +126,7 @@ namespace DUNameplateGUI
 
 
             Properties.Settings.Default.Save();
-            serialCommF2.sendSettings();
+            serialComF2.sendSettings();
             this.Close();
         }
 
