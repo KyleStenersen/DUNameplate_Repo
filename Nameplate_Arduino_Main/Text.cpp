@@ -10,11 +10,11 @@ Text::Text(){}
 void Text::setupHashMap(void)
 {
   hashMap[0]('W',4);
-  hashMap[1]('S',12);
-  hashMap[2]('3',21);
+  hashMap[1]('S',13);
+  hashMap[2]('3',22);
   hashMap[3]('X',30);
-  hashMap[4]('E',39);
-  hashMap[5]('D',48);
+  hashMap[4]('E',40);
+  hashMap[5]('D',49);
   hashMap[6]('4',58);
   hashMap[7]('C',67);
   hashMap[8]('R',76);
@@ -34,11 +34,11 @@ void Text::setupHashMap(void)
   hashMap[22]('U',202);
   hashMap[23]('M',211);
   hashMap[24]('8',220);
-  hashMap[25]('K',228);
+  hashMap[25]('K',229);
   hashMap[26]('I',238);
   hashMap[27]('#',247);
   hashMap[28]('9',256);
-  hashMap[29]('L',264);
+  hashMap[29]('L',265);
   hashMap[30]('0',274);
   hashMap[31]('.',283);
   hashMap[32]('P',292);
