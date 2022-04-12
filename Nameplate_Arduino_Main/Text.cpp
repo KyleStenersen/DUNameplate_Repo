@@ -21,7 +21,7 @@ void Text::setupHashMap(void)
   hashMap[9]('F',85);
   hashMap[10]('5',94);
   hashMap[11]('V',103);
-  hashMap[12]('T',112);
+  hashMap[12]('T',112); 
   hashMap[13]('G',121);
   hashMap[14]('6',130);
   hashMap[15]('B',139);
@@ -69,22 +69,22 @@ int Text::relativeAngleFromLetter(char letter)
     return 182;
   }
 
-  encoderT.encoderSetup();
-  int nextAngle = angleOfLetter(letter);
+  //encoderT.encoderSetup();
+  int nextAngle = angleOfLetterFromMap(letter);
   int currentAngle = encoderT.getAngle();
 
   int wayOneDeg = nextAngle - currentAngle;
   int wayTwoDeg = 360 - abs(wayOneDeg);
   
-  int diffWayOne = abs(wayOneDeg);
-  int diffWayTwo = abs(wayTwoDeg);
+  int absWayOne = abs(wayOneDeg);
+  int absWayTwo = abs(wayTwoDeg);
 
 
-  if (diffWayOne < 6 or diffWayTwo < 6)
+  if (absWayOne < 6 or absWayTwo < 6)
   {
     return 0; 
   }
-  else if (diffWayOne < diffWayTwo)
+  else if (absWayOne < absWayTwo)
   {
     return wayOneDeg;
   }
@@ -119,6 +119,6 @@ void Text::analyzeInputString(char* fullPlateString, int* lineLengthArr)
 
 //Private Functions========================================
 
-int Text::angleOfLetter(char letter){
+int Text::angleOfLetterFromMap(char letter){
 return hashMap.getValueOf(letter); 
 }

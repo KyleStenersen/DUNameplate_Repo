@@ -25,7 +25,6 @@ Plates::Plates(){}
 void Plates::printOne(char* plateText)
 {
   xyHome();
-  textP.setupHashMap();
   textP.analyzeInputString(plateText, lineLengthArray);
 
   plateSide = 1;      //sign toggled for direction of indenting
@@ -88,8 +87,9 @@ void Plates::printOne(char* plateText)
 
 void Plates::goToALetter(char* letter)
 {
-  textP.setupHashMap();
   int angleToMove = textP.relativeAngleFromLetter(letter[0]);
+  Serial.print(" ... angleToMove = ");
+  Serial.print(angleToMove);
   motorP.letterGo(angleToMove);
 }
 

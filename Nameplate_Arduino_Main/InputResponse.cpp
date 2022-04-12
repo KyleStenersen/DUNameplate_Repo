@@ -38,6 +38,10 @@ void InputResponse::chooseAction(const char* fullInputString)
     platesIR.goToALetter(actionInfo);
     serialOpsIR.emptySerial();
     break;
+
+    case 'e':
+    Serial.println(encoderIR.getAngle());
+    break;
     
     case 'h':
     platesIR.xyHome();

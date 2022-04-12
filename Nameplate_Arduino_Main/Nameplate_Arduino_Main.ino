@@ -22,6 +22,7 @@ Plates plates;
 SerialOps serialOps;
 InputResponse inputResponse;
 Encoder encoder;
+Text text;
 
 float X_OFFSET = 1.8;
 float Y_OFFSET = 0.6;
@@ -30,16 +31,6 @@ float LINE_SPACEING = 0.14;
 float LETTER_SPACEING = 0.11;
 
 
-// -----------------
-// CODE to setup SERIAL4 for barcode - (4th Serial port on DUE pins A11-TX and D52-RX)
-// retrieved from https://forum.arduino.cc/t/arduino-due-txd3-rxd3-to-use-as-serial-ports/252083/6 
-RingBuffer rx_buffer5, tx_buffer5;
-USARTClass Serial4 (USART2, USART2_IRQn, ID_USART2, &rx_buffer5, &tx_buffer5);
-// IT handlers
-extern "C" void USART2_Handler(void)
-{
-  Serial4.IrqHandler();
-}
 // ------------------
 
 void setup() {
@@ -47,6 +38,7 @@ void setup() {
   delay(100);
   pinMode(13, OUTPUT);
   digitalWrite(13,LOW);
+  text.setupHashMap();
   motor.motorSetupAll();
   encoder.encoderSetup();
   plates.homeMachine();
@@ -55,11 +47,6 @@ void setup() {
  // attachInterrupt(10,stall,RISING);
  // attachInterrupt(21,stall,RISING);
 
-  // ------------------
-  // CODE for SERIAL4 (see note above setup)
-  // Initialize USART pins for Serial4
-  PIO_Configure(PIOB, PIO_PERIPH_A, PIO_PB20A_TXD2 | PIO_PB21A_RXD2, PIO_DEFAULT);
-  Serial4.begin(115200);
   // ------------------
 }
 

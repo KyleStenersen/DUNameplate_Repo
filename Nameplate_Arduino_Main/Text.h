@@ -16,7 +16,7 @@ class Text {
     void analyzeInputString(char* fullPlateString, int* lineLengthArr);
     
   private:
-    int angleOfLetter(char letter);
+    int angleOfLetterFromMap(char letter);
     
 };
 
