@@ -24,11 +24,11 @@ InputResponse inputResponse;
 Encoder encoder;
 Text text;
 
-float X_OFFSET = 1.8;
-float Y_OFFSET = 0.6;
+float X_OFFSET = 1.86;
+float Y_OFFSET = 0.46;
 float NAMEPLATE_SPACEING = 0.9;
-float LINE_SPACEING = 0.14;
-float LETTER_SPACEING = 0.11;
+float LINE_SPACEING = 0.145;
+float LETTER_SPACEING = 0.095;
 
 
 // ------------------

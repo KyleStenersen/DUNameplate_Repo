@@ -98,9 +98,9 @@
             this.xOffsetDefault.AutoSize = true;
             this.xOffsetDefault.Location = new System.Drawing.Point(219, 50);
             this.xOffsetDefault.Name = "xOffsetDefault";
-            this.xOffsetDefault.Size = new System.Drawing.Size(24, 16);
+            this.xOffsetDefault.Size = new System.Drawing.Size(31, 16);
             this.xOffsetDefault.TabIndex = 2;
-            this.xOffsetDefault.Text = "1.8";
+            this.xOffsetDefault.Text = "1.86";
             // 
             // yOffsetBox
             // 
@@ -133,9 +133,9 @@
             this.yOffsetDefault.AutoSize = true;
             this.yOffsetDefault.Location = new System.Drawing.Point(219, 109);
             this.yOffsetDefault.Name = "yOffsetDefault";
-            this.yOffsetDefault.Size = new System.Drawing.Size(24, 16);
+            this.yOffsetDefault.Size = new System.Drawing.Size(31, 16);
             this.yOffsetDefault.TabIndex = 2;
-            this.yOffsetDefault.Text = "0.6";
+            this.yOffsetDefault.Text = "0.46";
             // 
             // plateSpaceingBox
             // 
@@ -203,9 +203,9 @@
             this.lineSpaceingDefault.AutoSize = true;
             this.lineSpaceingDefault.Location = new System.Drawing.Point(219, 228);
             this.lineSpaceingDefault.Name = "lineSpaceingDefault";
-            this.lineSpaceingDefault.Size = new System.Drawing.Size(31, 16);
+            this.lineSpaceingDefault.Size = new System.Drawing.Size(38, 16);
             this.lineSpaceingDefault.TabIndex = 2;
-            this.lineSpaceingDefault.Text = "0.14";
+            this.lineSpaceingDefault.Text = "0.145";
             // 
             // charSpaceingBox
             // 
@@ -238,9 +238,9 @@
             this.charSpaceingDefault.AutoSize = true;
             this.charSpaceingDefault.Location = new System.Drawing.Point(219, 288);
             this.charSpaceingDefault.Name = "charSpaceingDefault";
-            this.charSpaceingDefault.Size = new System.Drawing.Size(31, 16);
+            this.charSpaceingDefault.Size = new System.Drawing.Size(38, 16);
             this.charSpaceingDefault.TabIndex = 2;
-            this.charSpaceingDefault.Text = "0.11";
+            this.charSpaceingDefault.Text = "0.095";
             // 
             // label16
             // 

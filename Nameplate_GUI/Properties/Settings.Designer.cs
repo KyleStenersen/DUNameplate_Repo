@@ -25,7 +25,7 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.8")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.86")]
         public float xOffsetSet {
             get {
                 return ((float)(this["xOffsetSet"]));
@@ -37,7 +37,7 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.6")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.46")]
         public float yOffsetSet {
             get {
                 return ((float)(this["yOffsetSet"]));
@@ -61,7 +61,7 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.14")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.145")]
         public float lineSpaceingSet {
             get {
                 return ((float)(this["lineSpaceingSet"]));
@@ -73,7 +73,7 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.11")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.095")]
         public float charSpaceingSet {
             get {
                 return ((float)(this["charSpaceingSet"]));

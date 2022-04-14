@@ -97,8 +97,6 @@ int Text::relativeAngleFromLetter(char letter)
 
 void Text::analyzeInputString(char* fullPlateString, int* lineLengthArr)    //pass in platetext string and get a reference to an array of the lengths of each line
 {
-//  char* copyString;
-//  copyString = strcpy(copyString, fullPlateString);    //make a copy to preserve the actual platetext string because strsep changes the string passed to it
   char** pointerCopyString;                            //strsep recieves a char** so must make pointer to copystring
   pointerCopyString = &fullPlateString;
   
