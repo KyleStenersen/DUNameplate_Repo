@@ -71,8 +71,6 @@ namespace DUNameplateGUI
             tag1Text = tag1Text.ToUpper();
             tag1Text = ("<" + "a" + tag1Text + ">");
 
-
-            MessageBox.Show(tag1Text);
             serialComF1.sendString(tag1Text);
             
         }

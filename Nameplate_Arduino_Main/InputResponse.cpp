@@ -2,7 +2,7 @@
 // CURRENTLY 1 FUNCTION WITH 8 ACTIONS
 // chooseAction(serial message)
 // ACTIONS: CHOSEN PER THE FIRST CHAR OF INPUT STRING "actionDefiner"
-// ‘a’ plates.printOne(rest of serial input string) - print one tag per input
+// ‘a’ plates.printOne(rest of serial input string) - print one plate/tag per input
 // ‘c’ plates.goToALetter(rest of serial input string) - letter wheel
 // ‘h’ plates.xyHome() - build plate home
 // ‘x’ plates.spinX(rest of serial input string) - move build plate in x by float inch value.
@@ -40,6 +40,7 @@ void InputResponse::chooseAction(const char* fullInputString)
     break;
 
     case 'e':
+    encoderIR.encoderSetup();
     Serial.println(encoderIR.getAngle());
     break;
     

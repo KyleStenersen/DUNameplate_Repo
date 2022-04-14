@@ -69,49 +69,52 @@ int Text::relativeAngleFromLetter(char letter)
     return 182;
   }
 
-  //encoderT.encoderSetup();
+  encoderT.encoderSetup();
+  
   int nextAngle = angleOfLetterFromMap(letter);
   int currentAngle = encoderT.getAngle();
 
   int wayOneDeg = nextAngle - currentAngle;
-  int wayTwoDeg = 360 - abs(wayOneDeg);
+  int oppositeSign = 1;
+  if (wayOneDeg > 0) {oppositeSign = -1;}
+  int wayTwoDeg = oppositeSign*(360 - abs(wayOneDeg));
   
   int absWayOne = abs(wayOneDeg);
   int absWayTwo = abs(wayTwoDeg);
 
 
-  if (absWayOne < 6 or absWayTwo < 6)
+  if (absWayOne < 8 or absWayTwo < 8)
   {
     return 0; 
   }
-  else if (absWayOne < absWayTwo)
+  if (absWayOne < 181)
   {
     return wayOneDeg;
   }
-  else
-  {
-    return wayTwoDeg;
-  }  
+    return wayTwoDeg;  
 }
 
 
-void Text::analyzeInputString(char* fullPlateString, int* lineLengthArr)
+void Text::analyzeInputString(char* fullPlateString, int* lineLengthArr)    //pass in platetext string and get a reference to an array of the lengths of each line
 {
-  char copyString[strlen(fullPlateString)];
-  strcpy(copyString, fullPlateString);
-
-  char* stringPiece = strtok(copyString,"!"); // this is used by strtok() as an index
+//  char* copyString;
+//  copyString = strcpy(copyString, fullPlateString);    //make a copy to preserve the actual platetext string because strsep changes the string passed to it
+  char** pointerCopyString;                            //strsep recieves a char** so must make pointer to copystring
+  pointerCopyString = &fullPlateString;
+  
+  char* stringPiece;
   int i = 0;
 
   Serial.println("stringPieces = ");   
-  while (stringPiece != NULL)
-  {
-    lineLengthArr[i] = strlen(stringPiece);
+  while (stringPiece != NULL)   //loop assigning each "string piece" from strsep - "string seperate" to the array of line lengths
+  {    
+    stringPiece = strsep(pointerCopyString,"!");    //each time through the loop stringPiece is set equal to the next peice of copyString delimited by !
+    
+    lineLengthArr[i] = strlen(stringPiece);   //set each element of array equal to the length of the current stringpiece
     Serial.println(lineLengthArr[i]);
     Serial.print(stringPiece);
     Serial.println("...");
     
-    stringPiece = strtok(NULL,"!");      // get the first part - the string
     i++;
   }
 }
