@@ -34,6 +34,7 @@ class Motor
 
     void changeAccel(int updatedAccel);
     void changeTcool(int updatedTcool);
+    void warmUp();
 
   private:	// Declare variables that will be used in this .cpp only
 };

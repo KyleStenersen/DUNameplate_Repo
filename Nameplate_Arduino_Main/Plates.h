@@ -25,7 +25,6 @@ class Plates {
   private: 
     float halfCurrentLine(int lineNumber);
     void motorsOn_GoToPrintStart();
-    void letterWarmUpAndGo_W();
 };
 
 #endif

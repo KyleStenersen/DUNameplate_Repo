@@ -41,7 +41,7 @@ void setup() {
   text.setupHashMap();
   motor.motorSetupAll();
   encoder.encoderSetup();
-  plates.homeMachine();
+  motor.warmUp();
   pinMode(10, INPUT);
   pinMode(21, INPUT);
  // attachInterrupt(10,stall,RISING);

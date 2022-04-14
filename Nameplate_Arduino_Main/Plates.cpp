@@ -56,6 +56,8 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
   Y_OFFSET_1 = Y_OFFSET;    //starting position in y
   
   motorsOn_GoToPrintStart();
+
+  return;
   
   while (i < strlen(plateText))   //loop through plate text chars responding to each individually (stamp or move)
   {
@@ -191,7 +193,6 @@ void Plates::killAllMotors(){
 
 void Plates::homeMachine(){
   xyHome();
-  letterWarmUpAndGo_W();
 }
 
 //Private Functions-------------------
@@ -204,15 +205,6 @@ float Plates::halfCurrentLine(int lineNumber)
   }
   
   return (((lineLengthArray[lineNumber]-1) * LETTER_SPACEING) / 2);   //minus 1 is because the machine moves a letterspace in x every letter so it does 1 extra unnecessary move after the last char per line.
-}
-
-void Plates::letterWarmUpAndGo_W()
-{
-  motorP.letterOn();
-  motorP.letterGo(45);
-  motorP.letterGo(-90);
-  motorP.letterGo(180);
-  goToALetter("W");
 }
 
 void Plates::motorsOn_GoToPrintStart()
