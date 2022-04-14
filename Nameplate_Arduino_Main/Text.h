@@ -12,11 +12,11 @@ class Text {
   public:
     Text();
     void setupHashMap();
-    int relativeAngleFromLetter(char letter);
+    float relativeAngleFromLetter(char letter);
     void analyzeInputString(char* fullPlateString, int* lineLengthArr);
     
   private:
-    int angleOfLetterFromMap(char letter);
+    float angleOfLetterFromMap(char letter);
     
 };
 

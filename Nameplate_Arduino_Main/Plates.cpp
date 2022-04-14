@@ -19,6 +19,7 @@ int plateSide = 1;
 
 Motor motorP;
 Text textP;
+Encoder encoderP;
 
 Plates::Plates(){}
 
@@ -28,17 +29,8 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
 
   char copyString[strlen(plateText)+1];   
   strcpy(copyString, plateText);
-
-  Serial.print("copyString before get line lengths = ");
-  Serial.println(copyString);  
   
   textP.analyzeInputString(copyString, lineLengthArray);
-
-  Serial.print("copyString after get line lengths = ");
-  Serial.println( copyString);   
-
-  Serial.print("plateText after get line lengths = ");
-  Serial.println(plateText);
 
   Serial.print("line length array: ");
   for (int counter = 0; counter<4; counter++)
@@ -56,8 +48,6 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
   Y_OFFSET_1 = Y_OFFSET;    //starting position in y
   
   motorsOn_GoToPrintStart();
-
-  return;
   
   while (i < strlen(plateText))   //loop through plate text chars responding to each individually (stamp or move)
   {
@@ -67,7 +57,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     Serial.print("yAbsolute = ");
     Serial.println(yAbsolute); 
        
-    int angleToMove = textP.relativeAngleFromLetter(plateText[i]);    //get angle to move per letter from text library
+    float angleToMove = textP.relativeAngleFromLetter(plateText[i]);    //get angle to move per letter from text library
 
     if (lineNum > 3)    //increment and cycle back to start of while loop if there are too many lines for a plate/tag
     {
@@ -113,6 +103,13 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
       i++;
       continue;
     }
+
+    encoderP.encoderSetup();
+    Serial.print(encoderP.getAngle());
+    Serial.print(" - ");
+    Serial.print(plateText[i]);
+    Serial.print(" - angle to move = ");
+    Serial.println(angleToMove);
     
     motorP.letterGo(angleToMove);   //Default go to current letter char, stamp, and move over one letterspace for next
     motorP.stamp();
@@ -132,7 +129,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
 
 void Plates::goToALetter(char* letter)
 {
-  int angleToMove = textP.relativeAngleFromLetter(letter[0]);
+  float angleToMove = textP.relativeAngleFromLetter(letter[0]);
   Serial.print(letter[0]);
   Serial.print(" ... angleToMove = ");
   Serial.println(angleToMove);

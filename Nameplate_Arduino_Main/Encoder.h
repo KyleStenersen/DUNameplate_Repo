@@ -9,7 +9,7 @@
 class Encoder {
   public:  //PUBLIC FUNCTION PROTOTYPES FOR THIS CLASS that will be available anywhere with this .h library---
     Encoder();
-    int getAngle();
+    float getAngle();
     void encoderSetup();
     
   private:  // Declare variables that will be used in this .cpp only

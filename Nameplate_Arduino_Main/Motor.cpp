@@ -55,7 +55,7 @@ const char Z_STAMPING = LOW;
 //--- General Motor definitions
 bool shaft = false;                               // ONLY NEEDED FOR CHANGING DIRECTION VIA UART, NO NEED FOR DIR PIN FOR THIS
 int ACCEL_MULTIPLIER_XY = 1800;                   // Range:1(uber slow acceleration)-1600ish, acceleration, chosen by testing (~1500 max?)
-int ACCEL_MULTIPLIER_LETTER = 1400; 
+int ACCEL_MULTIPLIER_LETTER = 1000;               // was 1400 max
 const int MICROSTEPS = 2;
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds  
 
@@ -215,8 +215,8 @@ void Motor::warmUp()
   letterGo(180);
   xHome();
   yHome();
-  xGo(1);
-  yGo(1);
+  xGo(.5);
+  yGo(.5);
   xHome();
   yHome();
 }

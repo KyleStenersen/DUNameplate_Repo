@@ -2,8 +2,8 @@
 
 const byte HASH_SIZE = 45;
 
-HashType<char,int> hashRawChar[HASH_SIZE];
-HashMap<char,int> hashMap = HashMap<char,int>(hashRawChar,HASH_SIZE);
+HashType<char,float> hashRawChar[HASH_SIZE];
+HashMap<char,float> hashMap = HashMap<char,float>(hashRawChar,HASH_SIZE);
 
 Text::Text(){}
 
@@ -12,7 +12,7 @@ void Text::setupHashMap(void)
   hashMap[0]('W',4);
   hashMap[1]('S',13);
   hashMap[2]('3',22);
-  hashMap[3]('X',30);
+  hashMap[3]('X',31);
   hashMap[4]('E',40);
   hashMap[5]('D',49);
   hashMap[6]('4',58);
@@ -58,7 +58,7 @@ void Text::setupHashMap(void)
 
 Encoder encoderT;
 
-int Text::relativeAngleFromLetter(char letter)
+float Text::relativeAngleFromLetter(char letter)
 {
   if (letter == ' ')
   {
@@ -71,16 +71,16 @@ int Text::relativeAngleFromLetter(char letter)
 
   encoderT.encoderSetup();
   
-  int nextAngle = angleOfLetterFromMap(letter);
-  int currentAngle = encoderT.getAngle();
+  float nextAngle = angleOfLetterFromMap(letter);
+  float currentAngle = encoderT.getAngle();
 
-  int wayOneDeg = nextAngle - currentAngle;
-  int oppositeSign = 1;
+  float wayOneDeg = nextAngle - currentAngle;
+  float oppositeSign = 1;
   if (wayOneDeg > 0) {oppositeSign = -1;}
-  int wayTwoDeg = oppositeSign*(360 - abs(wayOneDeg));
+  float wayTwoDeg = oppositeSign*(360 - abs(wayOneDeg));
   
-  int absWayOne = abs(wayOneDeg);
-  int absWayTwo = abs(wayTwoDeg);
+  float absWayOne = abs(wayOneDeg);
+  float absWayTwo = abs(wayTwoDeg);
 
 
   if (absWayOne < 8 or absWayTwo < 8)
@@ -120,6 +120,6 @@ void Text::analyzeInputString(char* fullPlateString, int* lineLengthArr)    //pa
 
 //Private Functions========================================
 
-int Text::angleOfLetterFromMap(char letter){
+float Text::angleOfLetterFromMap(char letter){
 return hashMap.getValueOf(letter); 
 }

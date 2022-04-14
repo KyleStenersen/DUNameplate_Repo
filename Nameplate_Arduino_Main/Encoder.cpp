@@ -6,7 +6,7 @@ int magnetStatus = 0; //value of the status register (MD, ML, MH)
 
 int lowbyte; //raw angle 7:0
 word highbyte; //raw angle 7:0 and 11:8
-int rawAngle; //final raw angle 
+float rawAngle; //final raw angle 
 float degAngle; //raw angle in degrees (360/4096 * [value between 0-4095])
 
 
@@ -23,7 +23,7 @@ void Encoder::encoderSetup(){
   getAngle(); //make a reading so the degAngle gets updated
 }
 
-int Encoder::getAngle()
+float Encoder::getAngle()
 {
   //7:0 - bits
   Wire.beginTransmission(0x36); //connect to the sensor
