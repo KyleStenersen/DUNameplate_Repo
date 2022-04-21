@@ -202,7 +202,7 @@ void Plates::spinY(float yinch)
   Serial.println(yAbsolute);
 }
 
-void Plates::spinL(int lDeg)
+void Plates::spinL(float lDeg)
 {
   motorP.letterOn();
   motorP.letterGo(lDeg); 

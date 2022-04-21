@@ -195,14 +195,15 @@ void Motor::letterGo(float goDegree, float goalDegree)
   //Crank the speed and accel way down to try additional tries make more accurate?
   int SLOW_LETTER_RPM = 250;    // by testing at 16ms ~max 300   
   int SLOW_LETTER_ACCEL = 1500;    // by testing at 16ms ~max 2000
-  int SHARPER_MICROSTEPS = 16;
+  int SHARPER_MICROSTEPS = 32;
   stepper_Letter.setAccelerationInStepsPerSecondPerSecond(SLOW_LETTER_ACCEL*MICROSTEPS);   
   letter_Driver.microsteps(SHARPER_MICROSTEPS);                                                  
   letterStepsPerSec = SLOW_LETTER_RPM*(SHARPER_MICROSTEPS*3.333336);                                    
   stepper_Letter.setSpeedInStepsPerSecond(letterStepsPerSec);
+  
    
   int tooManyTries = 0;
-  while (angleError>0.1 || angleError<-0.1)   //Loop to retry and get closer to the target angle
+  while (angleError>0.25 || angleError<-0.25)   //Loop to retry and get closer to the target angle
   {     
     angle1 = encoderM.getAngle();
 
@@ -284,7 +285,8 @@ void Motor::stamp(){
     delay(100);
     while (digitalRead(Z_STAMP_LIMIT_SWITCH)== Z_STAMPING){}
     digitalWrite(STAMP_CLUTCH_RELAY, RELAY_OFF);
-    delay(10);   
+    delay(10);
+    Serial.println("STAMPED");   
 }
 
 // "HOME" functions

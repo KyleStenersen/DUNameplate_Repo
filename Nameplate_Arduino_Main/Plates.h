@@ -18,7 +18,7 @@ class Plates {
     void stampTest();
     void spinX(float xinch);
     void spinY(float yinch);
-    void spinL(int lDeg);
+    void spinL(float lDeg);
     void killAllMotors();
     void homeMachine();
     

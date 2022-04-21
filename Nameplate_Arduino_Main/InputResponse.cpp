@@ -101,8 +101,8 @@ void InputResponse::chooseAction(const char* fullInputString)
     break;}
 
     case 'l':{
-    int degreeL;
-    degreeL = atoi(actionInfo);
+    float degreeL;
+    degreeL = atof(actionInfo);
     platesIR.spinL(degreeL);
     serialOpsIR.emptySerial();
     break;}
