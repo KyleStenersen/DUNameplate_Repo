@@ -9,44 +9,44 @@ Text::Text(){}
 
 void Text::setupHashMap(void)
 {
-  hashMap[0]('W',4);
-  hashMap[1]('S',13);
+  hashMap[0]('W',2.75);
+  hashMap[1]('S',12.75);
   hashMap[2]('3',22);
   hashMap[3]('X',31);
-  hashMap[4]('E',40);
-  hashMap[5]('D',49);
+  hashMap[4]('E',39.75);
+  hashMap[5]('D',48.5);
   hashMap[6]('4',58);
-  hashMap[7]('C',67);
-  hashMap[8]('R',76);
-  hashMap[9]('F',85);
+  hashMap[7]('C',66.5);
+  hashMap[8]('R',75.75);
+  hashMap[9]('F',84.25);
   hashMap[10]('5',94);
-  hashMap[11]('V',103);
+  hashMap[11]('V',102.25);
   hashMap[12]('T',112); 
-  hashMap[13]('G',121);
-  hashMap[14]('6',130);
-  hashMap[15]('B',139);
-  hashMap[16]('Y',148);
-  hashMap[17]('H',157);
-  hashMap[18](',',166);
-  hashMap[19]('N',175);  
+  hashMap[13]('G',122);
+  hashMap[14]('6',130.5);
+  hashMap[15]('B',139.75);
+  hashMap[16]('Y',149);
+  hashMap[17]('H',156.5);
+  hashMap[18](',',165);
+  hashMap[19]('N',174.75);  
   hashMap[20]('7',184);
-  hashMap[21]('J',193);
+  hashMap[21]('J',192.75);
   hashMap[22]('U',202);
   hashMap[23]('M',211);
   hashMap[24]('8',220);
-  hashMap[25]('K',229);
-  hashMap[26]('I',238);
+  hashMap[25]('K',229.25);
+  hashMap[26]('I',238.5);
   hashMap[27]('#',247);
   hashMap[28]('9',256);
-  hashMap[29]('L',265);
+  hashMap[29]('L',265.25);
   hashMap[30]('0',274);
   hashMap[31]('.',283);
   hashMap[32]('P',292);
   hashMap[33]('-',301);
   hashMap[34]('1',310);
   hashMap[35]('/',319);
-  hashMap[36]('Q',328);
-  hashMap[37]('A',337);
+  hashMap[36]('Q',327);
+  hashMap[37]('A',336);
   hashMap[38]('2',346);
   hashMap[39]('Z',355);
 
@@ -68,7 +68,7 @@ float Text::relativeAngleFromLetter(char letter)
   {
     return 182;
   }
-
+  
   encoderT.encoderSetup();
   
   float nextAngle = angleOfLetterFromMap(letter);
@@ -83,7 +83,7 @@ float Text::relativeAngleFromLetter(char letter)
   float absWayTwo = abs(wayTwoDeg);
 
 
-  if (absWayOne < 8 or absWayTwo < 8)
+  if (absWayOne < 1 or absWayTwo < 1)
   {
     return 0; 
   }
@@ -118,8 +118,7 @@ void Text::analyzeInputString(char* fullPlateString, int* lineLengthArr)    //pa
 }
 
 
-//Private Functions========================================
-
 float Text::angleOfLetterFromMap(char letter){
-return hashMap.getValueOf(letter); 
+
+  return hashMap.getValueOf(letter); 
 }

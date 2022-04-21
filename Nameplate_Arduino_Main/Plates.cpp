@@ -58,6 +58,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     Serial.println(yAbsolute); 
        
     float angleToMove = textP.relativeAngleFromLetter(plateText[i]);    //get angle to move per letter from text library
+    float letterLocation = textP.angleOfLetterFromMap(plateText[i]);   //get destination angle from text.h
 
     if (lineNum > 3)    //increment and cycle back to start of while loop if there are too many lines for a plate/tag
     {
@@ -72,7 +73,9 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
       i++;
       continue;
     }
-    
+
+    Serial.print("angleToMove =");
+    Serial.println(angleToMove);
     if (angleToMove == NEW_LINE)    //if newline character "!" then move one linespace in y and then go to start of next line from center (direction depends on line #)
     {
       motorP.yGo(LINE_SPACEING, Y_ABS_POINTER);   //move down a line in y
@@ -105,13 +108,14 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     }
 
     encoderP.encoderSetup();
-    Serial.print(encoderP.getAngle());
+    Serial.print(" Destination = ");
+    Serial.print(letterLocation);
     Serial.print(" - ");
     Serial.print(plateText[i]);
     Serial.print(" - angle to move = ");
     Serial.println(angleToMove);
     
-    motorP.letterGo(angleToMove);   //Default go to current letter char, stamp, and move over one letterspace for next
+    motorP.letterGo(angleToMove, letterLocation);   //Default go to current letter char, stamp, and move over one letterspace for next
     motorP.stamp();
     motorP.xGo((plateSide*LETTER_SPACEING), X_ABS_POINTER);
     i++;
@@ -129,11 +133,35 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
 
 void Plates::goToALetter(char* letter)
 {
+  motorP.letterOn();
+  
   float angleToMove = textP.relativeAngleFromLetter(letter[0]);
+  float letterLocation = textP.angleOfLetterFromMap(letter[0]);
+  encoderP.encoderSetup();
+  float angle1 = encoderP.getAngle();
+  motorP.letterGo(angleToMove, letterLocation);
+  float angle2 = encoderP.getAngle();
+  float angleMoved = angle2 - angle1;
+  float diff = angleMoved-angleToMove;
+  if (diff>180 || diff<-180) diff = 360-abs(diff);
+
+  Serial.print("angle1= ");
+  Serial.print(angle1);
+  Serial.print(" . angle2= ");
+  Serial.print(angle2);  
+  Serial.print(" . Destin= ");
+  Serial.print(letterLocation);
+  Serial.print(" for-> ");
   Serial.print(letter[0]);
-  Serial.print(" ... angleToMove = ");
-  Serial.println(angleToMove);
-  motorP.letterGo(angleToMove);
+  Serial.print(" . angleToMove = ");
+  Serial.print(angleToMove);  
+  Serial.print(" . angleMoved= ");
+  Serial.print(angleMoved);
+  Serial.print(" . diff= ");
+  Serial.println(diff);
+
+  motorP.letterOff();
+  
 }
 
 void Plates::xyHome()

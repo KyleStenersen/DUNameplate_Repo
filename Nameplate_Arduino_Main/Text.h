@@ -14,10 +14,9 @@ class Text {
     void setupHashMap();
     float relativeAngleFromLetter(char letter);
     void analyzeInputString(char* fullPlateString, int* lineLengthArr);
-    
-  private:
     float angleOfLetterFromMap(char letter);
     
+  private:
 };
 
 #endif

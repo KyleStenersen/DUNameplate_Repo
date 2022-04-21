@@ -24,7 +24,7 @@ class Motor
     void yOn();
     void yHome();
 
-    void letterGo(float letterDeg);
+    void letterGo(float goDegree, float goalDegree=0);
     void letterOff();
     void letterOn();
 
@@ -32,9 +32,12 @@ class Motor
     void stampMotorOn();
     void stampMotorOff();
 
-    void changeAccel(int updatedAccel);
-    void changeTcool(int updatedTcool);
     void warmUp();
+
+    void changeAccelLetter(int accel);
+    void changeVelocityLetter(int velo);
+    void changeMicrosteps(int msteps);
+    
 
   private:	// Declare variables that will be used in this .cpp only
 };

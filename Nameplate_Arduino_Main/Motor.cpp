@@ -6,6 +6,9 @@
 
 
 #include "Motor.h"
+#include "Encoder.h"
+
+Encoder encoderM;
 
 //--- X definitions
 const int X_LIMIT_SWITCH = 28;
@@ -54,9 +57,12 @@ const char Z_STAMPING = LOW;
 
 //--- General Motor definitions
 bool shaft = false;                               // ONLY NEEDED FOR CHANGING DIRECTION VIA UART, NO NEED FOR DIR PIN FOR THIS
+int LETTER_RPM = 200;
+int Y_RPM = 180;
+int X_RPM = 180;
 int ACCEL_MULTIPLIER_XY = 1800;                   // Range:1(uber slow acceleration)-1600ish, acceleration, chosen by testing (~1500 max?)
-int ACCEL_MULTIPLIER_LETTER = 1000;               // was 1400 max
-const int MICROSTEPS = 2;
+int ACCEL_MULTIPLIER_LETTER = 1400;               // was 1400 max
+int MICROSTEPS = 2;
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds  
 
 
@@ -117,7 +123,7 @@ void Motor::motorSetupAll()
 void Motor::yGo(float yInches, float* yAbsPosition)
 {
   *yAbsPosition = *yAbsPosition + yInches;
-  int Y_RPM = 180;
+
   int MAGIC_Y_DISTANCE_CONVERTER =199;
   stepper_Y.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*MICROSTEPS);    // smaller=smoother, (example: 25000-16ms)
 	y_Driver.microsteps(MICROSTEPS);                                                       // Microsteps Range: (1,2,4,8,16,32,64,128,256) TMC2209 says up to 64 but beyond is just interp. Speed limitations as go higher
@@ -131,7 +137,7 @@ void Motor::xGo(float xInches, float* xAbsPosition)
 {
   *xAbsPosition = *xAbsPosition + xInches;
   xInches = -xInches;                                                             //This just adjustment so x is always positive from home 
-  int X_RPM = 180;
+
   int MAGIC_X_DISTANCE_CONVERTER = 250;
   stepper_X.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*MICROSTEPS);   
   x_Driver.microsteps(MICROSTEPS);                                                  
@@ -141,15 +147,110 @@ void Motor::xGo(float xInches, float* xAbsPosition)
   stepper_X.moveRelativeInSteps(xSteps);      
 }
 
-void Motor::letterGo(float letterDeg) 
+void Motor::letterGo(float goDegree, float goalDegree) 
 {
-  int LETTER_RPM = 200;
+  float angleToMove = goDegree;
+  
+  encoderM.encoderSetup();
+  float angle1 = encoderM.getAngle();
+  
   stepper_Letter.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_LETTER*MICROSTEPS);   
   letter_Driver.microsteps(MICROSTEPS);                                                  
   int letterStepsPerSec = LETTER_RPM*(MICROSTEPS*3.333336);                                    
+  stepper_Letter.setSpeedInStepsPerSecond(letterStepsPerSec);  
+  float letterSteps = (goDegree/360)*MICROSTEPS*200;                                           
+  stepper_Letter.moveRelativeInSteps(letterSteps);
+
+
+  float angle2 = encoderM.getAngle();
+
+  Serial.print("First angle2 - ");
+  Serial.println(angle2);
+  
+  float angleMoved = angle2 - angle1;
+  
+  float angleGoal = angleToMove + angle1;
+  if (angleGoal>360) angleGoal-=360;
+  if (angleGoal<-360) angleGoal+=360;
+  if (goalDegree != 0) angleGoal = goalDegree;
+
+  Serial.print("First angleGoal - ");
+  Serial.println(angleGoal);  
+ 
+  if (angleMoved > 180 || angleMoved < -180) 
+  {
+    angleMoved = (360 - abs(angleMoved));
+
+    if (angleToMove<0) angleMoved = -1*angleMoved;
+  }
+  
+  float angleError = abs(abs(angle2) - abs(angleGoal));
+
+  if (angleGoal<angle2) angleError = -1*angleError;
+
+  Serial.print("First angleError ");
+  Serial.println(angleError);
+
+
+  //Crank the speed and accel way down to try additional tries make more accurate?
+  int SLOW_LETTER_RPM = 250;    // by testing at 16ms ~max 300   
+  int SLOW_LETTER_ACCEL = 1500;    // by testing at 16ms ~max 2000
+  int SHARPER_MICROSTEPS = 16;
+  stepper_Letter.setAccelerationInStepsPerSecondPerSecond(SLOW_LETTER_ACCEL*MICROSTEPS);   
+  letter_Driver.microsteps(SHARPER_MICROSTEPS);                                                  
+  letterStepsPerSec = SLOW_LETTER_RPM*(SHARPER_MICROSTEPS*3.333336);                                    
   stepper_Letter.setSpeedInStepsPerSecond(letterStepsPerSec);
-  float letterSteps = (letterDeg/360)*MICROSTEPS*200;                                           
-  stepper_Letter.moveRelativeInSteps(letterSteps); 
+   
+  int tooManyTries = 0;
+  while (angleError>0.1 || angleError<-0.1)   //Loop to retry and get closer to the target angle
+  {     
+    angle1 = encoderM.getAngle();
+
+    Serial.print("Retry, angle1 = ");
+    Serial.print(angle1);
+    
+    angleToMove = angleError;
+
+    Serial.print(", still go ");
+    Serial.print(angleToMove);
+      
+    letterSteps = (angleToMove/360)*SHARPER_MICROSTEPS*200;                                    
+    stepper_Letter.moveRelativeInSteps(letterSteps);
+
+    angle2 = encoderM.getAngle();
+
+    Serial.print(", angle2 = ");
+    Serial.print(angle2);
+     
+    angleMoved = angle2 - angle1;
+
+    Serial.print(", went ");
+    Serial.print(angleMoved);
+   
+    angleError = abs(abs(angle2) - abs(angleGoal));
+
+    Serial.print(", angleError before = ");
+    Serial.print(angleError);
+    
+    if(angleError>360 || angleError<-360)
+    {
+      angleError = (360- abs(angleError));
+      
+      if (angleToMove<0) angleError = -1*angleError;
+    }
+  
+    if (angleGoal<angle2) angleError = -1*angleError;
+    
+    Serial.print(", angleError = ");
+    Serial.println(angleError);
+    
+    tooManyTries++;
+    if (tooManyTries > 10) 
+    {
+      Serial.println("too Many tries, abort");
+      return;  
+    }
+  }
 }
 
 // "ON/OFF" functions to allow turning of motors by hand
@@ -210,13 +311,29 @@ void Motor::yHome()
 void Motor::warmUp()
 {
   letterOn();
-  letterGo(45);
-  letterGo(-90);
   letterGo(180);
   xHome();
   yHome();
-  xGo(.5);
-  yGo(.5);
+  xGo(.25);
+  yGo(.25);
   xHome();
   yHome();
+}
+
+// CHANGE VALUES FOR TESTING
+//------------------------------------------------------------------- 
+
+void Motor::changeAccelLetter(int accel)
+{
+  ACCEL_MULTIPLIER_LETTER = accel; 
+}
+
+void Motor::changeVelocityLetter(int velo)
+{
+  LETTER_RPM = velo; 
+}
+
+void Motor::changeMicrosteps(int msteps)
+{
+  MICROSTEPS = msteps; 
 }

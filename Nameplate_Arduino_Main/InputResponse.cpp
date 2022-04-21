@@ -18,6 +18,7 @@
 Plates platesIR;
 SerialOps serialOpsIR;
 Encoder encoderIR;
+Motor motorIR;
 
 InputResponse::InputResponse(){}
 
@@ -29,53 +30,12 @@ void InputResponse::chooseAction(const char* fullInputString)
   
   switch (actionDefiner)
   {
-    case 'a':    
+    case 'a':{    
     platesIR.printOne(actionInfo);
     serialOpsIR.emptySerial();
-    break;
+    break;}
 
-    case 'c':    
-    platesIR.goToALetter(actionInfo);
-    serialOpsIR.emptySerial();
-    break;
-
-    case 'e':
-    encoderIR.encoderSetup();
-    Serial.println(encoderIR.getAngle());
-    break;
-    
-    case 'h':
-    platesIR.xyHome();
-    serialOpsIR.emptySerial();
-    break;
-    
-    case 'x':
-    float inchx;
-    inchx = atof(actionInfo);
-    platesIR.spinX(inchx);
-    serialOpsIR.emptySerial();
-    break;
-
-    case 'y':
-    float inchy;
-    inchy = atof(actionInfo);
-    platesIR.spinY(inchy);
-    serialOpsIR.emptySerial();
-    break;
-
-    case 'l':
-    int degreeL;
-    degreeL = atoi(actionInfo);
-    platesIR.spinL(degreeL);
-    serialOpsIR.emptySerial();
-    break;
-    
-    case 's':
-    platesIR.stampTest();
-    serialOpsIR.emptySerial();
-    break;
-
-    case 'b':
+    case 'b':{
     if (digitalRead(13)== HIGH)
     {
       digitalWrite(13,LOW);
@@ -84,9 +44,70 @@ void InputResponse::chooseAction(const char* fullInputString)
     {
       digitalWrite(13,HIGH);
     }
-    break;
+    break;}
 
-    case 'p':    
+    case 'c':{    
+    platesIR.goToALetter(actionInfo);
+    serialOpsIR.emptySerial();
+    break;}
+
+    case 'd':{
+    Serial.println("...");
+    Serial.print("X_OFFSET = ");
+    Serial.println(X_OFFSET);
+    Serial.print("Y_OFFSET = ");
+    Serial.println(Y_OFFSET);
+    Serial.print("NAMEPLATE_SPACEING = ");
+    Serial.println(NAMEPLATE_SPACEING);
+    Serial.print("LINE_SPACEING = ");
+    Serial.println(LINE_SPACEING);
+    Serial.print("LETTER_SPACEING = ");
+    Serial.println(LETTER_SPACEING);
+    Serial.println("...");    
+    break;}
+
+    case 'e':{
+    encoderIR.encoderSetup();
+    Serial.println(encoderIR.getAngle());
+    break;}
+
+    case 'f':{
+    int acceleration = atoi(actionInfo);
+    motorIR.changeAccelLetter(acceleration);
+    serialOpsIR.emptySerial();
+    Serial.print("UPDATED ACCEL_L = ");
+    Serial.println(acceleration);    
+    break;}
+
+    case 'g':{
+    int velocity = atoi(actionInfo);
+    motorIR.changeVelocityLetter(velocity);
+    serialOpsIR.emptySerial();
+    Serial.print("UPDATED VEL_L = ");
+    Serial.println(velocity); 
+    break;}
+    
+    case 'h':{
+    platesIR.xyHome();
+    serialOpsIR.emptySerial();
+    break;}
+
+    case 'i':{
+    int msteps = atoi(actionInfo);
+    motorIR.changeMicrosteps(msteps);
+    serialOpsIR.emptySerial();
+    Serial.print("UPDATED MICRO = ");
+    Serial.println(msteps);
+    break;}
+
+    case 'l':{
+    int degreeL;
+    degreeL = atoi(actionInfo);
+    platesIR.spinL(degreeL);
+    serialOpsIR.emptySerial();
+    break;}
+
+    case 'p':{    
     char * stringTokenIndex;
   
     stringTokenIndex = strtok(actionInfo,",");
@@ -105,21 +126,26 @@ void InputResponse::chooseAction(const char* fullInputString)
     LETTER_SPACEING = atof(stringTokenIndex);
      
     serialOpsIR.emptySerial();
-    break;
+    break;}
 
-    case 'd':
-    Serial.println("...");
-    Serial.print("X_OFFSET = ");
-    Serial.println(X_OFFSET);
-    Serial.print("Y_OFFSET = ");
-    Serial.println(Y_OFFSET);
-    Serial.print("NAMEPLATE_SPACEING = ");
-    Serial.println(NAMEPLATE_SPACEING);
-    Serial.print("LINE_SPACEING = ");
-    Serial.println(LINE_SPACEING);
-    Serial.print("LETTER_SPACEING = ");
-    Serial.println(LETTER_SPACEING);
-    Serial.println("...");    
-    break;   
+    case 's':{
+    platesIR.stampTest();
+    serialOpsIR.emptySerial();
+    break;}
+    
+    case 'x':{
+    float inchx;
+    inchx = atof(actionInfo);
+    platesIR.spinX(inchx);
+    serialOpsIR.emptySerial();
+    break;}
+
+    case 'y':{
+    float inchy;
+    inchy = atof(actionInfo);
+    platesIR.spinY(inchy);
+    serialOpsIR.emptySerial();
+    break;}
+   
   }
 }

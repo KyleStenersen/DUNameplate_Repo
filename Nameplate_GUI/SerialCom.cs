@@ -30,6 +30,8 @@ public class SerialCom
 
     public void sendString(string stringToSend)
     {
-        serialPort1.Write(stringToSend);
+        MessageBox.Show(stringToSend);
+
+       serialPort1.Write(stringToSend);
     }
 }
