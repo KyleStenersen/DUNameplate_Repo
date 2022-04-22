@@ -18,7 +18,7 @@ const int X_LIMIT_SWITCH = 28;
 #define SERIAL_PORT_X Serial1     // Due pins (18 & 19)
 #define DRIVER_ADDRESS_X 0b00     // TMC2209 Driver address according to MS1 and MS2
 #define SENSE_RESISTOR_X 0.11f    // Match to your driver // SilentStepStick series use 0.11
-int MOTOR_RMS_CURRENT_X = 950;    // Range: 0 to ~600mA for small original motors (Y & X motors) (TMCStepper.h)
+int MOTOR_RMS_CURRENT_X = 1300;    // Range: 0 to ~600mA for small original motors (Y & X motors) (TMCStepper.h)
 TMC2209Stepper x_Driver(&SERIAL_PORT_X, SENSE_RESISTOR_X, DRIVER_ADDRESS_X);
 SpeedyStepper stepper_X;
 
@@ -30,7 +30,7 @@ const int Y_LIMIT_SWITCH = 30;
 #define SERIAL_PORT_Y Serial2       // Due pins (16 & 17)
 #define DRIVER_ADDRESS_Y 0b00   
 #define SENSE_RESISTOR_Y 0.11f 
-int MOTOR_RMS_CURRENT_Y = 950;
+int MOTOR_RMS_CURRENT_Y = 1300;
 TMC2209Stepper y_Driver(&SERIAL_PORT_Y, SENSE_RESISTOR_Y, DRIVER_ADDRESS_Y);
 SpeedyStepper stepper_Y;
 
@@ -41,7 +41,7 @@ SpeedyStepper stepper_Y;
 #define SERIAL_PORT_LETTER Serial3     // Due pins (14 & 15)
 #define DRIVER_ADDRESS_LETTER 0b00   
 #define SENSE_RESISTOR_LETTER 0.11f 
-int MOTOR_RMS_CURRENT_LETTER = 1000;   
+int MOTOR_RMS_CURRENT_LETTER = 1300;   
 TMC2209Stepper letter_Driver(&SERIAL_PORT_LETTER, SENSE_RESISTOR_LETTER, DRIVER_ADDRESS_LETTER);
 SpeedyStepper stepper_Letter;
 
@@ -203,7 +203,7 @@ void Motor::letterGo(float goDegree, float goalDegree)
   
    
   int tooManyTries = 0;
-  while (angleError>0.25 || angleError<-0.25)   //Loop to retry and get closer to the target angle
+  while (angleError>0.2 || angleError<-0.2)   //Loop to retry and get closer to the target angle
   {     
     angle1 = encoderM.getAngle();
 
