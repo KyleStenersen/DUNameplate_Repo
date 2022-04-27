@@ -15,8 +15,8 @@ namespace DUNameplateGUI
         private int TAG_LINE_NUMBER;
 
 
-        CheckTagText checkTagText = new CheckTagText();
-        EditTagText editTagText = new EditTagText();
+        CheckTextBox checkTextBox = new CheckTextBox();
+        EditTextBox editTextBox = new EditTextBox();
         SerialCom serialComF1 = new SerialCom();
 
 
@@ -36,35 +36,66 @@ namespace DUNameplateGUI
         private void tag1Line0Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 0;
-            checkTagText.redTextBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+            checkTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
 
         private void tag1Line1Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 1;
-            checkTagText.redTextBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+            checkTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
 
         private void tag1Line2Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 2;
-            checkTagText.redTextBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+            checkTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
 
         private void tag1Line3Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 3;
-            checkTagText.redTextBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+            checkTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
 
         private void printTagsBtn_Click(object sender, EventArgs e)
         {
+            int tag1Quantity;
+            Boolean parseable = int.TryParse(tag1QuantityBox.Text, out tag1Quantity);
+
+            if (parseable == false)
+            {
+                MessageBox.Show("Invalid quanity", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; //error out
+            }
+
+            if (String.IsNullOrWhiteSpace(tag1QuantityBox.Text)) { printCurrentTag(); }
+
+            int printedTagCounter = 0;     
+            while (printedTagCounter < tag1Quantity)
+            {
+                printCurrentTag();
+
+                bool plateIsDone = false;
+
+                while (plateIsDone == false)
+                {
+                    serialComF1.checkIfPlateDone(ref plateIsDone);
+                }
+
+                MessageBox.Show("Reload");
+                printedTagCounter++;
+            }
+
+        }
+
+        private void printCurrentTag()
+        {
             for (int i = 0; i < arrayOfTagTextBoxes.Length; i++)
                 arrayOfTagLines[i] = arrayOfTagTextBoxes[i].Text;
 
-            if (checkTagText.allLinesOfTagForErrors(ref arrayOfTagLines) == true) return;           
+            if (checkTextBox.allLinesOfTagForErrors(ref arrayOfTagLines) == true) return;
 
-            editTagText.addNewLineCharsAndReverseOddLinesAll(ref arrayOfTagLines);
+            editTextBox.addNewLineCharsAndReverseOddLinesAll(ref arrayOfTagLines);
 
             string tag1Text = (arrayOfTagLines[0] + arrayOfTagLines[1] + arrayOfTagLines[2] + arrayOfTagLines[3]);
 
@@ -72,7 +103,6 @@ namespace DUNameplateGUI
             tag1Text = ("<" + "a" + tag1Text + ">");
 
             serialComF1.sendString(tag1Text);
-            
         }
 
         private void settingsBtn_Click(object sender, EventArgs e)
@@ -83,12 +113,15 @@ namespace DUNameplateGUI
 
         private void clearTagBtn_Click(object sender, EventArgs e)
         {
-            editTagText.emptyTag(ref arrayOfTagLines, ref arrayOfTagTextBoxes);
+            editTextBox.emptyTag(ref arrayOfTagLines, ref arrayOfTagTextBoxes);
+            
+            tag1QuantityBox.Text = null;
         }
 
         private void ledBtn_Click(object sender, EventArgs e)
         {
             serialComF1.sendString("<b>");
         }
+
     }
 }

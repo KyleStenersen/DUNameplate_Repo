@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-public class CheckTagText
+public class CheckTextBox
 {
     public Boolean allLinesOfTagForErrors(ref string[] arrayOfCurrentTagLines)
     {
@@ -25,7 +25,7 @@ public class CheckTagText
         return false;
     }
 
-    public Boolean invalidChars(ref string checkStr)
+    public Boolean invalidTagChars(ref string checkStr)
     {
 
         if (checkStr.Except("ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890 ,/-.#").Any())
@@ -36,11 +36,21 @@ public class CheckTagText
         return false;
     }
 
-    public void redTextBoxIfInputError(ref string currentTagLineStr, ref TextBox currentTextBox, int currentLineNumber)
+    public void redTagBoxIfInputError(ref string currentTagLineStr, ref TextBox currentTextBox, int currentLineNumber)
     {
         currentTagLineStr = currentTextBox.Text;
+        bool isError = false;
 
-        if (invalidChars(ref currentTagLineStr) == true || errorIfTooLong(ref currentTagLineStr, currentLineNumber) == true)
+        if (invalidTagChars(ref currentTagLineStr) == true || errorIfTooLong(ref currentTagLineStr, currentLineNumber) == true)
+        {
+            isError = true;
+            redBoxIfError(ref currentTextBox, isError);
+        }
+    }
+
+    private void redBoxIfError(ref TextBox currentTextBox, bool isError)
+    {
+        if (isError == true)
         {
             currentTextBox.BackColor = Color.MistyRose;
         }
@@ -68,7 +78,7 @@ public class CheckTagText
     Boolean checkAllLinesForInvalidChars(ref string[] arrayOfCurrentTagLines)
     {
         string tag1TextTester = (arrayOfCurrentTagLines[0] + arrayOfCurrentTagLines[1] + arrayOfCurrentTagLines[2] + arrayOfCurrentTagLines[3]);
-        if (invalidChars(ref tag1TextTester) == true)
+        if (invalidTagChars(ref tag1TextTester) == true)
         {
             //error out
             MessageBox.Show("Invalid character; Only A-Z, 1-9, and ,./-# available.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);

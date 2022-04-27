@@ -4,6 +4,8 @@ using System.IO.Ports;
 public class SerialCom
 {
     private static SerialPort serialPort1 = new SerialPort();
+    public delegate void serialReciever(string stringIn);
+    private bool plateIsDone = false;
 
     public void setupPort()
     {
@@ -33,5 +35,35 @@ public class SerialCom
         MessageBox.Show(stringToSend);
 
        serialPort1.Write(stringToSend);
+    }
+
+    public void checkIfPlateDone(ref bool done)
+    {
+        checkDataRecieved();
+        if (plateIsDone == true) done = true;
+        else done = false;
+        
+    }
+
+    private void checkDataRecieved()
+    {
+        string stringIn = serialPort1.ReadLine();
+        var serialInput = new serialReciever(respondInput);
+        serialInput(stringIn);
+    }
+
+    private void respondInput(string stringRecieved)
+    {
+        char firstChar = stringRecieved[0];
+        char secondChar = stringRecieved[1];
+
+        switch (firstChar)
+        {
+            case 'z':
+                {
+                    if (secondChar == '1') plateIsDone = true;
+                    break;
+                }
+        }
     }
 }

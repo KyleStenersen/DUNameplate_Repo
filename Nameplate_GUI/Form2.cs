@@ -161,6 +161,9 @@ namespace DUNameplateGUI
                 Properties.Settings.Default.charSpaceingSet = float.Parse(charSpaceingDefault.Text);
                 charSpaceingBox.Clear();
             }
+
+            Properties.Settings.Default.Save();
+            serialComF2.sendSettings();
         }
 
     }

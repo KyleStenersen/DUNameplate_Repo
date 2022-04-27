@@ -23,7 +23,7 @@ void Text::setupHashMap(void)
   hashMap[11]('V',102.75);
   hashMap[12]('T',111.75);
   hashMap[13]('G',121);
-  hashMap[14]('6',130);
+  hashMap[14]('6',130.25);
   hashMap[15]('B',139.25);
   hashMap[16]('Y',148.25);
   hashMap[17]('H',157);

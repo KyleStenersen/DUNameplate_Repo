@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.printTagsBtn = new System.Windows.Forms.Button();
             this.tag1Line0Box = new System.Windows.Forms.TextBox();
             this.tag1Line1Box = new System.Windows.Forms.TextBox();
@@ -36,8 +35,9 @@
             this.tag1Line3Box = new System.Windows.Forms.TextBox();
             this.settingsBtn = new System.Windows.Forms.Button();
             this.clearTagBtn = new System.Windows.Forms.Button();
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.ledBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tag1QuantityBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // printTagsBtn
@@ -94,17 +94,13 @@
             // 
             // clearTagBtn
             // 
-            this.clearTagBtn.Location = new System.Drawing.Point(585, 77);
+            this.clearTagBtn.Location = new System.Drawing.Point(352, 228);
             this.clearTagBtn.Name = "clearTagBtn";
             this.clearTagBtn.Size = new System.Drawing.Size(103, 28);
             this.clearTagBtn.TabIndex = 7;
             this.clearTagBtn.Text = "Clear";
             this.clearTagBtn.UseVisualStyleBackColor = true;
             this.clearTagBtn.Click += new System.EventHandler(this.clearTagBtn_Click);
-            // 
-            // serialPort1
-            // 
-            this.serialPort1.BaudRate = 115200;
             // 
             // ledBtn
             // 
@@ -116,11 +112,29 @@
             this.ledBtn.UseVisualStyleBackColor = true;
             this.ledBtn.Click += new System.EventHandler(this.ledBtn_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(576, 88);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 16);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Quantity:";
+            // 
+            // tag1QuantityBox
+            // 
+            this.tag1QuantityBox.Location = new System.Drawing.Point(641, 81);
+            this.tag1QuantityBox.Name = "tag1QuantityBox";
+            this.tag1QuantityBox.Size = new System.Drawing.Size(52, 22);
+            this.tag1QuantityBox.TabIndex = 9;
+            // 
             // MAIN_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(777, 321);
+            this.Controls.Add(this.tag1QuantityBox);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.clearTagBtn);
             this.Controls.Add(this.ledBtn);
             this.Controls.Add(this.settingsBtn);
@@ -150,8 +164,9 @@
         private System.Windows.Forms.TextBox tag1Line3Box;
         private System.Windows.Forms.Button settingsBtn;
         private System.Windows.Forms.Button clearTagBtn;
-        private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Button ledBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tag1QuantityBox;
     }
 }
 

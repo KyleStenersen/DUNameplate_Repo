@@ -1,6 +1,6 @@
 ﻿using System;
 
-public class EditTagText
+public class EditTextBox
 {
     public void addNewLineCharsAndReverseOddLinesAll(ref string[] arrayOfCurrentTagLines)
     {
