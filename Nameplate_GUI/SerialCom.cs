@@ -39,10 +39,9 @@ public class SerialCom
 
     public void checkIfPlateDone(ref bool done)
     {
+        plateIsDone = false;
         checkDataRecieved();
-        if (plateIsDone == true) done = true;
-        else done = false;
-        
+        if (plateIsDone == true) done = true;        
     }
 
     public void clearInputBuffer()

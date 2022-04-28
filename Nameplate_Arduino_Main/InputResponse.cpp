@@ -33,7 +33,7 @@ void InputResponse::chooseAction(const char* fullInputString)
     case 'a':{    
     platesIR.printOne(actionInfo);
     serialOpsIR.emptySerial();
-    Serial.println("z1");   //Send "z" (signal) to GUI and "1" to set plateDone bool true
+    Serial.println("z1");   //Send "z" (signal) to GUI and "1" to say that a plate is done
     break;}
 
     case 'b':{
