@@ -62,17 +62,23 @@ namespace DUNameplateGUI
             int tag1Quantity;
             Boolean parseable = int.TryParse(tag1QuantityBox.Text, out tag1Quantity);
 
+            if (String.IsNullOrWhiteSpace(tag1QuantityBox.Text)) 
+            { 
+                printCurrentTag();
+                return;
+            }
+
             if (parseable == false)
             {
                 MessageBox.Show("Invalid quanity", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; //error out
             }
 
-            if (String.IsNullOrWhiteSpace(tag1QuantityBox.Text)) { printCurrentTag(); }
-
             int printedTagCounter = 0;     
             while (printedTagCounter < tag1Quantity)
             {
+                serialComF1.clearInputBuffer();
+
                 printCurrentTag();
 
                 bool plateIsDone = false;
@@ -82,8 +88,10 @@ namespace DUNameplateGUI
                     serialComF1.checkIfPlateDone(ref plateIsDone);
                 }
 
-                MessageBox.Show("Reload");
+                serialComF1.clearInputBuffer();
+
                 printedTagCounter++;
+                MessageBox.Show("Reload");
             }
 
         }

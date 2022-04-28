@@ -17,11 +17,11 @@ public class SerialCom
     }
     public void sendSettings()
     {
-        MessageBox.Show("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
-        DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
-        DUNameplateGUI.Properties.Settings.Default.plateSpaceingSet.ToString() + "," +
-        DUNameplateGUI.Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
-        DUNameplateGUI.Properties.Settings.Default.charSpaceingSet.ToString() + ">");
+        //MessageBox.Show("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
+        //DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
+        //DUNameplateGUI.Properties.Settings.Default.plateSpaceingSet.ToString() + "," +
+        //DUNameplateGUI.Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
+        //DUNameplateGUI.Properties.Settings.Default.charSpaceingSet.ToString() + ">");
 
         serialPort1.Write("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
         DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
@@ -32,7 +32,7 @@ public class SerialCom
 
     public void sendString(string stringToSend)
     {
-        MessageBox.Show(stringToSend);
+        //MessageBox.Show(stringToSend);
 
        serialPort1.Write(stringToSend);
     }
@@ -44,6 +44,14 @@ public class SerialCom
         else done = false;
         
     }
+
+    public void clearInputBuffer()
+    {
+        serialPort1.DiscardInBuffer();
+    }
+
+    //Private to SerialCom.cs Functions
+    //----------------------------------------------
 
     private void checkDataRecieved()
     {
