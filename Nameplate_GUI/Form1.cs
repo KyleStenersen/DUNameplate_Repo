@@ -59,6 +59,8 @@ namespace DUNameplateGUI
 
         private void printTagsBtn_Click(object sender, EventArgs e)
         {
+            serialComF1.sendSettings();
+
             int tag1Quantity;
             Boolean parseable = int.TryParse(tag1QuantityBox.Text, out tag1Quantity);
 
