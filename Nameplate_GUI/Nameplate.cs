@@ -9,15 +9,15 @@ namespace DUNameplateGUI
     public class Nameplate
     {
         public string Text { get; set; }
-        public int YLocation { get; set; }
-        public int XLocation { get; set; }
+        public int YStartLocation { get; set; }
+        public int XStartLocation { get; set; }
         public int Quantity { get; set; }
 
         public Nameplate (string text, int yLocation, int xLocation, int quantity)
         {
             Text = text;
-            YLocation = yLocation;
-            XLocation = xLocation;
+            YStartLocation = yLocation;
+            XStartLocation = xLocation;
             Quantity = quantity;
         }
     }

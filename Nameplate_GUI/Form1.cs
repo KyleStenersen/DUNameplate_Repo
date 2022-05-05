@@ -144,6 +144,5 @@ namespace DUNameplateGUI
 
             serialComF1.sendString(tag1Text);
         }
-
     }
 }
