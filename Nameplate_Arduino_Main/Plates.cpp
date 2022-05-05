@@ -1,3 +1,21 @@
+// PLATE PRINTING FUNCTION AND A FEW OTHER MACHINE ACTIONS
+
+// - PUBLIC FUNCTIONS:
+// printOne(char* plateText) - recieves ref to text string to be indented on one tag and does it 
+// xyHome() - homes the build plate and sets absolute xy positions to 0 (considering moving to motor.cpp)
+// killAllMotors() - disables all the motors making them free to spin manually
+// - PRIVATE FUNCTIONS:
+// (NOTE several of these are not used in standard machine function but only in manual testing by serial inputs
+// stars (*) indicate the ones that are for testing)
+//    halfCurrentLine(int lineNumber) - pass in the #chars in a line and return the inch length of half of it
+//    motorsOn_GoToPrintStart() - send the work table to the x center and y first line position of the first tag
+// *stampTest() - stamp once
+// *spinX(float xinch) - move worktable in x relative
+// *spinY(float yinch) - move worktable in y relative
+// *spinL(float lDeg) - move letterwheel relative degree
+// *goToALetter(char* letter) - letterwheel
+
+
 #include "Plates.h"
 
 float yAbsolute = 0;
@@ -23,7 +41,9 @@ Encoder encoderP;
 
 Plates::Plates(){}
 
-void Plates::printOne(char* plateText)    //Primary function to increment through chars of a plate/tag and stamp/move for each one
+//PUBLIC FUNCTIONS================================================================
+
+void Plates::printOne(char* plateText)    //Primary function to increment through characters of a plate/tag and stamp/move for each one
 {
   xyHome();
 
@@ -130,6 +150,97 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     killAllMotors();    //after all platetext is parsed/indented turn off motors.  
 }
 
+//---------------------
+
+void Plates::xyHome()
+{
+  motorP.xOn();
+  motorP.yOn();
+  motorP.yHome();
+  motorP.xHome();
+  
+  xAbsolute = 0;
+  yAbsolute = 0; 
+}
+
+//---------------------
+
+void Plates::killAllMotors(){
+  motorP.stampMotorOff();
+  motorP.xOff();
+  motorP.yOff();
+  motorP.letterOff();
+}
+
+
+//PRIVATE FUNCTIONS==============================================
+
+float Plates::halfCurrentLine(int lineNumber)
+{
+  if (lineLengthArray[lineNumber] < 2) //case of 1 or zero letters dont move in x
+  {
+  return 0;
+  }
+  
+  return (((lineLengthArray[lineNumber]-1) * LETTER_SPACEING) / 2);   //minus 1 is because the machine moves a letterspace in x every letter so it does 1 extra unnecessary move after the last char per line.
+}
+
+//-------------------------
+
+void Plates::motorsOn_GoToPrintStart()
+{
+  motorP.stampMotorOn();
+  motorP.xOn();
+  motorP.xGo(xOffset_1, X_ABS_POINTER);  
+  motorP.yOn(); 
+  motorP.yGo(Y_OFFSET_1, Y_ABS_POINTER); 
+  motorP.letterOn();
+}
+
+
+//FUNCTIONS FOR TESTING/MANUAL CONTROL===========================
+
+void Plates::stampTest()
+{
+  motorP.stampMotorOn();
+  delay(500);
+  motorP.stamp();
+  motorP.stampMotorOff();
+}
+
+//-------------------------
+
+void Plates::spinX(float xinch)
+{
+  motorP.xOn();
+  motorP.xGo(xinch, X_ABS_POINTER);
+  motorP.xOff();
+
+  Serial.print("xAbsolute after spinX = ");
+  Serial.println(xAbsolute);
+}
+
+//-------------------------
+
+void Plates::spinY(float yinch)
+{
+  motorP.yOn();
+  motorP.yGo(yinch, Y_ABS_POINTER); 
+  motorP.yOff();
+  Serial.print("yAbsolute after spinY = ");
+  Serial.println(yAbsolute);
+}
+
+//-------------------------
+
+void Plates::spinL(float lDeg)
+{
+  motorP.letterOn();
+  motorP.letterGo(lDeg); 
+  motorP.letterOff();
+}
+
+//-------------------------
 
 void Plates::goToALetter(char* letter)
 {
@@ -161,83 +272,4 @@ void Plates::goToALetter(char* letter)
   Serial.println(diff);
 
   motorP.letterOff();
-  
-}
-
-void Plates::xyHome()
-{
-  motorP.xOn();
-  motorP.yOn();
-  motorP.yHome();
-  motorP.xHome();
-  
-  xAbsolute = 0;
-  yAbsolute = 0; 
-}
-
-void Plates::stampTest()
-{
-  motorP.stampMotorOn();
-  delay(500);
-  motorP.stamp();
-  motorP.stampMotorOff();
-}
-
-void Plates::spinX(float xinch)
-{
-  motorP.xOn();
-  motorP.xGo(xinch, X_ABS_POINTER);
-  motorP.xOff();
-
-  Serial.print("xAbsolute after spinX = ");
-  Serial.println(xAbsolute);
-}
-
-void Plates::spinY(float yinch)
-{
-  motorP.yOn();
-  motorP.yGo(yinch, Y_ABS_POINTER); 
-  motorP.yOff();
-  Serial.print("yAbsolute after spinY = ");
-  Serial.println(yAbsolute);
-}
-
-void Plates::spinL(float lDeg)
-{
-  motorP.letterOn();
-  motorP.letterGo(lDeg); 
-  motorP.letterOff();
-}
-
-void Plates::killAllMotors(){
-  motorP.stampMotorOff();
-  motorP.xOff();
-  motorP.yOff();
-  motorP.letterOff();
-}
-
-void Plates::homeMachine(){
-  xyHome();
-}
-
-//Private Functions-------------------
-
-float Plates::halfCurrentLine(int lineNumber)
-{
-  if (lineLengthArray[lineNumber] < 2) //case of 1 or zero letters dont move in x
-  {
-  return 0;
-  }
-  
-  return (((lineLengthArray[lineNumber]-1) * LETTER_SPACEING) / 2);   //minus 1 is because the machine moves a letterspace in x every letter so it does 1 extra unnecessary move after the last char per line.
-}
-
-void Plates::motorsOn_GoToPrintStart()
-{
-  motorP.stampMotorOn();
-  motorP.xOn();
-  motorP.xGo(xOffset_1, X_ABS_POINTER);  
-  motorP.yOn(); 
-  motorP.yGo(Y_OFFSET_1, Y_ABS_POINTER); 
-  motorP.letterOn();
 }

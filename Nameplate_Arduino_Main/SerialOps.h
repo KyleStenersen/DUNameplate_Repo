@@ -1,6 +1,3 @@
-
-//INCLUDED LIBRARIES AND FUNCTION PROTOTYPES --------------------------
-
 #ifndef SerialOps_h
 #define SerialOps_h
 

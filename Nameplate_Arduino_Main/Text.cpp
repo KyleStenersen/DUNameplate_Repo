@@ -1,7 +1,17 @@
+// HANDLE THE STRINGS OF TAGTEXT SENT FROM GUI
+
+// PUBLIC FUNCTIONS:
+// setupHashMap() - stores hardcoded locations of each letter on letterwheel
+// float relativeAngleFromLetter(char letter)
+// analyzeInputString(char* fullPlateString, int* lineLengthArr) - pass in platetext string and get a reference to an array of the lengths of each line
+// float angleOfLetterFromMap(char letter)
+
+
+
 #include "Text.h"
+Encoder encoderT;
 
 const byte HASH_SIZE = 45;
-
 HashType<char,float> hashRawChar[HASH_SIZE];
 HashMap<char,float> hashMap = HashMap<char,float>(hashRawChar,HASH_SIZE);
 
@@ -53,10 +63,7 @@ void Text::setupHashMap(void)
   hashMap[40]('O',274);
 }
 
-
-//Public Functions=========================================
-
-Encoder encoderT;
+//--------------------------
 
 float Text::relativeAngleFromLetter(char letter)
 {
@@ -94,6 +101,7 @@ float Text::relativeAngleFromLetter(char letter)
     return wayTwoDeg;  
 }
 
+//--------------------------
 
 void Text::analyzeInputString(char* fullPlateString, int* lineLengthArr)    //pass in platetext string and get a reference to an array of the lengths of each line
 {
@@ -117,6 +125,7 @@ void Text::analyzeInputString(char* fullPlateString, int* lineLengthArr)    //pa
   }
 }
 
+//--------------------------
 
 float Text::angleOfLetterFromMap(char letter){
 

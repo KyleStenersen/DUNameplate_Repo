@@ -1,6 +1,3 @@
-
-//INCLUDED LIBRARIES AND FUNCTION PROTOTYPES --------------------------
-
 #ifndef InputResponse_h
 #define InputResponse_h
 

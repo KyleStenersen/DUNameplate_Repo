@@ -1,10 +1,13 @@
-//USED TO WORK WITH SERIAL INPUT
-//Some of this library adapted from here: https://forum.arduino.cc/t/serial-input-basics-updated/382007/3
-//CURRENTLY 4 FUNCTIONS:
-//grabInput() which uses recWithEndMarkers() to return a pointer to an array of an incoming serial message
-//inputSize() simply returns the size of the array being used to hold incoming serial messages "numChars"
-//emptySerial() just reads serialbuffer until it is empty.
-//recWithStartEndMarkers() adds serial input characters into an array "receivedChars" 1 by 1. Bounded by "<" and ">" start and end signals 
+// WORK WITH SERIAL INPUT
+
+// Some of this library adapted from here: https://forum.arduino.cc/t/serial-input-basics-updated/382007/3
+
+// PUBLIC FUNCTIONS:
+// grabInput() - which uses recWithEndMarkers() to return a pointer to an array of an incoming serial message
+// inputSize() - simply returns the size of the array being used to hold incoming serial messages "numChars"
+// emptySerial() - just reads serialbuffer until it is empty.
+// PRIVATE FUNCTIONS:
+// recWithStartEndMarkers() - adds serial input characters into an array "receivedChars" 1 by 1. Bounded by "<" and ">" start and end signals 
 
 #include "SerialOps.h"
 
@@ -15,7 +18,7 @@ char receivedChars[NUM_CHARS];
 boolean newData = false;
 
 
-//Public Functions===================================
+//PUBLIC FUNCTIONS========================================
 
 char* SerialOps::grabInput() {  
     recvWithStartEndMarkers();
@@ -25,13 +28,10 @@ char* SerialOps::grabInput() {
     }
 }
 
-//============
 
 const int SerialOps::inputSize() {
     return NUM_CHARS;
 }
-
-//============
 
 
 void SerialOps::emptySerial(){
@@ -41,7 +41,7 @@ void SerialOps::emptySerial(){
 }
 
 
-//Private Functions====================================
+//PRIVATE FUNCTIONS========================================
 
 void SerialOps::recvWithStartEndMarkers() {   //result of this is receivedChars[] populated with input
     static boolean recvInProgress = false;

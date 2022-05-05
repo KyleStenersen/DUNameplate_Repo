@@ -1,6 +1,3 @@
-
-//INCLUDED LIBRARIES AND FUNCTION PROTOTYPES --------------------------
-
 #ifndef Plates_h
 #define Plates_h
 
@@ -20,7 +17,6 @@ class Plates {
     void spinY(float yinch);
     void spinL(float lDeg);
     void killAllMotors();
-    void homeMachine();
     
   private: 
     float halfCurrentLine(int lineNumber);

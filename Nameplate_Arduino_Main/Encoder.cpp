@@ -1,3 +1,12 @@
+// PARSES AS5600 MAGNETIC ENCODER INPUT
+
+// ADAPTED FROM: https://curiousscientist.tech/blog/as5600-magnetic-position-encoder
+// - PUBLIC FUNCTIONS:
+// encoderSetup() - start/setup, checkMagnetPresence(), getAngle()
+// float getAngle() - reads the raw input from encoder and returns degree location of letter-wheel
+// - PRIVATE FUNCTIONS:
+// checkMagnetPresence() - checks if the encoder is ready (magnet properly positioned) currently will get stuck waiting if not.
+
 #include "Encoder.h"
 
 
@@ -12,7 +21,7 @@ float degAngle; //raw angle in degrees (360/4096 * [value between 0-4095])
 
 Encoder::Encoder(){}
 
-//FUNCTIONS================================================
+//PUBLIC FUNCTIONS================================================
 
 void Encoder::encoderSetup(){ 
   Wire.begin(); //start i2C  
@@ -22,6 +31,8 @@ void Encoder::encoderSetup(){
   
   getAngle(); //make a reading so the degAngle gets updated
 }
+
+//--------------------------
 
 float Encoder::getAngle()
 {
@@ -69,7 +80,7 @@ float Encoder::getAngle()
   return degAngle;
 }
 
-//-------------------------------------------
+//PRIVATE FUNCTIONS================================================
 
 void Encoder::checkMagnetPresence()
 {  

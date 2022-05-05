@@ -1,6 +1,3 @@
-
-//INCLUDED LIBRARIES AND FUNCTION PROTOTYPES --------------------------
-
 #ifndef Text_h
 #define Text_h
 

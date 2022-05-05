@@ -1,16 +1,24 @@
 // USED TO CHOOSE A MACHINE ACTION ACCORDING TO RECIEVED SERIAL MESSAGE
-// CURRENTLY 1 FUNCTION WITH 8 ACTIONS
-// chooseAction(serial message)
-// ACTIONS: CHOSEN PER THE FIRST CHAR OF INPUT STRING "actionDefiner"
-// ‘a’ plates.printOne(rest of serial input string) - print one plate/tag per input
-// ‘c’ plates.goToALetter(rest of serial input string) - letter wheel
-// ‘h’ plates.xyHome() - build plate home
-// ‘x’ plates.spinX(rest of serial input string) - move build plate in x by float inch value.
-// ‘y’ plates.spinY(rest of serial input string) - move build plate in y by float inch value.
-// ‘s’ plates.stampTest() - stamp machine motion once
-// ‘b’ flip onboard LED on and off
-// ‘e’ encoder.encoder.getAngle() - prints current encoder angle to serial monitor
-// 'p' 
+
+// - PUBLIC FUNCTIONS:
+// chooseAction(const char* fullInputString)
+//    ACTIONS: CHOSEN PER THE FIRST CHAR OF INPUT STRING "actionDefiner"
+// (NOTE several of these are not used in standard machine function but only in manual testing by serial inputs
+//  stars (*) indicate the ones that are for testing)
+//    ‘a’ plates.printOne(rest of serial input string) - print one plate/tag per input
+// *‘b’ flip onboard LED on and off
+// *‘c’ plates.goToALetter(rest of serial input string [char]) - letter wheel
+// *‘d’ display GlobalSettings values by serial
+// *‘e’ encoder.encoder.getAngle() - prints current encoder angle to serial monitor
+// *‘f’ motor.changeAccelerationLetter(rest of input string [int]) - letter motor
+// *‘g’ motor.changeVelocityLetter(rest of input string [int]) - letter motor
+//    ‘h’ plates.xyHome() - build plate home
+// *‘i’ motor.changeMicrosteps(rest of input string [int]) - for all motors
+// *‘l’ plates.spinL(rest of input string [float]) - letterwheel move in degrees
+//    ‘p’ update GlobalSettings sent over serial from GUI
+// *‘s’ plates.stampTest() - stamp machine motion once
+// *‘x’ plates.spinX(rest of serial input string [float]) - move build plate in x by float inch value
+// *‘y’ plates.spinY(rest of serial input string [float]) - move build plate in y by float inch value
 
 
 #include "InputResponse.h"
@@ -21,6 +29,8 @@ Encoder encoderIR;
 Motor motorIR;
 
 InputResponse::InputResponse(){}
+
+//PUBLIC FUNCTIONS================================================
 
 void InputResponse::chooseAction(const char* fullInputString) 
 {

@@ -1,6 +1,3 @@
-
-//INCLUDED LIBRARIES AND FUNCTION PROTOTYPES --------------------------
-
 #ifndef Motor_h
 #define Motor_h
 
@@ -10,7 +7,7 @@
 
 class Motor
 {
-  public:	//PUBLIC FUNCTION PROTOTYPES FOR THIS CLASS that will be available anywhere with this .h library---
+  public:
     Motor();
     void motorSetupAll();
     
@@ -39,7 +36,7 @@ class Motor
     void changeMicrosteps(int msteps);
     
 
-  private:	// Declare variables that will be used in this .cpp only
+  private:
 };
 
 #endif

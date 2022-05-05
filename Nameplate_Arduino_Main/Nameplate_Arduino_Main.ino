@@ -24,16 +24,20 @@ InputResponse inputResponse;
 Encoder encoder;
 Text text;
 
+// ------------------
+// Global Machine Setting Variables Initialized (GlobalSettings.h)
+// Updated in InputResponse.cpp (case p:) from the GUI 
+// On startup and prior to every new printOne() command
+
 float X_OFFSET = 1.86;
 float Y_OFFSET = 0.46;
 float NAMEPLATE_SPACEING = 0.9;
 float LINE_SPACEING = 0.145;
 float LETTER_SPACEING = 0.095;
 
-
 // ------------------
-
-void setup() {
+void setup() 
+{
   Serial.begin(115200);
   delay(100);
   pinMode(13, OUTPUT);
@@ -46,9 +50,9 @@ void setup() {
   pinMode(21, INPUT);
  // attachInterrupt(10,stall,RISING);
  // attachInterrupt(21,stall,RISING);
-
-  // ------------------
 }
+// ------------------
+
 
 void loop() 
 {

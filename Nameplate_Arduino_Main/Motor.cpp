@@ -1,8 +1,29 @@
-//LIBRARY FOR STEPPER MOTOR CONTROL FUNCTIONS
-//----------------------------------------------
-// Includes and adapts additional libraries to apply directly to Nameplate machine
+// STEPPER MOTOR CONTROL FUNCTIONS
+
+// Includes additional libraries to apply directly to Nameplate machine
 // Specifically: TMCStepper.h (for controlling TMC motor drivers - TMC2209 in this case)
-//          SpeedyStepper.h (for basic accelleration and decelleration movement of steppers)
+//               SpeedyStepper.h (for basic accelleration and decelleration movement of steppers)
+
+// - PUBLIC FUNCTIONS:
+// motorSetupAll() - sets all motor settings
+// yGo(float yInches, float* yAbsPosition) - relative move Y
+// xGo(float xInches, float* xAbsPosition) - relative move X
+// letterGo(float goDegree, float goalDegree) - relative move letterwheel
+// xOff() - disable motor for free movement (same for others below)
+// xOn() - enable motor for function (same for others below)
+// yOff()
+// yOn()
+// letterOff()- letterwheel motor
+// letterOn()- letterwheel motor
+// stampMotorOn()
+// stampMotorOff()
+// stamp() - stamp once 
+// xHome()
+// yHome()
+// warmUp() - move each motor a bit and rehome to avoid skipped steps on startup
+// changeAccelLetter(int accel)
+// changeVelocityLetter(int velo)
+// changeMicrosteps(int msteps)
 
 
 #include "Motor.h"
@@ -66,8 +87,7 @@ int MICROSTEPS = 2;
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds  
 
 
-// MOTORSTUFF.H LIBRARY SETUP AND CLASS INITIALIZATION
-/////////////////////////////////////////////////////////////////////
+//PUBLIC FUNCTIONS================================================
 
 Motor::Motor(){} // "Constructor" for Motor class
 
@@ -114,11 +134,9 @@ void Motor::motorSetupAll()
 
 }
 
-// MOTORSTUFF.H PUBLIC FUNCTIONS - To be used anywhere with motorStuff.h included
-/////////////////////////////////////////////////////////////////////
-
-// "Go" functions (relative motion) input desired speed and relative distance
-//-------------------------------------------------------------------
+// "Go" functions (relative motion) (for x and y) input desired relative distance and reference to current absolute position if available
+//                                  (for letterwheel) input desired relative degree and goal degree if available
+//-----------------------------------------------------------------------------------------------
 
 void Motor::yGo(float yInches, float* yAbsPosition)
 {
@@ -133,6 +151,8 @@ void Motor::yGo(float yInches, float* yAbsPosition)
 	stepper_Y.moveRelativeInSteps(ySteps);    
 }
 
+//--------------------------
+
 void Motor::xGo(float xInches, float* xAbsPosition) 
 {
   *xAbsPosition = *xAbsPosition + xInches;
@@ -146,6 +166,8 @@ void Motor::xGo(float xInches, float* xAbsPosition)
   float xSteps = xInches*MAGIC_X_DISTANCE_CONVERTER*MICROSTEPS;                                           
   stepper_X.moveRelativeInSteps(xSteps);      
 }
+
+//--------------------------
 
 void Motor::letterGo(float goDegree, float goalDegree) 
 {
@@ -254,7 +276,7 @@ void Motor::letterGo(float goDegree, float goalDegree)
   }
 }
 
-// "ON/OFF" functions to allow turning of motors by hand
+// "ON/OFF" functions to allow motors to turn by hand
 //-------------------------------------------------------------------
 
 void Motor::xOff()
@@ -299,7 +321,6 @@ void Motor::xHome()
   stepper_X.moveToHomeInSteps(1,600,100000,X_LIMIT_SWITCH);
 }
 
-
 void Motor::yHome()
 {
   stepper_Y.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*MICROSTEPS);    
@@ -330,10 +351,12 @@ void Motor::changeAccelLetter(int accel)
   ACCEL_MULTIPLIER_LETTER = accel; 
 }
 
+
 void Motor::changeVelocityLetter(int velo)
 {
   LETTER_RPM = velo; 
 }
+
 
 void Motor::changeMicrosteps(int msteps)
 {

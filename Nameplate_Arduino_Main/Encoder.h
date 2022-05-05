@@ -1,5 +1,3 @@
-//FUNCTION PROTOTYPES --------------------------
-
 #ifndef Encoder_h
 #define Encoder_h
 
@@ -7,12 +5,12 @@
 #include <Wire.h> 
 
 class Encoder {
-  public:  //PUBLIC FUNCTION PROTOTYPES FOR THIS CLASS that will be available anywhere with this .h library---
+  public:
     Encoder();
     float getAngle();
     void encoderSetup();
     
-  private:  // Declare variables that will be used in this .cpp only
+  private:
     void checkMagnetPresence();
 };
 
