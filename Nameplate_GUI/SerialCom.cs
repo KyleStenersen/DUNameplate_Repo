@@ -7,6 +7,8 @@ public class SerialCom
     public delegate void serialReciever(string stringIn);
     private bool plateIsDone = false;
 
+// PUBLIC FUNCTIONS ==============================================
+
     public void setupPort()
     {
         serialPort1.BaudRate = 115200;
@@ -49,8 +51,7 @@ public class SerialCom
         serialPort1.DiscardInBuffer();
     }
 
-    //Private to SerialCom.cs Functions
-    //----------------------------------------------
+// PRIVATE FUNCTIONS =========================================
 
     private void checkDataRecieved()
     {

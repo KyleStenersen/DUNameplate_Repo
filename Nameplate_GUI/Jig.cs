@@ -10,14 +10,14 @@ namespace DUNameplateGUI
     {
         public int Capacity { get; set; }
         public float YSpaceing { get; set; }
+        public float XSpaceing { get; set; }
         public float YStart { get; set; }
 
-        public Jig(int jigNumber)
+        public void setValues(int jigNumber)
         {
             switch(jigNumber)
             {
                 case 0:
-
                     Capacity = 1;
                     break;
                 case 1:
@@ -27,6 +27,11 @@ namespace DUNameplateGUI
                 case 2:
                     Capacity = 4;
                     YSpaceing = 1.028f;
+                    break;
+                case 3:
+                    Capacity = 8;
+                    YSpaceing = 1.028f;
+                    XSpaceing = 2.757f;
                     break;
 
             }

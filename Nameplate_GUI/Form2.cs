@@ -31,6 +31,7 @@ namespace DUNameplateGUI
             InitializeComponent();
         }
 
+        // Run once on opening of settings form2
         private void SETTINGS_FORM_Load(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.xOffsetSet != float.Parse(xOffsetDefault.Text))
@@ -49,6 +50,7 @@ namespace DUNameplateGUI
                 charSpaceingBox.Text = Properties.Settings.Default.charSpaceingSet.ToString();
         }
 
+ //PRIVATE USER INPUT RESPONSE FUNCTIONS ================================
 
         private void xOffsetBox_Leave(object sender, EventArgs e)
         {

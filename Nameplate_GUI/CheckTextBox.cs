@@ -5,6 +5,8 @@ using System.Windows.Forms;
 
 public class CheckTextBox
 {
+// PUBLIC FUNCTIONS ===========================================
+
     public Boolean allLinesOfTagForErrors(ref string[] arrayOfCurrentTagLines)
     {
         if (checkForAllLinesEmpty(ref arrayOfCurrentTagLines) == true)
@@ -48,17 +50,6 @@ public class CheckTextBox
         }
     }
 
-    private void redBoxIfError(ref TextBox currentTextBox, bool isError)
-    {
-        if (isError == true)
-        {
-            currentTextBox.BackColor = Color.MistyRose;
-        }
-        else
-        {
-            currentTextBox.BackColor = Color.White;
-        }
-    }
 
     Boolean checkAllLinesForTooLong(ref string[] arrayOfCurrentTagLines)
     {
@@ -97,6 +88,20 @@ public class CheckTextBox
         }
 
         return false;
+    }
+
+// PRIVATE FUNCTIONS ==================================================
+
+    private void redBoxIfError(ref TextBox currentTextBox, bool isError)
+    {
+        if (isError == true)
+        {
+            currentTextBox.BackColor = Color.MistyRose;
+        }
+        else
+        {
+            currentTextBox.BackColor = Color.White;
+        }
     }
 
     private Boolean errorIfTooLong(ref string tagLineString, int lineNum)

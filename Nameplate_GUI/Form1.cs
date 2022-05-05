@@ -18,6 +18,7 @@ namespace DUNameplateGUI
         CheckTextBox checkTextBox = new CheckTextBox();
         EditTextBox editTextBox = new EditTextBox();
         SerialCom serialComF1 = new SerialCom();
+        Jig jig = new Jig();
 
 
         public MAIN_FORM()
@@ -33,6 +34,8 @@ namespace DUNameplateGUI
             serialComF1.sendSettings();
         }
 
+// USER INPUT RESPONSE FUNCTIONS ============================================
+
         private void tag1Line0Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 0;
@@ -43,6 +46,29 @@ namespace DUNameplateGUI
         {
             TAG_LINE_NUMBER = 1;
             checkTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+        }
+
+        private void settingsBtn_Click(object sender, EventArgs e)
+        {
+            SETTINGS_FORM settings_form = new SETTINGS_FORM();
+            settings_form.ShowDialog();
+        }
+
+        private void clearTagBtn_Click(object sender, EventArgs e)
+        {
+            editTextBox.emptyTag(ref arrayOfTagLines, ref arrayOfTagTextBoxes);
+            
+            tag1QuantityBox.Text = null;
+        }
+
+        private void JigComboBox_ControlRemoved(object sender, ControlEventArgs e)
+        {
+            jig.setValues(JigComboBox.TabIndex);
+        }
+
+        private void homeButton_Click(object sender, EventArgs e)
+        {
+            serialComF1.sendString("<h>");
         }
 
         private void tag1Line2Box_TextChanged(object sender, EventArgs e)
@@ -64,8 +90,8 @@ namespace DUNameplateGUI
             int tag1Quantity;
             Boolean parseable = int.TryParse(tag1QuantityBox.Text, out tag1Quantity);
 
-            if (String.IsNullOrWhiteSpace(tag1QuantityBox.Text)) 
-            { 
+            if (String.IsNullOrWhiteSpace(tag1QuantityBox.Text))
+            {
                 printCurrentTag();
                 return;
             }
@@ -76,7 +102,7 @@ namespace DUNameplateGUI
                 return; //error out
             }
 
-            int printedTagCounter = 0;     
+            int printedTagCounter = 0;
             while (printedTagCounter < tag1Quantity)
             {
                 serialComF1.clearInputBuffer();
@@ -98,6 +124,10 @@ namespace DUNameplateGUI
 
         }
 
+
+        //  PRIVATE FUNCTIONS=======================================================
+
+
         private void printCurrentTag()
         {
             for (int i = 0; i < arrayOfTagTextBoxes.Length; i++)
@@ -113,24 +143,6 @@ namespace DUNameplateGUI
             tag1Text = ("<" + "a" + tag1Text + ">");
 
             serialComF1.sendString(tag1Text);
-        }
-
-        private void settingsBtn_Click(object sender, EventArgs e)
-        {
-            SETTINGS_FORM settings_form = new SETTINGS_FORM();
-            settings_form.ShowDialog();
-        }
-
-        private void clearTagBtn_Click(object sender, EventArgs e)
-        {
-            editTextBox.emptyTag(ref arrayOfTagLines, ref arrayOfTagTextBoxes);
-            
-            tag1QuantityBox.Text = null;
-        }
-
-        private void ledBtn_Click(object sender, EventArgs e)
-        {
-            serialComF1.sendString("<b>");
         }
 
     }
