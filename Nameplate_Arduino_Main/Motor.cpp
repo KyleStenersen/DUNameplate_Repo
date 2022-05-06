@@ -77,7 +77,6 @@ const char RELAY_OFF = LOW;
 const char Z_STAMPING = LOW;
 
 //--- General Motor definitions
-bool shaft = false;                               // ONLY NEEDED FOR CHANGING DIRECTION VIA UART, NO NEED FOR DIR PIN FOR THIS
 int LETTER_RPM = 200;
 int Y_RPM = 180;
 int X_RPM = 180;
@@ -89,7 +88,7 @@ const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/
 
 //PUBLIC FUNCTIONS================================================
 
-Motor::Motor(){} // "Constructor" for Motor class
+Motor::Motor(){}
 
 void Motor::motorSetupAll()
 {   

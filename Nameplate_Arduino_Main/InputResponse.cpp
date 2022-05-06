@@ -45,7 +45,7 @@ void InputResponse::chooseAction(const char* fullInputString)
     serialOpsIR.emptySerial();
     Serial.println("z1");   //Send "z" (signal) to GUI and "1" to say that a plate is done
     break;}
-
+//--------------------------
     case 'b':{
     if (digitalRead(13)== HIGH)
     {
@@ -56,12 +56,12 @@ void InputResponse::chooseAction(const char* fullInputString)
       digitalWrite(13,HIGH);
     }
     break;}
-
+//--------------------------
     case 'c':{    
     platesIR.goToALetter(actionInfo);
     serialOpsIR.emptySerial();
     break;}
-
+//--------------------------
     case 'd':{
     Serial.println("...");
     Serial.print("X_OFFSET = ");
@@ -76,12 +76,12 @@ void InputResponse::chooseAction(const char* fullInputString)
     Serial.println(LETTER_SPACEING);
     Serial.println("...");    
     break;}
-
+//--------------------------
     case 'e':{
     encoderIR.encoderSetup();
     Serial.println(encoderIR.getAngle());
     break;}
-
+//--------------------------
     case 'f':{
     int acceleration = atoi(actionInfo);
     motorIR.changeAccelLetter(acceleration);
@@ -89,7 +89,7 @@ void InputResponse::chooseAction(const char* fullInputString)
     Serial.print("UPDATED ACCEL_L = ");
     Serial.println(acceleration);    
     break;}
-
+//--------------------------
     case 'g':{
     int velocity = atoi(actionInfo);
     motorIR.changeVelocityLetter(velocity);
@@ -97,12 +97,12 @@ void InputResponse::chooseAction(const char* fullInputString)
     Serial.print("UPDATED VEL_L = ");
     Serial.println(velocity); 
     break;}
-    
+//--------------------------    
     case 'h':{
     platesIR.xyHome();
     serialOpsIR.emptySerial();
     break;}
-
+//--------------------------
     case 'i':{
     int msteps = atoi(actionInfo);
     motorIR.changeMicrosteps(msteps);
@@ -110,14 +110,14 @@ void InputResponse::chooseAction(const char* fullInputString)
     Serial.print("UPDATED MICRO = ");
     Serial.println(msteps);
     break;}
-
+//--------------------------
     case 'l':{
     float degreeL;
     degreeL = atof(actionInfo);
     platesIR.spinL(degreeL);
     serialOpsIR.emptySerial();
     break;}
-
+//--------------------------
     case 'p':{    
     char * stringTokenIndex;
   
@@ -138,19 +138,19 @@ void InputResponse::chooseAction(const char* fullInputString)
      
     serialOpsIR.emptySerial();
     break;}
-
+//--------------------------
     case 's':{
     platesIR.stampTest();
     serialOpsIR.emptySerial();
     break;}
-    
+//--------------------------   
     case 'x':{
     float inchx;
     inchx = atof(actionInfo);
     platesIR.spinX(inchx);
     serialOpsIR.emptySerial();
     break;}
-
+//--------------------------
     case 'y':{
     float inchy;
     inchy = atof(actionInfo);

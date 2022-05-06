@@ -210,7 +210,7 @@ void Plates::stampTest()
 
 //-------------------------
 
-void Plates::spinX(float xinch)
+void Plates::spinX(float xinch)   // move worktable in x relative
 {
   motorP.xOn();
   motorP.xGo(xinch, X_ABS_POINTER);
@@ -222,7 +222,7 @@ void Plates::spinX(float xinch)
 
 //-------------------------
 
-void Plates::spinY(float yinch)
+void Plates::spinY(float yinch)   // move worktable in y relative
 {
   motorP.yOn();
   motorP.yGo(yinch, Y_ABS_POINTER); 
@@ -233,7 +233,7 @@ void Plates::spinY(float yinch)
 
 //-------------------------
 
-void Plates::spinL(float lDeg)
+void Plates::spinL(float lDeg)    // move letterwheel relative degree
 {
   motorP.letterOn();
   motorP.letterGo(lDeg); 
@@ -242,7 +242,7 @@ void Plates::spinL(float lDeg)
 
 //-------------------------
 
-void Plates::goToALetter(char* letter)
+void Plates::goToALetter(char* letter)   // letter-wheel
 {
   motorP.letterOn();
   

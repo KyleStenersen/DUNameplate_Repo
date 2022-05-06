@@ -44,32 +44,33 @@ void SerialOps::emptySerial(){
 //PRIVATE FUNCTIONS========================================
 
 void SerialOps::recvWithStartEndMarkers() {   //result of this is receivedChars[] populated with input
-    static boolean recvInProgress = false;
-    static byte ndx = 0;
+    static boolean recvieveInProgress = false;
+    static byte n = 0;
     char startMarker = '<';
     char endMarker = '>';
-    char rc = 0;
+    char currentChar = 0;
+    
     while (Serial.available() && newData == false) {
-        rc = Serial.read();
+        currentChar = Serial.read();
 
-        if (recvInProgress == true) {
-            if (rc != endMarker) {
-                receivedChars[ndx] = rc;
-                ndx++;
-                if (ndx >= NUM_CHARS) {
-                    ndx = NUM_CHARS - 1;
+        if (recvieveInProgress == true) {
+            if (currentChar != endMarker) {
+                receivedChars[n] = currentChar;
+                n++;
+                if (n >= NUM_CHARS) {
+                    n = NUM_CHARS - 1;
                 }
             }
             else {
-                receivedChars[ndx] = '\0'; // terminate the string
-                recvInProgress = false;
-                ndx = 0;
+                receivedChars[n] = '\0'; // terminate the string
+                recvieveInProgress = false;
+                n = 0;
                 newData = true;
             }
         }
 
-        else if (rc == startMarker) {
-            recvInProgress = true;
+        else if (currentChar == startMarker) {
+            recvieveInProgress = true;
         }
     }
 }

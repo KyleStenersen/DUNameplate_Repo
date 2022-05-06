@@ -1,10 +1,10 @@
 
 // DOUBLE U HUNTING SUPPLY - NAMEPLATE MACHINE 
 // ------------------------------------------------
-// This file contains: 
-// Some initial setup for machine components,
-// the Main loop that just checks for updates to input, and
-// the stallguard ISR that shuts the machine down if a motor stalls
+// This file is the Main Entry-Point for the program and contains: 
+// - Some initial setup for machine components,
+// - the Main loop that just checks for updates to input, and
+// - the stallguard ISR that shuts the machine down if a motor stalls
 // ------------------------------------------------
 // Code constructed by Kingdom Automation (Kyle Stenersen) - started in 12/2022
 // ------------------------------------------------
@@ -54,6 +54,9 @@ void setup()
 // ------------------
 
 
+
+
+
 void loop() 
 {
   if(Serial.available()) {     
@@ -61,6 +64,9 @@ void loop()
   } 
 }
      
+
+
+
 
 
 //Stallgaurd Interrupt Service Routine
