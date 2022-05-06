@@ -47,9 +47,9 @@
             this.printTagsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printTagsBtn.Location = new System.Drawing.Point(670, 194);
             this.printTagsBtn.Name = "printTagsBtn";
-            this.printTagsBtn.Size = new System.Drawing.Size(124, 35);
+            this.printTagsBtn.Size = new System.Drawing.Size(103, 35);
             this.printTagsBtn.TabIndex = 0;
-            this.printTagsBtn.Text = "Print Tags";
+            this.printTagsBtn.Text = "Print Tag";
             this.printTagsBtn.UseVisualStyleBackColor = true;
             this.printTagsBtn.Click += new System.EventHandler(this.printTagsBtn_Click);
             // 

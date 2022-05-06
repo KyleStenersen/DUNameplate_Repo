@@ -11,32 +11,32 @@ public class SerialCom
 
     public void setupPort()
     {
-        serialPort1.BaudRate = 115200;
-        serialPort1.PortName = "COM9";
-        serialPort1.ReadTimeout = -1;
-        serialPort1.WriteTimeout = -1;
-        serialPort1.Open();
+        //serialPort1.BaudRate = 115200;
+        //serialPort1.PortName = "COM9";
+        //serialPort1.ReadTimeout = -1;
+        //serialPort1.WriteTimeout = -1;
+        //serialPort1.Open();
     }
     public void sendSettings()
     {
-        //MessageBox.Show("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
-        //DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
-        //DUNameplateGUI.Properties.Settings.Default.plateSpaceingSet.ToString() + "," +
-        //DUNameplateGUI.Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
-        //DUNameplateGUI.Properties.Settings.Default.charSpaceingSet.ToString() + ">");
-
-        serialPort1.Write("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
+        MessageBox.Show("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
         DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
         DUNameplateGUI.Properties.Settings.Default.plateSpaceingSet.ToString() + "," +
         DUNameplateGUI.Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
         DUNameplateGUI.Properties.Settings.Default.charSpaceingSet.ToString() + ">");
+
+        //serialPort1.Write("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
+        //DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
+        //DUNameplateGUI.Properties.Settings.Default.plateSpaceingSet.ToString() + "," +
+        //DUNameplateGUI.Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
+        //DUNameplateGUI.Properties.Settings.Default.charSpaceingSet.ToString() + ">");
     }
 
     public void sendString(string stringToSend)
     {
         MessageBox.Show(stringToSend);
 
-       serialPort1.Write(stringToSend);
+       //serialPort1.Write(stringToSend);
     }
 
     public void checkIfPlateDone(ref bool done)
@@ -48,16 +48,16 @@ public class SerialCom
 
     public void clearInputBuffer()
     {
-        serialPort1.DiscardInBuffer();
+        //serialPort1.DiscardInBuffer();
     }
 
 // PRIVATE FUNCTIONS =========================================
 
     private void checkDataRecieved()
     {
-        string stringIn = serialPort1.ReadLine();
-        var serialInput = new serialReciever(respondInput);
-        serialInput(stringIn);
+        //string stringIn = serialPort1.ReadLine();
+        //var serialInput = new serialReciever(respondInput);
+        //serialInput(stringIn);
     }
 
     private void respondInput(string stringRecieved)

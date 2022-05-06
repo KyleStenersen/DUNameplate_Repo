@@ -18,7 +18,7 @@ namespace DUNameplateGUI
         CheckTextBox checkTextBox = new CheckTextBox();
         EditTextBox editTextBox = new EditTextBox();
         SerialCom serialComF1 = new SerialCom();
-        Jig jig = new Jig();
+        //Jig jig = new Jig();
 
 
         public MAIN_FORM()
@@ -63,7 +63,7 @@ namespace DUNameplateGUI
 
         private void JigComboBox_ControlRemoved(object sender, ControlEventArgs e)
         {
-            jig.setValues(JigComboBox.TabIndex);
+            //jig.setValues(JigComboBox.TabIndex);
         }
 
         private void homeButton_Click(object sender, EventArgs e)

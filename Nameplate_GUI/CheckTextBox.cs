@@ -46,7 +46,12 @@ public class CheckTextBox
         if (invalidTagChars(ref currentTagLineStr) == true || errorIfTooLong(ref currentTagLineStr, currentLineNumber) == true)
         {
             isError = true;
-            redBoxIfError(ref currentTextBox, isError);
+            redBoxIfErrorWhiteIfNot(ref currentTextBox, isError);
+        }
+        else
+        {
+            isError = false;
+            redBoxIfErrorWhiteIfNot(ref currentTextBox, isError);
         }
     }
 
@@ -92,7 +97,7 @@ public class CheckTextBox
 
 // PRIVATE FUNCTIONS ==================================================
 
-    private void redBoxIfError(ref TextBox currentTextBox, bool isError)
+    private void redBoxIfErrorWhiteIfNot(ref TextBox currentTextBox, bool isError)
     {
         if (isError == true)
         {
