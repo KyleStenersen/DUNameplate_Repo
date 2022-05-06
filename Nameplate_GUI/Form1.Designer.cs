@@ -189,7 +189,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " DU Nameplate GUI";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.MAIN_FORM_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
