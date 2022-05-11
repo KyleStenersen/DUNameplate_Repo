@@ -25,7 +25,7 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1.86")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public float xOffsetSet {
             get {
                 return ((float)(this["xOffsetSet"]));
@@ -37,7 +37,7 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.46")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public float yOffsetSet {
             get {
                 return ((float)(this["yOffsetSet"]));

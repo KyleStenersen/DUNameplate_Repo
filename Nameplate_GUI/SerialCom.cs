@@ -19,15 +19,9 @@ public class SerialCom
     }
     public void sendSettings()
     {
-        MessageBox.Show("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
-        DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
-        DUNameplateGUI.Properties.Settings.Default.plateSpaceingSet.ToString() + "," +
-        DUNameplateGUI.Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
-        DUNameplateGUI.Properties.Settings.Default.charSpaceingSet.ToString() + ">");
 
         //serialPort1.Write("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
         //DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
-        //DUNameplateGUI.Properties.Settings.Default.plateSpaceingSet.ToString() + "," +
         //DUNameplateGUI.Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
         //DUNameplateGUI.Properties.Settings.Default.charSpaceingSet.ToString() + ">");
     }

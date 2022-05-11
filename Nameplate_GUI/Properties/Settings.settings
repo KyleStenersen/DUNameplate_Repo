@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="xOffsetSet" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">1.86</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="yOffsetSet" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">0.46</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="plateSpaceingSet" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.9</Value>

@@ -142,7 +142,7 @@
             this.JigComboBox.Name = "JigComboBox";
             this.JigComboBox.Size = new System.Drawing.Size(121, 33);
             this.JigComboBox.TabIndex = 10;
-            this.JigComboBox.ControlRemoved += new System.Windows.Forms.ControlEventHandler(this.JigComboBox_ControlRemoved);
+            this.JigComboBox.DropDownClosed += new System.EventHandler(this.JigComboBox_DropDownClosed);
             // 
             // JigLabel
             // 

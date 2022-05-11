@@ -5,7 +5,7 @@
 //    ACTIONS: CHOSEN PER THE FIRST CHAR OF INPUT STRING "actionDefiner"
 // (NOTE several of these are not used in standard machine function but only in manual testing by serial inputs
 //  stars (*) indicate the ones that are for testing)
-//    ‘a’ plates.printOne(rest of serial input string) - print one plate/tag per input
+//    ‘a’ - parses out location info first, then sends plate text to - plates.printOne(rest of serial input string) - which prints one plate/tag per input
 // *‘b’ flip onboard LED on and off
 // *‘c’ plates.goToALetter(rest of serial input string [char]) - letter wheel
 // *‘d’ display GlobalSettings values by serial
@@ -40,8 +40,21 @@ void InputResponse::chooseAction(const char* fullInputString)
   
   switch (actionDefiner)
   {
-    case 'a':{    
-    platesIR.printOne(actionInfo);
+    case 'a':{
+    char * stringTokenIndex;    //First parse out location info    
+    
+    stringTokenIndex = strtok(actionInfo,",");
+    X_ABS_PLATE_LOCATION_GLOBAL = atof(stringTokenIndex);  
+
+    stringTokenIndex = strtok(NULL, ",");
+    Y_ABS_PLATE_LOCATION_GLOBAL = atof(stringTokenIndex);
+
+    stringTokenIndex = strtok(NULL, ",");
+    strcpy(actionInfo, stringTokenIndex);
+
+    Serial.println(actionInfo);
+          
+    platesIR.printOne(actionInfo);    //Then send remaining platetext to printOne function
     serialOpsIR.emptySerial();
     Serial.println("z1");   //Send "z" (signal) to GUI and "1" to say that a plate is done
     break;}
@@ -64,16 +77,18 @@ void InputResponse::chooseAction(const char* fullInputString)
 //--------------------------
     case 'd':{
     Serial.println("...");
-    Serial.print("X_OFFSET = ");
-    Serial.println(X_OFFSET);
-    Serial.print("Y_OFFSET = ");
-    Serial.println(Y_OFFSET);
-    Serial.print("NAMEPLATE_SPACEING = ");
-    Serial.println(NAMEPLATE_SPACEING);
-    Serial.print("LINE_SPACEING = ");
-    Serial.println(LINE_SPACEING);
-    Serial.print("LETTER_SPACEING = ");
-    Serial.println(LETTER_SPACEING);
+    Serial.print("X_OFFSET_GLOBAL = ");
+    Serial.println(X_OFFSET_GLOBAL);
+    Serial.print("Y_OFFSET_GLOBAL = ");
+    Serial.println(Y_OFFSET_GLOBAL);
+    Serial.print("X_ABS_PLATE_LOCATION_GLOBAL = ");
+    Serial.println(X_ABS_PLATE_LOCATION_GLOBAL);
+    Serial.print("Y_ABS_PLATE_LOCATION_GLOBAL = ");
+    Serial.println(Y_ABS_PLATE_LOCATION_GLOBAL);    
+    Serial.print("LINE_SPACEING_GLOBAL = ");
+    Serial.println(LINE_SPACEING_GLOBAL);
+    Serial.print("LETTER_SPACEING_GLOBAL = ");
+    Serial.println(LETTER_SPACEING_GLOBAL);
     Serial.println("...");    
     break;}
 //--------------------------
@@ -122,19 +137,16 @@ void InputResponse::chooseAction(const char* fullInputString)
     char * stringTokenIndex;
   
     stringTokenIndex = strtok(actionInfo,",");
-    X_OFFSET = atof(stringTokenIndex);  
+    X_OFFSET_GLOBAL = atof(stringTokenIndex);  
  
     stringTokenIndex = strtok(NULL, ","); 
-    Y_OFFSET = atof(stringTokenIndex);  
+    Y_OFFSET_GLOBAL = atof(stringTokenIndex);    
 
     stringTokenIndex = strtok(NULL, ",");
-    NAMEPLATE_SPACEING = atof(stringTokenIndex);
+    LINE_SPACEING_GLOBAL = atof(stringTokenIndex);
 
     stringTokenIndex = strtok(NULL, ",");
-    LINE_SPACEING = atof(stringTokenIndex);
-
-    stringTokenIndex = strtok(NULL, ",");
-    LETTER_SPACEING = atof(stringTokenIndex);
+    LETTER_SPACEING_GLOBAL = atof(stringTokenIndex);
      
     serialOpsIR.emptySerial();
     break;}

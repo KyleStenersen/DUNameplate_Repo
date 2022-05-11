@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DUNameplateGUI
@@ -18,7 +13,7 @@ namespace DUNameplateGUI
         CheckTextBox checkTextBox = new CheckTextBox();
         EditTextBox editTextBox = new EditTextBox();
         SerialCom serialComF1 = new SerialCom();
-        //Jig jig = new Jig();
+        Jig jig = new Jig();
 
 
         public MAIN_FORM()
@@ -61,11 +56,6 @@ namespace DUNameplateGUI
             tag1QuantityBox.Text = null;
         }
 
-        private void JigComboBox_ControlRemoved(object sender, ControlEventArgs e)
-        {
-            //jig.setValues(JigComboBox.TabIndex);
-        }
-
         private void homeButton_Click(object sender, EventArgs e)
         {
             serialComF1.sendString("<h>");
@@ -82,17 +72,23 @@ namespace DUNameplateGUI
             TAG_LINE_NUMBER = 3;
             checkTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
+        
+        private void JigComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            jig.setValues(JigComboBox.SelectedIndex);
+        }
 
         private void printTagsBtn_Click(object sender, EventArgs e)
         {
-            serialComF1.sendSettings();
+            int jigSpaceCounter = 0;
 
-            int tag1Quantity;
-            Boolean parseable = int.TryParse(tag1QuantityBox.Text, out tag1Quantity);
+            int currentTagQuantity;
+            Boolean parseable = int.TryParse(tag1QuantityBox.Text, out currentTagQuantity);
 
             if (String.IsNullOrWhiteSpace(tag1QuantityBox.Text))
             {
-                printCurrentTag();
+                printCurrentTag(jigSpaceCounter);
+                jigSpaceCounter++;
                 return;
             }
 
@@ -102,24 +98,23 @@ namespace DUNameplateGUI
                 return; //error out
             }
 
-            int printedTagCounter = 0;
-            while (printedTagCounter < tag1Quantity)
+            for (int i = 0; i < currentTagQuantity; i++)
             {
                 serialComF1.clearInputBuffer();
 
-                printCurrentTag();
+                printCurrentTag(jigSpaceCounter);
 
-                bool plateIsDone = false;
+                jigSpaceCounter++;
 
-                while (plateIsDone == false)
-                {
-                    serialComF1.checkIfPlateDone(ref plateIsDone);
-                }
+                //waitPlateDone();
 
                 serialComF1.clearInputBuffer();
 
-                printedTagCounter++;
-                MessageBox.Show("Reload");
+                if (jigSpaceCounter >= jig.Capacity)
+                {
+                    MessageBox.Show("Reload");
+                    jigSpaceCounter = 0;
+                }
             }
 
         }
@@ -128,8 +123,10 @@ namespace DUNameplateGUI
         //  PRIVATE FUNCTIONS=======================================================
 
 
-        private void printCurrentTag()
+        private void printCurrentTag(int jigPosition)
         {
+            serialComF1.sendSettings();
+
             for (int i = 0; i < arrayOfTagTextBoxes.Length; i++)
                 arrayOfTagLines[i] = arrayOfTagTextBoxes[i].Text;
 
@@ -140,9 +137,21 @@ namespace DUNameplateGUI
             string tag1Text = (arrayOfTagLines[0] + arrayOfTagLines[1] + arrayOfTagLines[2] + arrayOfTagLines[3]);
 
             tag1Text = tag1Text.ToUpper();
-            tag1Text = ("<" + "a" + tag1Text + ">");
+            tag1Text = ("<" + "a" + jig.XStartLocation[jigPosition]+ "," + jig.YStartLocation[jigPosition] + "," + tag1Text + ">");
 
             serialComF1.sendString(tag1Text);
         }
+
+        private void waitPlateDone()
+        {
+            bool plateIsDone = false;
+
+            while (plateIsDone == false)
+            {
+                serialComF1.checkIfPlateDone(ref plateIsDone);
+            }
+        }
+
+
     }
 }

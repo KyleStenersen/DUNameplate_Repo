@@ -80,9 +80,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(37, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(223, 16);
+            this.label1.Size = new System.Drawing.Size(274, 16);
             this.label1.TabIndex = 2;
-            this.label1.Text = "X OFFSET (home to center of tag #1)";
+            this.label1.Text = "X OFFSET (adjustment of text location on tag)";
             // 
             // label2
             // 
@@ -98,9 +98,9 @@
             this.xOffsetDefault.AutoSize = true;
             this.xOffsetDefault.Location = new System.Drawing.Point(219, 50);
             this.xOffsetDefault.Name = "xOffsetDefault";
-            this.xOffsetDefault.Size = new System.Drawing.Size(31, 16);
+            this.xOffsetDefault.Size = new System.Drawing.Size(24, 16);
             this.xOffsetDefault.TabIndex = 2;
-            this.xOffsetDefault.Text = "1.86";
+            this.xOffsetDefault.Text = "0.0";
             // 
             // yOffsetBox
             // 
@@ -115,9 +115,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(37, 84);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(230, 16);
+            this.label4.Size = new System.Drawing.Size(275, 16);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Y OFFSET (home to top line of tag #1)";
+            this.label4.Text = "Y OFFSET (adjustment of text location on tag)";
             // 
             // label5
             // 
@@ -133,9 +133,9 @@
             this.yOffsetDefault.AutoSize = true;
             this.yOffsetDefault.Location = new System.Drawing.Point(219, 109);
             this.yOffsetDefault.Name = "yOffsetDefault";
-            this.yOffsetDefault.Size = new System.Drawing.Size(31, 16);
+            this.yOffsetDefault.Size = new System.Drawing.Size(24, 16);
             this.yOffsetDefault.TabIndex = 2;
-            this.yOffsetDefault.Text = "0.46";
+            this.yOffsetDefault.Text = "0.0";
             // 
             // plateSpaceingBox
             // 

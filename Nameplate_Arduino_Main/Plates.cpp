@@ -22,9 +22,9 @@ float yAbsolute = 0;
 float xAbsolute = 0;
 float* Y_ABS_POINTER = &yAbsolute;
 float* X_ABS_POINTER = &xAbsolute;
-float X_CENTER_COLUMN_1;
-float Y_OFFSET_1;
-float xOffset_1;
+float xPlateCenter;
+float yRelativePlateLocation;
+float xRelativePlateLocation;
 int lineLengthArray[5];
 int lineNum = 0;
 int SWITCH_SIDE = -1;
@@ -63,9 +63,9 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
   plateSide = 1;      //reset, sign toggled for direction of indenting
   int i = 0;          //reset, counter that updates for each incoming character
   lineNum = 0;        //reset, counter that tracks current line of plate/tag
-  X_CENTER_COLUMN_1 = X_OFFSET;
-  xOffset_1 = X_CENTER_COLUMN_1 - halfCurrentLine(lineNum);    //starting position in x is half of the current plate line away from the center of the plate/tag
-  Y_OFFSET_1 = Y_OFFSET;    //starting position in y
+  xPlateCenter = X_OFFSET_GLOBAL + X_ABS_PLATE_LOCATION_GLOBAL;
+  xRelativePlateLocation = (xPlateCenter - halfCurrentLine(lineNum)) - xAbsolute;
+  yRelativePlateLocation = (Y_OFFSET_GLOBAL + Y_ABS_PLATE_LOCATION_GLOBAL) - yAbsolute;
   
   motorsOn_GoToPrintStart();
   
@@ -89,7 +89,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
       
     if (angleToMove == SPACE_BAR)   //if empty space, move one letterspace in x
     {
-      motorP.xGo(plateSide*LETTER_SPACEING, X_ABS_POINTER);
+      motorP.xGo(plateSide*LETTER_SPACEING_GLOBAL, X_ABS_POINTER);
       i++;
       continue;
     }
@@ -98,10 +98,10 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     Serial.println(angleToMove);
     if (angleToMove == NEW_LINE)    //if newline character "!" then move one linespace in y and then go to start of next line from center (direction depends on line #)
     {
-      motorP.yGo(LINE_SPACEING, Y_ABS_POINTER);   //move down a line in y
+      motorP.yGo(LINE_SPACEING_GLOBAL, Y_ABS_POINTER);   //move down a line in y
       lineNum++;
       
-      float lineStart = X_CENTER_COLUMN_1 + (halfCurrentLine(lineNum) * plateSide);   //calc where to start next line in x
+      float lineStart = xPlateCenter + (halfCurrentLine(lineNum) * plateSide);   //calc where to start next line in x
       
       Serial.print("lineStart = ");
       Serial.println(lineStart);
@@ -137,7 +137,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     
     motorP.letterGo(angleToMove, letterLocation);   //Default go to current letter char, stamp, and move over one letterspace for next
     motorP.stamp();
-    motorP.xGo((plateSide*LETTER_SPACEING), X_ABS_POINTER);
+    motorP.xGo((plateSide*LETTER_SPACEING_GLOBAL), X_ABS_POINTER);
     i++;
   } 
 
@@ -182,7 +182,7 @@ float Plates::halfCurrentLine(int lineNumber)
   return 0;
   }
   
-  return (((lineLengthArray[lineNumber]-1) * LETTER_SPACEING) / 2);   //minus 1 is because the machine moves a letterspace in x every letter so it does 1 extra unnecessary move after the last char per line.
+  return (((lineLengthArray[lineNumber]-1) * LETTER_SPACEING_GLOBAL) / 2);   //minus 1 is because the machine moves a letterspace in x every letter so it does 1 extra unnecessary move after the last char per line.
 }
 
 //-------------------------
@@ -191,9 +191,9 @@ void Plates::motorsOn_GoToPrintStart()
 {
   motorP.stampMotorOn();
   motorP.xOn();
-  motorP.xGo(xOffset_1, X_ABS_POINTER);  
+  motorP.xGo(xRelativePlateLocation, X_ABS_POINTER);  
   motorP.yOn(); 
-  motorP.yGo(Y_OFFSET_1, Y_ABS_POINTER); 
+  motorP.yGo(yRelativePlateLocation, Y_ABS_POINTER); 
   motorP.letterOn();
 }
 

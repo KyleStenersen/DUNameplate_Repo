@@ -29,11 +29,12 @@ Text text;
 // Updated in InputResponse.cpp (case p:) from the GUI 
 // On startup and prior to every new printOne() command
 
-float X_OFFSET = 1.86;
-float Y_OFFSET = 0.46;
-float NAMEPLATE_SPACEING = 0.9;
-float LINE_SPACEING = 0.145;
-float LETTER_SPACEING = 0.095;
+float X_OFFSET_GLOBAL = 0;
+float Y_OFFSET_GLOBAL = 0;
+float X_ABS_PLATE_LOCATION_GLOBAL = 1.86;
+float Y_ABS_PLATE_LOCATION_GLOBAL = 0.46;
+float LINE_SPACEING_GLOBAL = 0.145;
+float LETTER_SPACEING_GLOBAL = 0.095;
 
 // ------------------
 void setup() 

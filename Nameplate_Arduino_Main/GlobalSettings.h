@@ -8,10 +8,11 @@
 
 #include <Arduino.h>
 
-extern float X_OFFSET;
-extern float Y_OFFSET;
-extern float NAMEPLATE_SPACEING;
-extern float LINE_SPACEING;
-extern float LETTER_SPACEING;
+extern float X_OFFSET_GLOBAL;
+extern float Y_OFFSET_GLOBAL;
+extern float X_ABS_PLATE_LOCATION_GLOBAL;
+extern float Y_ABS_PLATE_LOCATION_GLOBAL;
+extern float LINE_SPACEING_GLOBAL;
+extern float LETTER_SPACEING_GLOBAL;
 
 #endif
