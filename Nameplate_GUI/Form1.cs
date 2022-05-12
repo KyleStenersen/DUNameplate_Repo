@@ -14,6 +14,7 @@ namespace DUNameplateGUI
         EditTextBox editTextBox = new EditTextBox();
         SerialCom serialComF1 = new SerialCom();
         Jig jig = new Jig();
+        Queue queue = new Queue();
 
 
         public MAIN_FORM()
@@ -80,15 +81,15 @@ namespace DUNameplateGUI
 
         private void printTagsBtn_Click(object sender, EventArgs e)
         {
-            int jigSpaceCounter = 0;
+            int jigPosition = 0;
 
             int currentTagQuantity;
             Boolean parseable = int.TryParse(tag1QuantityBox.Text, out currentTagQuantity);
 
             if (String.IsNullOrWhiteSpace(tag1QuantityBox.Text))
             {
-                printCurrentTag(jigSpaceCounter);
-                jigSpaceCounter++;
+                printCurrentTag(jigPosition);
+                jigPosition++;
                 return;
             }
 
@@ -102,23 +103,26 @@ namespace DUNameplateGUI
             {
                 serialComF1.clearInputBuffer();
 
-                printCurrentTag(jigSpaceCounter);
+                printCurrentTag(jigPosition);
 
-                jigSpaceCounter++;
+                jigPosition++;
 
                 //waitPlateDone();
 
                 serialComF1.clearInputBuffer();
 
-                if (jigSpaceCounter >= jig.Capacity)
+                if (jigPosition == jig.Capacity)
                 {
-                    MessageBox.Show("Reload");
-                    jigSpaceCounter = 0;
+                    MessageBox.Show("Please reload, press OK when done");
+                    jigPosition = 0;
                 }
             }
 
         }
+        private void printQueueBtn_Click(object sender, EventArgs e)
+        {
 
+        }
 
         //  PRIVATE FUNCTIONS=======================================================
 
@@ -151,7 +155,6 @@ namespace DUNameplateGUI
                 serialComF1.checkIfPlateDone(ref plateIsDone);
             }
         }
-
 
     }
 }

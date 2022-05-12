@@ -21,9 +21,9 @@ public class SerialCom
     {
 
         //serialPort1.Write("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
-        //DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
-        //DUNameplateGUI.Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
-        //DUNameplateGUI.Properties.Settings.Default.charSpaceingSet.ToString() + ">");
+        //    DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
+        //    DUNameplateGUI.Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
+        //    DUNameplateGUI.Properties.Settings.Default.charSpaceingSet.ToString() + ">");
     }
 
     public void sendString(string stringToSend)

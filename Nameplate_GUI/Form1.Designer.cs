@@ -40,6 +40,7 @@
             this.JigComboBox = new System.Windows.Forms.ComboBox();
             this.JigLabel = new System.Windows.Forms.Label();
             this.homeButton = new System.Windows.Forms.Button();
+            this.printQueueBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // printTagsBtn
@@ -47,9 +48,9 @@
             this.printTagsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.printTagsBtn.Location = new System.Drawing.Point(670, 194);
             this.printTagsBtn.Name = "printTagsBtn";
-            this.printTagsBtn.Size = new System.Drawing.Size(103, 35);
+            this.printTagsBtn.Size = new System.Drawing.Size(113, 35);
             this.printTagsBtn.TabIndex = 0;
-            this.printTagsBtn.Text = "Print Tag";
+            this.printTagsBtn.Text = "Print Tags";
             this.printTagsBtn.UseVisualStyleBackColor = true;
             this.printTagsBtn.Click += new System.EventHandler(this.printTagsBtn_Click);
             // 
@@ -165,11 +166,23 @@
             this.homeButton.UseVisualStyleBackColor = true;
             this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
             // 
+            // printQueueBtn
+            // 
+            this.printQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.printQueueBtn.Location = new System.Drawing.Point(665, 246);
+            this.printQueueBtn.Name = "printQueueBtn";
+            this.printQueueBtn.Size = new System.Drawing.Size(124, 35);
+            this.printQueueBtn.TabIndex = 11;
+            this.printQueueBtn.Text = "Print Queue";
+            this.printQueueBtn.UseVisualStyleBackColor = true;
+            this.printQueueBtn.Click += new System.EventHandler(this.printQueueBtn_Click);
+            // 
             // MAIN_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(918, 315);
+            this.Controls.Add(this.printQueueBtn);
             this.Controls.Add(this.JigComboBox);
             this.Controls.Add(this.tag1QuantityBox);
             this.Controls.Add(this.JigLabel);
@@ -208,6 +221,7 @@
         private System.Windows.Forms.ComboBox JigComboBox;
         private System.Windows.Forms.Label JigLabel;
         private System.Windows.Forms.Button homeButton;
+        private System.Windows.Forms.Button printQueueBtn;
     }
 }
 
