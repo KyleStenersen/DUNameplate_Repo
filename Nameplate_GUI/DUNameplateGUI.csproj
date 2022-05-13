@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="CheckSettings.cs" />
     <Compile Include="CheckTextBox.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Queue.cs" />
     <Compile Include="EditTextBox.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

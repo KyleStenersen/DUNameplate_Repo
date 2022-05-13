@@ -101,7 +101,7 @@ public class CheckTextBox
     {
         if (isError == true)
         {
-            currentTextBox.BackColor = Color.MistyRose;
+            currentTextBox.BackColor = Color.Crimson;
         }
         else
         {

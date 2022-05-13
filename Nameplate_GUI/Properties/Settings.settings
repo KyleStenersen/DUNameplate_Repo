@@ -17,5 +17,8 @@
     <Setting Name="charSpaceingSet" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.095</Value>
     </Setting>
+    <Setting Name="serialOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

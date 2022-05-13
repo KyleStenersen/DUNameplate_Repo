@@ -59,7 +59,7 @@ namespace DUNameplateGUI
 
         private void homeButton_Click(object sender, EventArgs e)
         {
-            serialComF1.sendString("<h>");
+            home();
         }
 
         private void tag1Line2Box_TextChanged(object sender, EventArgs e)
@@ -106,14 +106,17 @@ namespace DUNameplateGUI
                 printCurrentTag(jigPosition);
 
                 jigPosition++;
-
-                //waitPlateDone();
+                
+                waitPlateDone();
 
                 serialComF1.clearInputBuffer();
 
                 if (jigPosition == jig.Capacity)
                 {
-                    MessageBox.Show("Please reload, press OK when done");
+                    home();
+
+                    if (i != currentTagQuantity-1) MessageBox.Show("Please reload, press OK when done");
+                    
                     jigPosition = 0;
                 }
             }
@@ -154,6 +157,11 @@ namespace DUNameplateGUI
             {
                 serialComF1.checkIfPlateDone(ref plateIsDone);
             }
+        }
+
+        private void home()
+        {
+            serialComF1.sendString("<h>");
         }
 
     }
