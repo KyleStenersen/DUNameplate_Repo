@@ -3,11 +3,11 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-public class CheckTextBox
+public static class CheckTextBox
 {
 // PUBLIC FUNCTIONS ===========================================
 
-    public Boolean allLinesOfTagForErrors(ref string[] arrayOfCurrentTagLines)
+    public static Boolean allLinesOfTagForErrors(string[] arrayOfCurrentTagLines)
     {
         if (checkForAllLinesEmpty(ref arrayOfCurrentTagLines) == true)
         {
@@ -27,7 +27,7 @@ public class CheckTextBox
         return false;
     }
 
-    public Boolean invalidTagChars(ref string checkStr)
+    public static Boolean invalidTagChars(ref string checkStr)
     {
 
         if (checkStr.Except("ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890 ,/-.#").Any())
@@ -38,7 +38,7 @@ public class CheckTextBox
         return false;
     }
 
-    public void redTagBoxIfInputError(ref string currentTagLineStr, ref TextBox currentTextBox, int currentLineNumber)
+    public static void redTagBoxIfInputError(ref string currentTagLineStr, ref TextBox currentTextBox, int currentLineNumber)
     {
         currentTagLineStr = currentTextBox.Text;
         bool isError = false;
@@ -56,7 +56,7 @@ public class CheckTextBox
     }
 
 
-    Boolean checkAllLinesForTooLong(ref string[] arrayOfCurrentTagLines)
+    public static Boolean checkAllLinesForTooLong(ref string[] arrayOfCurrentTagLines)
     {
         for (int i = 0; i < arrayOfCurrentTagLines.Length; i++)
         {
@@ -71,7 +71,7 @@ public class CheckTextBox
         return false;
     }
 
-    Boolean checkAllLinesForInvalidChars(ref string[] arrayOfCurrentTagLines)
+    public static Boolean checkAllLinesForInvalidChars(ref string[] arrayOfCurrentTagLines)
     {
         string tag1TextTester = (arrayOfCurrentTagLines[0] + arrayOfCurrentTagLines[1] + arrayOfCurrentTagLines[2] + arrayOfCurrentTagLines[3]);
         if (invalidTagChars(ref tag1TextTester) == true)
@@ -84,7 +84,7 @@ public class CheckTextBox
         return false;
     }
 
-    Boolean checkForAllLinesEmpty(ref string[] arrayOfCurrentTagLines)
+    public static Boolean checkForAllLinesEmpty(ref string[] arrayOfCurrentTagLines)
     {
         if (String.IsNullOrWhiteSpace(arrayOfCurrentTagLines[0]) && String.IsNullOrWhiteSpace(arrayOfCurrentTagLines[1]) && String.IsNullOrWhiteSpace(arrayOfCurrentTagLines[2]) && String.IsNullOrWhiteSpace(arrayOfCurrentTagLines[3]))
         {
@@ -97,7 +97,7 @@ public class CheckTextBox
 
 // PRIVATE FUNCTIONS ==================================================
 
-    private void redBoxIfErrorWhiteIfNot(ref TextBox currentTextBox, bool isError)
+    private static void redBoxIfErrorWhiteIfNot(ref TextBox currentTextBox, bool isError)
     {
         if (isError == true)
         {
@@ -109,7 +109,7 @@ public class CheckTextBox
         }
     }
 
-    private Boolean errorIfTooLong(ref string tagLineString, int lineNum)
+    private static Boolean errorIfTooLong(ref string tagLineString, int lineNum)
     {
 
         if (lineNum == 0 || lineNum == 3)

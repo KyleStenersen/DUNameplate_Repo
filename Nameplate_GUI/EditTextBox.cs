@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Windows.Forms;
 
-public class EditTextBox
+public static class EditTextBox
 {
-    public void addNewLineCharsAndReverseOddLinesAll(ref string[] arrayOfCurrentTagLines)
+    public static void addNewLineCharsAndReverseOddLinesAll(ref string[] arrayOfCurrentTagLines)
     {
         addNewLineChar(ref arrayOfCurrentTagLines[0]);
 
@@ -13,7 +14,7 @@ public class EditTextBox
         addNewLineCharAndReverse(ref arrayOfCurrentTagLines[3]);
     }
 
-    public void emptyTag(ref string[] arrayOfCurrentTagLines, ref System.Windows.Forms.TextBox[] arrayOfCurrentTextboxes)
+    public static void emptyTag(ref string[] arrayOfCurrentTagLines, ref TextBox[] arrayOfCurrentTextboxes)
     {
         for (int i = 0; i < arrayOfCurrentTagLines.Length; i++)
         {
@@ -24,14 +25,14 @@ public class EditTextBox
 
     //SUPPORT FUNCTIONS ---------------------
 
-    private void reverseLine(ref string tagLineStr)
+    private static void reverseLine(ref string tagLineStr)
     {
         char[] charArray = tagLineStr.ToCharArray();
         Array.Reverse(charArray);
         tagLineStr = new string(charArray);
     }
 
-    private void addNewLineChar(ref string tagLineStr)
+    private static void addNewLineChar(ref string tagLineStr)
     {
         if (tagLineStr != null)
         {
@@ -43,7 +44,7 @@ public class EditTextBox
         }
     }
 
-    private void addNewLineCharAndReverse(ref string tagLineStr)
+    private static void addNewLineCharAndReverse(ref string tagLineStr)
     {
         if (tagLineStr != null)
         {

@@ -9,9 +9,6 @@ namespace DUNameplateGUI
         string[] arrayOfTagLines;
         private int TAG_LINE_NUMBER;
 
-
-        CheckTextBox checkTextBox = new CheckTextBox();
-        EditTextBox editTextBox = new EditTextBox();
         SerialCom serialComF1 = new SerialCom();
         Jig jig = new Jig();
         Queue queue = new Queue();
@@ -22,6 +19,12 @@ namespace DUNameplateGUI
             //Running these once on startup
 
             InitializeComponent();
+
+            // Set the JigComboBox to 1-Plate by default to prevent bugs
+            JigComboBox.SelectedIndex = 0;
+
+            // Make sure the Jig is properly initialized
+            jig.setValues(JigComboBox.SelectedIndex);
 
             arrayOfTagTextBoxes = new TextBox[4] { tag1Line0Box, tag1Line1Box, tag1Line2Box, tag1Line3Box };
             arrayOfTagLines = new string[4];
@@ -35,13 +38,24 @@ namespace DUNameplateGUI
         private void tag1Line0Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 0;
-            checkTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+            CheckTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
 
         private void tag1Line1Box_TextChanged(object sender, EventArgs e)
         {
             TAG_LINE_NUMBER = 1;
-            checkTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+            CheckTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+        }
+        private void tag1Line2Box_TextChanged(object sender, EventArgs e)
+        {
+            TAG_LINE_NUMBER = 2;
+            CheckTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+        }
+
+        private void tag1Line3Box_TextChanged(object sender, EventArgs e)
+        {
+            TAG_LINE_NUMBER = 3;
+            CheckTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
         }
 
         private void settingsBtn_Click(object sender, EventArgs e)
@@ -52,7 +66,7 @@ namespace DUNameplateGUI
 
         private void clearTagBtn_Click(object sender, EventArgs e)
         {
-            editTextBox.emptyTag(ref arrayOfTagLines, ref arrayOfTagTextBoxes);
+            EditTextBox.emptyTag(ref arrayOfTagLines, ref arrayOfTagTextBoxes);
             
             tag1QuantityBox.Text = null;
         }
@@ -62,17 +76,6 @@ namespace DUNameplateGUI
             home();
         }
 
-        private void tag1Line2Box_TextChanged(object sender, EventArgs e)
-        {
-            TAG_LINE_NUMBER = 2;
-            checkTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
-        }
-
-        private void tag1Line3Box_TextChanged(object sender, EventArgs e)
-        {
-            TAG_LINE_NUMBER = 3;
-            checkTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
-        }
         
         private void JigComboBox_DropDownClosed(object sender, EventArgs e)
         {
@@ -83,21 +86,22 @@ namespace DUNameplateGUI
         {
             int jigPosition = 0;
 
-            int currentTagQuantity;
-            Boolean parseable = int.TryParse(tag1QuantityBox.Text, out currentTagQuantity);
+            int currentTagQuantity = (int) tagQuantityBox.Value;
 
-            if (String.IsNullOrWhiteSpace(tag1QuantityBox.Text))
-            {
-                printCurrentTag(jigPosition);
-                jigPosition++;
-                return;
-            }
+            //Boolean parseable = int.TryParse(tag1QuantityBox.Text, out currentTagQuantity);
 
-            if (parseable == false)
-            {
-                MessageBox.Show("Invalid quanity", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; //error out
-            }
+            //if (String.IsNullOrWhiteSpace(tag1QuantityBox.Text))
+            //{
+            //    printCurrentTag(jigPosition);
+            //    jigPosition++;
+            //    return;
+            //}
+
+            //if (parseable == false)
+            //{
+            //    MessageBox.Show("Invalid quanity", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return; //error out
+            //}
 
             for (int i = 0; i < currentTagQuantity; i++)
             {
@@ -126,6 +130,10 @@ namespace DUNameplateGUI
         {
 
         }
+        private void addToQueueBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
 
         //  PRIVATE FUNCTIONS=======================================================
 
@@ -137,16 +145,16 @@ namespace DUNameplateGUI
             for (int i = 0; i < arrayOfTagTextBoxes.Length; i++)
                 arrayOfTagLines[i] = arrayOfTagTextBoxes[i].Text;
 
-            if (checkTextBox.allLinesOfTagForErrors(ref arrayOfTagLines) == true) return;
+            if (CheckTextBox.allLinesOfTagForErrors(arrayOfTagLines) == true) return;
 
-            editTextBox.addNewLineCharsAndReverseOddLinesAll(ref arrayOfTagLines);
+            EditTextBox.addNewLineCharsAndReverseOddLinesAll(ref arrayOfTagLines);
 
-            string tag1Text = (arrayOfTagLines[0] + arrayOfTagLines[1] + arrayOfTagLines[2] + arrayOfTagLines[3]);
+            string tagText = (arrayOfTagLines[0] + arrayOfTagLines[1] + arrayOfTagLines[2] + arrayOfTagLines[3]);
 
-            tag1Text = tag1Text.ToUpper();
-            tag1Text = ("<" + "a" + jig.XStartLocation[jigPosition]+ "," + jig.YStartLocation[jigPosition] + "," + tag1Text + ">");
+            //tagText = tagText.ToUpper(); // Not needed due to marking all the text fields to automatically uppercase everything
+            tagText = ("<" + "a" + jig.XStartLocation[jigPosition]+ "," + jig.YStartLocation[jigPosition] + "," + tagText + ">");
 
-            serialComF1.sendString(tag1Text);
+            serialComF1.sendString(tagText);
         }
 
         private void waitPlateDone()
@@ -163,6 +171,5 @@ namespace DUNameplateGUI
         {
             serialComF1.sendString("<h>");
         }
-
     }
 }

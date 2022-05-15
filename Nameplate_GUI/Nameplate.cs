@@ -3,18 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DUNameplateGUI
 {
     public class Nameplate
     {
-        public string Text { get; set; }
+        public string[] Lines { get; set; }
         public int Quantity { get; set; }
 
-        public Nameplate (string text, int yLocation, int xLocation, int quantity)
+        public Nameplate (TextBox[] textBoxes, int quantity)
         {
-            Text = text;
             Quantity = quantity;
+
+            Lines = new string[4];
+
+            for (int i = 0; i < textBoxes.Length; i++)
+                Lines[i] = textBoxes[i].Text;
+
+            if (CheckTextBox.allLinesOfTagForErrors(Lines))
+            {
+                
+            }
         }
     }
 }

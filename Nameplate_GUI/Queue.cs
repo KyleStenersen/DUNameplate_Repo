@@ -8,6 +8,8 @@ namespace DUNameplateGUI
 {
     internal class Queue
     {
-        
+        public Queue<Nameplate> QueuedPlates { get; set; }
+
+
     }
 }
