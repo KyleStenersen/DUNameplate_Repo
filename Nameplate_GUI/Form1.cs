@@ -88,20 +88,6 @@ namespace DUNameplateGUI
 
             int currentTagQuantity = (int) tagQuantityBox.Value;
 
-            //Boolean parseable = int.TryParse(tag1QuantityBox.Text, out currentTagQuantity);
-
-            //if (String.IsNullOrWhiteSpace(tag1QuantityBox.Text))
-            //{
-            //    printCurrentTag(jigPosition);
-            //    jigPosition++;
-            //    return;
-            //}
-
-            //if (parseable == false)
-            //{
-            //    MessageBox.Show("Invalid quanity", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return; //error out
-            //}
 
             for (int i = 0; i < currentTagQuantity; i++)
             {
