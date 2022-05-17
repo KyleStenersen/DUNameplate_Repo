@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace DUNameplateGUI
 {
-    internal class Queue
+    internal class PlateQueue
     {
         public Queue<Nameplate> QueuedPlates { get; set; }
 
-
+        public PlateQueue ()
+        {
+            QueuedPlates = new Queue<Nameplate>();
+        }
     }
 }
