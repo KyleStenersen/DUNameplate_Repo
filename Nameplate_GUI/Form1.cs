@@ -187,11 +187,9 @@ namespace DUNameplateGUI
                 {
                     home();
 
-                    // Due to the new rewrites, this is not working properly and needs to be fixed, so now it shows it every time again
-                    // TODO: Figure out a way to know if this is the last plate being printed
-
-                    //if (i != currentTagQuantity - 1) MessageBox.Show("Please reload, press OK when done");
-                    MessageBox.Show("Please reload, press OK when done");
+                    // If the tag is not the final tag being printed, ask the user to reload
+                    if (i != currentTagQuantity - 1 || queue.QueuedPlates.Count != 0)
+                        MessageBox.Show("Please reload, press OK when done");
 
                     jig.Position = 0;
                 }
