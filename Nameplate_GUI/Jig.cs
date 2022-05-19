@@ -51,7 +51,7 @@ namespace DUNameplateGUI
                 case 1: //JIG Settings #2 (2 @ a time on old jig)
                     YStartLocations[0] = 0.46f;
                     XStartLocations[0] = 1.86f;
-                    YStartLocations[1] = 2.26f;
+                    YStartLocations[1] = 2.24f;
                     XStartLocations[1] = 1.86f;
                     Capacity = 2;
                     break;
