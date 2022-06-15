@@ -10,7 +10,7 @@ namespace DUNameplateGUI
 
         SerialCom serialComF1 = new SerialCom();
         Jig jig = new Jig();
-        PlateQueue queue = new PlateQueue();
+        PlateQueue queue;
 
 
         public MAIN_FORM()
@@ -21,6 +21,10 @@ namespace DUNameplateGUI
 
             // Set the JigComboBox to 1-Plate by default to prevent bugs
             JigComboBox.SelectedIndex = 0;
+
+            // Initialize the queue with our ListView of queued plates, so that it can change the list on screen
+            // when the queue is changed
+            queue = new PlateQueue(queuedPlatesList);
 
             // Make sure the Jig is properly initialized
             jig.setValues(JigComboBox.SelectedIndex);
@@ -111,9 +115,9 @@ namespace DUNameplateGUI
             jig.Position = 0;
 
             // Go through each Nameplate in the queue and print them
-            while (queue.QueuedPlates.Count != 0) 
+            while (queue.Count != 0) 
             {
-                Nameplate currentPlate = queue.QueuedPlates.Dequeue();
+                Nameplate currentPlate = queue.Dequeue();
 
                 printTags(currentPlate);
             }
@@ -128,7 +132,7 @@ namespace DUNameplateGUI
             {
                 Nameplate newPlate = Nameplate.FromTextBoxes(arrayOfTagTextBoxes, currentTagQuantity);
 
-                queue.QueuedPlates.Enqueue(newPlate);
+                queue.Enqueue(newPlate);
             }
             catch(ArgumentException)
             {
@@ -188,7 +192,7 @@ namespace DUNameplateGUI
                     home();
 
                     // If the tag is not the final tag being printed, ask the user to reload
-                    if (i != currentTagQuantity - 1 || queue.QueuedPlates.Count != 0)
+                    if (i != currentTagQuantity - 1 || queue.Count != 0)
                         MessageBox.Show("Please reload, press OK when done");
 
                     jig.Position = 0;

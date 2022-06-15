@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
-            "TAG CONTENTS HERE",
-            "5"}, -1);
             this.printTagsBtn = new System.Windows.Forms.Button();
             this.tag1Line0Box = new System.Windows.Forms.TextBox();
             this.tag1Line1Box = new System.Windows.Forms.TextBox();
@@ -45,7 +42,7 @@
             this.printQueueBtn = new System.Windows.Forms.Button();
             this.addToQueueBtn = new System.Windows.Forms.Button();
             this.tagQuantityBox = new System.Windows.Forms.NumericUpDown();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.queuedPlatesList = new System.Windows.Forms.ListView();
             this.TagContents = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.queueLabel = new System.Windows.Forms.Label();
@@ -219,23 +216,20 @@
             0,
             0});
             // 
-            // listView1
+            // queuedPlatesList
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.queuedPlatesList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TagContents,
             this.Quantity});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            listViewItem1.StateImageIndex = 0;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.listView1.Location = new System.Drawing.Point(637, 40);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(206, 204);
-            this.listView1.TabIndex = 14;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.queuedPlatesList.FullRowSelect = true;
+            this.queuedPlatesList.GridLines = true;
+            this.queuedPlatesList.HideSelection = false;
+            this.queuedPlatesList.Location = new System.Drawing.Point(637, 40);
+            this.queuedPlatesList.Name = "queuedPlatesList";
+            this.queuedPlatesList.Size = new System.Drawing.Size(206, 204);
+            this.queuedPlatesList.TabIndex = 14;
+            this.queuedPlatesList.UseCompatibleStateImageBehavior = false;
+            this.queuedPlatesList.View = System.Windows.Forms.View.Details;
             // 
             // TagContents
             // 
@@ -264,7 +258,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 256);
             this.Controls.Add(this.queueLabel);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.queuedPlatesList);
             this.Controls.Add(this.tagQuantityBox);
             this.Controls.Add(this.addToQueueBtn);
             this.Controls.Add(this.printQueueBtn);
@@ -309,7 +303,7 @@
         private System.Windows.Forms.Button printQueueBtn;
         private System.Windows.Forms.Button addToQueueBtn;
         private System.Windows.Forms.NumericUpDown tagQuantityBox;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView queuedPlatesList;
         private System.Windows.Forms.ColumnHeader TagContents;
         private System.Windows.Forms.ColumnHeader Quantity;
         private System.Windows.Forms.Label queueLabel;
