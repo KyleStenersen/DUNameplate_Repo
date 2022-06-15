@@ -152,17 +152,6 @@ namespace DUNameplateGUI
             // Send our current settings to the machine, just in case our settings are different from what the machine has right now
             serialComF1.sendSettings();
 
-            //for (int i = 0; i < arrayOfTagTextBoxes.Length; i++)
-            //arrayOfTagLines[i] = arrayOfTagTextBoxes[i].Text;
-
-            //if (CheckTextBox.allLinesOfTagForErrors(arrayOfTagLines) == true) return;
-
-            //string[] currentPlateLines = (string[])plateToPrint.Lines.Clone();
-
-            //EditTextBox.addNewLineCharsAndReverseOddLinesAll(ref currentPlateLines);
-
-            //string tagText = (currentPlateLines[0] + currentPlateLines[1] + currentPlateLines[2] + currentPlateLines[3]);
-
             string tagText = plateToPrint.PrintableLines;
 
             //tagText = tagText.ToUpper(); // Not needed due to marking all the text fields to automatically uppercase everything
@@ -177,15 +166,15 @@ namespace DUNameplateGUI
 
             for (int i = 0; i < currentTagQuantity; i++)
             {
-                serialComF1.clearInputBuffer();
+                // serialComF1.clearInputBuffer();
+                // Was doing before and after but only because
+                // of a bunch of messy serial output in arduino
 
                 printTag(plateToPrint);
 
                 jig.Position++;
 
                 waitPlateDone();
-
-                serialComF1.clearInputBuffer();
 
                 if (jig.Position == jig.Capacity)
                 {
