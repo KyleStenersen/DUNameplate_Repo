@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DUNameplateGUI
@@ -11,6 +13,9 @@ namespace DUNameplateGUI
         SerialCom serialComF1 = new SerialCom();
         Jig jig = new Jig();
         PlateQueue queue;
+
+        // Move this to somewhere else later, this is just temporary
+        bool isPrinting = false;
 
 
         public MAIN_FORM()
@@ -111,16 +116,54 @@ namespace DUNameplateGUI
         }
         private void printQueueBtn_Click(object sender, EventArgs e)
         {
-            // Make sure the jig's position is set to zero to avoid weird behavior
-            jig.Position = 0;
+            startPrintingTaskIfNotPrinting();
 
-            // Go through each Nameplate in the queue and print them
-            while (queue.Count != 0) 
-            {
-                Nameplate currentPlate = queue.Dequeue();
+            // This code got moved into startPrintingTask
+            //if (!isPrinting) 
+            //{
+            //    isPrinting = true;
+            //    Task.Run(() =>
+            //    {
+            //        // Make sure the jig's position is set to zero to avoid weird behavior
+            //        jig.Position = 0;
 
-                printTags(currentPlate);
-            }
+            //        // Go through each Nameplate in the queue and print them
+            //        while (queue.Count != 0)
+            //        {
+            //            if (queue.TryDequeue(out Nameplate currentPlate))
+            //            {
+            //                printTags(currentPlate);
+            //            }
+            //            else
+            //            {
+            //                break;
+            //            }
+
+            //            //// Single threaded version
+            //            //Nameplate currentPlate = queue.Dequeue();
+
+            //            //printTags(currentPlate);
+            //        }
+
+            //        Console.WriteLine("Done printing");
+            //        isPrinting = false;
+            //    });
+            //}
+            //else
+            //{
+            //    Console.WriteLine("It is currently printing right now, so we'll ignore the request to print");
+            //}
+
+            //// Make sure the jig's position is set to zero to avoid weird behavior
+            //jig.Position = 0;
+
+            //// Go through each Nameplate in the queue and print them
+            //while (queue.Count != 0)
+            //{
+            //    Nameplate currentPlate = queue.Dequeue();
+
+            //    printTags(currentPlate);
+            //}
 
         }
         private void addToQueueBtn_Click(object sender, EventArgs e)
@@ -133,6 +176,8 @@ namespace DUNameplateGUI
                 Nameplate newPlate = Nameplate.FromTextBoxes(arrayOfTagTextBoxes, currentTagQuantity);
 
                 queue.Enqueue(newPlate);
+
+                startPrintingTaskIfNotPrinting();
             }
             catch(ArgumentException)
             {
@@ -186,6 +231,41 @@ namespace DUNameplateGUI
 
                     jig.Position = 0;
                 }
+            }
+        }
+
+        private void startPrintingTaskIfNotPrinting()
+        {
+            if (!isPrinting)
+            {
+                isPrinting = true;
+                Task.Run(() =>
+                {
+                    // This should probably be removed so that the last position persists between prints
+                    // Maybe add a timer automatically reset jig.Position to 0 after a period of inactivity
+                    // Make sure the jig's position is set to zero to avoid weird behavior
+                    jig.Position = 0;
+
+                    // Go through each Nameplate in the queue and print them
+                    while (queue.Count != 0)
+                    {
+                        if (queue.TryDequeue(out Nameplate currentPlate))
+                        {
+                            printTags(currentPlate);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    Console.WriteLine("Done printing");
+                    isPrinting = false;
+                });
+            }
+            else
+            {
+                Console.WriteLine("It is currently printing right now, so we'll ignore the request to print");
             }
         }
 
