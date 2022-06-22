@@ -12,9 +12,9 @@ namespace DUNameplateGUI
     {
         private ConcurrentQueue<Nameplate> QueuedPlates { get; set; }
 
-        private ListView queuedPlatesList;
+        private ListView queuedPlatesListView;
 
-        private delegate void SafeUpdateListDelegate();
+        //private delegate void SafeUpdateListDelegate();
 
         public int Count
         {
@@ -24,11 +24,11 @@ namespace DUNameplateGUI
             }
         }
 
-        public PlateQueue(ListView queuedPlatesList)
+        public PlateQueue(ListView queuedPlatesListView)
         {
             QueuedPlates = new ConcurrentQueue<Nameplate>();
 
-            this.queuedPlatesList = queuedPlatesList;
+            this.queuedPlatesListView = queuedPlatesListView;
         }
 
         public void Enqueue(Nameplate plateToAdd)
@@ -62,14 +62,14 @@ namespace DUNameplateGUI
         // https://docs.microsoft.com/en-us/dotnet/desktop/winforms/controls/how-to-make-thread-safe-calls-to-windows-forms-controls?view=netframeworkdesktop-4.8
         private void UpdateListView()
         {
-            if (queuedPlatesList.InvokeRequired)
+            if (queuedPlatesListView.InvokeRequired)
             {
-                queuedPlatesList.Invoke(new SafeUpdateListDelegate(UpdateListView));
+                queuedPlatesListView.Invoke(new Action(UpdateListView));
             }
             else
             {
                 // A bit inefficient, but the list should never be big enough for this to be a problem
-                queuedPlatesList.Items.Clear();
+                queuedPlatesListView.Items.Clear();
 
                 foreach (Nameplate plate in QueuedPlates)
                 {
@@ -81,7 +81,7 @@ namespace DUNameplateGUI
                     listItem.SubItems.Add(plate.Quantity.ToString());
 
                     // Add the new listItem to the list
-                    queuedPlatesList.Items.Add(listItem);
+                    queuedPlatesListView.Items.Add(listItem);
                 }
             }
         }
