@@ -31,6 +31,13 @@ namespace DUNameplateGUI
             this.queuedPlatesListView = queuedPlatesListView;
         }
 
+        public void Clear()
+        {
+            QueuedPlates = new ConcurrentQueue<Nameplate>();
+
+            UpdateListView();
+        }
+
         public void Enqueue(Nameplate plateToAdd)
         {
             QueuedPlates.Enqueue(plateToAdd);

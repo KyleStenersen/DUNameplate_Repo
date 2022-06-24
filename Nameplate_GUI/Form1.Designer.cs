@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.printTagsBtn = new System.Windows.Forms.Button();
             this.tag1Line0Box = new System.Windows.Forms.TextBox();
             this.tag1Line1Box = new System.Windows.Forms.TextBox();
             this.tag1Line2Box = new System.Windows.Forms.TextBox();
@@ -46,27 +45,15 @@
             this.TagContents = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.queueLabel = new System.Windows.Forms.Label();
+            this.clearQueueBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // printTagsBtn
-            // 
-            this.printTagsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printTagsBtn.Location = new System.Drawing.Point(669, 194);
-            this.printTagsBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.printTagsBtn.Name = "printTagsBtn";
-            this.printTagsBtn.Size = new System.Drawing.Size(129, 34);
-            this.printTagsBtn.TabIndex = 0;
-            this.printTagsBtn.TabStop = false;
-            this.printTagsBtn.Text = "Print Tags";
-            this.printTagsBtn.UseVisualStyleBackColor = true;
-            this.printTagsBtn.Click += new System.EventHandler(this.printTagsBtn_Click);
             // 
             // tag1Line0Box
             // 
             this.tag1Line0Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line0Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line0Box.Location = new System.Drawing.Point(213, 30);
+            this.tag1Line0Box.Location = new System.Drawing.Point(611, 352);
             this.tag1Line0Box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tag1Line0Box.Name = "tag1Line0Box";
             this.tag1Line0Box.Size = new System.Drawing.Size(460, 30);
@@ -77,7 +64,7 @@
             // 
             this.tag1Line1Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line1Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line1Box.Location = new System.Drawing.Point(240, 66);
+            this.tag1Line1Box.Location = new System.Drawing.Point(638, 388);
             this.tag1Line1Box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tag1Line1Box.Name = "tag1Line1Box";
             this.tag1Line1Box.Size = new System.Drawing.Size(403, 30);
@@ -88,7 +75,7 @@
             // 
             this.tag1Line2Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line2Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line2Box.Location = new System.Drawing.Point(240, 102);
+            this.tag1Line2Box.Location = new System.Drawing.Point(638, 424);
             this.tag1Line2Box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tag1Line2Box.Name = "tag1Line2Box";
             this.tag1Line2Box.Size = new System.Drawing.Size(403, 30);
@@ -99,7 +86,7 @@
             // 
             this.tag1Line3Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line3Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line3Box.Location = new System.Drawing.Point(213, 138);
+            this.tag1Line3Box.Location = new System.Drawing.Point(611, 460);
             this.tag1Line3Box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tag1Line3Box.Name = "tag1Line3Box";
             this.tag1Line3Box.Size = new System.Drawing.Size(460, 30);
@@ -109,7 +96,7 @@
             // settingsBtn
             // 
             this.settingsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsBtn.Location = new System.Drawing.Point(60, 194);
+            this.settingsBtn.Location = new System.Drawing.Point(458, 516);
             this.settingsBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.settingsBtn.Name = "settingsBtn";
             this.settingsBtn.Size = new System.Drawing.Size(103, 36);
@@ -122,7 +109,7 @@
             // clearTagBtn
             // 
             this.clearTagBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearTagBtn.Location = new System.Drawing.Point(540, 194);
+            this.clearTagBtn.Location = new System.Drawing.Point(740, 567);
             this.clearTagBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.clearTagBtn.Name = "clearTagBtn";
             this.clearTagBtn.Size = new System.Drawing.Size(103, 34);
@@ -136,7 +123,7 @@
             // 
             this.quantityLabel.AutoSize = true;
             this.quantityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityLabel.Location = new System.Drawing.Point(703, 50);
+            this.quantityLabel.Location = new System.Drawing.Point(1101, 372);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(91, 25);
             this.quantityLabel.TabIndex = 8;
@@ -151,7 +138,7 @@
             "2-Plate",
             "4-Plate",
             "8-Plate"});
-            this.JigComboBox.Location = new System.Drawing.Point(60, 79);
+            this.JigComboBox.Location = new System.Drawing.Point(458, 401);
             this.JigComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.JigComboBox.Name = "JigComboBox";
             this.JigComboBox.Size = new System.Drawing.Size(121, 33);
@@ -163,7 +150,7 @@
             // 
             this.JigLabel.AutoSize = true;
             this.JigLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JigLabel.Location = new System.Drawing.Point(101, 50);
+            this.JigLabel.Location = new System.Drawing.Point(499, 372);
             this.JigLabel.Name = "JigLabel";
             this.JigLabel.Size = new System.Drawing.Size(44, 25);
             this.JigLabel.TabIndex = 8;
@@ -172,7 +159,7 @@
             // homeButton
             // 
             this.homeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeButton.Location = new System.Drawing.Point(409, 194);
+            this.homeButton.Location = new System.Drawing.Point(740, 518);
             this.homeButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.homeButton.Name = "homeButton";
             this.homeButton.Size = new System.Drawing.Size(103, 34);
@@ -185,7 +172,7 @@
             // printQueueBtn
             // 
             this.printQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printQueueBtn.Location = new System.Drawing.Point(649, 246);
+            this.printQueueBtn.Location = new System.Drawing.Point(1064, 518);
             this.printQueueBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.printQueueBtn.Name = "printQueueBtn";
             this.printQueueBtn.Size = new System.Drawing.Size(149, 34);
@@ -198,7 +185,7 @@
             // addToQueueBtn
             // 
             this.addToQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToQueueBtn.Location = new System.Drawing.Point(459, 246);
+            this.addToQueueBtn.Location = new System.Drawing.Point(869, 518);
             this.addToQueueBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.addToQueueBtn.Name = "addToQueueBtn";
             this.addToQueueBtn.Size = new System.Drawing.Size(172, 34);
@@ -211,8 +198,8 @@
             // tagQuantityBox
             // 
             this.tagQuantityBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tagQuantityBox.Location = new System.Drawing.Point(705, 81);
-            this.tagQuantityBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tagQuantityBox.Location = new System.Drawing.Point(1103, 403);
+            this.tagQuantityBox.Margin = new System.Windows.Forms.Padding(4);
             this.tagQuantityBox.Name = "tagQuantityBox";
             this.tagQuantityBox.Size = new System.Drawing.Size(93, 30);
             this.tagQuantityBox.TabIndex = 13;
@@ -231,8 +218,8 @@
             this.queuedPlatesList.FullRowSelect = true;
             this.queuedPlatesList.GridLines = true;
             this.queuedPlatesList.HideSelection = false;
-            this.queuedPlatesList.Location = new System.Drawing.Point(849, 49);
-            this.queuedPlatesList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.queuedPlatesList.Location = new System.Drawing.Point(1247, 371);
+            this.queuedPlatesList.Margin = new System.Windows.Forms.Padding(4);
             this.queuedPlatesList.Name = "queuedPlatesList";
             this.queuedPlatesList.Size = new System.Drawing.Size(273, 250);
             this.queuedPlatesList.TabIndex = 14;
@@ -253,17 +240,32 @@
             // 
             this.queueLabel.AutoSize = true;
             this.queueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.queueLabel.Location = new System.Drawing.Point(899, 21);
+            this.queueLabel.Location = new System.Drawing.Point(1297, 343);
             this.queueLabel.Name = "queueLabel";
             this.queueLabel.Size = new System.Drawing.Size(173, 25);
             this.queueLabel.TabIndex = 15;
             this.queueLabel.Text = "Currently Queued:";
             // 
+            // clearQueueBtn
+            // 
+            this.clearQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearQueueBtn.Location = new System.Drawing.Point(869, 566);
+            this.clearQueueBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.clearQueueBtn.Name = "clearQueueBtn";
+            this.clearQueueBtn.Size = new System.Drawing.Size(172, 34);
+            this.clearQueueBtn.TabIndex = 16;
+            this.clearQueueBtn.TabStop = false;
+            this.clearQueueBtn.Text = "Clear Queue";
+            this.clearQueueBtn.UseVisualStyleBackColor = true;
+            this.clearQueueBtn.Click += new System.EventHandler(this.clearQueueBtn_Click);
+            // 
             // MAIN_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1172, 315);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1902, 1033);
+            this.Controls.Add(this.clearQueueBtn);
             this.Controls.Add(this.queueLabel);
             this.Controls.Add(this.queuedPlatesList);
             this.Controls.Add(this.tagQuantityBox);
@@ -279,7 +281,6 @@
             this.Controls.Add(this.tag1Line2Box);
             this.Controls.Add(this.tag1Line1Box);
             this.Controls.Add(this.tag1Line0Box);
-            this.Controls.Add(this.printTagsBtn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HelpButton = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -287,7 +288,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " DU Nameplate GUI";
-            this.TopMost = true;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -295,8 +296,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button printTagsBtn;
         private System.Windows.Forms.TextBox tag1Line0Box;
         private System.Windows.Forms.TextBox tag1Line1Box;
         private System.Windows.Forms.TextBox tag1Line2Box;
@@ -314,6 +313,7 @@
         private System.Windows.Forms.ColumnHeader TagContents;
         private System.Windows.Forms.ColumnHeader Quantity;
         private System.Windows.Forms.Label queueLabel;
+        private System.Windows.Forms.Button clearQueueBtn;
     }
 }
 

@@ -34,20 +34,22 @@ namespace DUNameplateGUI
         // Run once on opening of settings form2
         private void SETTINGS_FORM_Load(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.xOffsetSet != float.Parse(xOffsetDefault.Text))
-                xOffsetBox.Text = Properties.Settings.Default.xOffsetSet.ToString();
+            //if (Properties.Settings.Default.xOffsetSet != float.Parse(xOffsetDefault.Text))
+            xOffsetBox.Text = Properties.Settings.Default.xOffsetSet.ToString();
 
-            if (Properties.Settings.Default.yOffsetSet != float.Parse(yOffsetDefault.Text))
-                yOffsetBox.Text = Properties.Settings.Default.yOffsetSet.ToString();
+            //if (Properties.Settings.Default.yOffsetSet != float.Parse(yOffsetDefault.Text))
+            yOffsetBox.Text = Properties.Settings.Default.yOffsetSet.ToString();
 
-            if (Properties.Settings.Default.plateSpaceingSet != float.Parse(plateSpaceingDefault.Text))
-                plateSpaceingBox.Text = Properties.Settings.Default.plateSpaceingSet.ToString();
+            //if (Properties.Settings.Default.plateSpaceingSet != float.Parse(plateSpaceingDefault.Text))
+            plateSpaceingBox.Text = Properties.Settings.Default.plateSpaceingSet.ToString();
 
-            if (Properties.Settings.Default.lineSpaceingSet != float.Parse(lineSpaceingDefault.Text))
-                lineSpaceingBox.Text = Properties.Settings.Default.lineSpaceingSet.ToString();
+            //if (Properties.Settings.Default.lineSpaceingSet != float.Parse(lineSpaceingDefault.Text))
+            lineSpaceingBox.Text = Properties.Settings.Default.lineSpaceingSet.ToString();
 
-            if (Properties.Settings.Default.charSpaceingSet != float.Parse(charSpaceingDefault.Text))
-                charSpaceingBox.Text = Properties.Settings.Default.charSpaceingSet.ToString();
+            //if (Properties.Settings.Default.charSpaceingSet != float.Parse(charSpaceingDefault.Text))
+            charSpaceingBox.Text = Properties.Settings.Default.charSpaceingSet.ToString();
+
+            autoPrintQueueCheckBox.Checked = Properties.Settings.Default.autoPrintQueue;
         }
 
  //PRIVATE USER INPUT RESPONSE FUNCTIONS ================================
@@ -110,7 +112,6 @@ namespace DUNameplateGUI
                 return;
             }
 
-
             if (String.IsNullOrWhiteSpace(xOffsetBox.Text) == false)
                 Properties.Settings.Default.xOffsetSet = float.Parse(xOffsetBox.Text);
 
@@ -126,6 +127,8 @@ namespace DUNameplateGUI
             if (String.IsNullOrWhiteSpace(charSpaceingBox.Text) == false)
                 Properties.Settings.Default.charSpaceingSet = float.Parse(charSpaceingBox.Text);
 
+            // Save the autoPrintQueue checkbox into settings
+            Properties.Settings.Default.autoPrintQueue = autoPrintQueueCheckBox.Checked;
 
             Properties.Settings.Default.Save();
             serialComF2.sendSettings();
@@ -134,39 +137,26 @@ namespace DUNameplateGUI
 
         private void resetDefaultsBtn_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(xOffsetBox.Text) == false)
-            { 
-                Properties.Settings.Default.xOffsetSet = float.Parse(xOffsetDefault.Text);
-                xOffsetBox.Clear();
-            }
+            Properties.Settings.Default.xOffsetSet = float.Parse(xOffsetDefault.Text);
+            xOffsetBox.Text = xOffsetDefault.Text;
+            
+            Properties.Settings.Default.yOffsetSet = float.Parse(yOffsetDefault.Text);
+            yOffsetBox.Text = yOffsetDefault.Text;
 
-            if (String.IsNullOrWhiteSpace(yOffsetBox.Text) == false)
-            {
-                Properties.Settings.Default.yOffsetSet = float.Parse(yOffsetDefault.Text);
-                yOffsetBox.Clear();
-            }
+            Properties.Settings.Default.plateSpaceingSet = float.Parse(plateSpaceingDefault.Text);
+            plateSpaceingBox.Text = plateSpaceingDefault.Text;
+           
+            Properties.Settings.Default.lineSpaceingSet = float.Parse(lineSpaceingDefault.Text);
+            lineSpaceingBox.Text = lineSpaceingDefault.Text;
+            
+            Properties.Settings.Default.charSpaceingSet = float.Parse(charSpaceingDefault.Text);
+            charSpaceingBox.Text = charSpaceingDefault.Text;
 
-            if (String.IsNullOrWhiteSpace(plateSpaceingBox.Text) == false)
-            {
-                Properties.Settings.Default.plateSpaceingSet = float.Parse(plateSpaceingDefault.Text);
-                plateSpaceingBox.Clear();
-            }
-
-            if (String.IsNullOrWhiteSpace(lineSpaceingBox.Text) == false)
-            {
-                Properties.Settings.Default.lineSpaceingSet = float.Parse(lineSpaceingDefault.Text);
-                lineSpaceingBox.Clear();
-            }
-
-            if (String.IsNullOrWhiteSpace(charSpaceingBox.Text) == false)
-            {
-                Properties.Settings.Default.charSpaceingSet = float.Parse(charSpaceingDefault.Text);
-                charSpaceingBox.Clear();
-            }
+            Properties.Settings.Default.autoPrintQueue = true;
+            autoPrintQueueCheckBox.Checked = true;
 
             Properties.Settings.Default.Save();
             serialComF2.sendSettings();
         }
-
     }
 }

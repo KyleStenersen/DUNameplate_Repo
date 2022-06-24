@@ -37,6 +37,8 @@ namespace DUNameplateGUI
 
         public void setValues(int jigNumber)
         {
+            // Set Position to 0 to prevent bugs
+            Position = 0;
 
             Array.Clear(YStartLocations,0,8);
             Array.Clear(XStartLocations,0,8);

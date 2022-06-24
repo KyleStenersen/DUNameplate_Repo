@@ -75,10 +75,16 @@ namespace DUNameplateGUI
         private void clearTagBtn_Click(object sender, EventArgs e)
         {
             EditTextBox.emptyTag(ref arrayOfTagLines, ref arrayOfTagTextBoxes);
-            
-            //tag1QuantityBox.Text = null;
 
             tagQuantityBox.Value = 1;
+
+            // Focus the first text box
+            tag1Line0Box.Focus();
+        }
+
+        private void clearQueueBtn_Click(object sender, EventArgs e)
+        {
+            queue.Clear();
         }
 
         private void homeButton_Click(object sender, EventArgs e)
@@ -92,28 +98,29 @@ namespace DUNameplateGUI
             jig.setValues(JigComboBox.SelectedIndex);
         }
 
-        private void printTagsBtn_Click(object sender, EventArgs e)
-        {
-            // Make sure the jig's position is set to zero to avoid weird behavior
-            jig.Position = 0;
+        //private void printTagsBtn_Click(object sender, EventArgs e)
+        //{
+        //    // Make sure the jig's position is set to zero to avoid weird behavior
+        //    jig.Position = 0;
 
-            int currentTagQuantity = (int) tagQuantityBox.Value;
+        //    int currentTagQuantity = (int) tagQuantityBox.Value;
 
-            Nameplate plateToPrint;
+        //    Nameplate plateToPrint;
 
-            // FromTextBoxes can throw an exception due to the text in the TextBoxes being invalid, so we need to handle it
-            try
-            {
-                // Create a new Nameplate from the current text in the text boxes
-                plateToPrint = Nameplate.FromTextBoxes(arrayOfTagTextBoxes, currentTagQuantity);
-            }
-            catch (ArgumentException) 
-            {
-                return; // We can just return here, because the functions FromTextBoxes calls will show a MessageBox for us
-            }
+        //    // FromTextBoxes can throw an exception due to the text in the TextBoxes being invalid, so we need to handle it
+        //    try
+        //    {
+        //        // Create a new Nameplate from the current text in the text boxes
+        //        plateToPrint = Nameplate.FromTextBoxes(arrayOfTagTextBoxes, currentTagQuantity);
+        //    }
+        //    catch (ArgumentException) 
+        //    {
+        //        return; // We can just return here, because the functions FromTextBoxes calls will show a MessageBox for us
+        //    }
 
-            printTags(plateToPrint);
-        }
+        //    printTags(plateToPrint);
+        //}
+
         private void printQueueBtn_Click(object sender, EventArgs e)
         {
             startPrintingTaskIfNotPrinting();
@@ -177,7 +184,19 @@ namespace DUNameplateGUI
 
                 queue.Enqueue(newPlate);
 
-                startPrintingTaskIfNotPrinting();
+                // Clear out the tag text boxes
+                // This code is from the clearTagBtn
+                EditTextBox.emptyTag(ref arrayOfTagLines, ref arrayOfTagTextBoxes);
+
+                tagQuantityBox.Value = 1;
+
+                // Focus the first text box
+                tag1Line0Box.Focus();
+
+                if (Properties.Settings.Default.autoPrintQueue)
+                {
+                    startPrintingTaskIfNotPrinting();
+                }
             }
             catch(ArgumentException)
             {
@@ -239,6 +258,12 @@ namespace DUNameplateGUI
             if (!isPrinting)
             {
                 isPrinting = true;
+
+                // Disable the JigComboBox to prevent Jig changes while printing
+                // Maybe this is unwanted behavior and we see if it can be changed
+                // mid-print safely?
+                JigComboBox.Enabled = false;
+
                 Task.Run(() =>
                 {
                     // This should probably be removed so that the last position persists between prints
@@ -261,6 +286,14 @@ namespace DUNameplateGUI
 
                     Console.WriteLine("Done printing");
                     isPrinting = false;
+
+                    // Re-enable the JigComboBox that was disabled when printing started
+                    Action reenableJigComboBox = delegate ()
+                    {
+                        JigComboBox.Enabled = true;
+                    };
+
+                    JigComboBox.Invoke(reenableJigComboBox);
                 });
             }
             else

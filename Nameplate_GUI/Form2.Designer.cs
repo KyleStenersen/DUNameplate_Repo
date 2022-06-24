@@ -55,11 +55,12 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.resetDefaultsBtn = new System.Windows.Forms.Button();
+            this.autoPrintQueueCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // settingsSaveCloseBtn
             // 
-            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(40, 332);
+            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(40, 363);
             this.settingsSaveCloseBtn.Name = "settingsSaveCloseBtn";
             this.settingsSaveCloseBtn.Size = new System.Drawing.Size(111, 29);
             this.settingsSaveCloseBtn.TabIndex = 0;
@@ -289,7 +290,7 @@
             // 
             // resetDefaultsBtn
             // 
-            this.resetDefaultsBtn.Location = new System.Drawing.Point(174, 332);
+            this.resetDefaultsBtn.Location = new System.Drawing.Point(174, 363);
             this.resetDefaultsBtn.Name = "resetDefaultsBtn";
             this.resetDefaultsBtn.Size = new System.Drawing.Size(119, 29);
             this.resetDefaultsBtn.TabIndex = 0;
@@ -297,11 +298,22 @@
             this.resetDefaultsBtn.UseVisualStyleBackColor = true;
             this.resetDefaultsBtn.Click += new System.EventHandler(this.resetDefaultsBtn_Click);
             // 
+            // autoPrintQueueCheckBox
+            // 
+            this.autoPrintQueueCheckBox.AutoSize = true;
+            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(40, 323);
+            this.autoPrintQueueCheckBox.Name = "autoPrintQueueCheckBox";
+            this.autoPrintQueueCheckBox.Size = new System.Drawing.Size(162, 20);
+            this.autoPrintQueueCheckBox.TabIndex = 4;
+            this.autoPrintQueueCheckBox.Text = "AUTO PRINT QUEUE";
+            this.autoPrintQueueCheckBox.UseVisualStyleBackColor = true;
+            // 
             // SETTINGS_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 383);
+            this.ClientSize = new System.Drawing.Size(334, 416);
+            this.Controls.Add(this.autoPrintQueueCheckBox);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.charSpaceingDefault);
             this.Controls.Add(this.label19);
@@ -368,5 +380,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button resetDefaultsBtn;
+        private System.Windows.Forms.CheckBox autoPrintQueueCheckBox;
     }
 }
