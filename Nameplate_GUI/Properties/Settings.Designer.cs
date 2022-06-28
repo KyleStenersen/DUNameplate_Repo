@@ -106,5 +106,17 @@ namespace DUNameplateGUI.Properties {
                 this["autoPrintQueue"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool resetJig {
+            get {
+                return ((bool)(this["resetJig"]));
+            }
+            set {
+                this["resetJig"] = value;
+            }
+        }
     }
 }

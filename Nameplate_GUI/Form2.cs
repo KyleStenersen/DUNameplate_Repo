@@ -50,6 +50,8 @@ namespace DUNameplateGUI
             charSpaceingBox.Text = Properties.Settings.Default.charSpaceingSet.ToString();
 
             autoPrintQueueCheckBox.Checked = Properties.Settings.Default.autoPrintQueue;
+
+            resetJigCheckBox.Checked = Properties.Settings.Default.resetJig;
         }
 
  //PRIVATE USER INPUT RESPONSE FUNCTIONS ================================
@@ -130,6 +132,9 @@ namespace DUNameplateGUI
             // Save the autoPrintQueue checkbox into settings
             Properties.Settings.Default.autoPrintQueue = autoPrintQueueCheckBox.Checked;
 
+            // Save the resetJig checkbox into settings
+            Properties.Settings.Default.resetJig = resetJigCheckBox.Checked;
+
             Properties.Settings.Default.Save();
             serialComF2.sendSettings();
             this.Close();
@@ -154,6 +159,9 @@ namespace DUNameplateGUI
 
             Properties.Settings.Default.autoPrintQueue = true;
             autoPrintQueueCheckBox.Checked = true;
+
+            Properties.Settings.Default.resetJig = false;
+            resetJigCheckBox.Checked = false;
 
             Properties.Settings.Default.Save();
             serialComF2.sendSettings();

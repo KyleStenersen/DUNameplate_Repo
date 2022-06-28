@@ -14,6 +14,8 @@ namespace DUNameplateGUI
         Jig jig = new Jig();
         PlateQueue queue;
 
+        HotkeyHandler hotkeyHandler;
+
         // Move this to somewhere else later, this is just temporary
         bool isPrinting = false;
 
@@ -23,6 +25,9 @@ namespace DUNameplateGUI
             //Running these once on startup
 
             InitializeComponent();
+
+            // Initialize our HotkeyHandler
+            hotkeyHandler = new HotkeyHandler(this);
 
             // Set the JigComboBox to 1-Plate by default to prevent bugs
             JigComboBox.SelectedIndex = 0;
@@ -224,7 +229,7 @@ namespace DUNameplateGUI
             serialComF1.sendString(tagText);
         }
 
-        private void printTags(Nameplate plateToPrint)
+        private void printMultipleOfOneTag(Nameplate plateToPrint)
         {
             int currentTagQuantity = plateToPrint.Quantity;
 
@@ -269,14 +274,14 @@ namespace DUNameplateGUI
                     // This should probably be removed so that the last position persists between prints
                     // Maybe add a timer automatically reset jig.Position to 0 after a period of inactivity
                     // Make sure the jig's position is set to zero to avoid weird behavior
-                    jig.Position = 0;
+                    //jig.Position = 0;
 
                     // Go through each Nameplate in the queue and print them
                     while (queue.Count != 0)
                     {
                         if (queue.TryDequeue(out Nameplate currentPlate))
                         {
-                            printTags(currentPlate);
+                            printMultipleOfOneTag(currentPlate);
                         }
                         else
                         {
@@ -286,6 +291,11 @@ namespace DUNameplateGUI
 
                     Console.WriteLine("Done printing");
                     isPrinting = false;
+
+                    if (Properties.Settings.Default.resetJig)
+                    {
+                        jig.Position = 0;
+                    }
 
                     // Re-enable the JigComboBox that was disabled when printing started
                     Action reenableJigComboBox = delegate ()
