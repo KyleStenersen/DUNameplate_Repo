@@ -8,15 +8,16 @@ using System.Windows.Forms;
 
 namespace DUNameplateGUI
 {
-    internal class PlateQueue
+    // Not quite sure if this should be static, maybe it should be contained inside MachineControl instead?
+    internal static class PlateQueue
     {
-        private ConcurrentQueue<Nameplate> QueuedPlates { get; set; }
+        private static ConcurrentQueue<Nameplate> QueuedPlates { get; set; }
 
-        private ListView queuedPlatesListView;
+        private static ListView queuedPlatesListView;
 
         //private delegate void SafeUpdateListDelegate();
 
-        public int Count
+        public static int Count
         {
             get
             {
@@ -24,28 +25,38 @@ namespace DUNameplateGUI
             }
         }
 
-        public PlateQueue(ListView queuedPlatesListView)
+        //public PlateQueue(ListView queuedPlatesListView)
+        //{
+        //    QueuedPlates = new ConcurrentQueue<Nameplate>();
+
+        //    this.queuedPlatesListView = queuedPlatesListView;
+        //}
+
+        static PlateQueue()
         {
             QueuedPlates = new ConcurrentQueue<Nameplate>();
-
-            this.queuedPlatesListView = queuedPlatesListView;
         }
 
-        public void Clear()
+        public static void SetListView(ListView queuedPlatesListView)
+        {
+            PlateQueue.queuedPlatesListView = queuedPlatesListView;
+        }
+
+        public static void Clear()
         {
             QueuedPlates = new ConcurrentQueue<Nameplate>();
 
             UpdateListView();
         }
 
-        public void Enqueue(Nameplate plateToAdd)
+        public static void Enqueue(Nameplate plateToAdd)
         {
             QueuedPlates.Enqueue(plateToAdd);
 
             UpdateListView();
         }
 
-        public bool TryDequeue(out Nameplate outputDequeuedPlate)
+        public static bool TryDequeue(out Nameplate outputDequeuedPlate)
         {
             // With a ConcurrentQueue, you have to TryDequeue, and it will return a true if it succeeds, or false if there's nothing left to dequeue,
             // or if it fails.
@@ -67,7 +78,7 @@ namespace DUNameplateGUI
 
         // See here to explain the reason for the InvokeRequired:
         // https://docs.microsoft.com/en-us/dotnet/desktop/winforms/controls/how-to-make-thread-safe-calls-to-windows-forms-controls?view=netframeworkdesktop-4.8
-        private void UpdateListView()
+        private static void UpdateListView()
         {
             if (queuedPlatesListView.InvokeRequired)
             {

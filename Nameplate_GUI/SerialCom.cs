@@ -1,15 +1,15 @@
 ﻿using System.Windows.Forms;
 using System.IO.Ports;
 
-public class SerialCom
+public static class SerialCom
 {
     private static SerialPort serialPort1 = new SerialPort();
-    public delegate void serialReciever(string stringIn);
-    private bool plateIsDone = false;
+    //public delegate void serialReciever(string stringIn);
+    private static bool plateIsDone = false;
 
 // PUBLIC FUNCTIONS ==============================================
 
-    public void setupPort()
+    public static void setupPort()
     {
         if (Global.SerialOn)
         {
@@ -20,7 +20,7 @@ public class SerialCom
             serialPort1.Open();
         }
     }
-    public void sendSettings()
+    public static void sendSettings()
     {
         if (Global.SerialOn) serialPort1.Write("<p" + DUNameplateGUI.Properties.Settings.Default.xOffsetSet.ToString() + "," +
             DUNameplateGUI.Properties.Settings.Default.yOffsetSet.ToString() + "," +
@@ -28,14 +28,14 @@ public class SerialCom
             DUNameplateGUI.Properties.Settings.Default.charSpaceingSet.ToString() + ">");
     }
 
-    public void sendString(string stringToSend)
+    public static void sendString(string stringToSend)
     {
         MessageBox.Show(stringToSend); // For development purpose, remove later
 
         if (Global.SerialOn) serialPort1.Write(stringToSend);
     }
 
-    public void checkIfPlateDone(ref bool done)
+    public static void checkIfPlateDone(ref bool done)
     {
         if (Global.SerialOn)
         {
@@ -48,21 +48,23 @@ public class SerialCom
         done = true;
     }
 
-    public void clearInputBuffer()
+    public static void clearInputBuffer()
     {
         if (Global.SerialOn) serialPort1.DiscardInBuffer();
     }
 
     // PRIVATE FUNCTIONS =========================================
 
-    private void checkDataRecieved()
+    private static void checkDataRecieved()
     {
         string stringIn = serialPort1.ReadLine();
-        var serialInput = new serialReciever(respondInput);
-        serialInput(stringIn);       
+        // Not sure if I can comment this out, needs testing on real hardware
+        //var serialInput = new serialReciever(respondInput);
+        //serialInput(stringIn); 
+        respondInput(stringIn);
     }
 
-    private void respondInput(string stringRecieved)
+    private static void respondInput(string stringRecieved)
     {
         char firstChar = stringRecieved[0];
         char secondChar = stringRecieved[1];

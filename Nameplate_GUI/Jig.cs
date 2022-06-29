@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace DUNameplateGUI
 {
-    internal class Jig
+    // Not quite sure if this should be static, maybe it should be contained inside MachineControl instead?
+    internal static class Jig
     {
-        public int Capacity { get; set; }
+        public static int Capacity { get; set; }
 
-        public int Position { get; set; }
+        public static int Position { get; set; }
 
-        private float[] YStartLocations { get; set; } = new float[8];
+        private static float[] YStartLocations { get; set; } = new float[8];
 
-        private float[] XStartLocations { get; set; } = new float[8];
+        private static float[] XStartLocations { get; set; } = new float[8];
 
         // This variable will always return the YStartLocation for the current position
-        public float YStartLocation {
+        public static float YStartLocation {
             get
             {
                 return YStartLocations[Position];
@@ -25,7 +26,7 @@ namespace DUNameplateGUI
         }
 
         // This variable will always return the XStartLocation for the current position
-        public float XStartLocation
+        public static float XStartLocation
         {
             get
             {
@@ -33,9 +34,9 @@ namespace DUNameplateGUI
             }
         }
 
-        public float YStart { get; set; }
+        public static float YStart { get; set; }
 
-        public void setValues(int jigNumber)
+        public static void setValues(int jigNumber)
         {
             // Set Position to 0 to prevent bugs
             Position = 0;

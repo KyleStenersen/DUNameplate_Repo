@@ -25,14 +25,20 @@ namespace DUNameplateGUI
         {
             if (args.Modifiers == (Keys.Control | Keys.Alt))
             {
-                if (args.KeyCode == Keys.P) 
+                switch (args.KeyCode) 
                 {
-                    // Right now this just prints this line to the console, but the next step is to actually print when
-                    // this key combo is pressed.
-                    // The main code that controls the machine should be moved from Form1 to a new MachineControl
-                    // class, or something similar, so that those functions can be called from elsewhere.
-                    Console.WriteLine("Ctrl+ALt+P has been pressed");
-                    args.Handled = true;
+                    case Keys.P:
+                        UIControl.printQueue();
+                        break;
+                    case Keys.A:
+                        UIControl.addCurrentTagToQueue();
+                        break;
+                    case Keys.C:
+                        UIControl.clearTag();
+                        break;
+                    case Keys.Q:
+                        UIControl.clearQueue();
+                        break;
                 }
             }
         }

@@ -12,7 +12,6 @@ namespace DUNameplateGUI
     public partial class SETTINGS_FORM : Form
     {
         CheckSettings checkSettings = new CheckSettings();
-        SerialCom serialComF2 = new SerialCom();
 
         const float X_OFFSET_MIN = 0.000F;
         const float X_OFFSET_MAX = 3.400F;
@@ -136,7 +135,7 @@ namespace DUNameplateGUI
             Properties.Settings.Default.resetJig = resetJigCheckBox.Checked;
 
             Properties.Settings.Default.Save();
-            serialComF2.sendSettings();
+            SerialCom.sendSettings();
             this.Close();
         }
 
@@ -164,7 +163,7 @@ namespace DUNameplateGUI
             resetJigCheckBox.Checked = false;
 
             Properties.Settings.Default.Save();
-            serialComF2.sendSettings();
+            SerialCom.sendSettings();
         }
     }
 }

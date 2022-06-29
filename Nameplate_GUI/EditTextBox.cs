@@ -14,14 +14,16 @@ public static class EditTextBox
         addNewLineCharAndReverse(ref arrayOfCurrentTagLines[3]);
     }
 
-    public static void emptyTag(ref string[] arrayOfCurrentTagLines, ref TextBox[] arrayOfCurrentTextboxes)
-    {
-        for (int i = 0; i < arrayOfCurrentTagLines.Length; i++)
-        {
-            arrayOfCurrentTagLines[i] = null;
-            arrayOfCurrentTextboxes[i].Text = null;
-        }
-    }
+    ////public static void emptyTag(ref string[] arrayOfCurrentTagLines, ref TextBox[] arrayOfCurrentTextboxes)
+    //public static void emptyTag(ref TextBox[] arrayOfCurrentTextboxes)
+    //{
+    //    //for (int i = 0; i < arrayOfCurrentTagLines.Length; i++)
+    //    for (int i = 0; i < arrayOfCurrentTextboxes.Length; i++)
+    //    {
+    //        //arrayOfCurrentTagLines[i] = null;
+    //        arrayOfCurrentTextboxes[i].Text = null;
+    //    }
+    //}
 
     //SUPPORT FUNCTIONS ---------------------
 

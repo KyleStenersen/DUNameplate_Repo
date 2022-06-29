@@ -35,13 +35,13 @@
             this.settingsBtn = new System.Windows.Forms.Button();
             this.clearTagBtn = new System.Windows.Forms.Button();
             this.quantityLabel = new System.Windows.Forms.Label();
-            this.JigComboBox = new System.Windows.Forms.ComboBox();
+            this.jigComboBox = new System.Windows.Forms.ComboBox();
             this.JigLabel = new System.Windows.Forms.Label();
             this.homeButton = new System.Windows.Forms.Button();
             this.printQueueBtn = new System.Windows.Forms.Button();
             this.addToQueueBtn = new System.Windows.Forms.Button();
             this.tagQuantityBox = new System.Windows.Forms.NumericUpDown();
-            this.queuedPlatesList = new System.Windows.Forms.ListView();
+            this.queuedPlatesListView = new System.Windows.Forms.ListView();
             this.TagContents = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.queueLabel = new System.Windows.Forms.Label();
@@ -130,22 +130,22 @@
             this.quantityLabel.TabIndex = 8;
             this.quantityLabel.Text = "Quantity:";
             // 
-            // JigComboBox
+            // jigComboBox
             // 
-            this.JigComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JigComboBox.FormattingEnabled = true;
-            this.JigComboBox.Items.AddRange(new object[] {
+            this.jigComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jigComboBox.FormattingEnabled = true;
+            this.jigComboBox.Items.AddRange(new object[] {
             "1-Plate",
             "2-Plate",
             "4-Plate",
             "8-Plate"});
-            this.JigComboBox.Location = new System.Drawing.Point(344, 326);
-            this.JigComboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.JigComboBox.Name = "JigComboBox";
-            this.JigComboBox.Size = new System.Drawing.Size(92, 28);
-            this.JigComboBox.TabIndex = 10;
-            this.JigComboBox.TabStop = false;
-            this.JigComboBox.DropDownClosed += new System.EventHandler(this.JigComboBox_DropDownClosed);
+            this.jigComboBox.Location = new System.Drawing.Point(344, 326);
+            this.jigComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.jigComboBox.Name = "jigComboBox";
+            this.jigComboBox.Size = new System.Drawing.Size(92, 28);
+            this.jigComboBox.TabIndex = 10;
+            this.jigComboBox.TabStop = false;
+            this.jigComboBox.DropDownClosed += new System.EventHandler(this.JigComboBox_DropDownClosed);
             // 
             // JigLabel
             // 
@@ -211,20 +211,20 @@
             0,
             0});
             // 
-            // queuedPlatesList
+            // queuedPlatesListView
             // 
-            this.queuedPlatesList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.queuedPlatesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TagContents,
             this.Quantity});
-            this.queuedPlatesList.FullRowSelect = true;
-            this.queuedPlatesList.GridLines = true;
-            this.queuedPlatesList.HideSelection = false;
-            this.queuedPlatesList.Location = new System.Drawing.Point(935, 301);
-            this.queuedPlatesList.Name = "queuedPlatesList";
-            this.queuedPlatesList.Size = new System.Drawing.Size(206, 204);
-            this.queuedPlatesList.TabIndex = 14;
-            this.queuedPlatesList.UseCompatibleStateImageBehavior = false;
-            this.queuedPlatesList.View = System.Windows.Forms.View.Details;
+            this.queuedPlatesListView.FullRowSelect = true;
+            this.queuedPlatesListView.GridLines = true;
+            this.queuedPlatesListView.HideSelection = false;
+            this.queuedPlatesListView.Location = new System.Drawing.Point(935, 301);
+            this.queuedPlatesListView.Name = "queuedPlatesListView";
+            this.queuedPlatesListView.Size = new System.Drawing.Size(206, 204);
+            this.queuedPlatesListView.TabIndex = 14;
+            this.queuedPlatesListView.UseCompatibleStateImageBehavior = false;
+            this.queuedPlatesListView.View = System.Windows.Forms.View.Details;
             // 
             // TagContents
             // 
@@ -268,11 +268,11 @@
             this.ClientSize = new System.Drawing.Size(1426, 839);
             this.Controls.Add(this.clearQueueBtn);
             this.Controls.Add(this.queueLabel);
-            this.Controls.Add(this.queuedPlatesList);
+            this.Controls.Add(this.queuedPlatesListView);
             this.Controls.Add(this.tagQuantityBox);
             this.Controls.Add(this.addToQueueBtn);
             this.Controls.Add(this.printQueueBtn);
-            this.Controls.Add(this.JigComboBox);
+            this.Controls.Add(this.jigComboBox);
             this.Controls.Add(this.JigLabel);
             this.Controls.Add(this.quantityLabel);
             this.Controls.Add(this.homeButton);
@@ -304,13 +304,13 @@
         private System.Windows.Forms.Button settingsBtn;
         private System.Windows.Forms.Button clearTagBtn;
         private System.Windows.Forms.Label quantityLabel;
-        private System.Windows.Forms.ComboBox JigComboBox;
+        private System.Windows.Forms.ComboBox jigComboBox;
         private System.Windows.Forms.Label JigLabel;
         private System.Windows.Forms.Button homeButton;
         private System.Windows.Forms.Button printQueueBtn;
         private System.Windows.Forms.Button addToQueueBtn;
         private System.Windows.Forms.NumericUpDown tagQuantityBox;
-        private System.Windows.Forms.ListView queuedPlatesList;
+        private System.Windows.Forms.ListView queuedPlatesListView;
         private System.Windows.Forms.ColumnHeader TagContents;
         private System.Windows.Forms.ColumnHeader Quantity;
         private System.Windows.Forms.Label queueLabel;

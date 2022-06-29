@@ -38,9 +38,11 @@ public static class CheckTextBox
         return false;
     }
 
-    public static void redTagBoxIfInputError(ref string currentTagLineStr, ref TextBox currentTextBox, int currentLineNumber)
+    //public static void redTagBoxIfInputError(ref string currentTagLineStr, ref TextBox currentTextBox, int currentLineNumber)
+    public static void redTagBoxIfInputError(ref TextBox currentTextBox, int currentLineNumber)
     {
-        currentTagLineStr = currentTextBox.Text;
+        string currentTagLineStr = currentTextBox.Text;
+        //currentTagLineStr = currentTextBox.Text;
         bool isError = false;
 
         if (invalidTagChars(ref currentTagLineStr) == true || errorIfTooLong(ref currentTagLineStr, currentLineNumber) == true)
