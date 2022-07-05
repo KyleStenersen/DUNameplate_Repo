@@ -46,7 +46,10 @@
             this.Quantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.queueLabel = new System.Windows.Forms.Label();
             this.clearQueueBtn = new System.Windows.Forms.Button();
+            this.statusPanel = new System.Windows.Forms.Panel();
+            this.statusLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
+            this.statusPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tag1Line0Box
@@ -260,12 +263,34 @@
             this.clearQueueBtn.UseVisualStyleBackColor = true;
             this.clearQueueBtn.Click += new System.EventHandler(this.clearQueueBtn_Click);
             // 
+            // statusPanel
+            // 
+            this.statusPanel.BackColor = System.Drawing.Color.LimeGreen;
+            this.statusPanel.Controls.Add(this.statusLabel);
+            this.statusPanel.Location = new System.Drawing.Point(935, 544);
+            this.statusPanel.Name = "statusPanel";
+            this.statusPanel.Size = new System.Drawing.Size(200, 100);
+            this.statusPanel.TabIndex = 17;
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.BackColor = System.Drawing.Color.LimeGreen;
+            this.statusLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusLabel.Location = new System.Drawing.Point(0, 0);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(200, 100);
+            this.statusLabel.TabIndex = 0;
+            this.statusLabel.Text = "READY";
+            this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MAIN_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1426, 839);
+            this.Controls.Add(this.statusPanel);
             this.Controls.Add(this.clearQueueBtn);
             this.Controls.Add(this.queueLabel);
             this.Controls.Add(this.queuedPlatesListView);
@@ -291,6 +316,7 @@
             this.Text = " DU Nameplate GUI";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).EndInit();
+            this.statusPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -315,6 +341,8 @@
         private System.Windows.Forms.ColumnHeader Quantity;
         private System.Windows.Forms.Label queueLabel;
         private System.Windows.Forms.Button clearQueueBtn;
+        private System.Windows.Forms.Panel statusPanel;
+        private System.Windows.Forms.Label statusLabel;
     }
 }
 

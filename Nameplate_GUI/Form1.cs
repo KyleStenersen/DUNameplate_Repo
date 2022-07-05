@@ -36,7 +36,7 @@ namespace DUNameplateGUI
             //arrayOfTagLines = new string[4];
 
             // UIControl's functions will not work unless it has access to several main UI elements
-            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigComboBox);
+            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigComboBox, statusLabel);
 
             SerialCom.setupPort();
             SerialCom.sendSettings();

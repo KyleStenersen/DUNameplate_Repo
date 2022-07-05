@@ -7,11 +7,30 @@ using System.Windows.Forms;
 
 namespace DUNameplateGUI
 {
-    // This class is where all the main printing functions belong. Two of the methods are private, while the other one is public, and
-    // it uses both of the private functions.
+    // This class is where all the main printing functions belong.
     internal static class MachineControl
     {
-        private static bool isPrinting = false;
+        private static bool _isPrinting = false;
+
+        private static bool isPrinting
+        {
+            get { 
+                return _isPrinting;
+            }
+            set
+            {
+                _isPrinting = value;
+                if (_isPrinting) {
+                    // Change our status indicator to show that we are printing
+                    UIControl.changeStatusIndicator(UIControl.Status.Printing);
+                } 
+                else
+                {
+                    // Change the status indicator to show that we are ready to print again
+                    UIControl.changeStatusIndicator(UIControl.Status.Ready);
+                }
+            }
+        }
 
         private static void printTag(Nameplate plateToPrint)
         {
@@ -48,7 +67,19 @@ namespace DUNameplateGUI
 
                     // If the tag is not the final tag being printed, ask the user to reload
                     if (i != currentTagQuantity - 1 || PlateQueue.Count != 0)
+                    {
+                        // Set the status to ReloadNeeded
+                        UIControl.changeStatusIndicator(UIControl.Status.ReloadNeeded);
+
+                        // This message box probably needs to be changed to something else,
+                        // so that we can reload by scanning a certain barcode or pressing a button
+                        // on the UI
+                        // Looks like AutoResetEvent might be what we want here: https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
                         MessageBox.Show("Please reload, press OK when done");
+
+                        // And now we're printing again, so set it back
+                        UIControl.changeStatusIndicator(UIControl.Status.Printing);
+                    }
 
                     Jig.Position = 0;
                 }
@@ -59,6 +90,7 @@ namespace DUNameplateGUI
         {
             if (!isPrinting)
             {
+                // Changing isPrinting automatically changes the status indicator
                 isPrinting = true;
 
                 // Disable the JigComboBox to prevent Jig changes while printing
@@ -88,8 +120,12 @@ namespace DUNameplateGUI
                     }
 
                     Console.WriteLine("Done printing");
+
+                    // Changing isPrinting automatically changes the status indicator
                     isPrinting = false;
 
+                    // If the setting for resetting the jig after each print is enabled,
+                    // reset the jig.
                     if (Properties.Settings.Default.resetJig)
                     {
                         Jig.Position = 0;

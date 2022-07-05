@@ -13,6 +13,14 @@ namespace DUNameplateGUI
     // Initialize at the start of the program, otherwise a few of the functions will not work.
     internal static class UIControl
     {
+        public enum Status
+        {
+            Disconnected,
+            Ready,
+            Printing,
+            ReloadNeeded
+        }
+
         private static TextBox[] arrayOfTagTextBoxes;
 
         // Needed for clearTag and addCurrentTagToQueue
@@ -21,11 +29,15 @@ namespace DUNameplateGUI
         // Needed for disableJigComboBox
         private static ComboBox jigComboBox;
 
-        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, ComboBox jigSelector)
+        private static Label statusLabel;
+
+        // These function arguments have unique names, due to C# not being happy about the use of this.duplicateName
+        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, ComboBox jigSelector, Label statusIndicator)
         {
             arrayOfTagTextBoxes = textBoxes;
             tagQuantityBox = quantityBox;
             jigComboBox = jigSelector;
+            statusLabel = statusIndicator;
         }
 
         // Clears the tag text boxes, resets the quantity, and focuses the first text box
@@ -102,6 +114,38 @@ namespace DUNameplateGUI
             };
 
             jigComboBox.Invoke(enableJigComboBox);
+        }
+
+        public static void changeStatusIndicator(Status status)
+        {
+            // This is a delegate for changing the status indicator, this is needed
+            // because this function will be called from other threads that are not
+            // the main thread, so we will Invoke this delegate to jump back
+            // onto the main thread, and then do our changes.
+            Action<Status> changeStatusAction = delegate (Status statusEnum)
+            {
+                switch (statusEnum) 
+                {
+                    case Status.Disconnected:
+                        statusLabel.Text = "DISCONNECTED";
+                        statusLabel.BackColor = System.Drawing.Color.Red;
+                        break;
+                    case Status.Ready:
+                        statusLabel.Text = "READY";
+                        statusLabel.BackColor = System.Drawing.Color.LimeGreen;
+                        break;
+                    case Status.Printing:
+                        statusLabel.Text = "PRINTING";
+                        statusLabel.BackColor = System.Drawing.Color.Yellow;
+                        break;
+                    case Status.ReloadNeeded:
+                        statusLabel.Text = "RELOAD NEEDED";
+                        statusLabel.BackColor = System.Drawing.Color.Purple;
+                        break;
+                }
+            };
+
+            statusLabel.Invoke(changeStatusAction, status);
         }
     }
 }
