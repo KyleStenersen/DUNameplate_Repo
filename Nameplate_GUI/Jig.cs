@@ -11,7 +11,25 @@ namespace DUNameplateGUI
     {
         public static int Capacity { get; set; }
 
-        public static int Position { get; set; }
+        private static int _position { get; set; }
+        public static int Position
+        {
+            get
+            {
+                return _position;
+            }
+            set
+            {
+                _position = value; // value is a special keyword for whatever it is being set to
+
+                // null is set as the sender here, as we don't need it, and we can't use the this keyword from a static class
+                PositionChanged?.Invoke(null, new PositionChangedEventArgs(value)); 
+            }
+        }
+
+        // This is used to update the UI whenever the Position of the jig is changed
+        // The PositionChangedArgs class is declared below this class in this file
+        public static event EventHandler<PositionChangedEventArgs> PositionChanged;
 
         private static float[] YStartLocations { get; set; } = new float[8];
 
@@ -92,5 +110,15 @@ namespace DUNameplateGUI
 
             }
         }
+    }
+
+    public class PositionChangedEventArgs : EventArgs
+    {
+        public PositionChangedEventArgs(int position)
+        {
+            Position = position;
+        }
+
+        public int Position { get; }
     }
 }

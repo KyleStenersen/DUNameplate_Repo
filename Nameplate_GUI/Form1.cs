@@ -8,7 +8,7 @@ namespace DUNameplateGUI
     public partial class MAIN_FORM : Form
     {
         TextBox[] arrayOfTagTextBoxes;
-        //string[] arrayOfTagLines;
+        Panel[] arrayOfJigIndicatorPanels;
 
         HotkeyHandler hotkeyHandler;
 
@@ -35,8 +35,10 @@ namespace DUNameplateGUI
             arrayOfTagTextBoxes = new TextBox[4] { tag1Line0Box, tag1Line1Box, tag1Line2Box, tag1Line3Box };
             //arrayOfTagLines = new string[4];
 
+            arrayOfJigIndicatorPanels = new Panel[4] { jigIndicator0, jigIndicator1, jigIndicator2, jigIndicator3 };
+
             // UIControl's functions will not work unless it has access to several main UI elements
-            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigComboBox, statusLabel);
+            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigComboBox, statusLabel, arrayOfJigIndicatorPanels);
 
             SerialCom.setupPort();
             SerialCom.sendSettings();
@@ -97,109 +99,18 @@ namespace DUNameplateGUI
             Jig.setValues(jigComboBox.SelectedIndex);
         }
 
-        //private void printTagsBtn_Click(object sender, EventArgs e)
-        //{
-        //    // Make sure the jig's position is set to zero to avoid weird behavior
-        //    jig.Position = 0;
-
-        //    int currentTagQuantity = (int) tagQuantityBox.Value;
-
-        //    Nameplate plateToPrint;
-
-        //    // FromTextBoxes can throw an exception due to the text in the TextBoxes being invalid, so we need to handle it
-        //    try
-        //    {
-        //        // Create a new Nameplate from the current text in the text boxes
-        //        plateToPrint = Nameplate.FromTextBoxes(arrayOfTagTextBoxes, currentTagQuantity);
-        //    }
-        //    catch (ArgumentException) 
-        //    {
-        //        return; // We can just return here, because the functions FromTextBoxes calls will show a MessageBox for us
-        //    }
-
-        //    printTags(plateToPrint);
-        //}
-
         private void printQueueBtn_Click(object sender, EventArgs e)
         {
             UIControl.printQueue();
-
-            // This code got moved into startPrintingTask
-            //if (!isPrinting) 
-            //{
-            //    isPrinting = true;
-            //    Task.Run(() =>
-            //    {
-            //        // Make sure the jig's position is set to zero to avoid weird behavior
-            //        jig.Position = 0;
-
-            //        // Go through each Nameplate in the queue and print them
-            //        while (queue.Count != 0)
-            //        {
-            //            if (queue.TryDequeue(out Nameplate currentPlate))
-            //            {
-            //                printTags(currentPlate);
-            //            }
-            //            else
-            //            {
-            //                break;
-            //            }
-
-            //            //// Single threaded version
-            //            //Nameplate currentPlate = queue.Dequeue();
-
-            //            //printTags(currentPlate);
-            //        }
-
-            //        Console.WriteLine("Done printing");
-            //        isPrinting = false;
-            //    });
-            //}
-            //else
-            //{
-            //    Console.WriteLine("It is currently printing right now, so we'll ignore the request to print");
-            //}
-
-            //// Make sure the jig's position is set to zero to avoid weird behavior
-            //jig.Position = 0;
-
-            //// Go through each Nameplate in the queue and print them
-            //while (queue.Count != 0)
-            //{
-            //    Nameplate currentPlate = queue.Dequeue();
-
-            //    printTags(currentPlate);
-            //}
-
         }
         private void addToQueueBtn_Click(object sender, EventArgs e)
         {
-            UIControl.addCurrentTagToQueue();
-            //int currentTagQuantity = (int) tagQuantityBox.Value;
+            UIControl.addCurrentTagToQueue();          
+        }
 
-            //// Error handling here, because FromTextBoxes can throw an exception if the text in the boxes is invalid
-            //try
-            //{
-            //    Nameplate newPlate = Nameplate.FromTextBoxes(arrayOfTagTextBoxes, currentTagQuantity);
-
-            //    PlateQueue.Enqueue(newPlate);
-
-            //    // Clear out the tag text boxes
-            //    UIControl.clearTag();
-
-            //    if (Properties.Settings.Default.autoPrintQueue)
-            //    {
-            //        MachineControl.startPrintingTaskIfNotPrinting();
-            //    }
-            //}
-            //catch(ArgumentException)
-            //{
-            //    // We don't have to show a message here, because the methods being called by FromTextBoxes will show a MessageBox
-            //    // if this is reached. So we will print a message to the console for debugging instead.
-
-            //    Console.WriteLine("ArgumentException from Nameplate.FromTextBoxes has been caught");
-            //}
-            
+        private void reloadBtn_Click(object sender, EventArgs e)
+        {
+            UIControl.signalReloaded();
         }
 
         //  PRIVATE FUNCTIONS=======================================================

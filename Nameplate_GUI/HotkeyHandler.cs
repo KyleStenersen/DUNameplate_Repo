@@ -23,8 +23,11 @@ namespace DUNameplateGUI
         // For now we are going to hard-code all of the hotkeys and their actions into this function
         private void HotkeyKeyDownHandler(object sender, KeyEventArgs args)
         {
-            if (args.Modifiers == (Keys.Control | Keys.Alt))
+            //if (args.Modifiers == (Keys.Control | Keys.Alt))
+            if (args.Modifiers == (Keys.Control))
             {
+                // This silences Windows from making a noise on each Ctrl+key input
+                args.SuppressKeyPress = true;
                 switch (args.KeyCode) 
                 {
                     case Keys.P:
@@ -39,6 +42,10 @@ namespace DUNameplateGUI
                     case Keys.Q:
                         UIControl.clearQueue();
                         break;
+                    case Keys.R:
+                        UIControl.signalReloaded();
+                        break;
+
                 }
             }
         }

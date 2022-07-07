@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -10,6 +11,7 @@ namespace DUNameplateGUI
     // This class is where all the main printing functions belong.
     internal static class MachineControl
     {
+        // This value should never be accessed directly, only through isPrinting
         private static bool _isPrinting = false;
 
         private static bool isPrinting
@@ -31,6 +33,8 @@ namespace DUNameplateGUI
                 }
             }
         }
+
+        public static AutoResetEvent reloadedEvent = new AutoResetEvent(false);
 
         private static void printTag(Nameplate plateToPrint)
         {
@@ -71,11 +75,13 @@ namespace DUNameplateGUI
                         // Set the status to ReloadNeeded
                         UIControl.changeStatusIndicator(UIControl.Status.ReloadNeeded);
 
-                        // This message box probably needs to be changed to something else,
-                        // so that we can reload by scanning a certain barcode or pressing a button
-                        // on the UI
-                        // Looks like AutoResetEvent might be what we want here: https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
-                        MessageBox.Show("Please reload, press OK when done");
+                        //MessageBox.Show("Please reload, press OK when done");
+
+                        // Wait/Block this thread until the reloadedEvent gets set from someone
+                        // pressing the reload button on the GUI, or by scanning a barcode with
+                        // the right key combination
+                        // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
+                        reloadedEvent.WaitOne();
 
                         // And now we're printing again, so set it back
                         UIControl.changeStatusIndicator(UIControl.Status.Printing);

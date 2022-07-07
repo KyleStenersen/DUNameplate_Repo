@@ -29,15 +29,46 @@ namespace DUNameplateGUI
         // Needed for disableJigComboBox
         private static ComboBox jigComboBox;
 
+        // Needed for changeStatusIndicator
         private static Label statusLabel;
 
+        // Needed for jigPositionChanged
+        private static Panel[] arrayOfJigIndicatorPanels;
+        private static int currentlyActivatedIndicator = 0;
+
+
         // These function arguments have unique names, due to C# not being happy about the use of this.duplicateName
-        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, ComboBox jigSelector, Label statusIndicator)
+        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, ComboBox jigSelector, Label statusIndicator, Panel[] jigIndicatorPanels)
         {
             arrayOfTagTextBoxes = textBoxes;
             tagQuantityBox = quantityBox;
             jigComboBox = jigSelector;
             statusLabel = statusIndicator;
+            arrayOfJigIndicatorPanels = jigIndicatorPanels;
+
+            // Subscribe jigPositionChanged to the event from the Jig
+            Jig.PositionChanged += jigPositionChanged;
+        }
+
+        // Needs fixing, currently can crash due to Jig.Position ending up at 4, which is out of bounds
+        // for the array
+        private static void jigPositionChanged(object sender, PositionChangedEventArgs e)
+        {
+            Action<int> changeJigIndicatorAction = delegate (int position)
+            {
+                // Set our last activated indicator color back to deactivated
+                arrayOfJigIndicatorPanels[currentlyActivatedIndicator].BackColor = Control.DefaultBackColor;
+
+                // Set our new jig position's indicator color to LimeGreen
+                arrayOfJigIndicatorPanels[position].BackColor = System.Drawing.Color.LimeGreen;
+
+                // Set the currentActivatedIndicator to our new position
+                currentlyActivatedIndicator = position;
+            };
+
+            // Invoke could have been called on any UI element, but here I chose to invoke it on
+            // the first one
+            arrayOfJigIndicatorPanels[0].Invoke(changeJigIndicatorAction, e.Position);
         }
 
         // Clears the tag text boxes, resets the quantity, and focuses the first text box
@@ -76,7 +107,7 @@ namespace DUNameplateGUI
                 PlateQueue.Enqueue(newPlate);
 
                 // Clear out the tag text boxes, reset quantity
-                UIControl.clearTag();
+                clearTag();
 
                 if (Properties.Settings.Default.autoPrintQueue)
                 {
@@ -140,12 +171,23 @@ namespace DUNameplateGUI
                         break;
                     case Status.ReloadNeeded:
                         statusLabel.Text = "RELOAD NEEDED";
-                        statusLabel.BackColor = System.Drawing.Color.Purple;
+                        statusLabel.BackColor = System.Drawing.Color.Orchid;
                         break;
                 }
             };
 
             statusLabel.Invoke(changeStatusAction, status);
+        }
+
+        // This function should be run after the jig has been reloaded
+        public static void signalReloaded()
+        {
+            // The reason why we are setting and immediately resetting this AutoResetEvent
+            // is to prevent someone from pressing reload when the machine doesn't need it,
+            // and then for the machine to think that somebody already reloaded it the
+            // next time that it goes to wait for a reload.
+            MachineControl.reloadedEvent.Set();
+            MachineControl.reloadedEvent.Reset();
         }
     }
 }

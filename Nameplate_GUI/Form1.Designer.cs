@@ -48,8 +48,16 @@
             this.clearQueueBtn = new System.Windows.Forms.Button();
             this.statusPanel = new System.Windows.Forms.Panel();
             this.statusLabel = new System.Windows.Forms.Label();
+            this.reloadBtn = new System.Windows.Forms.Button();
+            this.jigIndicator0 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.jigIndicator1 = new System.Windows.Forms.Panel();
+            this.jigIndicator2 = new System.Windows.Forms.Panel();
+            this.jigIndicator3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.statusPanel.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tag1Line0Box
@@ -219,12 +227,13 @@
             this.queuedPlatesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TagContents,
             this.Quantity});
+            this.queuedPlatesListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.queuedPlatesListView.FullRowSelect = true;
             this.queuedPlatesListView.GridLines = true;
             this.queuedPlatesListView.HideSelection = false;
             this.queuedPlatesListView.Location = new System.Drawing.Point(935, 301);
             this.queuedPlatesListView.Name = "queuedPlatesListView";
-            this.queuedPlatesListView.Size = new System.Drawing.Size(206, 204);
+            this.queuedPlatesListView.Size = new System.Drawing.Size(240, 204);
             this.queuedPlatesListView.TabIndex = 14;
             this.queuedPlatesListView.UseCompatibleStateImageBehavior = false;
             this.queuedPlatesListView.View = System.Windows.Forms.View.Details;
@@ -237,7 +246,7 @@
             // Quantity
             // 
             this.Quantity.Text = "Quantity";
-            this.Quantity.Width = 57;
+            this.Quantity.Width = 76;
             // 
             // queueLabel
             // 
@@ -267,9 +276,9 @@
             // 
             this.statusPanel.BackColor = System.Drawing.Color.LimeGreen;
             this.statusPanel.Controls.Add(this.statusLabel);
-            this.statusPanel.Location = new System.Drawing.Point(935, 544);
+            this.statusPanel.Location = new System.Drawing.Point(935, 520);
             this.statusPanel.Name = "statusPanel";
-            this.statusPanel.Size = new System.Drawing.Size(200, 100);
+            this.statusPanel.Size = new System.Drawing.Size(240, 124);
             this.statusPanel.TabIndex = 17;
             // 
             // statusLabel
@@ -279,10 +288,98 @@
             this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusLabel.Location = new System.Drawing.Point(0, 0);
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(200, 100);
+            this.statusLabel.Size = new System.Drawing.Size(240, 124);
             this.statusLabel.TabIndex = 0;
             this.statusLabel.Text = "READY";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // reloadBtn
+            // 
+            this.reloadBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reloadBtn.Location = new System.Drawing.Point(820, 569);
+            this.reloadBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.reloadBtn.Name = "reloadBtn";
+            this.reloadBtn.Size = new System.Drawing.Size(77, 28);
+            this.reloadBtn.TabIndex = 18;
+            this.reloadBtn.TabStop = false;
+            this.reloadBtn.Text = "Reload";
+            this.reloadBtn.UseVisualStyleBackColor = true;
+            this.reloadBtn.Click += new System.EventHandler(this.reloadBtn_Click);
+            // 
+            // jigIndicator0
+            // 
+            this.jigIndicator0.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.jigIndicator0.BackColor = System.Drawing.Color.LimeGreen;
+            this.jigIndicator0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.jigIndicator0.Location = new System.Drawing.Point(4, 4);
+            this.jigIndicator0.Name = "jigIndicator0";
+            this.jigIndicator0.Size = new System.Drawing.Size(92, 55);
+            this.jigIndicator0.TabIndex = 20;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.jigIndicator0, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.jigIndicator1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.jigIndicator2, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.jigIndicator3, 0, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(217, 238);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(100, 250);
+            this.tableLayoutPanel1.TabIndex = 24;
+            // 
+            // jigIndicator1
+            // 
+            this.jigIndicator1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.jigIndicator1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.jigIndicator1.Location = new System.Drawing.Point(4, 66);
+            this.jigIndicator1.Name = "jigIndicator1";
+            this.jigIndicator1.Size = new System.Drawing.Size(92, 55);
+            this.jigIndicator1.TabIndex = 21;
+            // 
+            // jigIndicator2
+            // 
+            this.jigIndicator2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.jigIndicator2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.jigIndicator2.Location = new System.Drawing.Point(4, 128);
+            this.jigIndicator2.Name = "jigIndicator2";
+            this.jigIndicator2.Size = new System.Drawing.Size(92, 55);
+            this.jigIndicator2.TabIndex = 22;
+            // 
+            // jigIndicator3
+            // 
+            this.jigIndicator3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.jigIndicator3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.jigIndicator3.Location = new System.Drawing.Point(4, 190);
+            this.jigIndicator3.Name = "jigIndicator3";
+            this.jigIndicator3.Size = new System.Drawing.Size(92, 56);
+            this.jigIndicator3.TabIndex = 23;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(193, 215);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(150, 20);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Current Jig Position:";
             // 
             // MAIN_FORM
             // 
@@ -290,6 +387,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1426, 839);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.reloadBtn);
             this.Controls.Add(this.statusPanel);
             this.Controls.Add(this.clearQueueBtn);
             this.Controls.Add(this.queueLabel);
@@ -317,6 +417,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).EndInit();
             this.statusPanel.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,6 +444,13 @@
         private System.Windows.Forms.Button clearQueueBtn;
         private System.Windows.Forms.Panel statusPanel;
         private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Button reloadBtn;
+        private System.Windows.Forms.Panel jigIndicator0;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel jigIndicator1;
+        private System.Windows.Forms.Panel jigIndicator2;
+        private System.Windows.Forms.Panel jigIndicator3;
+        private System.Windows.Forms.Label label1;
     }
 }
 
