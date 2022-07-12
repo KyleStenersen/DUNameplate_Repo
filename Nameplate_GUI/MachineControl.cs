@@ -61,11 +61,13 @@ namespace DUNameplateGUI
 
                 printTag(plateToPrint);
 
-                Jig.Position++;
+                //Jig.Position++;
 
                 waitPlateDone();
 
-                if (Jig.Position == Jig.Capacity)
+
+                //if (Jig.Position == Jig.Capacity)
+                if (Jig.Position + 1 == Jig.Capacity)
                 {
                     home();
 
@@ -88,6 +90,10 @@ namespace DUNameplateGUI
                     }
 
                     Jig.Position = 0;
+                } 
+                else
+                {
+                    Jig.Position++;
                 }
             }
         }

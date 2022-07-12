@@ -30,19 +30,19 @@ namespace DUNameplateGUI
                 args.SuppressKeyPress = true;
                 switch (args.KeyCode) 
                 {
-                    case Keys.P:
+                    case Keys.Q:
                         UIControl.printQueue();
                         break;
-                    case Keys.A:
+                    case Keys.W:
                         UIControl.addCurrentTagToQueue();
                         break;
-                    case Keys.C:
+                    case Keys.E:
                         UIControl.clearTag();
                         break;
-                    case Keys.Q:
+                    case Keys.R:
                         UIControl.clearQueue();
                         break;
-                    case Keys.R:
+                    case Keys.T:
                         UIControl.signalReloaded();
                         break;
 
