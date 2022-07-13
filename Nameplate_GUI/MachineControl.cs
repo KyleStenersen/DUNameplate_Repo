@@ -65,6 +65,7 @@ namespace DUNameplateGUI
 
                 waitPlateDone();
 
+                PlateQueue.DecrementTopPlateQuantity();
 
                 //if (Jig.Position == Jig.Capacity)
                 if (Jig.Position + 1 == Jig.Capacity)
@@ -121,14 +122,22 @@ namespace DUNameplateGUI
                     // Go through each Nameplate in the queue and print them
                     while (PlateQueue.Count != 0)
                     {
-                        if (PlateQueue.TryDequeue(out Nameplate currentPlate))
-                        {
-                            printMultipleOfOneTag(currentPlate);
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        // We peek the nameplate at the top of the queue, because we don't want to remove it from
+                        // the UI and confuse the user if the plate had a large quantity
+                        // The nameplate will be removed from the queue after the printMultipleOfOneTag
+                        // function completes.
+                        Nameplate currentPlate = PlateQueue.Peek();
+
+                        printMultipleOfOneTag(currentPlate);
+                        
+                        //if (PlateQueue.TryPeek(out Nameplate currentPlate))
+                        //{
+                        //    printMultipleOfOneTag(currentPlate);
+                        //}
+                        //else
+                        //{
+                        //    break;
+                        //}
                     }
 
                     Console.WriteLine("Done printing");
