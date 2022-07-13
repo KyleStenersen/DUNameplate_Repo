@@ -23,7 +23,7 @@ namespace DUNameplateGUI
 
         private static TextBox[] arrayOfTagTextBoxes;
 
-        // Needed for clearTag and addCurrentTagToQueue
+        // Needed for clearTag, addCurrentTagToQueue, and setQuantity
         private static NumericUpDown tagQuantityBox;
 
         // Needed for disableJigComboBox
@@ -35,7 +35,6 @@ namespace DUNameplateGUI
         // Needed for jigPositionChanged
         private static Panel[] arrayOfJigIndicatorPanels;
         private static int currentlyActivatedIndicator = 0;
-
 
         // These function arguments have unique names, due to C# not being happy about the use of this.duplicateName
         public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, ComboBox jigSelector, Label statusIndicator, Panel[] jigIndicatorPanels)
@@ -188,6 +187,11 @@ namespace DUNameplateGUI
             // next time that it goes to wait for a reload.
             MachineControl.reloadedEvent.Set();
             MachineControl.reloadedEvent.Reset();
+        }
+
+        public static void setQuantity(int quantity)
+        {
+            tagQuantityBox.Value = quantity;
         }
     }
 }

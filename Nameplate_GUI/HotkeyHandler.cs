@@ -45,6 +45,33 @@ namespace DUNameplateGUI
                     case Keys.T:
                         UIControl.signalReloaded();
                         break;
+                    case Keys.D1:
+                        UIControl.setQuantity(1);
+                        break;
+                    case Keys.D2:
+                        UIControl.setQuantity(2);
+                        break;
+                    case Keys.D3:
+                        UIControl.setQuantity(3);
+                        break;
+                    case Keys.D4:
+                        UIControl.setQuantity(4);
+                        break;
+                    case Keys.D5:
+                        UIControl.setQuantity(5);
+                        break;
+                    case Keys.D6:
+                        UIControl.setQuantity(6);
+                        break;
+                    case Keys.D7:
+                        UIControl.setQuantity(7);
+                        break;
+                    case Keys.D8:
+                        UIControl.setQuantity(8);
+                        break;
+                    case Keys.D9:
+                        UIControl.setQuantity(9);
+                        break;
 
                 }
             }
