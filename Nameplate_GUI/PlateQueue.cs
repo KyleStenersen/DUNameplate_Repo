@@ -58,18 +58,23 @@ namespace DUNameplateGUI
 
         // This function subtracts one from the quantity of the plate at the top of the queue (which is being printed
         // when this function is called)
+        // It checks if there is any plates in the queue, and if there are not, this function does nothing.
         // It also will automatically call Dequeue if the Quantity is changed to zero.
         public static void DecrementTopPlateQuantity()
         {
-            Nameplate topPlate = QueuedPlates[0];
+            if (QueuedPlates.Count >= 1)
+            {
+                Nameplate topPlate = QueuedPlates[0];
 
-            topPlate.Quantity -= 1;
+                topPlate.Quantity -= 1;
 
-            if (topPlate.Quantity == 0) {
-                Dequeue();
+                if (topPlate.Quantity == 0)
+                {
+                    Dequeue();
+                }
+
+                UpdateListView();
             }
-
-            UpdateListView();
         }
 
         // This function removes the plate from the top of the queue

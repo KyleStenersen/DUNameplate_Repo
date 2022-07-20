@@ -36,6 +36,9 @@ namespace DUNameplateGUI
 
         public static AutoResetEvent reloadedEvent = new AutoResetEvent(false);
 
+        // This will be set to true whenever the queue is cleared from UIControl
+        public static bool cancellationRequested = false;
+
         private static void printTag(Nameplate plateToPrint)
         {
             // Send our current settings to the machine, just in case our settings are different from what the machine has right now
@@ -55,6 +58,14 @@ namespace DUNameplateGUI
 
             for (int i = 0; i < currentTagQuantity; i++)
             {
+                // If cancellationRequested is true, throw an OperationCancelled exception to stop the printing here
+                // This exception will be caught by the code in startPrintingTaskIfNotPrinting
+                if (cancellationRequested == true)
+                {
+                    cancellationRequested = false;
+                    throw new OperationCanceledException();
+                }
+
                 // serialComF1.clearInputBuffer();
                 // Was doing before and after but only because
                 // of a bunch of messy serial output in arduino
@@ -106,6 +117,10 @@ namespace DUNameplateGUI
                 // Changing isPrinting automatically changes the status indicator
                 isPrinting = true;
 
+                // Reset cancellationRequested to false, because it might be true due to a clearing of the queue
+                // while no printing was happening
+                cancellationRequested = false;
+
                 // Disable the JigComboBox to prevent Jig changes while printing
                 // Maybe this is unwanted behavior and we see if it can be changed
                 // mid-print safely?
@@ -128,16 +143,17 @@ namespace DUNameplateGUI
                         // function completes.
                         Nameplate currentPlate = PlateQueue.Peek();
 
-                        printMultipleOfOneTag(currentPlate);
-                        
-                        //if (PlateQueue.TryPeek(out Nameplate currentPlate))
-                        //{
-                        //    printMultipleOfOneTag(currentPlate);
-                        //}
-                        //else
-                        //{
-                        //    break;
-                        //}
+                        // printMultipleOfOneTag will throw an OperationCancelledException if cancellationRequested is true
+                        // This try-catch block will catch that exception, and stop this printing task
+                        try
+                        {
+                            printMultipleOfOneTag(currentPlate);
+                        } 
+                        catch (OperationCanceledException)
+                        {
+                            Console.WriteLine("Catching OperationCanceledException from printMultipleOfOneTag, stopping printing now");
+                            break; // break out of this while loop, which will jump straight to the code at the end of printing
+                        }
                     }
 
                     Console.WriteLine("Done printing");

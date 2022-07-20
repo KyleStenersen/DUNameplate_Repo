@@ -84,8 +84,11 @@ namespace DUNameplateGUI
             arrayOfTagTextBoxes[0].Focus();
         }
 
+        // This function clears the PlateQueue, but also requests a cancellation if we are
+        // currently printing right now.
         public static void clearQueue()
         {
+            MachineControl.cancellationRequested = true;
             PlateQueue.Clear();
         }
 
