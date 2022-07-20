@@ -13,6 +13,7 @@ namespace DUNameplateGUI
     // Initialize at the start of the program, otherwise a few of the functions will not work.
     internal static class UIControl
     {
+        // This enum is used for the different states of the status indicator on the UI
         public enum Status
         {
             Disconnected,
@@ -88,8 +89,12 @@ namespace DUNameplateGUI
         // currently printing right now.
         public static void clearQueue()
         {
-            MachineControl.cancellationRequested = true;
+            requestCancel();
             PlateQueue.Clear();
+        }
+        public static void requestCancel()
+        {
+            MachineControl.cancellationRequested = true;
         }
 
         public static void printQueue()
@@ -123,6 +128,11 @@ namespace DUNameplateGUI
 
                 Console.WriteLine("ArgumentException from Nameplate.FromTextBoxes has been caught");
             }
+        }
+
+        public static void home()
+        {
+            MachineControl.home();
         }
 
         public static void disableJigComboBox()
@@ -192,9 +202,16 @@ namespace DUNameplateGUI
             MachineControl.reloadedEvent.Reset();
         }
 
+        // Used from HotkeyHandler, these don't need invokes as they run on the main thread
         public static void setQuantity(int quantity)
         {
             tagQuantityBox.Value = quantity;
+        }
+
+        // Used from HotkeyHandler
+        public static void setJig(int jigNumber)
+        {
+            jigComboBox.SelectedIndex = jigNumber;
         }
     }
 }

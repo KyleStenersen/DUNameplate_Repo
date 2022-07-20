@@ -91,10 +91,16 @@ namespace DUNameplateGUI
 
         private void homeButton_Click(object sender, EventArgs e)
         {
-            MachineControl.home();
+            UIControl.home();
         }
         
-        private void JigComboBox_DropDownClosed(object sender, EventArgs e)
+        //private void JigComboBox_DropDownClosed(object sender, EventArgs e)
+        //{
+        //    Jig.setValues(jigComboBox.SelectedIndex);
+        //}
+
+        // SelectedIndexChanged is a better event here, because it fires whenever we change the value through code as well
+        private void JigComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Jig.setValues(jigComboBox.SelectedIndex);
         }
@@ -113,7 +119,9 @@ namespace DUNameplateGUI
             UIControl.signalReloaded();
         }
 
-        //  PRIVATE FUNCTIONS=======================================================
-
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            UIControl.requestCancel();
+        }
     }
 }
