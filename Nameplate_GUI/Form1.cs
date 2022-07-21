@@ -38,7 +38,7 @@ namespace DUNameplateGUI
             arrayOfJigIndicatorPanels = new Panel[4] { jigIndicator0, jigIndicator1, jigIndicator2, jigIndicator3 };
 
             // UIControl's functions will not work unless it has access to several main UI elements
-            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigComboBox, statusLabel, arrayOfJigIndicatorPanels);
+            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigComboBox, statusLabel, arrayOfJigIndicatorPanels, homeButton);
 
             SerialCom.setupPort();
             SerialCom.sendSettings();

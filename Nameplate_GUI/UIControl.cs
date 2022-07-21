@@ -37,14 +37,18 @@ namespace DUNameplateGUI
         private static Panel[] arrayOfJigIndicatorPanels;
         private static int currentlyActivatedIndicator = 0;
 
+        // Needed for disableSomeUIWhilePrinting and reenableSomeUIAfterPrinting
+        private static Button homeButton;
+
         // These function arguments have unique names, due to C# not being happy about the use of this.duplicateName
-        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, ComboBox jigSelector, Label statusIndicator, Panel[] jigIndicatorPanels)
+        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, ComboBox jigSelector, Label statusIndicator, Panel[] jigIndicatorPanels, Button homeBtn)
         {
             arrayOfTagTextBoxes = textBoxes;
             tagQuantityBox = quantityBox;
             jigComboBox = jigSelector;
             statusLabel = statusIndicator;
             arrayOfJigIndicatorPanels = jigIndicatorPanels;
+            homeButton = homeBtn;
 
             // Subscribe jigPositionChanged to the event from the Jig
             Jig.PositionChanged += jigPositionChanged;
@@ -135,29 +139,60 @@ namespace DUNameplateGUI
             MachineControl.home();
         }
 
-        public static void disableJigComboBox()
+        //public static void disableJigComboBox()
+        //{
+        //    // This is a delegate for disabling the combo box, because if we are on another thread,
+        //    // we need to Invoke to get back onto it
+        //    Action disableJigComboBox = delegate ()
+        //    {
+        //        jigComboBox.Enabled = false;
+        //    };
+
+        //    jigComboBox.Invoke(disableJigComboBox);
+        //}
+
+        // This function is called when we start printing, to prevent the user from pressing the home button, or changing
+        // the currently selected jig while printing.
+        public static void disableSomeUIWhilePrinting()
         {
-            // This is a delegate for disabling the combo box, because if we are on another thread,
+            // This is a delegate for disabling the UI elements, because if we are on another thread,
             // we need to Invoke to get back onto it
-            Action disableJigComboBox = delegate ()
+            Action disableUI = delegate ()
             {
                 jigComboBox.Enabled = false;
+                homeButton.Enabled = false;
             };
 
-            jigComboBox.Invoke(disableJigComboBox);
+            // It doesn't matter which UI element we invoke here, invoking any element will get us on the main thread
+            jigComboBox.Invoke(disableUI);
         }
 
-        public static void enableJigComboBox()
+        // This function is called after the printing is done, to re-enable the home button and jig selector box.
+        public static void reenableSomeUIAfterPrinting()
         {
-            // This is a delegate for enabling the combo box, because if we are on another thread,
+            // This is a delegate for disabling the UI elements, because if we are on another thread,
             // we need to Invoke to get back onto it
-            Action enableJigComboBox = delegate ()
+            Action enableUI = delegate ()
             {
                 jigComboBox.Enabled = true;
+                homeButton.Enabled = true;
             };
 
-            jigComboBox.Invoke(enableJigComboBox);
+            // It doesn't matter which UI element we invoke here, invoking any element will get us on the main thread
+            jigComboBox.Invoke(enableUI);
         }
+
+        //public static void enableJigComboBox()
+        //{
+        //    // This is a delegate for enabling the combo box, because if we are on another thread,
+        //    // we need to Invoke to get back onto it
+        //    Action enableJigComboBox = delegate ()
+        //    {
+        //        jigComboBox.Enabled = true;
+        //    };
+
+        //    jigComboBox.Invoke(enableJigComboBox);
+        //}
 
         public static void changeStatusIndicator(Status status)
         {

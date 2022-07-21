@@ -14,7 +14,7 @@ namespace DUNameplateGUI
         // This value should never be accessed directly, only through isPrinting
         private static bool _isPrinting = false;
 
-        private static bool isPrinting
+        public static bool isPrinting
         {
             get { 
                 return _isPrinting;
@@ -121,11 +121,8 @@ namespace DUNameplateGUI
                 // while no printing was happening
                 cancellationRequested = false;
 
-                // Disable the JigComboBox to prevent Jig changes while printing
-                // Maybe this is unwanted behavior and we see if it can be changed
-                // mid-print safely?
-                //JigComboBox.Enabled = false;
-                UIControl.disableJigComboBox();
+                // Disable Jig selector box and home button while printing
+                UIControl.disableSomeUIWhilePrinting();
 
                 Task.Run(() =>
                 {
@@ -168,8 +165,8 @@ namespace DUNameplateGUI
                         Jig.Position = 0;
                     }
 
-                    // Re-enable the jigComboBox that was disabled at the start of printing
-                    UIControl.enableJigComboBox();
+                    // Re-enable the UI that was disabled when we started printing
+                    UIControl.reenableSomeUIAfterPrinting();
                 });
             }
             else

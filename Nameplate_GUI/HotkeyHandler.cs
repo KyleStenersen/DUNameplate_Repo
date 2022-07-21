@@ -46,22 +46,42 @@ namespace DUNameplateGUI
                         UIControl.signalReloaded();
                         break;
                     case Keys.Y:
-                        UIControl.home();
+                        // Prevent the user from homing the machine while printing
+                        if (!MachineControl.isPrinting)
+                        {
+                            UIControl.home();
+                        }
                         break;
                     case Keys.U:
                         UIControl.requestCancel();
                         break;
                     case Keys.F:
-                        UIControl.setJig(0);
+                        // Prevent the user from setting the jig while printing
+                        if (!MachineControl.isPrinting)
+                        {
+                            UIControl.setJig(0);
+                        }
                         break;
                     case Keys.G:
-                        UIControl.setJig(1);
+                        // Prevent the user from setting the jig while printing
+                        if (!MachineControl.isPrinting)
+                        {
+                            UIControl.setJig(1);
+                        }
                         break;
                     case Keys.H:
-                        UIControl.setJig(2);
+                        // Prevent the user from setting the jig while printing
+                        if (!MachineControl.isPrinting)
+                        {
+                            UIControl.setJig(2);
+                        }
                         break;
                     case Keys.J:
-                        UIControl.setJig(3);
+                        // Prevent the user from setting the jig while printing
+                        if (!MachineControl.isPrinting)
+                        {
+                            UIControl.setJig(3);
+                        }
                         break;
                     case Keys.D1:
                         UIControl.setQuantity(1);
