@@ -30,7 +30,7 @@ public static class SerialCom
 
     public static void sendString(string stringToSend)
     {
-        MessageBox.Show(stringToSend); // For development purpose, remove later
+        //MessageBox.Show(stringToSend); // For development purpose, remove later
 
         if (Global.SerialOn) serialPort1.Write(stringToSend);
     }
