@@ -47,8 +47,10 @@ void setup()
   motor.motorSetupAll();
   encoder.encoderSetup();
   motor.warmUp();
+  // Set X-Motor DIAG pin to INPUT
   pinMode(10, INPUT);
-  pinMode(21, INPUT);
+  // Set Y-Motor DIAG pin to INPUT
+  pinMode(4, INPUT);
  // attachInterrupt(10,stall,RISING);
  // attachInterrupt(21,stall,RISING);
 }

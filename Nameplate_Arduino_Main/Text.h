@@ -2,7 +2,7 @@
 #define Text_h
 
 #include <Arduino.h>
-#include <HashMap.h>
+#include "HashMap.h"
 #include "Encoder.h"
 
 class Text {

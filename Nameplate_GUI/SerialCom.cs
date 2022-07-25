@@ -15,9 +15,9 @@ public static class SerialCom
         if (Global.SerialOn)
         {
             serialPort1.BaudRate = 115200;
-            serialPort1.PortName = "COM9";
-            serialPort1.ReadTimeout = 5000;
-            serialPort1.WriteTimeout = 5000;
+            serialPort1.PortName = "COM3";
+            serialPort1.ReadTimeout = -1;
+            serialPort1.WriteTimeout = -1;
             serialPort1.Open();
         }
     }

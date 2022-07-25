@@ -46,7 +46,11 @@ namespace DUNameplateGUI
                         UIControl.signalReloaded();
                         break;
                     case Keys.Y:
-                        UIControl.home();
+                        // Prevent the user from homing the machine while printing
+                        if (!MachineControl.isPrinting)
+                        {
+                            UIControl.home();
+                        }
                         break;
                     case Keys.U:
                         UIControl.requestCancel();
