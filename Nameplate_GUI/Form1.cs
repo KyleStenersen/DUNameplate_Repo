@@ -14,23 +14,12 @@ namespace DUNameplateGUI
 
         public MAIN_FORM()
         {
-            //Running these once on startup
-
             InitializeComponent();
+        }
 
-            // Initialize our HotkeyHandler
-            hotkeyHandler = new HotkeyHandler(this);
-
-            // Set the JigComboBox to 1-Plate by default to prevent bugs
-            jigComboBox.SelectedIndex = 0;
-
-            // Initialize the queue with our ListView of queued plates, so that it can change the list on screen
-            // when the queue is changed
-            //queue = new PlateQueue(queuedPlatesListView);
-            PlateQueue.SetListView(queuedPlatesListView);
-
-            // Make sure the Jig is properly initialized
-            Jig.setValues(jigComboBox.SelectedIndex);
+        private void MAIN_FORM_Load(object sender, EventArgs e)
+        {
+            // This code is run on startup, after the form is loaded
 
             arrayOfTagTextBoxes = new TextBox[4] { tag1Line0Box, tag1Line1Box, tag1Line2Box, tag1Line3Box };
             //arrayOfTagLines = new string[4];
@@ -38,13 +27,24 @@ namespace DUNameplateGUI
             arrayOfJigIndicatorPanels = new Panel[4] { jigIndicator0, jigIndicator1, jigIndicator2, jigIndicator3 };
 
             // UIControl's functions will not work unless it has access to several main UI elements
-            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigComboBox, statusLabel, arrayOfJigIndicatorPanels);
+            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigLabel, statusLabel, arrayOfJigIndicatorPanels);
+
+            // Initialize our HotkeyHandler
+            hotkeyHandler = new HotkeyHandler(this);
+
+            // Initialize the queue with our ListView of queued plates, so that it can change the list on screen
+            // when the queue is changed
+            //queue = new PlateQueue(queuedPlatesListView);
+            PlateQueue.SetListView(queuedPlatesListView);
+
+            // Initialize the Jig to the current setting from the settings form
+            Jig.setValues(Properties.Settings.Default.selectedJig);
 
             SerialCom.setupPort();
             SerialCom.sendSettings();
         }
 
-// USER INPUT RESPONSE FUNCTIONS ============================================
+        // USER INPUT RESPONSE FUNCTIONS ============================================
 
         private void tag1Line0Box_TextChanged(object sender, EventArgs e)
         {
@@ -99,11 +99,11 @@ namespace DUNameplateGUI
         //    Jig.setValues(jigComboBox.SelectedIndex);
         //}
 
-        // SelectedIndexChanged is a better event here, because it fires whenever we change the value through code as well
-        private void JigComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Jig.setValues(jigComboBox.SelectedIndex);
-        }
+        //// SelectedIndexChanged is a better event here, because it fires whenever we change the value through code as well
+        //private void JigComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    Jig.setValues(jigComboBox.SelectedIndex);
+        //}
 
         private void printQueueBtn_Click(object sender, EventArgs e)
         {
@@ -114,14 +114,16 @@ namespace DUNameplateGUI
             UIControl.addCurrentTagToQueue();          
         }
 
-        private void reloadBtn_Click(object sender, EventArgs e)
-        {
-            UIControl.signalReloaded();
-        }
-
         private void cancelButton_Click(object sender, EventArgs e)
         {
             UIControl.requestCancel();
+        }
+
+        // Signal reloaded when the status indicator is clicked
+        // It won't cause any issues by signalling reloaded while the printer does not need reloading
+        private void statusLabel_Click(object sender, EventArgs e)
+        {
+            UIControl.signalReloaded();
         }
     }
 }

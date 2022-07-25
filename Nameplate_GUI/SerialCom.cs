@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using System.IO.Ports;
+using System;
 
 public static class SerialCom
 {
@@ -15,8 +16,8 @@ public static class SerialCom
         {
             serialPort1.BaudRate = 115200;
             serialPort1.PortName = "COM9";
-            serialPort1.ReadTimeout = -1;
-            serialPort1.WriteTimeout = -1;
+            serialPort1.ReadTimeout = 5000;
+            serialPort1.WriteTimeout = 5000;
             serialPort1.Open();
         }
     }

@@ -121,11 +121,13 @@ namespace DUNameplateGUI
                 // while no printing was happening
                 cancellationRequested = false;
 
+                // TODO: Replace this code below with something to disable the settings form
+
                 // Disable the JigComboBox to prevent Jig changes while printing
                 // Maybe this is unwanted behavior and we see if it can be changed
                 // mid-print safely?
                 //JigComboBox.Enabled = false;
-                UIControl.disableJigComboBox();
+                //UIControl.disableJigComboBox();
 
                 Task.Run(() =>
                 {
@@ -168,8 +170,10 @@ namespace DUNameplateGUI
                         Jig.Position = 0;
                     }
 
-                    // Re-enable the jigComboBox that was disabled at the start of printing
-                    UIControl.enableJigComboBox();
+                    // TODO: Replace the below code with something to enable the settings form
+
+                    //// Re-enable the jigComboBox that was disabled at the start of printing
+                    //UIControl.enableJigComboBox();
                 });
             }
             else

@@ -51,18 +51,19 @@ namespace DUNameplateGUI
                     case Keys.U:
                         UIControl.requestCancel();
                         break;
-                    case Keys.F:
-                        UIControl.setJig(0);
-                        break;
-                    case Keys.G:
-                        UIControl.setJig(1);
-                        break;
-                    case Keys.H:
-                        UIControl.setJig(2);
-                        break;
-                    case Keys.J:
-                        UIControl.setJig(3);
-                        break;
+                    // Changing the jig with a barcode is not a feature we need
+                    //case Keys.F:
+                    //    UIControl.setJig(0);
+                    //    break;
+                    //case Keys.G:
+                    //    UIControl.setJig(1);
+                    //    break;
+                    //case Keys.H:
+                    //    UIControl.setJig(2);
+                    //    break;
+                    //case Keys.J:
+                    //    UIControl.setJig(3);
+                    //    break;
                     case Keys.D1:
                         UIControl.setQuantity(1);
                         break;

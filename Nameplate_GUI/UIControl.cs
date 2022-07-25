@@ -27,8 +27,11 @@ namespace DUNameplateGUI
         // Needed for clearTag, addCurrentTagToQueue, and setQuantity
         private static NumericUpDown tagQuantityBox;
 
-        // Needed for disableJigComboBox
-        private static ComboBox jigComboBox;
+        //// Needed for disableJigComboBox
+        //private static ComboBox jigComboBox;
+
+        // Needed for updateJigDisplay
+        private static Label jigLabel;
 
         // Needed for changeStatusIndicator
         private static Label statusLabel;
@@ -38,11 +41,11 @@ namespace DUNameplateGUI
         private static int currentlyActivatedIndicator = 0;
 
         // These function arguments have unique names, due to C# not being happy about the use of this.duplicateName
-        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, ComboBox jigSelector, Label statusIndicator, Panel[] jigIndicatorPanels)
+        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, Label selectedJigLabel, Label statusIndicator, Panel[] jigIndicatorPanels)
         {
             arrayOfTagTextBoxes = textBoxes;
             tagQuantityBox = quantityBox;
-            jigComboBox = jigSelector;
+            jigLabel = selectedJigLabel;
             statusLabel = statusIndicator;
             arrayOfJigIndicatorPanels = jigIndicatorPanels;
 
@@ -135,29 +138,31 @@ namespace DUNameplateGUI
             MachineControl.home();
         }
 
-        public static void disableJigComboBox()
-        {
-            // This is a delegate for disabling the combo box, because if we are on another thread,
-            // we need to Invoke to get back onto it
-            Action disableJigComboBox = delegate ()
-            {
-                jigComboBox.Enabled = false;
-            };
+        // TODO: Replace with enabling and disabling settings
 
-            jigComboBox.Invoke(disableJigComboBox);
-        }
+        //public static void disableJigComboBox()
+        //{
+        //    // This is a delegate for disabling the combo box, because if we are on another thread,
+        //    // we need to Invoke to get back onto it
+        //    Action disableJigComboBox = delegate ()
+        //    {
+        //        jigComboBox.Enabled = false;
+        //    };
 
-        public static void enableJigComboBox()
-        {
-            // This is a delegate for enabling the combo box, because if we are on another thread,
-            // we need to Invoke to get back onto it
-            Action enableJigComboBox = delegate ()
-            {
-                jigComboBox.Enabled = true;
-            };
+        //    jigComboBox.Invoke(disableJigComboBox);
+        //}
 
-            jigComboBox.Invoke(enableJigComboBox);
-        }
+        //public static void enableJigComboBox()
+        //{
+        //    // This is a delegate for enabling the combo box, because if we are on another thread,
+        //    // we need to Invoke to get back onto it
+        //    Action enableJigComboBox = delegate ()
+        //    {
+        //        jigComboBox.Enabled = true;
+        //    };
+
+        //    jigComboBox.Invoke(enableJigComboBox);
+        //}
 
         public static void changeStatusIndicator(Status status)
         {
@@ -208,10 +213,39 @@ namespace DUNameplateGUI
             tagQuantityBox.Value = quantity;
         }
 
-        // Used from HotkeyHandler
-        public static void setJig(int jigNumber)
+        //// Used from HotkeyHandler
+        //public static void setJig(int jigNumber)
+        //{
+        //    jigComboBox.SelectedIndex = jigNumber;
+        //}
+
+        public static void updateJigDisplay()
         {
-            jigComboBox.SelectedIndex = jigNumber;
+            Action updateJigDisplay = delegate ()
+            {
+                String selectedJigString = "";
+
+                switch (Jig.currentlySelectedJig)
+                {
+                    case 0:
+                        selectedJigString = "1-Plate";
+                        break;
+                    case 1:
+                        selectedJigString = "2-Plate";
+                        break;
+                    case 2:
+                        selectedJigString = "4-Plate";
+                        break;
+                    case 3:
+                        selectedJigString = "8-Plate";
+                        break;
+
+                }
+
+                jigLabel.Text = selectedJigString;
+            };
+
+            jigLabel.Invoke(updateJigDisplay);
         }
     }
 }

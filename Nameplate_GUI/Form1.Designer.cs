@@ -35,8 +35,7 @@
             this.settingsBtn = new System.Windows.Forms.Button();
             this.clearTagBtn = new System.Windows.Forms.Button();
             this.quantityLabel = new System.Windows.Forms.Label();
-            this.jigComboBox = new System.Windows.Forms.ComboBox();
-            this.JigLabel = new System.Windows.Forms.Label();
+            this.labelAboveJig = new System.Windows.Forms.Label();
             this.homeButton = new System.Windows.Forms.Button();
             this.printQueueBtn = new System.Windows.Forms.Button();
             this.addToQueueBtn = new System.Windows.Forms.Button();
@@ -48,7 +47,6 @@
             this.clearQueueBtn = new System.Windows.Forms.Button();
             this.statusPanel = new System.Windows.Forms.Panel();
             this.statusLabel = new System.Windows.Forms.Label();
-            this.reloadBtn = new System.Windows.Forms.Button();
             this.jigIndicator0 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.jigIndicator1 = new System.Windows.Forms.Panel();
@@ -56,6 +54,8 @@
             this.jigIndicator3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.jigLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.statusPanel.SuspendLayout();
@@ -67,7 +67,7 @@
             // 
             this.tag1Line0Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line0Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line0Box.Location = new System.Drawing.Point(464, 156);
+            this.tag1Line0Box.Location = new System.Drawing.Point(430, 120);
             this.tag1Line0Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line0Box.Name = "tag1Line0Box";
             this.tag1Line0Box.Size = new System.Drawing.Size(346, 31);
@@ -78,7 +78,7 @@
             // 
             this.tag1Line1Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line1Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line1Box.Location = new System.Drawing.Point(484, 191);
+            this.tag1Line1Box.Location = new System.Drawing.Point(450, 155);
             this.tag1Line1Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line1Box.Name = "tag1Line1Box";
             this.tag1Line1Box.Size = new System.Drawing.Size(303, 31);
@@ -89,7 +89,7 @@
             // 
             this.tag1Line2Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line2Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line2Box.Location = new System.Drawing.Point(484, 226);
+            this.tag1Line2Box.Location = new System.Drawing.Point(450, 190);
             this.tag1Line2Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line2Box.Name = "tag1Line2Box";
             this.tag1Line2Box.Size = new System.Drawing.Size(303, 31);
@@ -100,7 +100,7 @@
             // 
             this.tag1Line3Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line3Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line3Box.Location = new System.Drawing.Point(464, 261);
+            this.tag1Line3Box.Location = new System.Drawing.Point(430, 225);
             this.tag1Line3Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line3Box.Name = "tag1Line3Box";
             this.tag1Line3Box.Size = new System.Drawing.Size(346, 31);
@@ -110,7 +110,7 @@
             // settingsBtn
             // 
             this.settingsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsBtn.Location = new System.Drawing.Point(349, 319);
+            this.settingsBtn.Location = new System.Drawing.Point(316, 268);
             this.settingsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.settingsBtn.Name = "settingsBtn";
             this.settingsBtn.Size = new System.Drawing.Size(102, 38);
@@ -123,7 +123,7 @@
             // clearTagBtn
             // 
             this.clearTagBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearTagBtn.Location = new System.Drawing.Point(561, 340);
+            this.clearTagBtn.Location = new System.Drawing.Point(557, 270);
             this.clearTagBtn.Margin = new System.Windows.Forms.Padding(2);
             this.clearTagBtn.Name = "clearTagBtn";
             this.clearTagBtn.Size = new System.Drawing.Size(77, 36);
@@ -137,45 +137,28 @@
             // 
             this.quantityLabel.AutoSize = true;
             this.quantityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityLabel.Location = new System.Drawing.Point(825, 176);
+            this.quantityLabel.Location = new System.Drawing.Point(791, 140);
             this.quantityLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(98, 25);
             this.quantityLabel.TabIndex = 8;
             this.quantityLabel.Text = "Quantity:";
             // 
-            // jigComboBox
+            // labelAboveJig
             // 
-            this.jigComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jigComboBox.FormattingEnabled = true;
-            this.jigComboBox.Items.AddRange(new object[] {
-            "1-Plate",
-            "2-Plate",
-            "4-Plate",
-            "8-Plate"});
-            this.jigComboBox.Location = new System.Drawing.Point(349, 205);
-            this.jigComboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.jigComboBox.Name = "jigComboBox";
-            this.jigComboBox.Size = new System.Drawing.Size(92, 33);
-            this.jigComboBox.TabIndex = 10;
-            this.jigComboBox.TabStop = false;
-            this.jigComboBox.SelectedIndexChanged += new System.EventHandler(this.JigComboBox_SelectedIndexChanged);
-            // 
-            // JigLabel
-            // 
-            this.JigLabel.AutoSize = true;
-            this.JigLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.JigLabel.Location = new System.Drawing.Point(372, 176);
-            this.JigLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.JigLabel.Name = "JigLabel";
-            this.JigLabel.Size = new System.Drawing.Size(46, 25);
-            this.JigLabel.TabIndex = 8;
-            this.JigLabel.Text = "Jig:";
+            this.labelAboveJig.AutoSize = true;
+            this.labelAboveJig.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAboveJig.Location = new System.Drawing.Point(338, 155);
+            this.labelAboveJig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelAboveJig.Name = "labelAboveJig";
+            this.labelAboveJig.Size = new System.Drawing.Size(46, 25);
+            this.labelAboveJig.TabIndex = 8;
+            this.labelAboveJig.Text = "Jig:";
             // 
             // homeButton
             // 
             this.homeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeButton.Location = new System.Drawing.Point(561, 300);
+            this.homeButton.Location = new System.Drawing.Point(734, 268);
             this.homeButton.Margin = new System.Windows.Forms.Padding(2);
             this.homeButton.Name = "homeButton";
             this.homeButton.Size = new System.Drawing.Size(77, 36);
@@ -188,10 +171,10 @@
             // printQueueBtn
             // 
             this.printQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printQueueBtn.Location = new System.Drawing.Point(804, 300);
+            this.printQueueBtn.Location = new System.Drawing.Point(833, 639);
             this.printQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.printQueueBtn.Name = "printQueueBtn";
-            this.printQueueBtn.Size = new System.Drawing.Size(131, 76);
+            this.printQueueBtn.Size = new System.Drawing.Size(154, 36);
             this.printQueueBtn.TabIndex = 11;
             this.printQueueBtn.TabStop = false;
             this.printQueueBtn.Text = "Print Queue";
@@ -201,7 +184,7 @@
             // addToQueueBtn
             // 
             this.addToQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToQueueBtn.Location = new System.Drawing.Point(642, 300);
+            this.addToQueueBtn.Location = new System.Drawing.Point(509, 639);
             this.addToQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addToQueueBtn.Name = "addToQueueBtn";
             this.addToQueueBtn.Size = new System.Drawing.Size(158, 36);
@@ -214,7 +197,7 @@
             // tagQuantityBox
             // 
             this.tagQuantityBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tagQuantityBox.Location = new System.Drawing.Point(839, 206);
+            this.tagQuantityBox.Location = new System.Drawing.Point(805, 170);
             this.tagQuantityBox.Name = "tagQuantityBox";
             this.tagQuantityBox.Size = new System.Drawing.Size(70, 31);
             this.tagQuantityBox.TabIndex = 13;
@@ -234,9 +217,9 @@
             this.queuedPlatesListView.FullRowSelect = true;
             this.queuedPlatesListView.GridLines = true;
             this.queuedPlatesListView.HideSelection = false;
-            this.queuedPlatesListView.Location = new System.Drawing.Point(945, 117);
+            this.queuedPlatesListView.Location = new System.Drawing.Point(134, 354);
             this.queuedPlatesListView.Name = "queuedPlatesListView";
-            this.queuedPlatesListView.Size = new System.Drawing.Size(382, 280);
+            this.queuedPlatesListView.Size = new System.Drawing.Size(1233, 280);
             this.queuedPlatesListView.TabIndex = 14;
             this.queuedPlatesListView.UseCompatibleStateImageBehavior = false;
             this.queuedPlatesListView.View = System.Windows.Forms.View.Details;
@@ -244,7 +227,7 @@
             // TagContents
             // 
             this.TagContents.Text = "Tag Contents";
-            this.TagContents.Width = 224;
+            this.TagContents.Width = 1100;
             // 
             // Quantity
             // 
@@ -255,7 +238,7 @@
             // 
             this.queueLabel.AutoSize = true;
             this.queueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.queueLabel.Location = new System.Drawing.Point(1043, 89);
+            this.queueLabel.Location = new System.Drawing.Point(140, 326);
             this.queueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.queueLabel.Name = "queueLabel";
             this.queueLabel.Size = new System.Drawing.Size(187, 25);
@@ -265,7 +248,7 @@
             // clearQueueBtn
             // 
             this.clearQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearQueueBtn.Location = new System.Drawing.Point(642, 340);
+            this.clearQueueBtn.Location = new System.Drawing.Point(671, 639);
             this.clearQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.clearQueueBtn.Name = "clearQueueBtn";
             this.clearQueueBtn.Size = new System.Drawing.Size(158, 36);
@@ -279,7 +262,7 @@
             // 
             this.statusPanel.BackColor = System.Drawing.Color.LimeGreen;
             this.statusPanel.Controls.Add(this.statusLabel);
-            this.statusPanel.Location = new System.Drawing.Point(945, 412);
+            this.statusPanel.Location = new System.Drawing.Point(926, 120);
             this.statusPanel.Name = "statusPanel";
             this.statusPanel.Size = new System.Drawing.Size(382, 199);
             this.statusPanel.TabIndex = 17;
@@ -295,19 +278,7 @@
             this.statusLabel.TabIndex = 0;
             this.statusLabel.Text = "READY";
             this.statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // reloadBtn
-            // 
-            this.reloadBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reloadBtn.Location = new System.Drawing.Point(830, 479);
-            this.reloadBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.reloadBtn.Name = "reloadBtn";
-            this.reloadBtn.Size = new System.Drawing.Size(90, 36);
-            this.reloadBtn.TabIndex = 18;
-            this.reloadBtn.TabStop = false;
-            this.reloadBtn.Text = "Reload";
-            this.reloadBtn.UseVisualStyleBackColor = true;
-            this.reloadBtn.Click += new System.EventHandler(this.reloadBtn_Click);
+            this.statusLabel.Click += new System.EventHandler(this.statusLabel_Click);
             // 
             // jigIndicator0
             // 
@@ -330,7 +301,7 @@
             this.tableLayoutPanel1.Controls.Add(this.jigIndicator1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.jigIndicator2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.jigIndicator3, 0, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(226, 117);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(193, 74);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -377,7 +348,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(173, 89);
+            this.label1.Location = new System.Drawing.Point(140, 46);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(206, 25);
@@ -387,9 +358,10 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.jigLabel);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Controls.Add(this.queueLabel);
-            this.panel1.Controls.Add(this.reloadBtn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.statusPanel);
             this.panel1.Controls.Add(this.tag1Line0Box);
@@ -405,18 +377,39 @@
             this.panel1.Controls.Add(this.tagQuantityBox);
             this.panel1.Controls.Add(this.quantityLabel);
             this.panel1.Controls.Add(this.addToQueueBtn);
-            this.panel1.Controls.Add(this.JigLabel);
+            this.panel1.Controls.Add(this.labelAboveJig);
             this.panel1.Controls.Add(this.printQueueBtn);
-            this.panel1.Controls.Add(this.jigComboBox);
             this.panel1.Location = new System.Drawing.Point(202, 170);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1500, 700);
             this.panel1.TabIndex = 26;
             // 
+            // jigLabel
+            // 
+            this.jigLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jigLabel.Location = new System.Drawing.Point(298, 180);
+            this.jigLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.jigLabel.Name = "jigLabel";
+            this.jigLabel.Size = new System.Drawing.Size(127, 25);
+            this.jigLabel.TabIndex = 28;
+            this.jigLabel.Text = "8-Plate";
+            this.jigLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1034, 92);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(156, 25);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Current Status:";
+            // 
             // cancelButton
             // 
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(553, 380);
+            this.cancelButton.Location = new System.Drawing.Point(815, 268);
             this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(93, 36);
@@ -440,6 +433,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DU Nameplate GUI";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MAIN_FORM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).EndInit();
             this.statusPanel.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -457,8 +451,7 @@
         private System.Windows.Forms.Button settingsBtn;
         private System.Windows.Forms.Button clearTagBtn;
         private System.Windows.Forms.Label quantityLabel;
-        private System.Windows.Forms.ComboBox jigComboBox;
-        private System.Windows.Forms.Label JigLabel;
+        private System.Windows.Forms.Label labelAboveJig;
         private System.Windows.Forms.Button homeButton;
         private System.Windows.Forms.Button printQueueBtn;
         private System.Windows.Forms.Button addToQueueBtn;
@@ -469,7 +462,6 @@
         private System.Windows.Forms.Label queueLabel;
         private System.Windows.Forms.Button clearQueueBtn;
         private System.Windows.Forms.Panel statusPanel;
-        private System.Windows.Forms.Button reloadBtn;
         private System.Windows.Forms.Panel jigIndicator0;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel jigIndicator1;
@@ -479,6 +471,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label jigLabel;
     }
 }
 

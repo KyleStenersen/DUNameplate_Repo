@@ -54,10 +54,18 @@ namespace DUNameplateGUI
 
         public static float YStart { get; set; }
 
+        // This is used for other classes to be able to get the currently selected jig (currently UIControl)
+        public static int currentlySelectedJig;
+
         public static void setValues(int jigNumber)
         {
             // Set Position to 0 to prevent bugs
             Position = 0;
+
+            currentlySelectedJig = jigNumber;
+
+            // Update the jig on the main form
+            UIControl.updateJigDisplay();
 
             Array.Clear(YStartLocations,0,8);
             Array.Clear(XStartLocations,0,8);

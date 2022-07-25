@@ -57,12 +57,15 @@
             this.resetDefaultsBtn = new System.Windows.Forms.Button();
             this.autoPrintQueueCheckBox = new System.Windows.Forms.CheckBox();
             this.resetJigCheckBox = new System.Windows.Forms.CheckBox();
+            this.jigComboBox = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // settingsSaveCloseBtn
             // 
-            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(34, 329);
-            this.settingsSaveCloseBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(31, 394);
+            this.settingsSaveCloseBtn.Margin = new System.Windows.Forms.Padding(2);
             this.settingsSaveCloseBtn.Name = "settingsSaveCloseBtn";
             this.settingsSaveCloseBtn.Size = new System.Drawing.Size(83, 24);
             this.settingsSaveCloseBtn.TabIndex = 0;
@@ -73,7 +76,7 @@
             // xOffsetBox
             // 
             this.xOffsetBox.Location = new System.Drawing.Point(30, 36);
-            this.xOffsetBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.xOffsetBox.Margin = new System.Windows.Forms.Padding(2);
             this.xOffsetBox.Name = "xOffsetBox";
             this.xOffsetBox.Size = new System.Drawing.Size(76, 20);
             this.xOffsetBox.TabIndex = 1;
@@ -112,7 +115,7 @@
             // yOffsetBox
             // 
             this.yOffsetBox.Location = new System.Drawing.Point(30, 84);
-            this.yOffsetBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.yOffsetBox.Margin = new System.Windows.Forms.Padding(2);
             this.yOffsetBox.Name = "yOffsetBox";
             this.yOffsetBox.Size = new System.Drawing.Size(76, 20);
             this.yOffsetBox.TabIndex = 1;
@@ -151,7 +154,7 @@
             // plateSpaceingBox
             // 
             this.plateSpaceingBox.Location = new System.Drawing.Point(30, 130);
-            this.plateSpaceingBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.plateSpaceingBox.Margin = new System.Windows.Forms.Padding(2);
             this.plateSpaceingBox.Name = "plateSpaceingBox";
             this.plateSpaceingBox.Size = new System.Drawing.Size(76, 20);
             this.plateSpaceingBox.TabIndex = 1;
@@ -190,7 +193,7 @@
             // lineSpaceingBox
             // 
             this.lineSpaceingBox.Location = new System.Drawing.Point(30, 180);
-            this.lineSpaceingBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lineSpaceingBox.Margin = new System.Windows.Forms.Padding(2);
             this.lineSpaceingBox.Name = "lineSpaceingBox";
             this.lineSpaceingBox.Size = new System.Drawing.Size(76, 20);
             this.lineSpaceingBox.TabIndex = 1;
@@ -229,7 +232,7 @@
             // charSpaceingBox
             // 
             this.charSpaceingBox.Location = new System.Drawing.Point(30, 229);
-            this.charSpaceingBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.charSpaceingBox.Margin = new System.Windows.Forms.Padding(2);
             this.charSpaceingBox.Name = "charSpaceingBox";
             this.charSpaceingBox.Size = new System.Drawing.Size(76, 20);
             this.charSpaceingBox.TabIndex = 1;
@@ -317,8 +320,8 @@
             // 
             // resetDefaultsBtn
             // 
-            this.resetDefaultsBtn.Location = new System.Drawing.Point(134, 329);
-            this.resetDefaultsBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.resetDefaultsBtn.Location = new System.Drawing.Point(131, 394);
+            this.resetDefaultsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.resetDefaultsBtn.Name = "resetDefaultsBtn";
             this.resetDefaultsBtn.Size = new System.Drawing.Size(89, 24);
             this.resetDefaultsBtn.TabIndex = 0;
@@ -329,8 +332,8 @@
             // autoPrintQueueCheckBox
             // 
             this.autoPrintQueueCheckBox.AutoSize = true;
-            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(30, 262);
-            this.autoPrintQueueCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(31, 332);
+            this.autoPrintQueueCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.autoPrintQueueCheckBox.Name = "autoPrintQueueCheckBox";
             this.autoPrintQueueCheckBox.Size = new System.Drawing.Size(133, 17);
             this.autoPrintQueueCheckBox.TabIndex = 4;
@@ -340,7 +343,7 @@
             // resetJigCheckBox
             // 
             this.resetJigCheckBox.AutoSize = true;
-            this.resetJigCheckBox.Location = new System.Drawing.Point(30, 292);
+            this.resetJigCheckBox.Location = new System.Drawing.Point(31, 362);
             this.resetJigCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.resetJigCheckBox.Name = "resetJigCheckBox";
             this.resetJigCheckBox.Size = new System.Drawing.Size(194, 17);
@@ -348,11 +351,50 @@
             this.resetJigCheckBox.Text = "RESET JIG AFTER EVERY PRINT";
             this.resetJigCheckBox.UseVisualStyleBackColor = true;
             // 
+            // jigComboBox
+            // 
+            this.jigComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jigComboBox.FormattingEnabled = true;
+            this.jigComboBox.Items.AddRange(new object[] {
+            "1-Plate",
+            "2-Plate",
+            "4-Plate",
+            "8-Plate"});
+            this.jigComboBox.Location = new System.Drawing.Point(29, 275);
+            this.jigComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.jigComboBox.Name = "jigComboBox";
+            this.jigComboBox.Size = new System.Drawing.Size(92, 21);
+            this.jigComboBox.TabIndex = 11;
+            this.jigComboBox.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(28, 260);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "JIG TYPE";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(128, 278);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Default: 1-Plate";
+            // 
             // SETTINGS_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 379);
+            this.ClientSize = new System.Drawing.Size(250, 446);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.jigComboBox);
             this.Controls.Add(this.resetJigCheckBox);
             this.Controls.Add(this.autoPrintQueueCheckBox);
             this.Controls.Add(this.label20);
@@ -382,7 +424,7 @@
             this.Controls.Add(this.xOffsetBox);
             this.Controls.Add(this.resetDefaultsBtn);
             this.Controls.Add(this.settingsSaveCloseBtn);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SETTINGS_FORM";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
@@ -424,5 +466,8 @@
         private System.Windows.Forms.Button resetDefaultsBtn;
         private System.Windows.Forms.CheckBox autoPrintQueueCheckBox;
         private System.Windows.Forms.CheckBox resetJigCheckBox;
+        private System.Windows.Forms.ComboBox jigComboBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
     }
 }

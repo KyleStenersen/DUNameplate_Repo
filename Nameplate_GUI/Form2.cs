@@ -51,6 +51,8 @@ namespace DUNameplateGUI
             autoPrintQueueCheckBox.Checked = Properties.Settings.Default.autoPrintQueue;
 
             resetJigCheckBox.Checked = Properties.Settings.Default.resetJig;
+
+            jigComboBox.SelectedIndex = Properties.Settings.Default.selectedJig;
         }
 
  //PRIVATE USER INPUT RESPONSE FUNCTIONS ================================
@@ -134,6 +136,12 @@ namespace DUNameplateGUI
             // Save the resetJig checkbox into settings
             Properties.Settings.Default.resetJig = resetJigCheckBox.Checked;
 
+            // Save the selected jig index into the settings
+            Properties.Settings.Default.selectedJig = jigComboBox.SelectedIndex;
+
+            // Set the global Jig class's values to the new jig
+            Jig.setValues(jigComboBox.SelectedIndex);
+
             Properties.Settings.Default.Save();
             SerialCom.sendSettings();
             this.Close();
@@ -161,6 +169,12 @@ namespace DUNameplateGUI
 
             Properties.Settings.Default.resetJig = false;
             resetJigCheckBox.Checked = false;
+
+            Properties.Settings.Default.selectedJig = 0;
+            jigComboBox.SelectedIndex = 0;
+
+            // Set the global Jig class's values to the new jig
+            Jig.setValues(jigComboBox.SelectedIndex);
 
             Properties.Settings.Default.Save();
             SerialCom.sendSettings();
