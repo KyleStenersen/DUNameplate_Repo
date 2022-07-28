@@ -68,31 +68,34 @@ namespace DUNameplateGUI
                     //case Keys.J:
                     //    UIControl.setJig(3);
                     //    break;
+
+                    // These are set to weird arbitrary keys due to not being able to
+                    // create barcodes that do Ctrl + all of the numbers
                     case Keys.D1:
                         UIControl.setQuantity(1);
                         break;
-                    case Keys.D2:
+                    case Keys.G:
                         UIControl.setQuantity(2);
                         break;
-                    case Keys.D3:
+                    case Keys.D2:
                         UIControl.setQuantity(3);
                         break;
-                    case Keys.D4:
+                    case Keys.J:
                         UIControl.setQuantity(4);
                         break;
-                    case Keys.D5:
+                    case Keys.K:
                         UIControl.setQuantity(5);
                         break;
-                    case Keys.D6:
+                    case Keys.L:
                         UIControl.setQuantity(6);
                         break;
-                    case Keys.D7:
+                    case Keys.B:
                         UIControl.setQuantity(7);
                         break;
-                    case Keys.D8:
+                    case Keys.N:
                         UIControl.setQuantity(8);
                         break;
-                    case Keys.D9:
+                    case Keys.D6:
                         UIControl.setQuantity(9);
                         break;
 
