@@ -45,8 +45,6 @@ Plates::Plates(){}
 
 void Plates::printOne(char* plateText)    //Primary function to increment through characters of a plate/tag and stamp/move for each one
 {
-  xyHome();
-
   char copyString[strlen(plateText)+1];   
   strcpy(copyString, plateText);
   

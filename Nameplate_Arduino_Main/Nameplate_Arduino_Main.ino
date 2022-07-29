@@ -53,9 +53,9 @@ void setup()
   pinMode(4, INPUT);
   // E-STOP interrupt
   pinMode(3, INPUT_PULLUP);
- attachInterrupt(3,stall,RISING);
  // attachInterrupt(10,stall,RISING);
  // attachInterrupt(4,stall,RISING);
+ attachInterrupt(3,stall,FALLING);
 }
 // ------------------
 
@@ -82,4 +82,5 @@ void stall(){
   Serial.println(F("Killing"));
   plates.killAllMotors();
   serialOps.emptySerial();
+  Serial.println("z2");
 }
