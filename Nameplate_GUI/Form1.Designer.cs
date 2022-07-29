@@ -123,7 +123,7 @@
             // clearTagBtn
             // 
             this.clearTagBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearTagBtn.Location = new System.Drawing.Point(557, 270);
+            this.clearTagBtn.Location = new System.Drawing.Point(590, 268);
             this.clearTagBtn.Margin = new System.Windows.Forms.Padding(2);
             this.clearTagBtn.Name = "clearTagBtn";
             this.clearTagBtn.Size = new System.Drawing.Size(77, 36);
@@ -158,13 +158,13 @@
             // homeButton
             // 
             this.homeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeButton.Location = new System.Drawing.Point(734, 268);
+            this.homeButton.Location = new System.Drawing.Point(671, 268);
             this.homeButton.Margin = new System.Windows.Forms.Padding(2);
             this.homeButton.Name = "homeButton";
-            this.homeButton.Size = new System.Drawing.Size(77, 36);
+            this.homeButton.Size = new System.Drawing.Size(140, 36);
             this.homeButton.TabIndex = 7;
             this.homeButton.TabStop = false;
-            this.homeButton.Text = "Home";
+            this.homeButton.Text = "Home/Reset";
             this.homeButton.UseVisualStyleBackColor = true;
             this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
             // 

@@ -51,8 +51,11 @@ void setup()
   pinMode(10, INPUT);
   // Set Y-Motor DIAG pin to INPUT
   pinMode(4, INPUT);
+  // E-STOP interrupt
+  pinMode(3, INPUT_PULLUP);
+ attachInterrupt(3,stall,RISING);
  // attachInterrupt(10,stall,RISING);
- // attachInterrupt(21,stall,RISING);
+ // attachInterrupt(4,stall,RISING);
 }
 // ------------------
 

@@ -140,6 +140,7 @@ namespace DUNameplateGUI
         public static void home()
         {
             MachineControl.home();
+            Jig.Position = 0;
         }
 
         // TODO: Replace with enabling and disabling settings
@@ -279,6 +280,18 @@ namespace DUNameplateGUI
             };
 
             jigLabel.Invoke(updateJigDisplay);
+        }
+
+        // This method is called from HotkeyHandler whenever a hotkey that needs to
+        // focus the first text box is pressed.
+        public static void focusFirstTextBox()
+        {
+            Action focusFirstTextBox = delegate ()
+            {
+                arrayOfTagTextBoxes[0].Focus();
+            };
+
+            arrayOfTagTextBoxes[0].Invoke(focusFirstTextBox);
         }
     }
 }

@@ -7,6 +7,7 @@ public static class SerialCom
     private static SerialPort serialPort1 = new SerialPort();
     //public delegate void serialReciever(string stringIn);
     private static bool plateIsDone = false;
+    private static bool eSTOP = false;
 
 // PUBLIC FUNCTIONS ==============================================
 
@@ -59,9 +60,6 @@ public static class SerialCom
     private static void checkDataRecieved()
     {
         string stringIn = serialPort1.ReadLine();
-        // Not sure if I can comment this out, needs testing on real hardware
-        //var serialInput = new serialReciever(respondInput);
-        //serialInput(stringIn); 
         respondInput(stringIn);
     }
 
@@ -75,6 +73,7 @@ public static class SerialCom
             case 'z':
                 {
                     if (secondChar == '1') plateIsDone = true;
+                    if (secondChar == '2') eSTOP = true;
                     break;
                 }
         }
