@@ -48,9 +48,10 @@ namespace DUNameplateGUI
 
         // Needed for disableSomeUIWhilePrinting and reenableSomeUIAfterPrinting
         private static Button homeButton;
+        private static Button settingsButton;
 
         // These function arguments have unique names, due to C# not being happy about the use of this.duplicateName
-        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, Label selectedJigLabel, Label statusIndicator, Panel[] jigIndicatorPanels, Button homeBtn)
+        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, Label selectedJigLabel, Label statusIndicator, Panel[] jigIndicatorPanels, Button homeBtn, Button settingsBtn)
         {
             arrayOfTagTextBoxes = textBoxes;
             tagQuantityBox = quantityBox;
@@ -58,6 +59,7 @@ namespace DUNameplateGUI
             statusLabel = statusIndicator;
             arrayOfJigIndicatorPanels = jigIndicatorPanels;
             homeButton = homeBtn;
+            settingsButton = settingsBtn;
 
             // Subscribe jigPositionChanged to the event from the Jig
             Jig.PositionChanged += jigPositionChanged;
@@ -180,6 +182,7 @@ namespace DUNameplateGUI
             {
                 //jigComboBox.Enabled = false;
                 homeButton.Enabled = false;
+                settingsButton.Enabled = false;
             };
                 
             homeButton.Invoke(disableUI);
@@ -194,6 +197,7 @@ namespace DUNameplateGUI
             {
                 //jigComboBox.Enabled = true;
                 homeButton.Enabled = true;
+                settingsButton.Enabled = true;
             };
 
             // It doesn't matter which UI element we invoke here, invoking any element will get us on the main thread

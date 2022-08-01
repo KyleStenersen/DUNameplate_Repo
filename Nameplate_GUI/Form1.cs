@@ -27,7 +27,7 @@ namespace DUNameplateGUI
             arrayOfJigIndicatorPanels = new Panel[4] { jigIndicator0, jigIndicator1, jigIndicator2, jigIndicator3 };
 
             // UIControl's functions will not work unless it has access to several main UI elements
-            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigLabel, statusLabel, arrayOfJigIndicatorPanels, homeButton);
+            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigLabel, statusLabel, arrayOfJigIndicatorPanels, homeButton, settingsBtn);
 
             // Initialize our HotkeyHandler
             hotkeyHandler = new HotkeyHandler(this);
