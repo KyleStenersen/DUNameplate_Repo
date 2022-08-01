@@ -57,6 +57,7 @@
             this.jigLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.addToTopOfQueueBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.statusPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -171,7 +172,7 @@
             // printQueueBtn
             // 
             this.printQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printQueueBtn.Location = new System.Drawing.Point(833, 639);
+            this.printQueueBtn.Location = new System.Drawing.Point(959, 639);
             this.printQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.printQueueBtn.Name = "printQueueBtn";
             this.printQueueBtn.Size = new System.Drawing.Size(154, 36);
@@ -184,7 +185,7 @@
             // addToQueueBtn
             // 
             this.addToQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToQueueBtn.Location = new System.Drawing.Point(509, 639);
+            this.addToQueueBtn.Location = new System.Drawing.Point(405, 639);
             this.addToQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addToQueueBtn.Name = "addToQueueBtn";
             this.addToQueueBtn.Size = new System.Drawing.Size(158, 36);
@@ -248,7 +249,7 @@
             // clearQueueBtn
             // 
             this.clearQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearQueueBtn.Location = new System.Drawing.Point(671, 639);
+            this.clearQueueBtn.Location = new System.Drawing.Point(797, 639);
             this.clearQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.clearQueueBtn.Name = "clearQueueBtn";
             this.clearQueueBtn.Size = new System.Drawing.Size(158, 36);
@@ -358,6 +359,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.addToTopOfQueueBtn);
             this.panel1.Controls.Add(this.jigLabel);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cancelButton);
@@ -419,6 +421,19 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // addToTopOfQueueBtn
+            // 
+            this.addToTopOfQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addToTopOfQueueBtn.Location = new System.Drawing.Point(567, 639);
+            this.addToTopOfQueueBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.addToTopOfQueueBtn.Name = "addToTopOfQueueBtn";
+            this.addToTopOfQueueBtn.Size = new System.Drawing.Size(226, 36);
+            this.addToTopOfQueueBtn.TabIndex = 29;
+            this.addToTopOfQueueBtn.TabStop = false;
+            this.addToTopOfQueueBtn.Text = "Add to Top of Queue";
+            this.addToTopOfQueueBtn.UseVisualStyleBackColor = true;
+            this.addToTopOfQueueBtn.Click += new System.EventHandler(this.addToTopOfQueueBtn_Click);
+            // 
             // MAIN_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -473,6 +488,7 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label jigLabel;
+        private System.Windows.Forms.Button addToTopOfQueueBtn;
     }
 }
 

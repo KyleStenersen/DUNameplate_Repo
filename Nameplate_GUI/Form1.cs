@@ -111,7 +111,7 @@ namespace DUNameplateGUI
         }
         private void addToQueueBtn_Click(object sender, EventArgs e)
         {
-            UIControl.addCurrentTagToQueue();          
+            UIControl.addCurrentTagToQueue(UIControl.QueuePosition.BottomOfQueue);          
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -124,6 +124,11 @@ namespace DUNameplateGUI
         private void statusLabel_Click(object sender, EventArgs e)
         {
             UIControl.signalReloaded();
+        }
+
+        private void addToTopOfQueueBtn_Click(object sender, EventArgs e)
+        {
+            UIControl.addCurrentTagToQueue(UIControl.QueuePosition.TopOfQueue);
         }
     }
 }

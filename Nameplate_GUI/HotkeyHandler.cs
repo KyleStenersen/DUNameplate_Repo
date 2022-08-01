@@ -37,7 +37,7 @@ namespace DUNameplateGUI
                         afterHotkey(args);
                         break;
                     case Keys.W:
-                        UIControl.addCurrentTagToQueue();
+                        UIControl.addCurrentTagToQueue(UIControl.QueuePosition.BottomOfQueue);
                         afterHotkey(args);
                         break;
                     case Keys.E:

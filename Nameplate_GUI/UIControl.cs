@@ -22,6 +22,12 @@ namespace DUNameplateGUI
             ReloadNeeded
         }
 
+        public enum QueuePosition
+        {
+            BottomOfQueue,
+            TopOfQueue
+        }
+
         private static TextBox[] arrayOfTagTextBoxes;
 
         // Needed for clearTag, addCurrentTagToQueue, and setQuantity
@@ -109,7 +115,7 @@ namespace DUNameplateGUI
             MachineControl.startPrintingTaskIfNotPrinting();
         }
 
-        public static void addCurrentTagToQueue()
+        public static void addCurrentTagToQueue(QueuePosition queuePosition)
         {
             int currentTagQuantity = (int)tagQuantityBox.Value;
 
@@ -118,7 +124,15 @@ namespace DUNameplateGUI
             {
                 Nameplate newPlate = Nameplate.FromTextBoxes(arrayOfTagTextBoxes, currentTagQuantity);
 
-                PlateQueue.Enqueue(newPlate);
+                switch (queuePosition)
+                {
+                    case QueuePosition.TopOfQueue:
+                        PlateQueue.EnqueueOnTop(newPlate);
+                        break;
+                    case QueuePosition.BottomOfQueue:
+                        PlateQueue.Enqueue(newPlate);
+                        break;
+                }
 
                 // Clear out the tag text boxes, reset quantity
                 clearTag();

@@ -49,6 +49,22 @@ namespace DUNameplateGUI
             UpdateListView();
         }
 
+        // This function adds the plate on top of our QueuedPlates list, but it puts it behind the topmost
+        // one if it exists, to prevent any issues if currently printing that plate.
+        public static void EnqueueOnTop(Nameplate plateToAdd)
+        {
+            if (Count != 0)
+            {
+                QueuedPlates.Insert(1, plateToAdd);
+            } 
+            else
+            {
+                QueuedPlates.Insert(0, plateToAdd);
+            }
+
+            UpdateListView();
+        }
+
         // This function gets the top plate from the queue, but does not remove it
         // It is the only way that the MachineControl class is getting Nameplates
         public static Nameplate Peek()

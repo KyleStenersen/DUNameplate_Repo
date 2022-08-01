@@ -52,61 +52,116 @@ namespace DUNameplateGUI
             SerialCom.sendString(tagText);
         }
 
-        private static void printMultipleOfOneTag(Nameplate plateToPrint)
+        //private static void printMultipleOfOneTag(Nameplate plateToPrint)
+        //{
+        //    int currentTagQuantity = plateToPrint.Quantity;
+
+        //    for (int i = 0; i < currentTagQuantity; i++)
+        //    {
+        //        // If cancellationRequested is true, throw an OperationCancelled exception to stop the printing here
+        //        // This exception will be caught by the code in startPrintingTaskIfNotPrinting
+        //        if (cancellationRequested == true)
+        //        {
+        //            cancellationRequested = false;
+        //            throw new OperationCanceledException();
+        //        }
+
+        //        // serialComF1.clearInputBuffer();
+        //        // Was doing before and after but only because
+        //        // of a bunch of messy serial output in arduino
+
+        //        printTag(plateToPrint);
+
+        //        //Jig.Position++;
+
+        //        waitPlateDone();
+
+        //        PlateQueue.DecrementTopPlateQuantity();
+
+        //        //if (Jig.Position == Jig.Capacity)
+        //        if (Jig.Position + 1 == Jig.Capacity)
+        //        {
+        //            home();
+
+        //            // If the tag is not the final tag being printed, ask the user to reload
+        //            if (i != currentTagQuantity - 1 || PlateQueue.Count != 0)
+        //            {
+        //                // Set the status to ReloadNeeded
+        //                UIControl.changeStatusIndicator(UIControl.Status.ReloadNeeded);
+
+        //                //MessageBox.Show("Please reload, press OK when done");
+
+        //                // Wait/Block this thread until the reloadedEvent gets set from someone
+        //                // pressing the reload button on the GUI, or by scanning a barcode with
+        //                // the right key combination
+        //                // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
+        //                reloadedEvent.WaitOne();
+
+        //                // And now we're printing again, so set it back
+        //                UIControl.changeStatusIndicator(UIControl.Status.Printing);
+        //            }
+
+        //            Jig.Position = 0;
+        //        } 
+        //        else
+        //        {
+        //            Jig.Position++;
+        //        }
+        //    }
+        //}
+
+        private static void printOneTagFromQueue()
         {
-            int currentTagQuantity = plateToPrint.Quantity;
-
-            for (int i = 0; i < currentTagQuantity; i++)
+            // If cancellationRequested is true, throw an OperationCancelled exception to stop the printing here
+            // This exception will be caught by the code in startPrintingTaskIfNotPrinting
+            if (cancellationRequested == true)
             {
-                // If cancellationRequested is true, throw an OperationCancelled exception to stop the printing here
-                // This exception will be caught by the code in startPrintingTaskIfNotPrinting
-                if (cancellationRequested == true)
+                cancellationRequested = false;
+                throw new OperationCanceledException();
+            }
+
+            // Grab a copy of the nameplate on the top of the queue, without removing it
+            Nameplate currentPlate = PlateQueue.Peek();
+
+            // Tell the machine to print that nameplate out
+            printTag(currentPlate);
+
+            // Block right here until the plate is done printing
+            waitPlateDone();
+
+            // Decrement the quantity of the plate on top of the queue, which should be the one we just printed
+            // Maybe this should be changed to decrement the quantity of the plate we just printed
+            // by finding that plate?
+            PlateQueue.DecrementTopPlateQuantity();
+
+            // If there is no more room in the jig, home, and then tell the user to reload the machine
+            if (Jig.Position + 1 == Jig.Capacity)
+            {
+                home();
+
+                // If the tag is not the final tag being printed, ask the user to reload
+                if (PlateQueue.Count != 0)
                 {
-                    cancellationRequested = false;
-                    throw new OperationCanceledException();
+                    // Set the status to ReloadNeeded
+                    UIControl.changeStatusIndicator(UIControl.Status.ReloadNeeded);
+
+                    //MessageBox.Show("Please reload, press OK when done");
+
+                    // Wait/Block this thread until the reloadedEvent gets set from someone
+                    // pressing the reload button on the GUI, or by scanning a barcode with
+                    // the right key combination
+                    // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
+                    reloadedEvent.WaitOne();
+
+                    // And now we're printing again, so set it back
+                    UIControl.changeStatusIndicator(UIControl.Status.Printing);
                 }
 
-                // serialComF1.clearInputBuffer();
-                // Was doing before and after but only because
-                // of a bunch of messy serial output in arduino
-
-                printTag(plateToPrint);
-
-                //Jig.Position++;
-
-                waitPlateDone();
-
-                PlateQueue.DecrementTopPlateQuantity();
-
-                //if (Jig.Position == Jig.Capacity)
-                if (Jig.Position + 1 == Jig.Capacity)
-                {
-                    home();
-
-                    // If the tag is not the final tag being printed, ask the user to reload
-                    if (i != currentTagQuantity - 1 || PlateQueue.Count != 0)
-                    {
-                        // Set the status to ReloadNeeded
-                        UIControl.changeStatusIndicator(UIControl.Status.ReloadNeeded);
-
-                        //MessageBox.Show("Please reload, press OK when done");
-
-                        // Wait/Block this thread until the reloadedEvent gets set from someone
-                        // pressing the reload button on the GUI, or by scanning a barcode with
-                        // the right key combination
-                        // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
-                        reloadedEvent.WaitOne();
-
-                        // And now we're printing again, so set it back
-                        UIControl.changeStatusIndicator(UIControl.Status.Printing);
-                    }
-
-                    Jig.Position = 0;
-                } 
-                else
-                {
-                    Jig.Position++;
-                }
+                Jig.Position = 0;
+            }
+            else
+            {
+                Jig.Position++;
             }
         }
 
@@ -136,21 +191,33 @@ namespace DUNameplateGUI
                     // Go through each Nameplate in the queue and print them
                     while (PlateQueue.Count != 0)
                     {
-                        // We peek the nameplate at the top of the queue, because we don't want to remove it from
-                        // the UI and confuse the user if the plate had a large quantity
-                        // The nameplate will be removed from the queue after the printMultipleOfOneTag
-                        // function completes.
-                        Nameplate currentPlate = PlateQueue.Peek();
+                        //// We peek the nameplate at the top of the queue, because we don't want to remove it from
+                        //// the UI and confuse the user if the plate had a large quantity
+                        //// The nameplate will be removed from the queue after the printMultipleOfOneTag
+                        //// function completes.
+                        //Nameplate currentPlate = PlateQueue.Peek();
 
-                        // printMultipleOfOneTag will throw an OperationCancelledException if cancellationRequested is true
+                        //// printMultipleOfOneTag will throw an OperationCancelledException if cancellationRequested is true
+                        //// This try-catch block will catch that exception, and stop this printing task
+                        //try
+                        //{
+                        //    printMultipleOfOneTag(currentPlate);
+                        //} 
+                        //catch (OperationCanceledException)
+                        //{
+                        //    Console.WriteLine("Catching OperationCanceledException from printMultipleOfOneTag, stopping printing now");
+                        //    break; // break out of this while loop, which will jump straight to the code at the end of printing
+                        //}
+
+                        // printOneTagFromQueue will throw an OperationCancelledException if cancellationRequested is true
                         // This try-catch block will catch that exception, and stop this printing task
                         try
                         {
-                            printMultipleOfOneTag(currentPlate);
-                        } 
+                            printOneTagFromQueue();
+                        }
                         catch (OperationCanceledException)
                         {
-                            Console.WriteLine("Catching OperationCanceledException from printMultipleOfOneTag, stopping printing now");
+                            Console.WriteLine("Catching OperationCanceledException from printOneTagFromQueue, stopping printing now");
                             break; // break out of this while loop, which will jump straight to the code at the end of printing
                         }
                     }
