@@ -9,6 +9,8 @@ namespace DUNameplateGUI
     {
         Form MainForm;
 
+        private Boolean hotkeyPressed = false;
+
         public HotkeyHandler(Form mainForm)
         {
             MainForm = mainForm;
@@ -37,12 +39,10 @@ namespace DUNameplateGUI
                     case Keys.W:
                         UIControl.addCurrentTagToQueue();
                         afterHotkey(args);
-                        focusFirstTextBoxAfterDelay();
                         break;
                     case Keys.E:
                         UIControl.clearTag();
                         afterHotkey(args);
-                        focusFirstTextBoxAfterDelay();
                         break;
                     case Keys.R:
                         UIControl.clearQueue();
@@ -64,20 +64,6 @@ namespace DUNameplateGUI
                         UIControl.requestCancel();
                         afterHotkey(args);
                         break;
-                    // Changing the jig with a barcode is not a feature we need
-                    //case Keys.F:
-                    //    UIControl.setJig(0);
-                    //    break;
-                    //case Keys.G:
-                    //    UIControl.setJig(1);
-                    //    break;
-                    //case Keys.H:
-                    //    UIControl.setJig(2);
-                    //    break;
-                    //case Keys.J:
-                    //    UIControl.setJig(3);
-                    //    break;
-
                     // These are set to weird arbitrary keys due to not being able to
                     // create barcodes that do Ctrl + all of the numbers
                     case Keys.D1:
@@ -116,26 +102,43 @@ namespace DUNameplateGUI
                         UIControl.setQuantity(9);
                         afterHotkey(args);
                         break;
+                    // Ctrl+Minus is set as the prefix on the barcode scanner, so this code runs
+                    // before the rest of the keypresses from the scanner
+                    case Keys.OemMinus:
+                        hotkeyPressed = false;
+                        break;
+                    // Ctrl+] is set as the suffix on the barcode scanner, so this code runs after
+                    // the barcode scanner has sent all of its keypresses
+                    case Keys.OemCloseBrackets:
+                        // If no hotkeys were pressed, then this barcode must just be text. So we want to
+                        // tab to the next textbox.
+                        if (!hotkeyPressed)
+                        {
+                            tabAfterDelay();
+                        }
+                        break;
+
                 }
             }
         }
 
         // This function will be run after every recognized hotkey is pressed, to
         // suppress the noise that happens when any Ctrl+Key goes unhandled.
+        // It also doubles as a function to set hotkeyPressed to true.
         private void afterHotkey(KeyEventArgs args)
         {
             args.SuppressKeyPress = true;
+            hotkeyPressed = true;
         }
 
-        // This function will be run after each hotkey that needs to focus the first text box
-        // after the hotkey is pressed. This will delay for a small amount of time, and then focus the
-        // first text box, to prevent the barcode scanner's tabs from putting us into the second text box.
-        private void focusFirstTextBoxAfterDelay()
+        // For some odd reason, we cannot tab immediately after the barcode scanner is done sending inputs. This is a
+        // workaround to tab after a small delay, to prevent that issue.
+        private void tabAfterDelay()
         {
             Task.Run(() =>
             {
-                Thread.Sleep(30);
-                UIControl.focusFirstTextBox();
+                Thread.Sleep(5);
+                SendKeys.SendWait("{TAB}");
             });
         }
     }
