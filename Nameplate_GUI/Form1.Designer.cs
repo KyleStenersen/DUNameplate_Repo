@@ -48,19 +48,23 @@
             this.statusPanel = new System.Windows.Forms.Panel();
             this.statusLabel = new System.Windows.Forms.Label();
             this.jigIndicator0 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.jigIndicatorTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.jigIndicator7 = new System.Windows.Forms.Panel();
+            this.jigIndicator6 = new System.Windows.Forms.Panel();
+            this.jigIndicator5 = new System.Windows.Forms.Panel();
+            this.jigIndicator4 = new System.Windows.Forms.Panel();
             this.jigIndicator1 = new System.Windows.Forms.Panel();
             this.jigIndicator2 = new System.Windows.Forms.Panel();
             this.jigIndicator3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.jigLabel = new System.Windows.Forms.Label();
+            this.addToTopOfQueueBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.addToTopOfQueueBtn = new System.Windows.Forms.Button();
+            this.jigLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.statusPanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.jigIndicatorTableLayoutPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -111,7 +115,7 @@
             // settingsBtn
             // 
             this.settingsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsBtn.Location = new System.Drawing.Point(316, 268);
+            this.settingsBtn.Location = new System.Drawing.Point(339, 281);
             this.settingsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.settingsBtn.Name = "settingsBtn";
             this.settingsBtn.Size = new System.Drawing.Size(102, 38);
@@ -149,7 +153,7 @@
             // 
             this.labelAboveJig.AutoSize = true;
             this.labelAboveJig.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAboveJig.Location = new System.Drawing.Point(338, 155);
+            this.labelAboveJig.Location = new System.Drawing.Point(363, 155);
             this.labelAboveJig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAboveJig.Name = "labelAboveJig";
             this.labelAboveJig.Size = new System.Drawing.Size(46, 25);
@@ -222,6 +226,7 @@
             this.queuedPlatesListView.Name = "queuedPlatesListView";
             this.queuedPlatesListView.Size = new System.Drawing.Size(1233, 280);
             this.queuedPlatesListView.TabIndex = 14;
+            this.queuedPlatesListView.TabStop = false;
             this.queuedPlatesListView.UseCompatibleStateImageBehavior = false;
             this.queuedPlatesListView.View = System.Windows.Forms.View.Details;
             // 
@@ -292,25 +297,79 @@
             this.jigIndicator0.Name = "jigIndicator0";
             this.jigIndicator0.Size = new System.Drawing.Size(92, 55);
             this.jigIndicator0.TabIndex = 20;
+            this.jigIndicator0.Click += new System.EventHandler(this.jigIndicator0_Click);
             // 
-            // tableLayoutPanel1
+            // jigIndicatorTableLayoutPanel
             // 
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.jigIndicator0, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.jigIndicator1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.jigIndicator2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.jigIndicator3, 0, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(193, 74);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(100, 250);
-            this.tableLayoutPanel1.TabIndex = 24;
+            this.jigIndicatorTableLayoutPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.jigIndicatorTableLayoutPanel.ColumnCount = 2;
+            this.jigIndicatorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.jigIndicatorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator7, 1, 3);
+            this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator6, 1, 2);
+            this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator5, 1, 1);
+            this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator4, 1, 0);
+            this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator0, 0, 0);
+            this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator1, 0, 1);
+            this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator2, 0, 2);
+            this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator3, 0, 3);
+            this.jigIndicatorTableLayoutPanel.Location = new System.Drawing.Point(126, 74);
+            this.jigIndicatorTableLayoutPanel.Name = "jigIndicatorTableLayoutPanel";
+            this.jigIndicatorTableLayoutPanel.RowCount = 4;
+            this.jigIndicatorTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.jigIndicatorTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.jigIndicatorTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.jigIndicatorTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.jigIndicatorTableLayoutPanel.Size = new System.Drawing.Size(200, 250);
+            this.jigIndicatorTableLayoutPanel.TabIndex = 24;
+            // 
+            // jigIndicator7
+            // 
+            this.jigIndicator7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.jigIndicator7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.jigIndicator7.Location = new System.Drawing.Point(103, 190);
+            this.jigIndicator7.Name = "jigIndicator7";
+            this.jigIndicator7.Size = new System.Drawing.Size(93, 56);
+            this.jigIndicator7.TabIndex = 25;
+            this.jigIndicator7.Click += new System.EventHandler(this.jigIndicator7_Click);
+            // 
+            // jigIndicator6
+            // 
+            this.jigIndicator6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.jigIndicator6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.jigIndicator6.Location = new System.Drawing.Point(103, 128);
+            this.jigIndicator6.Name = "jigIndicator6";
+            this.jigIndicator6.Size = new System.Drawing.Size(93, 55);
+            this.jigIndicator6.TabIndex = 24;
+            this.jigIndicator6.Click += new System.EventHandler(this.jigIndicator6_Click);
+            // 
+            // jigIndicator5
+            // 
+            this.jigIndicator5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.jigIndicator5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.jigIndicator5.Location = new System.Drawing.Point(103, 66);
+            this.jigIndicator5.Name = "jigIndicator5";
+            this.jigIndicator5.Size = new System.Drawing.Size(93, 55);
+            this.jigIndicator5.TabIndex = 23;
+            this.jigIndicator5.Click += new System.EventHandler(this.jigIndicator5_Click);
+            // 
+            // jigIndicator4
+            // 
+            this.jigIndicator4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.jigIndicator4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.jigIndicator4.Location = new System.Drawing.Point(103, 4);
+            this.jigIndicator4.Name = "jigIndicator4";
+            this.jigIndicator4.Size = new System.Drawing.Size(93, 55);
+            this.jigIndicator4.TabIndex = 22;
+            this.jigIndicator4.Click += new System.EventHandler(this.jigIndicator4_Click);
             // 
             // jigIndicator1
             // 
@@ -322,6 +381,7 @@
             this.jigIndicator1.Name = "jigIndicator1";
             this.jigIndicator1.Size = new System.Drawing.Size(92, 55);
             this.jigIndicator1.TabIndex = 21;
+            this.jigIndicator1.Click += new System.EventHandler(this.jigIndicator1_Click);
             // 
             // jigIndicator2
             // 
@@ -333,6 +393,7 @@
             this.jigIndicator2.Name = "jigIndicator2";
             this.jigIndicator2.Size = new System.Drawing.Size(92, 55);
             this.jigIndicator2.TabIndex = 22;
+            this.jigIndicator2.Click += new System.EventHandler(this.jigIndicator2_Click);
             // 
             // jigIndicator3
             // 
@@ -344,12 +405,13 @@
             this.jigIndicator3.Name = "jigIndicator3";
             this.jigIndicator3.Size = new System.Drawing.Size(92, 56);
             this.jigIndicator3.TabIndex = 23;
+            this.jigIndicator3.Click += new System.EventHandler(this.jigIndicator3_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(140, 46);
+            this.label1.Location = new System.Drawing.Point(121, 46);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(206, 25);
@@ -360,14 +422,13 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.Controls.Add(this.addToTopOfQueueBtn);
-            this.panel1.Controls.Add(this.jigLabel);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Controls.Add(this.queueLabel);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.statusPanel);
             this.panel1.Controls.Add(this.tag1Line0Box);
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Controls.Add(this.jigIndicatorTableLayoutPanel);
             this.panel1.Controls.Add(this.tag1Line1Box);
             this.panel1.Controls.Add(this.tag1Line2Box);
             this.panel1.Controls.Add(this.tag1Line3Box);
@@ -381,21 +442,24 @@
             this.panel1.Controls.Add(this.addToQueueBtn);
             this.panel1.Controls.Add(this.labelAboveJig);
             this.panel1.Controls.Add(this.printQueueBtn);
+            this.panel1.Controls.Add(this.jigLabel);
             this.panel1.Location = new System.Drawing.Point(202, 170);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1500, 700);
             this.panel1.TabIndex = 26;
             // 
-            // jigLabel
+            // addToTopOfQueueBtn
             // 
-            this.jigLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jigLabel.Location = new System.Drawing.Point(298, 180);
-            this.jigLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.jigLabel.Name = "jigLabel";
-            this.jigLabel.Size = new System.Drawing.Size(127, 25);
-            this.jigLabel.TabIndex = 28;
-            this.jigLabel.Text = "8-Plate";
-            this.jigLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.addToTopOfQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addToTopOfQueueBtn.Location = new System.Drawing.Point(567, 639);
+            this.addToTopOfQueueBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.addToTopOfQueueBtn.Name = "addToTopOfQueueBtn";
+            this.addToTopOfQueueBtn.Size = new System.Drawing.Size(226, 36);
+            this.addToTopOfQueueBtn.TabIndex = 29;
+            this.addToTopOfQueueBtn.TabStop = false;
+            this.addToTopOfQueueBtn.Text = "Add to Top of Queue";
+            this.addToTopOfQueueBtn.UseVisualStyleBackColor = true;
+            this.addToTopOfQueueBtn.Click += new System.EventHandler(this.addToTopOfQueueBtn_Click);
             // 
             // label2
             // 
@@ -421,18 +485,16 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // addToTopOfQueueBtn
+            // jigLabel
             // 
-            this.addToTopOfQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToTopOfQueueBtn.Location = new System.Drawing.Point(567, 639);
-            this.addToTopOfQueueBtn.Margin = new System.Windows.Forms.Padding(2);
-            this.addToTopOfQueueBtn.Name = "addToTopOfQueueBtn";
-            this.addToTopOfQueueBtn.Size = new System.Drawing.Size(226, 36);
-            this.addToTopOfQueueBtn.TabIndex = 29;
-            this.addToTopOfQueueBtn.TabStop = false;
-            this.addToTopOfQueueBtn.Text = "Add to Top of Queue";
-            this.addToTopOfQueueBtn.UseVisualStyleBackColor = true;
-            this.addToTopOfQueueBtn.Click += new System.EventHandler(this.addToTopOfQueueBtn_Click);
+            this.jigLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jigLabel.Location = new System.Drawing.Point(323, 180);
+            this.jigLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.jigLabel.Name = "jigLabel";
+            this.jigLabel.Size = new System.Drawing.Size(127, 25);
+            this.jigLabel.TabIndex = 28;
+            this.jigLabel.Text = "8-Plate";
+            this.jigLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MAIN_FORM
             // 
@@ -451,7 +513,7 @@
             this.Load += new System.EventHandler(this.MAIN_FORM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).EndInit();
             this.statusPanel.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.jigIndicatorTableLayoutPanel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -478,10 +540,9 @@
         private System.Windows.Forms.Button clearQueueBtn;
         private System.Windows.Forms.Panel statusPanel;
         private System.Windows.Forms.Panel jigIndicator0;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel jigIndicatorTableLayoutPanel;
         private System.Windows.Forms.Panel jigIndicator1;
         private System.Windows.Forms.Panel jigIndicator2;
-        private System.Windows.Forms.Panel jigIndicator3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label statusLabel;
@@ -489,6 +550,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label jigLabel;
         private System.Windows.Forms.Button addToTopOfQueueBtn;
+        private System.Windows.Forms.Panel jigIndicator3;
+        private System.Windows.Forms.Panel jigIndicator7;
+        private System.Windows.Forms.Panel jigIndicator6;
+        private System.Windows.Forms.Panel jigIndicator5;
+        private System.Windows.Forms.Panel jigIndicator4;
     }
 }
 

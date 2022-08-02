@@ -24,10 +24,10 @@ namespace DUNameplateGUI
             arrayOfTagTextBoxes = new TextBox[4] { tag1Line0Box, tag1Line1Box, tag1Line2Box, tag1Line3Box };
             //arrayOfTagLines = new string[4];
 
-            arrayOfJigIndicatorPanels = new Panel[4] { jigIndicator0, jigIndicator1, jigIndicator2, jigIndicator3 };
+            arrayOfJigIndicatorPanels = new Panel[8] { jigIndicator0, jigIndicator1, jigIndicator2, jigIndicator3, jigIndicator4, jigIndicator5, jigIndicator6, jigIndicator7 };
 
             // UIControl's functions will not work unless it has access to several main UI elements
-            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigLabel, statusLabel, arrayOfJigIndicatorPanels, homeButton, settingsBtn);
+            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigLabel, statusLabel, arrayOfJigIndicatorPanels, homeButton, settingsBtn, jigIndicatorTableLayoutPanel);
 
             // Initialize our HotkeyHandler
             hotkeyHandler = new HotkeyHandler(this);
@@ -129,6 +129,70 @@ namespace DUNameplateGUI
         private void addToTopOfQueueBtn_Click(object sender, EventArgs e)
         {
             UIControl.addCurrentTagToQueue(UIControl.QueuePosition.TopOfQueue);
+        }
+
+        private void jigIndicator0_Click(object sender, EventArgs e)
+        {
+            if (!MachineControl.isPrinting)
+            {
+                Jig.Position = 0;
+            }
+        }
+
+        private void jigIndicator1_Click(object sender, EventArgs e)
+        {
+            if (!MachineControl.isPrinting)
+            {
+                Jig.Position = 1;
+            }
+        }
+
+        private void jigIndicator2_Click(object sender, EventArgs e)
+        {
+            if (!MachineControl.isPrinting)
+            {
+                Jig.Position = 2;
+            }
+        }
+
+        private void jigIndicator3_Click(object sender, EventArgs e)
+        {
+            if (!MachineControl.isPrinting)
+            {
+                Jig.Position = 3;
+            }
+        }
+
+        private void jigIndicator4_Click(object sender, EventArgs e)
+        {
+            if (!MachineControl.isPrinting)
+            {
+                Jig.Position = 4;
+            }
+        }
+
+        private void jigIndicator5_Click(object sender, EventArgs e)
+        {
+            if (!MachineControl.isPrinting)
+            {
+                Jig.Position = 5;
+            }
+        }
+
+        private void jigIndicator6_Click(object sender, EventArgs e)
+        {
+            if (!MachineControl.isPrinting)
+            {
+                Jig.Position = 6;
+            }
+        }
+
+        private void jigIndicator7_Click(object sender, EventArgs e)
+        {
+            if (!MachineControl.isPrinting)
+            {
+                Jig.Position = 7;
+            }
         }
     }
 }

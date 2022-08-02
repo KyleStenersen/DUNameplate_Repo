@@ -45,13 +45,14 @@ namespace DUNameplateGUI
         // Needed for jigPositionChanged
         private static Panel[] arrayOfJigIndicatorPanels;
         private static int currentlyActivatedIndicator = 0;
+        private static TableLayoutPanel jigIndicatorTableLayoutPanel;
 
         // Needed for disableSomeUIWhilePrinting and reenableSomeUIAfterPrinting
         private static Button homeButton;
         private static Button settingsButton;
 
         // These function arguments have unique names, due to C# not being happy about the use of this.duplicateName
-        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, Label selectedJigLabel, Label statusIndicator, Panel[] jigIndicatorPanels, Button homeBtn, Button settingsBtn)
+        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, Label selectedJigLabel, Label statusIndicator, Panel[] jigIndicatorPanels, Button homeBtn, Button settingsBtn, TableLayoutPanel jigIndicatorTableLayout)
         {
             arrayOfTagTextBoxes = textBoxes;
             tagQuantityBox = quantityBox;
@@ -60,6 +61,7 @@ namespace DUNameplateGUI
             arrayOfJigIndicatorPanels = jigIndicatorPanels;
             homeButton = homeBtn;
             settingsButton = settingsBtn;
+            jigIndicatorTableLayoutPanel = jigIndicatorTableLayout;
 
             // Subscribe jigPositionChanged to the event from the Jig
             Jig.PositionChanged += jigPositionChanged;
@@ -271,6 +273,14 @@ namespace DUNameplateGUI
         //    jigComboBox.SelectedIndex = jigNumber;
         //}
 
+        // This is the width of the table layout panel when it is set to 8-Plate
+        const int FULL_TABLE_LAYOUT_WIDTH = 200;
+
+        // This is the height of the table layout panel when it is set to 8-Plate/4-Plate
+        const int FULL_TABLE_LAYOUT_HEIGHT = 250;
+
+        // This function updates the label that says what jig is currently selected, and also modifies the jig indicator's
+        // table layout panel to be the correct size for the jig selected.
         public static void updateJigDisplay()
         {
             Action updateJigDisplay = delegate ()
@@ -281,15 +291,43 @@ namespace DUNameplateGUI
                 {
                     case 0:
                         selectedJigString = "1-Plate";
+                        jigIndicatorTableLayoutPanel.RowStyles[0].Height = 100;
+                        jigIndicatorTableLayoutPanel.RowStyles[1].Height = 0;
+                        jigIndicatorTableLayoutPanel.RowStyles[2].Height = 0;
+                        jigIndicatorTableLayoutPanel.RowStyles[3].Height = 0;
+                        jigIndicatorTableLayoutPanel.ColumnStyles[0].Width = 100;
+                        jigIndicatorTableLayoutPanel.ColumnStyles[1].Width = 0;
+                        jigIndicatorTableLayoutPanel.Size = new System.Drawing.Size(FULL_TABLE_LAYOUT_WIDTH / 2, FULL_TABLE_LAYOUT_HEIGHT / 4);
                         break;
                     case 1:
                         selectedJigString = "2-Plate";
+                        jigIndicatorTableLayoutPanel.RowStyles[0].Height = 50;
+                        jigIndicatorTableLayoutPanel.RowStyles[1].Height = 50;
+                        jigIndicatorTableLayoutPanel.RowStyles[2].Height = 0;
+                        jigIndicatorTableLayoutPanel.RowStyles[3].Height = 0;
+                        jigIndicatorTableLayoutPanel.ColumnStyles[0].Width = 100;
+                        jigIndicatorTableLayoutPanel.ColumnStyles[1].Width = 0;
+                        jigIndicatorTableLayoutPanel.Size = new System.Drawing.Size(FULL_TABLE_LAYOUT_WIDTH / 2, FULL_TABLE_LAYOUT_HEIGHT / 2);
                         break;
                     case 2:
                         selectedJigString = "4-Plate";
+                        jigIndicatorTableLayoutPanel.RowStyles[0].Height = 25;
+                        jigIndicatorTableLayoutPanel.RowStyles[1].Height = 25;
+                        jigIndicatorTableLayoutPanel.RowStyles[2].Height = 25;
+                        jigIndicatorTableLayoutPanel.RowStyles[3].Height = 25;
+                        jigIndicatorTableLayoutPanel.ColumnStyles[0].Width = 100;
+                        jigIndicatorTableLayoutPanel.ColumnStyles[1].Width = 0;
+                        jigIndicatorTableLayoutPanel.Size = new System.Drawing.Size(FULL_TABLE_LAYOUT_WIDTH / 2, FULL_TABLE_LAYOUT_HEIGHT);
                         break;
                     case 3:
                         selectedJigString = "8-Plate";
+                        jigIndicatorTableLayoutPanel.RowStyles[0].Height = 25;
+                        jigIndicatorTableLayoutPanel.RowStyles[1].Height = 25;
+                        jigIndicatorTableLayoutPanel.RowStyles[2].Height = 25;
+                        jigIndicatorTableLayoutPanel.RowStyles[3].Height = 25;
+                        jigIndicatorTableLayoutPanel.ColumnStyles[0].Width = 50;
+                        jigIndicatorTableLayoutPanel.ColumnStyles[1].Width = 50;
+                        jigIndicatorTableLayoutPanel.Size = new System.Drawing.Size(FULL_TABLE_LAYOUT_WIDTH, FULL_TABLE_LAYOUT_HEIGHT);
                         break;
 
                 }
