@@ -110,12 +110,12 @@ namespace DUNameplateGUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool resetJig {
+        public bool resetJigAfterQueueCompletes {
             get {
-                return ((bool)(this["resetJig"]));
+                return ((bool)(this["resetJigAfterQueueCompletes"]));
             }
             set {
-                this["resetJig"] = value;
+                this["resetJigAfterQueueCompletes"] = value;
             }
         }
         
@@ -128,6 +128,30 @@ namespace DUNameplateGUI.Properties {
             }
             set {
                 this["selectedJig"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool resetJigAfterIdle {
+            get {
+                return ((bool)(this["resetJigAfterIdle"]));
+            }
+            set {
+                this["resetJigAfterIdle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public int idleTimeBeforeReset {
+            get {
+                return ((int)(this["idleTimeBeforeReset"]));
+            }
+            set {
+                this["idleTimeBeforeReset"] = value;
             }
         }
     }

@@ -48,11 +48,15 @@ namespace DUNameplateGUI
             //if (Properties.Settings.Default.charSpaceingSet != float.Parse(charSpaceingDefault.Text))
             charSpaceingBox.Text = Properties.Settings.Default.charSpaceingSet.ToString();
 
+            jigComboBox.SelectedIndex = Properties.Settings.Default.selectedJig;
+
+            resetJigIdleTimeBox.Value = Properties.Settings.Default.idleTimeBeforeReset;
+
+            resetJigAfterIdleCheckBox.Checked = Properties.Settings.Default.resetJigAfterIdle;
+
             autoPrintQueueCheckBox.Checked = Properties.Settings.Default.autoPrintQueue;
 
-            resetJigCheckBox.Checked = Properties.Settings.Default.resetJig;
-
-            jigComboBox.SelectedIndex = Properties.Settings.Default.selectedJig;
+            resetJigAfterQueueCompleteCheckBox.Checked = Properties.Settings.Default.resetJigAfterQueueCompletes;
         }
 
  //PRIVATE USER INPUT RESPONSE FUNCTIONS ================================
@@ -130,17 +134,27 @@ namespace DUNameplateGUI
             if (String.IsNullOrWhiteSpace(charSpaceingBox.Text) == false)
                 Properties.Settings.Default.charSpaceingSet = float.Parse(charSpaceingBox.Text);
 
-            // Save the autoPrintQueue checkbox into settings
-            Properties.Settings.Default.autoPrintQueue = autoPrintQueueCheckBox.Checked;
-
-            // Save the resetJig checkbox into settings
-            Properties.Settings.Default.resetJig = resetJigCheckBox.Checked;
-
             // Save the selected jig index into the settings
             Properties.Settings.Default.selectedJig = jigComboBox.SelectedIndex;
 
             // Set the global Jig class's values to the new jig
             Jig.setValues(jigComboBox.SelectedIndex);
+
+            // Save idleTimeBeforeReset into settings
+            Properties.Settings.Default.idleTimeBeforeReset = (int) resetJigIdleTimeBox.Value;
+
+            // Save the resetJigAfterIdle checkbox into settings
+            Properties.Settings.Default.resetJigAfterIdle = resetJigAfterIdleCheckBox.Checked;
+
+            IdleTimer.RefreshSettings();
+
+            // Save the autoPrintQueue checkbox into settings
+            Properties.Settings.Default.autoPrintQueue = autoPrintQueueCheckBox.Checked;
+
+            // Save the resetJigAfterQueueCompletes checkbox into settings
+            Properties.Settings.Default.resetJigAfterQueueCompletes = resetJigAfterQueueCompleteCheckBox.Checked;
+
+
 
             Properties.Settings.Default.Save();
             SerialCom.sendSettings();
@@ -164,20 +178,37 @@ namespace DUNameplateGUI
             Properties.Settings.Default.charSpaceingSet = float.Parse(charSpaceingDefault.Text);
             charSpaceingBox.Text = charSpaceingDefault.Text;
 
-            Properties.Settings.Default.autoPrintQueue = true;
-            autoPrintQueueCheckBox.Checked = true;
-
-            Properties.Settings.Default.resetJig = false;
-            resetJigCheckBox.Checked = false;
-
             Properties.Settings.Default.selectedJig = 0;
             jigComboBox.SelectedIndex = 0;
 
             // Set the global Jig class's values to the new jig
             Jig.setValues(jigComboBox.SelectedIndex);
 
+            Properties.Settings.Default.idleTimeBeforeReset = 60;
+            resetJigIdleTimeBox.Value = 60;
+
+            IdleTimer.RefreshSettings();
+
+            Properties.Settings.Default.autoPrintQueue = true;
+            autoPrintQueueCheckBox.Checked = true;
+
+            Properties.Settings.Default.resetJigAfterQueueCompletes = false;
+            resetJigAfterQueueCompleteCheckBox.Checked = false;
+
+            
+
             Properties.Settings.Default.Save();
             SerialCom.sendSettings();
+        }
+
+        private void autoPrintQueueCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void resetJigCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

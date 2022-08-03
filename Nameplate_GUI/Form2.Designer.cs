@@ -56,15 +56,20 @@
             this.label20 = new System.Windows.Forms.Label();
             this.resetDefaultsBtn = new System.Windows.Forms.Button();
             this.autoPrintQueueCheckBox = new System.Windows.Forms.CheckBox();
-            this.resetJigCheckBox = new System.Windows.Forms.CheckBox();
+            this.resetJigAfterQueueCompleteCheckBox = new System.Windows.Forms.CheckBox();
             this.jigComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.resetJigAfterIdleCheckBox = new System.Windows.Forms.CheckBox();
+            this.resetJigIdleTimeBox = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.resetJigIdleTimeBox)).BeginInit();
             this.SuspendLayout();
             // 
             // settingsSaveCloseBtn
             // 
-            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(31, 394);
+            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(29, 474);
             this.settingsSaveCloseBtn.Margin = new System.Windows.Forms.Padding(2);
             this.settingsSaveCloseBtn.Name = "settingsSaveCloseBtn";
             this.settingsSaveCloseBtn.Size = new System.Drawing.Size(83, 24);
@@ -320,7 +325,7 @@
             // 
             // resetDefaultsBtn
             // 
-            this.resetDefaultsBtn.Location = new System.Drawing.Point(131, 394);
+            this.resetDefaultsBtn.Location = new System.Drawing.Point(129, 474);
             this.resetDefaultsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.resetDefaultsBtn.Name = "resetDefaultsBtn";
             this.resetDefaultsBtn.Size = new System.Drawing.Size(89, 24);
@@ -332,24 +337,26 @@
             // autoPrintQueueCheckBox
             // 
             this.autoPrintQueueCheckBox.AutoSize = true;
-            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(31, 332);
+            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(15, 411);
             this.autoPrintQueueCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.autoPrintQueueCheckBox.Name = "autoPrintQueueCheckBox";
             this.autoPrintQueueCheckBox.Size = new System.Drawing.Size(133, 17);
             this.autoPrintQueueCheckBox.TabIndex = 4;
             this.autoPrintQueueCheckBox.Text = "AUTO PRINT QUEUE";
             this.autoPrintQueueCheckBox.UseVisualStyleBackColor = true;
+            this.autoPrintQueueCheckBox.CheckedChanged += new System.EventHandler(this.autoPrintQueueCheckBox_CheckedChanged);
             // 
-            // resetJigCheckBox
+            // resetJigAfterQueueCompleteCheckBox
             // 
-            this.resetJigCheckBox.AutoSize = true;
-            this.resetJigCheckBox.Location = new System.Drawing.Point(31, 362);
-            this.resetJigCheckBox.Margin = new System.Windows.Forms.Padding(2);
-            this.resetJigCheckBox.Name = "resetJigCheckBox";
-            this.resetJigCheckBox.Size = new System.Drawing.Size(194, 17);
-            this.resetJigCheckBox.TabIndex = 5;
-            this.resetJigCheckBox.Text = "RESET JIG AFTER EVERY PRINT";
-            this.resetJigCheckBox.UseVisualStyleBackColor = true;
+            this.resetJigAfterQueueCompleteCheckBox.AutoSize = true;
+            this.resetJigAfterQueueCompleteCheckBox.Location = new System.Drawing.Point(15, 441);
+            this.resetJigAfterQueueCompleteCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.resetJigAfterQueueCompleteCheckBox.Name = "resetJigAfterQueueCompleteCheckBox";
+            this.resetJigAfterQueueCompleteCheckBox.Size = new System.Drawing.Size(228, 17);
+            this.resetJigAfterQueueCompleteCheckBox.TabIndex = 5;
+            this.resetJigAfterQueueCompleteCheckBox.Text = "RESET JIG AFTER QUEUE COMPLETES";
+            this.resetJigAfterQueueCompleteCheckBox.UseVisualStyleBackColor = true;
+            this.resetJigAfterQueueCompleteCheckBox.CheckedChanged += new System.EventHandler(this.resetJigCheckBox_CheckedChanged);
             // 
             // jigComboBox
             // 
@@ -387,15 +394,72 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "Default: 1-Plate";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(28, 308);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(178, 13);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "RESET JIG IDLE TIME (in seconds)";
+            // 
+            // resetJigAfterIdleCheckBox
+            // 
+            this.resetJigAfterIdleCheckBox.AutoSize = true;
+            this.resetJigAfterIdleCheckBox.Location = new System.Drawing.Point(15, 381);
+            this.resetJigAfterIdleCheckBox.Margin = new System.Windows.Forms.Padding(2);
+            this.resetJigAfterIdleCheckBox.Name = "resetJigAfterIdleCheckBox";
+            this.resetJigAfterIdleCheckBox.Size = new System.Drawing.Size(175, 17);
+            this.resetJigAfterIdleCheckBox.TabIndex = 15;
+            this.resetJigAfterIdleCheckBox.Text = "RESET JIG AFTER IDLE TIME";
+            this.resetJigAfterIdleCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // resetJigIdleTimeBox
+            // 
+            this.resetJigIdleTimeBox.Location = new System.Drawing.Point(29, 324);
+            this.resetJigIdleTimeBox.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.resetJigIdleTimeBox.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.resetJigIdleTimeBox.Name = "resetJigIdleTimeBox";
+            this.resetJigIdleTimeBox.Size = new System.Drawing.Size(92, 20);
+            this.resetJigIdleTimeBox.TabIndex = 16;
+            this.resetJigIdleTimeBox.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(128, 327);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(102, 13);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Default: 60 seconds";
+            // 
             // SETTINGS_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 446);
+            this.ClientSize = new System.Drawing.Size(250, 518);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.resetJigIdleTimeBox);
+            this.Controls.Add(this.resetJigAfterIdleCheckBox);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.jigComboBox);
-            this.Controls.Add(this.resetJigCheckBox);
+            this.Controls.Add(this.resetJigAfterQueueCompleteCheckBox);
             this.Controls.Add(this.autoPrintQueueCheckBox);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.charSpaceingDefault);
@@ -430,6 +494,7 @@
             this.Text = "Settings";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.SETTINGS_FORM_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.resetJigIdleTimeBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -465,9 +530,13 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button resetDefaultsBtn;
         private System.Windows.Forms.CheckBox autoPrintQueueCheckBox;
-        private System.Windows.Forms.CheckBox resetJigCheckBox;
+        private System.Windows.Forms.CheckBox resetJigAfterQueueCompleteCheckBox;
         private System.Windows.Forms.ComboBox jigComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox resetJigAfterIdleCheckBox;
+        private System.Windows.Forms.NumericUpDown resetJigIdleTimeBox;
+        private System.Windows.Forms.Label label12;
     }
 }

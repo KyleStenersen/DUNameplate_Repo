@@ -229,7 +229,7 @@ namespace DUNameplateGUI
 
                     // If the setting for resetting the jig after each print is enabled,
                     // reset the jig.
-                    if (Properties.Settings.Default.resetJig)
+                    if (Properties.Settings.Default.resetJigAfterQueueCompletes)
                     {
                         Jig.Position = 0;
                     }

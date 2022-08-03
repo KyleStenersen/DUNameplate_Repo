@@ -42,6 +42,14 @@ namespace DUNameplateGUI
 
             SerialCom.setupPort();
             SerialCom.sendSettings();
+
+            // Initialize our idle timer, which will reset the jig after a certain amount of time passes
+            IdleTimer.Initialize();
+
+            IdleMessageFilter imf = new IdleMessageFilter();
+            Application.AddMessageFilter(imf);
+
+            Application.Idle += new EventHandler(IdleTimer.OnWinFormsIdle);
         }
 
         // USER INPUT RESPONSE FUNCTIONS ============================================
