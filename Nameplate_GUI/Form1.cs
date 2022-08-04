@@ -202,5 +202,25 @@ namespace DUNameplateGUI
                 Jig.Position = 7;
             }
         }
+
+        private void tag1Line0Box_DoubleClicked(object sender, EventArgs e)
+        {
+            tag1Line0Box.SelectAll();
+        }
+
+        private void tag1Line1Box_DoubleClicked(object sender, EventArgs e)
+        {
+            tag1Line1Box.SelectAll();
+        }
+
+        private void tag1Line2Box_DoubleClicked(object sender, EventArgs e)
+        {
+            tag1Line2Box.SelectAll();
+        }
+
+        private void tag1Line3Box_DoubleClicked(object sender, EventArgs e)
+        {
+            tag1Line3Box.SelectAll();
+        }
     }
 }
