@@ -222,5 +222,10 @@ namespace DUNameplateGUI
         {
             tag1Line3Box.SelectAll();
         }
+
+        private void deleteSelectedBtn_Click(object sender, EventArgs e)
+        {
+            UIControl.deleteSelectedTag();
+        }
     }
 }

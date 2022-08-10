@@ -27,6 +27,12 @@ namespace DUNameplateGUI
         // For now we are going to hard-code all of the hotkeys and their actions into this function
         private void HotkeyKeyDownHandler(object sender, KeyEventArgs args)
         {
+            // Delete current queue item when delete is pressed, if a text box is not currently focuseed
+            if (args.KeyCode == Keys.Delete && !(findFocusedControl(MainForm) is TextBox))
+            {
+                UIControl.deleteSelectedTag();
+            }
+
             //if (args.Modifiers == (Keys.Control | Keys.Alt))
             if (args.Modifiers == (Keys.Control))
             {
@@ -144,6 +150,19 @@ namespace DUNameplateGUI
                 Thread.Sleep(5);
                 SendKeys.SendWait("{TAB}");
             });
+        }
+
+        // This function is used to find the currently focused control inside the code handling when delete is pressed
+        // This function was found in this StackOverflow question: https://stackoverflow.com/questions/435433/what-is-the-preferred-way-to-find-focused-control-in-winforms-app#439606
+        private Control findFocusedControl(Control control)
+        {
+            var container = control as IContainerControl;
+            while (container != null)
+            {
+                control = container.ActiveControl;
+                container = control as IContainerControl;
+            }
+            return control;
         }
     }
 }

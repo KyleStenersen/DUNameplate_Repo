@@ -155,6 +155,11 @@ namespace DUNameplateGUI
             }
         }
 
+        public static void deleteSelectedTag()
+        {
+            PlateQueue.DeleteSelectedPlate();
+        }
+
         public static void home()
         {
             MachineControl.home();

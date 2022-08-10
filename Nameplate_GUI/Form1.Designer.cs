@@ -62,6 +62,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.jigLabel = new System.Windows.Forms.Label();
+            this.deleteSelectedBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.statusPanel.SuspendLayout();
             this.jigIndicatorTableLayoutPanel.SuspendLayout();
@@ -180,7 +181,7 @@
             // printQueueBtn
             // 
             this.printQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printQueueBtn.Location = new System.Drawing.Point(959, 639);
+            this.printQueueBtn.Location = new System.Drawing.Point(902, 639);
             this.printQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.printQueueBtn.Name = "printQueueBtn";
             this.printQueueBtn.Size = new System.Drawing.Size(154, 36);
@@ -193,7 +194,7 @@
             // addToQueueBtn
             // 
             this.addToQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToQueueBtn.Location = new System.Drawing.Point(405, 639);
+            this.addToQueueBtn.Location = new System.Drawing.Point(348, 639);
             this.addToQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addToQueueBtn.Name = "addToQueueBtn";
             this.addToQueueBtn.Size = new System.Drawing.Size(158, 36);
@@ -258,7 +259,7 @@
             // clearQueueBtn
             // 
             this.clearQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearQueueBtn.Location = new System.Drawing.Point(797, 639);
+            this.clearQueueBtn.Location = new System.Drawing.Point(740, 639);
             this.clearQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.clearQueueBtn.Name = "clearQueueBtn";
             this.clearQueueBtn.Size = new System.Drawing.Size(158, 36);
@@ -425,6 +426,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.deleteSelectedBtn);
             this.panel1.Controls.Add(this.addToTopOfQueueBtn);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cancelButton);
@@ -455,7 +457,7 @@
             // addToTopOfQueueBtn
             // 
             this.addToTopOfQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToTopOfQueueBtn.Location = new System.Drawing.Point(567, 639);
+            this.addToTopOfQueueBtn.Location = new System.Drawing.Point(510, 639);
             this.addToTopOfQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addToTopOfQueueBtn.Name = "addToTopOfQueueBtn";
             this.addToTopOfQueueBtn.Size = new System.Drawing.Size(226, 36);
@@ -499,6 +501,19 @@
             this.jigLabel.TabIndex = 28;
             this.jigLabel.Text = "8-Plate";
             this.jigLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // deleteSelectedBtn
+            // 
+            this.deleteSelectedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteSelectedBtn.Location = new System.Drawing.Point(1060, 639);
+            this.deleteSelectedBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.deleteSelectedBtn.Name = "deleteSelectedBtn";
+            this.deleteSelectedBtn.Size = new System.Drawing.Size(173, 36);
+            this.deleteSelectedBtn.TabIndex = 30;
+            this.deleteSelectedBtn.TabStop = false;
+            this.deleteSelectedBtn.Text = "Delete Selected";
+            this.deleteSelectedBtn.UseVisualStyleBackColor = true;
+            this.deleteSelectedBtn.Click += new System.EventHandler(this.deleteSelectedBtn_Click);
             // 
             // MAIN_FORM
             // 
@@ -559,6 +574,7 @@
         private System.Windows.Forms.Panel jigIndicator6;
         private System.Windows.Forms.Panel jigIndicator5;
         private System.Windows.Forms.Panel jigIndicator4;
+        private System.Windows.Forms.Button deleteSelectedBtn;
     }
 }
 

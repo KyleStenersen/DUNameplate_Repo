@@ -93,6 +93,19 @@ namespace DUNameplateGUI
             }
         }
 
+        // This function will remove the plate at the selected plate's index from the queue, and then update
+        // the list view to reflect this new change.
+        public static void DeleteSelectedPlate()
+        {
+            // This is to prevent crashes when no items are selected
+            if (queuedPlatesListView.SelectedItems.Count >= 1) 
+            {
+                QueuedPlates.RemoveAt(queuedPlatesListView.SelectedItems[0].Index);
+
+                UpdateListView();
+            }
+        }
+
         // This function removes the plate from the top of the queue
         private static void Dequeue()
         {
