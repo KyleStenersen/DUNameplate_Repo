@@ -51,6 +51,7 @@
     <Compile Include="Global.cs" />
     <Compile Include="HotkeyHandler.cs" />
     <Compile Include="IdleTimer.cs" />
+    <Compile Include="InputFixer.cs" />
     <Compile Include="MachineControl.cs" />
     <Compile Include="PlateQueue.cs" />
     <Compile Include="EditTextBox.cs" />

@@ -59,6 +59,7 @@ namespace DUNameplateGUI
             int TAG_LINE_NUMBER = 0;
             //CheckTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
             CheckTextBox.redTagBoxIfInputError(ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+            InputFixer.fixInvalidInput(ref arrayOfTagTextBoxes[TAG_LINE_NUMBER]);
         }
 
         private void tag1Line1Box_TextChanged(object sender, EventArgs e)
@@ -66,12 +67,14 @@ namespace DUNameplateGUI
             int TAG_LINE_NUMBER = 1;
             //CheckTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
             CheckTextBox.redTagBoxIfInputError(ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+            InputFixer.fixInvalidInput(ref arrayOfTagTextBoxes[TAG_LINE_NUMBER]);
         }
         private void tag1Line2Box_TextChanged(object sender, EventArgs e)
         {
             int TAG_LINE_NUMBER = 2;
             //CheckTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
             CheckTextBox.redTagBoxIfInputError(ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+            InputFixer.fixInvalidInput(ref arrayOfTagTextBoxes[TAG_LINE_NUMBER]);
         }
 
         private void tag1Line3Box_TextChanged(object sender, EventArgs e)
@@ -79,6 +82,7 @@ namespace DUNameplateGUI
             int TAG_LINE_NUMBER = 3;
             //CheckTextBox.redTagBoxIfInputError(ref arrayOfTagLines[TAG_LINE_NUMBER], ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
             CheckTextBox.redTagBoxIfInputError(ref arrayOfTagTextBoxes[TAG_LINE_NUMBER], TAG_LINE_NUMBER);
+            InputFixer.fixInvalidInput(ref arrayOfTagTextBoxes[TAG_LINE_NUMBER]);
         }
 
         private void settingsBtn_Click(object sender, EventArgs e)
