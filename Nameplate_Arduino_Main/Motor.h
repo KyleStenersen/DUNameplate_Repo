@@ -4,6 +4,8 @@
 #include <Arduino.h>
 #include <SpeedyStepper.h>
 #include <TMCStepper.h>
+#include "Encoder.h"
+#include "GlobalSettings.h"
 
 class Motor
 {

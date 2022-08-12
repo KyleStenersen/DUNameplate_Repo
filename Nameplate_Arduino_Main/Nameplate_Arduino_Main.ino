@@ -23,6 +23,7 @@ SerialOps serialOps;
 InputResponse inputResponse;
 Encoder encoder;
 Text text;
+int estop_pin = 3;
 
 // ------------------
 // Global Machine Setting Variables Initialized (GlobalSettings.h)
@@ -35,6 +36,7 @@ float X_ABS_PLATE_LOCATION_GLOBAL = 1.86;
 float Y_ABS_PLATE_LOCATION_GLOBAL = 0.46;
 float LINE_SPACEING_GLOBAL = 0.145;
 float LETTER_SPACEING_GLOBAL = 0.095;
+bool eStopBit = 0;
 
 // ------------------
 void setup() 
@@ -55,7 +57,8 @@ void setup()
   pinMode(3, INPUT_PULLUP);
  // attachInterrupt(10,stall,RISING);
  // attachInterrupt(4,stall,RISING);
- attachInterrupt(3,stall,FALLING);
+ attachInterrupt(3,estop,FALLING);
+ eStopBit = 0;
 }
 // ------------------
 
@@ -65,6 +68,7 @@ void setup()
 
 void loop() 
 {
+  eStopBit = 0;
   if(Serial.available()) {     
     inputResponse.chooseAction(serialOps.grabInput());
   } 
@@ -75,12 +79,19 @@ void loop()
 
 
 
-//Stallgaurd Interrupt Service Routine
+//Estop and Stallguard Interrupt Service Routine
 // ------------------------------------------------
 
-void stall(){
-  Serial.println(F("Killing"));
+void estop(){
+  Serial.println("z2"); //Send signal to GUI so it can respond to estop condition
+  
   plates.killAllMotors();
+  eStopBit = 1;
   serialOps.emptySerial();
-  Serial.println("z2");
+  plates.motorsOn();
+
+  while (digitalRead(3) == 0)
+  {
+    //Freeze/do nothing
+  }
 }

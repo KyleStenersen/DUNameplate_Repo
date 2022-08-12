@@ -27,7 +27,6 @@
 
 
 #include "Motor.h"
-#include "Encoder.h"
 
 Encoder encoderM;
 
@@ -301,13 +300,17 @@ void Motor::stampMotorOff()
 // "Z STAMP" function
 //-------------------------------------------------------------------       
 
-void Motor::stamp(){   
+void Motor::stamp(){
+    if (eStopBit == 1) exit; 
+      
     digitalWrite(STAMP_CLUTCH_RELAY, RELAY_ON);
     delay(100);
-    while (digitalRead(Z_STAMP_LIMIT_SWITCH)== Z_STAMPING){}
+    while (digitalRead(Z_STAMP_LIMIT_SWITCH)== Z_STAMPING)
+    { 
+      if (eStopBit == 1) break;
+    }
     digitalWrite(STAMP_CLUTCH_RELAY, RELAY_OFF);
-    delay(10);
-    Serial.println("STAMPED");   
+    delay(10);   
 }
 
 // "HOME" functions

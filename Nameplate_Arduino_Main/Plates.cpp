@@ -45,6 +45,8 @@ Plates::Plates(){}
 
 void Plates::printOne(char* plateText)    //Primary function to increment through characters of a plate/tag and stamp/move for each one
 {
+  if (eStopBit == 1) exit;
+  
   char copyString[strlen(plateText)+1];   
   strcpy(copyString, plateText);
   
@@ -69,6 +71,8 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
   
   while (i < strlen(plateText))   //loop through plate text chars responding to each individually (stamp or move)
   {
+    if (eStopBit == 1) break;
+    
     Serial.println("BEGIN LOOP");
     Serial.print("xAbsolute = ");
     Serial.println(xAbsolute);
@@ -168,6 +172,15 @@ void Plates::killAllMotors(){
   motorP.xOff();
   motorP.yOff();
   motorP.letterOff();
+}
+
+//---------------------
+
+void Plates::motorsOn()
+{
+  motorP.xOn();
+  motorP.yOn(); 
+  motorP.letterOn();
 }
 
 

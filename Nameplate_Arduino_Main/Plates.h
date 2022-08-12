@@ -17,6 +17,7 @@ class Plates {
     void spinY(float yinch);
     void spinL(float lDeg);
     void killAllMotors();
+    void motorsOn();
     
   private: 
     float halfCurrentLine(int lineNumber);
