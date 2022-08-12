@@ -50,6 +50,8 @@ namespace DUNameplateGUI
             Application.AddMessageFilter(imf);
 
             Application.Idle += new EventHandler(IdleTimer.OnWinFormsIdle);
+
+            InputFixer.Initialize();
         }
 
         // USER INPUT RESPONSE FUNCTIONS ============================================

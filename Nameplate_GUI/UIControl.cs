@@ -19,7 +19,8 @@ namespace DUNameplateGUI
             Disconnected,
             Ready,
             Printing,
-            ReloadNeeded
+            ReloadNeeded,
+            Estopped
         }
 
         public enum QueuePosition
@@ -67,8 +68,6 @@ namespace DUNameplateGUI
             Jig.PositionChanged += jigPositionChanged;
         }
 
-        // Needs fixing, currently can crash due to Jig.Position ending up at 4, which is out of bounds
-        // for the array
         private static void jigPositionChanged(object sender, PositionChangedEventArgs e)
         {
             Action<int> changeJigIndicatorAction = delegate (int position)
@@ -248,6 +247,10 @@ namespace DUNameplateGUI
                     case Status.ReloadNeeded:
                         statusLabel.Text = "RELOAD NEEDED";
                         statusLabel.BackColor = System.Drawing.Color.Orchid;
+                        break;
+                    case Status.Estopped:
+                        statusLabel.Text = "ESTOPPED";
+                        statusLabel.BackColor = System.Drawing.Color.Red;
                         break;
                 }
             };
