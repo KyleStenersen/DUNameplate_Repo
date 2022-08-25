@@ -64,12 +64,13 @@
             this.resetJigAfterIdleCheckBox = new System.Windows.Forms.CheckBox();
             this.resetJigIdleTimeBox = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
+            this.changeInputFixingRulesBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.resetJigIdleTimeBox)).BeginInit();
             this.SuspendLayout();
             // 
             // settingsSaveCloseBtn
             // 
-            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(29, 474);
+            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(31, 520);
             this.settingsSaveCloseBtn.Margin = new System.Windows.Forms.Padding(2);
             this.settingsSaveCloseBtn.Name = "settingsSaveCloseBtn";
             this.settingsSaveCloseBtn.Size = new System.Drawing.Size(83, 24);
@@ -325,7 +326,7 @@
             // 
             // resetDefaultsBtn
             // 
-            this.resetDefaultsBtn.Location = new System.Drawing.Point(129, 474);
+            this.resetDefaultsBtn.Location = new System.Drawing.Point(131, 520);
             this.resetDefaultsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.resetDefaultsBtn.Name = "resetDefaultsBtn";
             this.resetDefaultsBtn.Size = new System.Drawing.Size(89, 24);
@@ -337,7 +338,7 @@
             // autoPrintQueueCheckBox
             // 
             this.autoPrintQueueCheckBox.AutoSize = true;
-            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(15, 411);
+            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(11, 391);
             this.autoPrintQueueCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.autoPrintQueueCheckBox.Name = "autoPrintQueueCheckBox";
             this.autoPrintQueueCheckBox.Size = new System.Drawing.Size(133, 17);
@@ -349,7 +350,7 @@
             // resetJigAfterQueueCompleteCheckBox
             // 
             this.resetJigAfterQueueCompleteCheckBox.AutoSize = true;
-            this.resetJigAfterQueueCompleteCheckBox.Location = new System.Drawing.Point(15, 441);
+            this.resetJigAfterQueueCompleteCheckBox.Location = new System.Drawing.Point(11, 421);
             this.resetJigAfterQueueCompleteCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.resetJigAfterQueueCompleteCheckBox.Name = "resetJigAfterQueueCompleteCheckBox";
             this.resetJigAfterQueueCompleteCheckBox.Size = new System.Drawing.Size(228, 17);
@@ -407,7 +408,7 @@
             // resetJigAfterIdleCheckBox
             // 
             this.resetJigAfterIdleCheckBox.AutoSize = true;
-            this.resetJigAfterIdleCheckBox.Location = new System.Drawing.Point(15, 381);
+            this.resetJigAfterIdleCheckBox.Location = new System.Drawing.Point(11, 361);
             this.resetJigAfterIdleCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.resetJigAfterIdleCheckBox.Name = "resetJigAfterIdleCheckBox";
             this.resetJigAfterIdleCheckBox.Size = new System.Drawing.Size(175, 17);
@@ -447,11 +448,22 @@
             this.label12.TabIndex = 17;
             this.label12.Text = "Default: 60 seconds";
             // 
+            // changeInputFixingRulesBtn
+            // 
+            this.changeInputFixingRulesBtn.Location = new System.Drawing.Point(31, 464);
+            this.changeInputFixingRulesBtn.Name = "changeInputFixingRulesBtn";
+            this.changeInputFixingRulesBtn.Size = new System.Drawing.Size(189, 23);
+            this.changeInputFixingRulesBtn.TabIndex = 18;
+            this.changeInputFixingRulesBtn.Text = "Change Input Fixing Rules";
+            this.changeInputFixingRulesBtn.UseVisualStyleBackColor = true;
+            this.changeInputFixingRulesBtn.Click += new System.EventHandler(this.changeInputFixingRulesBtn_Click);
+            // 
             // SETTINGS_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 518);
+            this.ClientSize = new System.Drawing.Size(250, 555);
+            this.Controls.Add(this.changeInputFixingRulesBtn);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.resetJigIdleTimeBox);
             this.Controls.Add(this.resetJigAfterIdleCheckBox);
@@ -538,5 +550,6 @@
         private System.Windows.Forms.CheckBox resetJigAfterIdleCheckBox;
         private System.Windows.Forms.NumericUpDown resetJigIdleTimeBox;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button changeInputFixingRulesBtn;
     }
 }

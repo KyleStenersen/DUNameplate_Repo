@@ -210,5 +210,11 @@ namespace DUNameplateGUI
         {
 
         }
+
+        private void changeInputFixingRulesBtn_Click(object sender, EventArgs e)
+        {
+            InputRuleForm inputRuleForm = new InputRuleForm();
+            inputRuleForm.ShowDialog();
+        }
     }
 }

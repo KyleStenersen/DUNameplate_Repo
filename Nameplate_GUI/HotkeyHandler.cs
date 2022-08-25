@@ -126,8 +126,11 @@ namespace DUNameplateGUI
                         {
                             tabAfterDelay();
                         }
-                        break;
 
+                        // Instead of using the afterHotkey function (because it sets hotkeyPressed to true, which we don't want to do), we
+                        // will manually set args.SuppressKeyPress to prevent the Windows error noise
+                        args.SuppressKeyPress = true;
+                        break;
                 }
             }
         }
