@@ -10,7 +10,7 @@ namespace DUNameplateGUI
     internal static class InputFixer
     {
 
-        static List<InputFixingRule> inputFixingRules;
+        public static List<InputFixingRule> inputFixingRules;
 
         public static void Initialize()
         {
