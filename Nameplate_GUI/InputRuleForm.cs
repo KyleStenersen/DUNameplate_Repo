@@ -63,6 +63,18 @@ namespace DUNameplateGUI
             }
 
             // TODO: Make input rules persist between restarts
+            InputFixer.saveToSettings();
+        }
+
+        // Currently doesn't actually set the values of the cells, so the real value is still lowercase
+        // while it looks like it's uppercase
+        private void inputRulesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value != null)
+            {
+                e.Value = e.Value.ToString().ToUpper();
+                e.FormattingApplied = true;
+            }
         }
     }
 }

@@ -154,5 +154,17 @@ namespace DUNameplateGUI.Properties {
                 this["idleTimeBeforeReset"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string inputFixingRules {
+            get {
+                return ((string)(this["inputFixingRules"]));
+            }
+            set {
+                this["inputFixingRules"] = value;
+            }
+        }
     }
 }
