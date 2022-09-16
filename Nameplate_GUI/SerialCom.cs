@@ -20,7 +20,20 @@ namespace DUNameplateGUI {
                 serialPort1.PortName = "COM3";
                 serialPort1.ReadTimeout = -1;
                 serialPort1.WriteTimeout = -1;
-                serialPort1.Open();
+                
+                bool serialFail = true;
+                while (serialFail == true)
+                    try
+                    {
+                        serialPort1.Open();
+                        MessageBox.Show("serialSuccess");
+                        serialFail = false;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Must plug in or power up the machine, and check USB connection." +
+                            "\nThen press OK.");
+                    }
             }
         }
         public static void sendSettings()
@@ -33,7 +46,7 @@ namespace DUNameplateGUI {
 
         public static void sendString(string stringToSend)
         {
-            MessageBox.Show(stringToSend); // For development purpose, remove later
+            //MessageBox.Show(stringToSend); // For development purpose, remove later
 
             if (Global.SerialOn) serialPort1.Write(stringToSend);
         }
