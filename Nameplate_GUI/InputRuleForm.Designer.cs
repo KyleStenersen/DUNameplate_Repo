@@ -34,6 +34,7 @@
             this.Match = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Replace = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveCloseBtn = new System.Windows.Forms.Button();
+            this.resetToDefaultBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.inputRulesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,7 +82,7 @@
             // saveCloseBtn
             // 
             this.saveCloseBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveCloseBtn.Location = new System.Drawing.Point(95, 395);
+            this.saveCloseBtn.Location = new System.Drawing.Point(179, 393);
             this.saveCloseBtn.Name = "saveCloseBtn";
             this.saveCloseBtn.Size = new System.Drawing.Size(148, 34);
             this.saveCloseBtn.TabIndex = 1;
@@ -89,11 +90,23 @@
             this.saveCloseBtn.UseVisualStyleBackColor = true;
             this.saveCloseBtn.Click += new System.EventHandler(this.saveCloseBtn_Click);
             // 
+            // resetToDefaultBtn
+            // 
+            this.resetToDefaultBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetToDefaultBtn.Location = new System.Drawing.Point(12, 393);
+            this.resetToDefaultBtn.Name = "resetToDefaultBtn";
+            this.resetToDefaultBtn.Size = new System.Drawing.Size(148, 34);
+            this.resetToDefaultBtn.TabIndex = 2;
+            this.resetToDefaultBtn.Text = "Reset to Defaults";
+            this.resetToDefaultBtn.UseVisualStyleBackColor = true;
+            this.resetToDefaultBtn.Click += new System.EventHandler(this.resetToDefaultBtn_Click);
+            // 
             // InputRuleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(339, 450);
+            this.Controls.Add(this.resetToDefaultBtn);
             this.Controls.Add(this.saveCloseBtn);
             this.Controls.Add(this.inputRulesDataGridView);
             this.Name = "InputRuleForm";
@@ -111,5 +124,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Match;
         private System.Windows.Forms.DataGridViewTextBoxColumn Replace;
         private System.Windows.Forms.Button saveCloseBtn;
+        private System.Windows.Forms.Button resetToDefaultBtn;
     }
 }

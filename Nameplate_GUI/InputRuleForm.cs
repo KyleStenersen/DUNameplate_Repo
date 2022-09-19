@@ -67,6 +67,13 @@ namespace DUNameplateGUI
             Close();
         }
 
+        private void resetToDefaultBtn_Click(object sender, EventArgs e)
+        {
+            InputFixer.resetToDefaultRules();
+
+            Close();
+        }
+
         // This forces uppercase only when editing the contents of the DataGridView
         private void inputRulesDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {

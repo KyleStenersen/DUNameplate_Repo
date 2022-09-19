@@ -96,7 +96,7 @@ namespace DUNameplateGUI
             }
         }
 
-        private static void resetToDefaultRules()
+        public static void resetToDefaultRules()
         {
             inputFixingRules.Clear();
 
