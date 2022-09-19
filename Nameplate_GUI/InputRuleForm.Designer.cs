@@ -64,7 +64,7 @@
             this.inputRulesDataGridView.Name = "inputRulesDataGridView";
             this.inputRulesDataGridView.Size = new System.Drawing.Size(315, 366);
             this.inputRulesDataGridView.TabIndex = 0;
-            this.inputRulesDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.inputRulesDataGridView_CellFormatting);
+            this.inputRulesDataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.inputRulesDataGridView_EditingControlShowing);
             // 
             // Match
             // 
