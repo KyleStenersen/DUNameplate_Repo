@@ -165,7 +165,6 @@ namespace DUNameplateGUI
             Jig.Position = 0;
         }
 
-        // TODO: Replace with enabling and disabling settings
         //public static void disableJigComboBox()
         //{
         //    // This is a delegate for disabling the combo box, because if we are on another thread,

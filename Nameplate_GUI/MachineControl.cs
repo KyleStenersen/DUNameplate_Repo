@@ -175,8 +175,6 @@ namespace DUNameplateGUI
                 // Reset cancellationRequested to false, because it might be true due to a clearing of the queue
                 // while no printing was happening
                 cancellationRequested = false;
-
-                // TODO: Make this function disable the settings button as well
                 
                 // Disable home button while printing
                 UIControl.disableSomeUIWhilePrinting();
