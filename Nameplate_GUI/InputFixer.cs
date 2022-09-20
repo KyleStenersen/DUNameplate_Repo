@@ -9,6 +9,7 @@ namespace DUNameplateGUI
 {
     internal static class InputFixer
     {
+        // TODO: Fix stack overflow that happens when the replaceStr has the matchStr in it
 
         public static List<InputFixingRule> inputFixingRules;
 
@@ -49,13 +50,13 @@ namespace DUNameplateGUI
             foreach (InputFixingRule rule in inputFixingRules)
             {
                 stringToSave += rule.matchStr;
-                stringToSave += "|";
+                stringToSave += "±"; // was |
                 stringToSave += rule.replaceStr;
-                stringToSave += "+";
+                stringToSave += "§"; // was +
             }
 
             // TODO: Check if the replaceStr contains invalid characters for the tag,
-            // and make sure that both have no + or | in them
+            // and make sure that both have no § or ± in them
 
             Properties.Settings.Default.inputFixingRules = stringToSave;
 
@@ -72,11 +73,20 @@ namespace DUNameplateGUI
 
             // This needs to be an array, because there is no version of String.Split function that takes in
             // one character and lets you set StringSplitOptions.
-            char[] delimiter = new char[] { '+' };
+            char[] delimiter = new char[] { '§' }; // was +
 
             foreach (string decodedRule in stringToLoad.Split(delimiter, StringSplitOptions.RemoveEmptyEntries))
             {
-                string[] decodedSegments = decodedRule.Split('|');
+                string[] decodedSegments = decodedRule.Split('±'); // was |
+
+                // If there is only one decoded segment, this means the rule is corrupted somehow, or our delimiter characters were put in an invalid spot
+                // so we are going to reset to our default rules
+                if (decodedSegments.Length == 1)
+                {
+                    resetToDefaultRules();
+                    MessageBox.Show("Input fixing rules have been reset due to invalid/corrupted rules", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    break;
+                }
 
                 string matchStr = decodedSegments[0];
                 string replaceStr = decodedSegments[1];
@@ -86,8 +96,10 @@ namespace DUNameplateGUI
             }
         }
 
-        private static void addDefaultRules()
+        public static void resetToDefaultRules()
         {
+            inputFixingRules.Clear();
+
             inputFixingRules.Add(new InputFixingRule("(", ""));
             inputFixingRules.Add(new InputFixingRule(")", ""));
             inputFixingRules.Add(new InputFixingRule("&", "AND"));

@@ -62,18 +62,25 @@ namespace DUNameplateGUI
                 Console.WriteLine("matchStr: " + matchStr + " " + "replaceStr: " + replaceStr);
             }
 
-            // TODO: Make input rules persist between restarts
             InputFixer.saveToSettings();
+
+            Close();
         }
 
-        // Currently doesn't actually set the values of the cells, so the real value is still lowercase
-        // while it looks like it's uppercase
-        private void inputRulesDataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void resetToDefaultBtn_Click(object sender, EventArgs e)
         {
-            if (e.Value != null)
+            InputFixer.resetToDefaultRules();
+
+            Close();
+        }
+
+        // This forces uppercase only when editing the contents of the DataGridView
+        private void inputRulesDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (e.Control is TextBox)
             {
-                e.Value = e.Value.ToString().ToUpper();
-                e.FormattingApplied = true;
+                TextBox textBox = (TextBox) e.Control;
+                textBox.CharacterCasing = CharacterCasing.Upper;
             }
         }
     }
