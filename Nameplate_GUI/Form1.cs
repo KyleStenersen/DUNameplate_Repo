@@ -138,6 +138,7 @@ namespace DUNameplateGUI
         private void statusLabel_Click(object sender, EventArgs e)
         {
             UIControl.signalReloaded();
+            UIControl.signalEstopResetClicked();
         }
 
         private void addToTopOfQueueBtn_Click(object sender, EventArgs e)

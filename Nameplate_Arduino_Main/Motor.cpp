@@ -305,10 +305,15 @@ void Motor::stamp(){
       
     digitalWrite(STAMP_CLUTCH_RELAY, RELAY_ON);
     delay(100);
+    
+    int timer_1 = millis(); // Initiate timeout to check/abort if estop button has been pressed causing infinite loop here
     while (digitalRead(Z_STAMP_LIMIT_SWITCH)== Z_STAMPING)
     { 
+      int timer_2 = millis();
+      if ((timer_2 - timer_1)> 100) eStopBit = 1;
       if (eStopBit == 1) break;
     }
+    
     digitalWrite(STAMP_CLUTCH_RELAY, RELAY_OFF);
     delay(10);   
 }

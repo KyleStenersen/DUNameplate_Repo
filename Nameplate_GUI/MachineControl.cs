@@ -167,6 +167,7 @@ namespace DUNameplateGUI
 
         public static void startPrintingTaskIfNotPrinting()
         {
+
             if (!isPrinting)
             {
                 // Changing isPrinting automatically changes the status indicator
@@ -253,6 +254,7 @@ namespace DUNameplateGUI
                 SerialCom.checkIfPlateDone(ref plateIsDone);
             }
         }
+
 
         public static void home()
         {

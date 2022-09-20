@@ -53,11 +53,8 @@ void setup()
   pinMode(10, INPUT);
   // Set Y-Motor DIAG pin to INPUT
   pinMode(4, INPUT);
-  // E-STOP interrupt
-  pinMode(3, INPUT_PULLUP);
  // attachInterrupt(10,stall,RISING);
  // attachInterrupt(4,stall,RISING);
- attachInterrupt(3,estop,FALLING);
  eStopBit = 0;
 }
 // ------------------
@@ -68,7 +65,9 @@ void setup()
 
 void loop() 
 {
-  eStopBit = 0;
+  if (eStopBit == 1) estop();
+  eStopBit = 0; 
+  
   if(Serial.available()) {     
     inputResponse.chooseAction(serialOps.grabInput());
   } 
@@ -79,19 +78,21 @@ void loop()
 
 
 
-//Estop and Stallguard Interrupt Service Routine
+//Estop Routine
 // ------------------------------------------------
 
 void estop(){
   Serial.println("z2"); //Send signal to GUI so it can respond to estop condition
   
   plates.killAllMotors();
-  eStopBit = 1;
-  serialOps.emptySerial();
-  plates.motorsOn();
 
-  while (digitalRead(3) == 0)
-  {
-    //Freeze/do nothing
+  char char1 = 0; //Using signal of ** in a row so that very unlikely to exit estop any other way than purposefully sent signal
+  char char2 = 0;
+  while (char1 != '*' and char2 != '*')
+  { 
+    char2 = char1;
+    char1 = Serial.read();   
   }
+  
+  plates.motorsOn();
 }

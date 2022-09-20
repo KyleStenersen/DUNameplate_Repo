@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 using System.IO.Ports;
-using System;
+using System.Threading;
 
 namespace DUNameplateGUI {
     public static class SerialCom
@@ -9,6 +9,7 @@ namespace DUNameplateGUI {
         //public delegate void serialReciever(string stringIn);
         private static bool plateIsDone = false;
         private static bool eSTOP = false;
+        public static AutoResetEvent resetEstopEvent = new AutoResetEvent(false);
 
         // PUBLIC FUNCTIONS ==============================================
 
@@ -26,7 +27,6 @@ namespace DUNameplateGUI {
                     try
                     {
                         serialPort1.Open();
-                        MessageBox.Show("serialSuccess");
                         serialFail = false;
                     }
                     catch
@@ -63,16 +63,31 @@ namespace DUNameplateGUI {
                     done = true;
                     UIControl.requestCancel();
                     UIControl.changeStatusIndicator(UIControl.Status.Estopped);
+
+                    // Wait/Block this thread until the resetEstopEvent gets set from someone
+                    // pressing the estop button on the GUI
+                    // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
+                    resetEstopEvent.WaitOne();
+
+                    // And now we're ready again, so set it back
+                    UIControl.changeStatusIndicator(UIControl.Status.Ready);
+                    
+                    eSTOP = false;
                 }
                 return;
             }
 
-            done = true;
+            else done = true;
         }
 
         public static void clearInputBuffer()
         {
             if (Global.SerialOn) serialPort1.DiscardInBuffer();
+        }
+
+        public static void estopReset()
+        {
+            sendString("**");
         }
 
         // PRIVATE FUNCTIONS =========================================
@@ -93,7 +108,7 @@ namespace DUNameplateGUI {
                 case 'z':
                     {
                         if (secondChar == '1') plateIsDone = true;
-                        if (secondChar == '2') eSTOP = true;
+                        if (secondChar == '2')  eSTOP = true;
                         break;
                     }
             }

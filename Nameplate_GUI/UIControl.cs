@@ -269,6 +269,19 @@ namespace DUNameplateGUI
             MachineControl.reloadedEvent.Reset();
         }
 
+        public static void signalEstopResetClicked()
+        {
+            //Send reset signal to Arduino
+            SerialCom.estopReset();
+            // The reason why we are setting and immediately resetting this AutoResetEvent
+            // is to prevent someone from pressing reload when the machine doesn't need it,
+            // and then for the machine to think that somebody already reloaded it the
+            // next time that it goes to wait for a reload.
+            SerialCom.resetEstopEvent.Set();
+            SerialCom.resetEstopEvent.Reset();
+
+        }
+
         // Used from HotkeyHandler, these don't need invokes as they run on the main thread
         public static void setQuantity(int quantity)
         {
@@ -345,5 +358,7 @@ namespace DUNameplateGUI
 
             jigLabel.Invoke(updateJigDisplay);
         }
+
     }
 }
+

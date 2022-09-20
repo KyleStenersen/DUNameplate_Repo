@@ -56,6 +56,9 @@ void InputResponse::chooseAction(const char* fullInputString)
           
     platesIR.printOne(actionInfo);    //Then send remaining platetext to printOne function
     serialOpsIR.emptySerial();
+
+    if (eStopBit == 1) break; //Don't send plate done signal if estopped.
+            
     Serial.println("z1");   //Send "z" (signal) to GUI and "1" to say that a plate is done
     break;}
 //--------------------------
