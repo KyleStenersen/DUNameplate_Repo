@@ -2,7 +2,7 @@
 #define Motor_h
 
 #include <Arduino.h>
-#include <SpeedyStepper.h>
+#include "SpeedyStepper.h"
 #include <TMCStepper.h>
 #include "Encoder.h"
 #include "GlobalSettings.h"
