@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Serilog;
 
 namespace DUNameplateGUI
 {
@@ -62,14 +63,14 @@ namespace DUNameplateGUI
 
             Properties.Settings.Default.Save();
 
-            Console.WriteLine(stringToSave);
-
-            
+            Log.Debug("Saving input fixing rules to settings: {string}", stringToSave);
         }
 
         public static void loadFromSettings()
         {
             string stringToLoad = Properties.Settings.Default.inputFixingRules;
+
+            Log.Debug("Loading input fixing rules from settings: {stringToLoad}", stringToLoad);
 
             // This needs to be an array, because there is no version of String.Split function that takes in
             // one character and lets you set StringSplitOptions.
@@ -83,8 +84,9 @@ namespace DUNameplateGUI
                 // so we are going to reset to our default rules
                 if (decodedSegments.Length == 1)
                 {
+                    Log.Error("Input fixing rules were corrupted, resetting to defaults, previous rules were {stringToLoad}", stringToLoad);
                     resetToDefaultRules();
-                    MessageBox.Show("Input fixing rules have been reset due to invalid/corrupted rules", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Input fixing rules have been reset to default due to invalid/corrupted rules", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
                 }
 
@@ -98,11 +100,15 @@ namespace DUNameplateGUI
 
         public static void resetToDefaultRules()
         {
+            Log.Debug("Resetting to default input fixing rules");
+
             inputFixingRules.Clear();
 
             inputFixingRules.Add(new InputFixingRule("(", ""));
             inputFixingRules.Add(new InputFixingRule(")", ""));
             inputFixingRules.Add(new InputFixingRule("&", "AND"));
+
+            saveToSettings(); // Save to settings right away, otherwise these changes will go away once the program is restarted
         }
     }
 

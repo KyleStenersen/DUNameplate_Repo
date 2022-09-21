@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
+using Serilog;
 
 namespace DUNameplateGUI {
     public static class SerialCom
@@ -46,7 +47,9 @@ namespace DUNameplateGUI {
 
         public static void sendString(string stringToSend)
         {
-            //MessageBox.Show(stringToSend); // For development purpose, remove later
+            MessageBox.Show(stringToSend); // For development purpose, remove later
+
+            Log.Debug("Sending {string} down serial", stringToSend);
 
             if (Global.SerialOn) serialPort1.Write(stringToSend);
         }

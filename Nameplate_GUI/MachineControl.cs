@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Serilog;
 
 namespace DUNameplateGUI
 {
@@ -132,7 +133,9 @@ namespace DUNameplateGUI
             // Decrement the quantity of the plate on top of the queue, which should be the one we just printed
             // Maybe this should be changed to decrement the quantity of the plate we just printed
             // by finding that plate?
-            PlateQueue.DecrementTopPlateQuantity();
+            //PlateQueue.DecrementTopPlateQuantity();
+
+            PlateQueue.DecrementSpecificPlateQuantity(currentPlate);
 
             // If there is no more room in the jig, home, and then tell the user to reload the machine
             if (Jig.Position + 1 == Jig.Capacity)
@@ -176,8 +179,6 @@ namespace DUNameplateGUI
                 // Reset cancellationRequested to false, because it might be true due to a clearing of the queue
                 // while no printing was happening
                 cancellationRequested = false;
-
-                // TODO: Make this function disable the settings button as well
                 
                 // Disable home button while printing
                 UIControl.disableSomeUIWhilePrinting();
@@ -218,12 +219,15 @@ namespace DUNameplateGUI
                         }
                         catch (OperationCanceledException)
                         {
-                            Console.WriteLine("Catching OperationCanceledException from printOneTagFromQueue, stopping printing now");
+                            Log.Debug("Catching OperationCanceledException from printOneTagFromQueue, stopping printing now");
                             break; // break out of this while loop, which will jump straight to the code at the end of printing
                         }
                     }
 
-                    Console.WriteLine("Done printing");
+                    // Home after queue completes or printing is cancelled
+                    home();
+
+                    Log.Debug("Done printing");
 
                     // Changing isPrinting automatically changes the status indicator
                     isPrinting = false;
@@ -241,18 +245,22 @@ namespace DUNameplateGUI
             }
             else
             {
-                Console.WriteLine("It is currently printing right now, so we'll ignore the request to print");
+                Log.Debug("It is currently printing right now, so we'll ignore the request to print");
             }
         }
 
         private static void waitPlateDone()
         {
+            Log.Debug("Waiting for plate to be complete...");
+
             bool plateIsDone = false;
 
             while (plateIsDone == false)
             {
                 SerialCom.checkIfPlateDone(ref plateIsDone);
             }
+
+            Log.Debug("Plate complete");
         }
 
 

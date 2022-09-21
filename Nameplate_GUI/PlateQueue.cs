@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Serilog;
 
 namespace DUNameplateGUI
 {
@@ -40,7 +41,7 @@ namespace DUNameplateGUI
             UpdateListView();
         }
 
-        // This function just adds the plate passed into the function into our QueuedPlates list
+        // This function just adds the plate passed into the function to the end of the QueuedPlates list
         public static void Enqueue(Nameplate plateToAdd)
         {
             //QueuedPlates.Enqueue(plateToAdd);
@@ -49,18 +50,20 @@ namespace DUNameplateGUI
             UpdateListView();
         }
 
-        // This function adds the plate on top of our QueuedPlates list, but it puts it behind the topmost
-        // one if it exists, to prevent any issues if currently printing that plate.
+        // Adds a plate to the top of QueuedPlates
         public static void EnqueueOnTop(Nameplate plateToAdd)
         {
-            if (Count != 0)
-            {
-                QueuedPlates.Insert(1, plateToAdd);
-            } 
-            else
-            {
-                QueuedPlates.Insert(0, plateToAdd);
-            }
+            //if (Count != 0)
+            //{
+            //    QueuedPlates.Insert(1, plateToAdd);
+            //} 
+            //else
+            //{
+            //    QueuedPlates.Insert(0, plateToAdd);
+            //}
+            Log.Debug("Enqueueing {@plate} to the top of the queue", plateToAdd);
+
+            QueuedPlates.Insert(0, plateToAdd);
 
             UpdateListView();
         }
@@ -76,20 +79,44 @@ namespace DUNameplateGUI
         // when this function is called)
         // It checks if there is any plates in the queue, and if there are not, this function does nothing.
         // It also will automatically call Dequeue if the Quantity is changed to zero.
-        public static void DecrementTopPlateQuantity()
+        //public static void DecrementTopPlateQuantity()
+        //{
+        //    if (QueuedPlates.Count >= 1)
+        //    {
+        //        Nameplate topPlate = QueuedPlates[0];
+
+        //        topPlate.Quantity -= 1;
+
+        //        if (topPlate.Quantity == 0)
+        //        {
+        //            Dequeue();
+        //        }
+
+        //        UpdateListView();
+        //    }
+        //}
+
+        // Decrements the quantity of the the plate passed in, if that plate can be found in QueuedPlates
+        public static void DecrementSpecificPlateQuantity(Nameplate nameplate)
         {
-            if (QueuedPlates.Count >= 1)
+            Nameplate nameplateFromQueue = QueuedPlates.Find(x => x.Equals(nameplate));
+
+            if (nameplateFromQueue != null)
             {
-                Nameplate topPlate = QueuedPlates[0];
+                Log.Debug("Decrementing plate {@plate}", nameplateFromQueue);
 
-                topPlate.Quantity -= 1;
+                nameplateFromQueue.Quantity -= 1;
 
-                if (topPlate.Quantity == 0)
+                if (nameplateFromQueue.Quantity == 0)
                 {
-                    Dequeue();
+                    DequeueSpecificPlate(nameplateFromQueue);
                 }
 
                 UpdateListView();
+            }
+            else
+            {
+                Log.Warning("Couldn't find plate ({@plate}) to decrement, may have been deleted", nameplate);
             }
         }
 
@@ -106,12 +133,26 @@ namespace DUNameplateGUI
             }
         }
 
-        // This function removes the plate from the top of the queue
-        private static void Dequeue()
-        {
-            QueuedPlates.RemoveAt(0);
+        //// This function removes the plate from the top of the queue
+        //private static void Dequeue()
+        //{
+        //    QueuedPlates.RemoveAt(0);
 
-            UpdateListView();
+        //    UpdateListView();
+        //}
+
+        // Removes the nameplate passed in from QueuedPlates
+        private static void DequeueSpecificPlate(Nameplate nameplate)
+        {
+            if (QueuedPlates.Remove(nameplate))
+            {
+                UpdateListView();
+                Log.Debug("Successfully dequeued plate {@plate}", nameplate);
+            } 
+            else
+            {
+                Log.Warning("Couldn't find specific plate ({@plate}) to dequeue, must have been deleted", nameplate);
+            }
         }
 
         //// TryDequeue will be run when the current nameplate is fully completed printing, so it will be removed from the queue,
