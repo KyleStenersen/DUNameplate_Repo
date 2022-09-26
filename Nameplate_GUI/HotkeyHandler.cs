@@ -36,7 +36,7 @@ namespace DUNameplateGUI
             //if (args.Modifiers == (Keys.Control | Keys.Alt))
             if (args.Modifiers == (Keys.Control))
             {
-                switch (args.KeyCode) 
+                switch (args.KeyCode)
                 {
                     case Keys.Q:
                         UIControl.printQueue();
@@ -76,7 +76,7 @@ namespace DUNameplateGUI
                         break;
                     // These are set to weird arbitrary keys due to not being able to
                     // create barcodes that do Ctrl + all of the numbers
-                    case Keys.D1:
+                    case Keys.O:
                         UIControl.setQuantity(1);
                         afterHotkey(args);
                         break;

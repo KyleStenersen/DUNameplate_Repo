@@ -41,7 +41,7 @@ namespace DUNameplateGUI {
         }
         public static void sendSettings()
         {
-            if (Global.SerialOn) serialPort1.Write("<p" + Properties.Settings.Default.xOffsetSet.ToString() + "," +
+            if (Global.SerialOn) sendString("<p" + Properties.Settings.Default.xOffsetSet.ToString() + "," +
                 Properties.Settings.Default.yOffsetSet.ToString() + "," +
                 Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
                 Properties.Settings.Default.charSpaceingSet.ToString() + ">");
