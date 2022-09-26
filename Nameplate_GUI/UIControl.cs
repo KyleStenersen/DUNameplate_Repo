@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Serilog;
 
 namespace DUNameplateGUI
 {
@@ -261,6 +263,8 @@ namespace DUNameplateGUI
         // This function should be run after the jig has been reloaded
         public static void signalReloaded()
         {
+            Log.Debug("signalReloaded");
+
             // The reason why we are setting and immediately resetting this AutoResetEvent
             // is to prevent someone from pressing reload when the machine doesn't need it,
             // and then for the machine to think that somebody already reloaded it the
@@ -271,6 +275,8 @@ namespace DUNameplateGUI
 
         public static void signalEstopResetClicked()
         {
+            Log.Debug("signalEstopResetClicked");
+
             //Send reset signal to Arduino
             SerialCom.estopReset();
             // The reason why we are setting and immediately resetting this AutoResetEvent

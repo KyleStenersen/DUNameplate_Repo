@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -154,6 +155,7 @@ namespace DUNameplateGUI
                     // pressing the reload button on the GUI, or by scanning a barcode with
                     // the right key combination
                     // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
+                    Log.Debug("MachineCntrl - printonetag - wait reload");
                     reloadedEvent.WaitOne();
 
                     // And now we're printing again, so set it back

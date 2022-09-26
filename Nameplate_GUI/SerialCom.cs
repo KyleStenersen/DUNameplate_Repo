@@ -2,6 +2,7 @@
 using System.IO.Ports;
 using System.Threading;
 using Serilog;
+using System.Diagnostics;
 
 namespace DUNameplateGUI {
     public static class SerialCom
@@ -47,7 +48,7 @@ namespace DUNameplateGUI {
 
         public static void sendString(string stringToSend)
         {
-            MessageBox.Show(stringToSend); // For development purpose, remove later
+            //MessageBox.Show(stringToSend); // For development purpose, remove later
 
             Log.Debug("Sending {string} down serial", stringToSend);
 
@@ -70,6 +71,8 @@ namespace DUNameplateGUI {
                     // Wait/Block this thread until the resetEstopEvent gets set from someone
                     // pressing the estop button on the GUI
                     // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
+                    
+                    Log.Debug("SerialCom - checkifplatedone - wait estop reset");
                     resetEstopEvent.WaitOne();
 
                     // And now we're ready again, so set it back

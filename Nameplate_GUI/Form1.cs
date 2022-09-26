@@ -137,8 +137,8 @@ namespace DUNameplateGUI
         // It won't cause any issues by signalling reloaded while the printer does not need reloading
         private void statusLabel_Click(object sender, EventArgs e)
         {
-            UIControl.signalReloaded();
             UIControl.signalEstopResetClicked();
+            UIControl.signalReloaded();
         }
 
         private void addToTopOfQueueBtn_Click(object sender, EventArgs e)

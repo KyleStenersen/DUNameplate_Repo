@@ -6,7 +6,7 @@
 // - the Main loop that just checks for updates to input, and
 // - the stallguard ISR that shuts the machine down if a motor stalls
 // ------------------------------------------------
-// Code constructed by Kingdom Automation (Kyle Stenersen) - started in 12/2022
+// Code constructed by Kingdom Automation (Kyle Stenersen) - started in 12/2021
 // ------------------------------------------------
  
 #include <Arduino.h>
