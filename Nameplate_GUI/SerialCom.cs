@@ -51,6 +51,10 @@ namespace DUNameplateGUI {
         {
             //MessageBox.Show(stringToSend); // For development purpose, remove later
 
+            Log.Debug("SerialCom sendString waiting 10 ms before sending {string}", stringToSend);
+
+            Thread.Sleep(10);
+
             Log.Debug("Sending {string} down serial", stringToSend);
 
             if (Global.SerialOn) serialPort1.Write(stringToSend);
@@ -103,6 +107,7 @@ namespace DUNameplateGUI {
         private static void checkDataRecieved()
         {
             string stringIn = serialPort1.ReadLine();
+            //Log.Debug("SerialCom checkDataRecieved got {string}", stringIn); // dumps too much output into the log
             respondInput(stringIn);
         }
 
