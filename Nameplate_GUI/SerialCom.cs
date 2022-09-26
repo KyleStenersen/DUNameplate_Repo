@@ -11,6 +11,7 @@ namespace DUNameplateGUI {
         //public delegate void serialReciever(string stringIn);
         private static bool plateIsDone = false;
         private static bool eSTOP = false;
+        private static bool homeDone = false;
         public static AutoResetEvent resetEstopEvent = new AutoResetEvent(false);
 
         // PUBLIC FUNCTIONS ==============================================
@@ -55,16 +56,17 @@ namespace DUNameplateGUI {
             if (Global.SerialOn) serialPort1.Write(stringToSend);
         }
 
-        public static void checkIfPlateDone(ref bool done)
+        public static void checkIfPlateDone_Estop_Homed(ref bool donePlate, ref bool doneHome )
         {
             if (Global.SerialOn)
             {
                 plateIsDone = false;
                 checkDataRecieved();
-                if (plateIsDone == true) done = true;
+                if (plateIsDone == true) donePlate = true;
+                if (homeDone == true) doneHome = true;
                 if (eSTOP == true)
                 {
-                    done = true;
+                    donePlate = true;
                     UIControl.requestCancel();
                     UIControl.changeStatusIndicator(UIControl.Status.Estopped);
 
@@ -83,7 +85,7 @@ namespace DUNameplateGUI {
                 return;
             }
 
-            else done = true;
+            else donePlate = true;
         }
 
         public static void clearInputBuffer()
@@ -114,7 +116,8 @@ namespace DUNameplateGUI {
                 case 'z':
                     {
                         if (secondChar == '1') plateIsDone = true;
-                        if (secondChar == '2')  eSTOP = true;
+                        if (secondChar == '2') eSTOP = true;
+                        if (secondChar == '3') homeDone = true;
                         break;
                     }
             }

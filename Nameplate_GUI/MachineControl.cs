@@ -256,10 +256,11 @@ namespace DUNameplateGUI
             Log.Debug("Waiting for plate to be complete...");
 
             bool plateIsDone = false;
+            bool homeIsDone = false;
 
             while (plateIsDone == false)
             {
-                SerialCom.checkIfPlateDone(ref plateIsDone);
+                SerialCom.checkIfPlateDone_Estop_Homed(ref plateIsDone, ref homeIsDone);
             }
 
             Log.Debug("Plate complete");
@@ -269,6 +270,22 @@ namespace DUNameplateGUI
         public static void home()
         {
             SerialCom.sendString("<h>");
+            waitHomeDone();
+        }
+
+        private static void waitHomeDone()
+        {
+            Log.Debug("Waiting for homing to be complete...");
+
+            bool homeIsDone = false;
+            bool plateIsDone = false;
+
+            while (homeIsDone == false)
+            {
+                SerialCom.checkIfPlateDone_Estop_Homed(ref plateIsDone, ref homeIsDone);
+            }
+
+            Log.Debug("home complete");
         }
 
     }

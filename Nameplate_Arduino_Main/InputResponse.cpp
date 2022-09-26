@@ -119,6 +119,7 @@ void InputResponse::chooseAction(const char* fullInputString)
     case 'h':{
     platesIR.xyHome();
     serialOpsIR.emptySerial();
+    Serial.println("z3");
     break;}
 //--------------------------
     case 'i':{
