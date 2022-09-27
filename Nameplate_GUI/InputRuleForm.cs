@@ -61,7 +61,7 @@ namespace DUNameplateGUI
                 // So we will prevent these rules from being saved
                 if (replaceStr.Contains(matchStr))
                 {
-                    Log.Error("Rule with matchStr {matchStr} and replaceStr {replaceStr} will cause stack overflow, rejecting it");
+                    Log.Error("Rule with matchStr {matchStr} and replaceStr {replaceStr} will cause stack overflow, rejecting it", matchStr, replaceStr);
                     MessageBox.Show("Rules cannnot have the matching pattern inside of the replace pattern, or program will crash. \n" +
                         "Offending rule: \n" +
                         "Match: " + matchStr + "\n" +
