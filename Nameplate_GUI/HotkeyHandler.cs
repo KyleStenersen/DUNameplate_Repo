@@ -116,6 +116,11 @@ namespace DUNameplateGUI
                     // before the rest of the keypresses from the scanner
                     case Keys.OemMinus:
                         hotkeyPressed = false;
+                        // If we are not focused on a TextBox, focus on the first text box
+                        if (!(findFocusedControl(MainForm) is TextBox))
+                        {
+                            UIControl.focusFirstTextBox();
+                        }
                         break;
                     // Ctrl+] is set as the suffix on the barcode scanner, so this code runs after
                     // the barcode scanner has sent all of its keypresses

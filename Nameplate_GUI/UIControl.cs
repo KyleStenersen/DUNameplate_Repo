@@ -364,6 +364,11 @@ namespace DUNameplateGUI
 
             jigLabel.Invoke(updateJigDisplay);
         }
+        
+        public static void focusFirstTextBox()
+        {
+            arrayOfTagTextBoxes[0].Focus();
+        }
 
     }
 }
