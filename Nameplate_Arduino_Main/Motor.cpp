@@ -80,7 +80,7 @@ int LETTER_RPM = 200;
 int Y_RPM = 180;
 int X_RPM = 180;
 int ACCEL_MULTIPLIER_XY = 1800;                   // Range:1(uber slow acceleration)-1600ish, acceleration, chosen by testing (~1500 max?)
-int ACCEL_MULTIPLIER_LETTER = 1400;               // was 1400 max
+int ACCEL_MULTIPLIER_LETTER = 1800;               // was 1400 max
 int MICROSTEPS = 2;
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds  
 
