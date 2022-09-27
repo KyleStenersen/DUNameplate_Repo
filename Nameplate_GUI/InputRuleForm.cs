@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Serilog;
 
 namespace DUNameplateGUI
 {
@@ -42,6 +43,7 @@ namespace DUNameplateGUI
             foreach (DataGridViewRow row in inputRulesDataGridView.Rows) {
                 // Cells[0] is our matchStr column
                 if (row.Cells[0].Value == null) {
+                    Log.Warning("matchStr column is empty for rule, skipping it");
                     continue;
                 }
 
@@ -55,11 +57,23 @@ namespace DUNameplateGUI
                     replaceStr = row.Cells[1].Value.ToString();
                 }
 
+                // If the replaceStr contains matchStr, we will end up with a stack overflow if the matchStr is typed
+                // So we will prevent these rules from being saved
+                if (replaceStr.Contains(matchStr))
+                {
+                    Log.Error("Rule with matchStr {matchStr} and replaceStr {replaceStr} will cause stack overflow, rejecting it");
+                    MessageBox.Show("Rules cannnot have the matching pattern inside of the replace pattern, or program will crash. \n" +
+                        "Offending rule: \n" +
+                        "Match: " + matchStr + "\n" +
+                        "Replace: " + replaceStr, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    continue;
+                }
+
                 // Create and add our new rule into the InputFixer
                 InputFixingRule newRule = new InputFixingRule(matchStr, replaceStr);
                 InputFixer.inputFixingRules.Add(newRule);
 
-                Console.WriteLine("matchStr: " + matchStr + " " + "replaceStr: " + replaceStr);
+                Log.Debug("Saving rule with matchStr: {matchStr} and replaceStr {replaceStr}", matchStr, replaceStr);
             }
 
             InputFixer.saveToSettings();
