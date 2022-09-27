@@ -131,11 +131,7 @@ namespace DUNameplateGUI
             // Block right here until the plate is done printing
             waitPlateDone();
 
-            // Decrement the quantity of the plate on top of the queue, which should be the one we just printed
-            // Maybe this should be changed to decrement the quantity of the plate we just printed
-            // by finding that plate?
-            //PlateQueue.DecrementTopPlateQuantity();
-
+            // Decrement the quantity of the plate that we just printed
             PlateQueue.DecrementSpecificPlateQuantity(currentPlate);
 
             // If there is no more room in the jig, home, and then tell the user to reload the machine
@@ -143,24 +139,18 @@ namespace DUNameplateGUI
             {
                 home();
 
-                // If the tag is not the final tag being printed, ask the user to reload
-                if (PlateQueue.Count != 0)
-                {
-                    // Set the status to ReloadNeeded
-                    UIControl.changeStatusIndicator(UIControl.Status.ReloadNeeded);
+                // Set the status to ReloadNeeded
+                UIControl.changeStatusIndicator(UIControl.Status.ReloadNeeded);
 
-                    //MessageBox.Show("Please reload, press OK when done");
+                // Wait/Block this thread until the reloadedEvent gets set from someone
+                // pressing the reload button on the GUI, or by scanning a barcode with
+                // the right key combination
+                // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
+                Log.Debug("MachineCntrl - printonetag - wait reload");
+                reloadedEvent.WaitOne();
 
-                    // Wait/Block this thread until the reloadedEvent gets set from someone
-                    // pressing the reload button on the GUI, or by scanning a barcode with
-                    // the right key combination
-                    // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
-                    Log.Debug("MachineCntrl - printonetag - wait reload");
-                    reloadedEvent.WaitOne();
-
-                    // And now we're printing again, so set it back
-                    UIControl.changeStatusIndicator(UIControl.Status.Printing);
-                }
+                // And now we're printing again, so set it back
+                UIControl.changeStatusIndicator(UIControl.Status.Printing);
 
                 Jig.Position = 0;
             }

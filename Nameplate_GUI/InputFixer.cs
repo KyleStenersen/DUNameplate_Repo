@@ -72,6 +72,13 @@ namespace DUNameplateGUI
 
             Log.Debug("Loading input fixing rules from settings: {stringToLoad}", stringToLoad);
 
+            // If there are no rules set, reset to the default rules
+            if (stringToLoad == "")
+            {
+                resetToDefaultRules();
+                Log.Warning("Input fixing rules have been reset to default, as they were empty");
+            }
+
             // This needs to be an array, because there is no version of String.Split function that takes in
             // one character and lets you set StringSplitOptions.
             char[] delimiter = new char[] { '§' }; // was +
