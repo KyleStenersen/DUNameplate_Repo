@@ -13,7 +13,7 @@
 
 SerialOps::SerialOps(){}
 
-const int NUM_CHARS = 91;
+const int NUM_CHARS = 130;
 char receivedChars[NUM_CHARS];
 boolean newData = false;
 

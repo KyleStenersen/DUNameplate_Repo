@@ -108,7 +108,7 @@ namespace DUNameplateGUI {
         {
             Log.Debug("Waiting for plate to be complete...");
 
-            int waitResult = WaitHandle.WaitAny(new WaitHandle[] { plateCompleteEvent, estopReceivedEvent }, 20000);
+            int waitResult = WaitHandle.WaitAny(new WaitHandle[] { plateCompleteEvent, estopReceivedEvent }, 100000);
 
             if (waitResult == 0) // Sucessfully printed plate
             {
@@ -144,7 +144,7 @@ namespace DUNameplateGUI {
         public static bool waitForHome()
         {
             Log.Debug("SerialCom - waitForHome - Waiting for home...");
-            if (homeCompleteEvent.WaitOne(5000))
+            if (homeCompleteEvent.WaitOne(20000))
             {
                 Log.Debug("SerialCom - waitForHome - Waiting for home complete");
                 return true;
