@@ -29,7 +29,16 @@ namespace DUNameplateGUI
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MAIN_FORM()); // Form1
+
+            try
+            {
+                Application.Run(new MAIN_FORM()); // Form1
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal("Unhandled exception: {exception}", ex);
+            }
+
 
             Log.Information("DUNameplateGUI shutting down");
 

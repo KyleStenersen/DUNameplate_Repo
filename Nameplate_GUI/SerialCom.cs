@@ -18,6 +18,9 @@ namespace DUNameplateGUI {
         private static AutoResetEvent homeCompleteEvent = new AutoResetEvent(false);
         private static AutoResetEvent estopReceivedEvent = new AutoResetEvent(false);
 
+        // See DataReceivedHandler
+        private static char lastCharReceived = ' ';
+
         // PUBLIC FUNCTIONS ==============================================
 
         public static void setupPort()
@@ -98,18 +101,21 @@ namespace DUNameplateGUI {
             else donePlate = true;
         }
 
-        public static void waitForPlateDoneOrEstop()
+        // Waits until the machine sends the signal for the plate being complete, or until it is estopped, in which case it will
+        // wait until someone clicks on the status button to un-estop. 
+        // This function will request a cancellation if it has been estopped or if it times out
+        public static bool waitForPlateDoneOrEstop()
         {
             Log.Debug("Waiting for plate to be complete...");
 
             int waitResult = WaitHandle.WaitAny(new WaitHandle[] { plateCompleteEvent, estopReceivedEvent }, 20000);
 
-            if (waitResult == 0)
+            if (waitResult == 0) // Sucessfully printed plate
             {
                 Log.Debug("Plate complete");
-                return;
+                return true;
             }
-            else if (waitResult == 1)
+            else if (waitResult == 1) // Machine estopped
             {
                 UIControl.requestCancel();
                 UIControl.changeStatusIndicator(UIControl.Status.Estopped);
@@ -124,12 +130,14 @@ namespace DUNameplateGUI {
                 // And now we're ready again, so set it back
                 UIControl.changeStatusIndicator(UIControl.Status.Ready);
 
-                return;
+                return false;
             } 
-            else
+            else // Wait timed out
             {
+                UIControl.requestCancel();
+
                 Log.Warning("WaitForPlateDoneOrEstop timed out, waitResult was {WaitResult}", waitResult);
-                return;
+                return false;
             }
         }
 
@@ -188,7 +196,15 @@ namespace DUNameplateGUI {
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             string stringReceived = serialPort1.ReadExisting();
+
+            // Because it is possible that our command that we're looking for is split across two
+            // communications, so we're going to put the last character received at the beginning of
+            // stringReceived, and then store our last character for the next time
+            stringReceived = stringReceived.Insert(0, lastCharReceived.ToString());
+            Log.Debug("lastCharReceived is {lastCharReceived}", lastCharReceived);
             Log.Debug("DataReceivedHandler has received {String}", stringReceived);
+
+            lastCharReceived = stringReceived.ToCharArray()[stringReceived.Length - 1];
 
             if (stringReceived.Length < 2)
             {
@@ -196,8 +212,6 @@ namespace DUNameplateGUI {
                 return;
             }
 
-            char firstChar = stringReceived[0];
-            char secondChar = stringReceived[1];
 
             if (stringReceived.Contains("z1"))
             {
@@ -217,6 +231,9 @@ namespace DUNameplateGUI {
                 homeCompleteEvent.Set();
                 homeCompleteEvent.Reset();
             }
+
+            //char firstChar = stringReceived[0];
+            //char secondChar = stringReceived[1];
 
             //switch (firstChar)
             //{

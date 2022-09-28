@@ -132,6 +132,14 @@ namespace DUNameplateGUI
             //waitPlateDone();
             SerialCom.waitForPlateDoneOrEstop();
 
+            // If cancellationRequested is true, throw an OperationCancelled exception to stop the printing here
+            // This exception will be caught by the code in startPrintingTaskIfNotPrinting
+            if (cancellationRequested == true)
+            {
+                cancellationRequested = false;
+                throw new OperationCanceledException();
+            }
+
             // Decrement the quantity of the plate that we just printed
             PlateQueue.DecrementSpecificPlateQuantity(currentPlate);
 
