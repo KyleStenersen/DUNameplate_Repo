@@ -129,7 +129,8 @@ namespace DUNameplateGUI
             printTag(currentPlate);
 
             // Block right here until the plate is done printing
-            waitPlateDone();
+            //waitPlateDone();
+            SerialCom.waitForPlateDoneOrEstop();
 
             // Decrement the quantity of the plate that we just printed
             PlateQueue.DecrementSpecificPlateQuantity(currentPlate);
@@ -260,7 +261,17 @@ namespace DUNameplateGUI
         public static void home()
         {
             SerialCom.sendString("<h>");
-            waitHomeDone();
+            if (SerialCom.waitForHome())
+            {
+                // Homed properly
+            } 
+            else
+            {
+                // Timed out
+                Log.Error("MachineControl - home - waitForHome timed out");
+            }
+            
+            //waitHomeDone();
         }
 
         private static void waitHomeDone()

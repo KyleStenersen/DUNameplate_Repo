@@ -14,6 +14,10 @@ namespace DUNameplateGUI {
         private static bool homeDone = false;
         public static AutoResetEvent resetEstopEvent = new AutoResetEvent(false);
 
+        private static AutoResetEvent plateCompleteEvent = new AutoResetEvent(false);
+        private static AutoResetEvent homeCompleteEvent = new AutoResetEvent(false);
+        private static AutoResetEvent estopReceivedEvent = new AutoResetEvent(false);
+
         // PUBLIC FUNCTIONS ==============================================
 
         public static void setupPort()
@@ -24,6 +28,8 @@ namespace DUNameplateGUI {
                 serialPort1.PortName = "COM3";
                 serialPort1.ReadTimeout = -1;
                 serialPort1.WriteTimeout = -1;
+
+                serialPort1.DataReceived += DataReceivedHandler;
                 
                 bool serialFail = true;
                 while (serialFail == true)
@@ -92,6 +98,57 @@ namespace DUNameplateGUI {
             else donePlate = true;
         }
 
+        public static void waitForPlateDoneOrEstop()
+        {
+            Log.Debug("Waiting for plate to be complete...");
+
+            int waitResult = WaitHandle.WaitAny(new WaitHandle[] { plateCompleteEvent, estopReceivedEvent }, 20000);
+
+            if (waitResult == 0)
+            {
+                Log.Debug("Plate complete");
+                return;
+            }
+            else if (waitResult == 1)
+            {
+                UIControl.requestCancel();
+                UIControl.changeStatusIndicator(UIControl.Status.Estopped);
+
+                // Wait/Block this thread until the resetEstopEvent gets set from someone
+                // pressing the estop button on the GUI
+                // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
+
+                Log.Debug("SerialCom - waitForPlateDoneOrEstop - wait estop reset");
+                resetEstopEvent.WaitOne();
+
+                // And now we're ready again, so set it back
+                UIControl.changeStatusIndicator(UIControl.Status.Ready);
+
+                return;
+            } 
+            else
+            {
+                Log.Warning("WaitForPlateDoneOrEstop timed out, waitResult was {WaitResult}", waitResult);
+                return;
+            }
+        }
+
+        public static bool waitForHome()
+        {
+            Log.Debug("SerialCom - waitForHome - Waiting for home...");
+            if (homeCompleteEvent.WaitOne(5000))
+            {
+                Log.Debug("SerialCom - waitForHome - Waiting for home complete");
+                return true;
+            }
+            else
+            {
+                Log.Debug("SerialCom - waitForHome - Timed out");
+                return false;
+            }
+
+        }
+
         public static void clearInputBuffer()
         {
             if (Global.SerialOn) serialPort1.DiscardInBuffer();
@@ -126,6 +183,66 @@ namespace DUNameplateGUI {
                         break;
                     }
             }
+        }
+
+        private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            string stringReceived = serialPort1.ReadExisting();
+            Log.Debug("DataReceivedHandler has received {String}", stringReceived);
+
+            if (stringReceived.Length < 2)
+            {
+                Log.Warning("DataReceivedHandler has received too little chars");
+                return;
+            }
+
+            char firstChar = stringReceived[0];
+            char secondChar = stringReceived[1];
+
+            if (stringReceived.Contains("z1"))
+            {
+                Log.Debug("plateCompleteEvent set");
+                plateCompleteEvent.Set();
+                plateCompleteEvent.Reset();
+            }
+            else if (stringReceived.Contains("z2"))
+            {
+                Log.Debug("estopReceivedEvent set");
+                estopReceivedEvent.Set();
+                estopReceivedEvent.Reset();
+            }
+            else if (stringReceived.Contains("z3"))
+            {
+                Log.Debug("homeCompleteEvent set");
+                homeCompleteEvent.Set();
+                homeCompleteEvent.Reset();
+            }
+
+            //switch (firstChar)
+            //{
+            //    case 'z':
+            //        {
+            //            if (secondChar == '1')
+            //            {
+            //                Log.Debug("plateCompleteEvent set");
+            //                plateCompleteEvent.Set();
+            //                plateCompleteEvent.Reset();
+            //            }
+            //            if (secondChar == '2')
+            //            {
+            //                Log.Debug("estopReceivedEvent set");
+            //                estopReceivedEvent.Set();
+            //                estopReceivedEvent.Reset();
+            //            }
+            //            if (secondChar == '3')
+            //            {
+            //                Log.Debug("homeCompleteEvent set");
+            //                homeCompleteEvent.Set();
+            //                homeCompleteEvent.Reset();
+            //            }
+            //            break;
+            //        }
+            //}
         }
     }
 }
