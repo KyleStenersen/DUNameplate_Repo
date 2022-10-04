@@ -234,5 +234,10 @@ namespace DUNameplateGUI
         {
             UIControl.deleteSelectedTag();
         }
+
+        private void resetConnectionButton_Click(object sender, EventArgs e)
+        {
+            UIControl.resetConnection();
+        }
     }
 }

@@ -167,19 +167,6 @@ namespace DUNameplateGUI
             Jig.Position = 0;
         }
 
-        // TODO: Replace with enabling and disabling settings
-        //public static void disableJigComboBox()
-        //{
-        //    // This is a delegate for disabling the combo box, because if we are on another thread,
-        //    // we need to Invoke to get back onto it
-        //    Action disableJigComboBox = delegate ()
-        //    {
-        //        jigComboBox.Enabled = false;
-        //    };
-
-        //    jigComboBox.Invoke(disableJigComboBox);
-        //}
-
         // This function is called when we start printing, to prevent the user from pressing the home button, or changing
         // the currently selected jig while printing.
         public static void disableSomeUIWhilePrinting()
@@ -211,18 +198,6 @@ namespace DUNameplateGUI
             // It doesn't matter which UI element we invoke here, invoking any element will get us on the main thread
             homeButton.Invoke(enableUI);
         }
-
-        //public static void enableJigComboBox()
-        //{
-        //    // This is a delegate for enabling the combo box, because if we are on another thread,
-        //    // we need to Invoke to get back onto it
-        //    Action enableJigComboBox = delegate ()
-        //    {
-        //        jigComboBox.Enabled = true;
-        //    };
-
-        //    jigComboBox.Invoke(enableJigComboBox);
-        //}
 
         public static void changeStatusIndicator(Status status)
         {
@@ -368,6 +343,11 @@ namespace DUNameplateGUI
         public static void focusFirstTextBox()
         {
             arrayOfTagTextBoxes[0].Focus();
+        }
+
+        public static void resetConnection()
+        {
+            SerialCom.resetConnection();
         }
 
     }

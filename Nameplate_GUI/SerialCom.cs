@@ -3,6 +3,7 @@ using System.IO.Ports;
 using System.Threading;
 using Serilog;
 using System.Diagnostics;
+using System;
 
 namespace DUNameplateGUI {
     public static class SerialCom
@@ -14,6 +15,7 @@ namespace DUNameplateGUI {
         private static AutoResetEvent plateCompleteEvent = new AutoResetEvent(false);
         private static AutoResetEvent homeCompleteEvent = new AutoResetEvent(false);
         private static AutoResetEvent estopReceivedEvent = new AutoResetEvent(false);
+        private static ManualResetEvent disconnectedEvent = new ManualResetEvent(false);
 
         // See DataReceivedHandler
         private static char lastCharReceived = ' ';
@@ -26,25 +28,47 @@ namespace DUNameplateGUI {
             {
                 serialPort1.BaudRate = 115200;
                 serialPort1.PortName = "COM3";
-                serialPort1.ReadTimeout = -1;
-                serialPort1.WriteTimeout = -1;
+                serialPort1.ReadTimeout = 5000;
+                serialPort1.WriteTimeout = 5000;
 
                 serialPort1.DataReceived += DataReceivedHandler;
-                
-                bool serialFail = true;
-                while (serialFail == true)
-                    try
-                    {
-                        serialPort1.Open();
-                        serialFail = false;
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Must plug in or power up the machine, and check USB connection." +
-                            "\nThen press OK.");
-                    }
+
+                //bool serialFail = true;
+                //while (serialFail == true)
+                //{
+                //    try
+                //    {
+                //        serialPort1.Open();
+                //        serialFail = false;
+                //    }
+                //    catch
+                //    {
+                //        MessageBox.Show("Must plug in or power up the machine, and check USB connection." +
+                //            "\nThen press OK.");
+                //    }
+                //}
+
+                try
+                {
+                    serialPort1.Open();
+                    // Reset our disconnected event, as it is a ManualResetEvent and it will never reset itself
+                    disconnectedEvent.Reset();
+                }
+                catch (Exception ex)
+                {
+                    Log.Error("Couldn't open serial port with exception: {ex}", ex);
+                    MessageBox.Show("Failed to connect to the machine, make sure machine is powered on and check USB connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
         }
+
+        // Tries to re-setup our serial connection
+        public static void resetConnection()
+        {
+            setupPort();
+        }
+
         public static void sendSettings()
         {
             if (Global.SerialOn) sendString("<p" + Properties.Settings.Default.xOffsetSet.ToString() + "," +
@@ -55,25 +79,44 @@ namespace DUNameplateGUI {
 
         public static void sendString(string stringToSend)
         {
-            //MessageBox.Show(stringToSend); // For development purpose, remove later
+            if (Global.SerialOn)
+            {
+                try
+                {
+                    Log.Debug("SerialCom sendString waiting 10 ms before sending {string}", stringToSend);
 
-            Log.Debug("SerialCom sendString waiting 10 ms before sending {string}", stringToSend);
+                    Thread.Sleep(10);
 
-            Thread.Sleep(10);
+                    Log.Debug("Sending {string} down serial", stringToSend);
+                    serialPort1.Write(stringToSend);
 
-            Log.Debug("Sending {string} down serial", stringToSend);
+                    // Reset our disconnected event, as it is a ManualResetEvent and it will never reset itself
+                    disconnectedEvent.Reset();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Log.Error("Couldn't write to serial due to exception: {ex}", ex);
+                    UIControl.requestCancel();
+                    UIControl.changeStatusIndicator(UIControl.Status.Disconnected);
 
-            if (Global.SerialOn) serialPort1.Write(stringToSend);
+                    disconnectedEvent.Set();
+                }
+            }
+            else
+            {
+                Log.Debug("Sending {string} down serial (but serial is disabled)", stringToSend);
+                MessageBox.Show(stringToSend);
+            }
+
         }
-
-        // Waits until the machine sends the signal for the plate being complete, or until it is estopped, in which case it will
-        // wait until someone clicks on the status button to un-estop. 
-        // This function will request a cancellation if it has been estopped or if it times out
+            // Waits until the machine sends the signal for the plate being complete, or until it is estopped, in which case it will
+            // wait until someone clicks on the status button to un-estop. 
+            // This function will request a cancellation if it has been estopped or if it times out
         public static bool waitForPlateDoneOrEstop()
         {
             Log.Debug("Waiting for plate to be complete...");
 
-            int waitResult = WaitHandle.WaitAny(new WaitHandle[] { plateCompleteEvent, estopReceivedEvent }, 100000);
+            int waitResult = WaitHandle.WaitAny(new WaitHandle[] { plateCompleteEvent, estopReceivedEvent, disconnectedEvent }, 100000);
 
             if (waitResult == 0) // Sucessfully printed plate
             {
@@ -97,11 +140,18 @@ namespace DUNameplateGUI {
 
                 return false;
             } 
-            else // Wait timed out
+            else if (waitResult == 2)
             {
                 UIControl.requestCancel();
 
-                Log.Warning("WaitForPlateDoneOrEstop timed out, waitResult was {WaitResult}", waitResult);
+                Log.Error("WaitForPlateDoneOrEstop timed out or serial disconnected, waitResult was {WaitResult}", waitResult);
+                return false;
+            }
+            else // Wait timed out or serial disconnected
+            {
+                UIControl.requestCancel();
+
+                Log.Error("WaitForPlateDoneOrEstop timed out or serial disconnected, waitResult was {WaitResult}", waitResult);
                 return false;
             }
         }
@@ -109,14 +159,22 @@ namespace DUNameplateGUI {
         public static bool waitForHome()
         {
             Log.Debug("SerialCom - waitForHome - Waiting for home...");
-            if (homeCompleteEvent.WaitOne(20000))
+
+            int waitResult = WaitHandle.WaitAny(new WaitHandle[] { homeCompleteEvent, disconnectedEvent }, 20000);
+
+            if (waitResult == 0)
             {
                 Log.Debug("SerialCom - waitForHome - Waiting for home complete");
                 return true;
             }
+            else if (waitResult == 1)
+            {
+                Log.Error("SerialCom - waitForHome - Serial disconnected");
+                return false;
+            }
             else
             {
-                Log.Debug("SerialCom - waitForHome - Timed out");
+                Log.Error("SerialCom - waitForHome - Timed out ");
                 return false;
             }
 

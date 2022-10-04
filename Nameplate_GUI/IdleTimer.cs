@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using Timer = System.Timers.Timer;
+using Serilog;
 
 namespace DUNameplateGUI
 {
@@ -43,7 +44,7 @@ namespace DUNameplateGUI
             // Another check to make absolutely sure that we don't mess up the jig position while it is printing
             if (!MachineControl.isPrinting)
             {
-                //Console.WriteLine("Timer's up, machine is not printing, resetting jig position");
+                Log.Debug("Timer's up, machine is not printing, resetting jig position");
                 Jig.Position = 0;
             }
         }

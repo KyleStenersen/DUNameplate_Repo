@@ -13,28 +13,30 @@ namespace DUNameplateGUI
     // This class is where all the main printing functions belong.
     internal static class MachineControl
     {
-        // This value should never be accessed directly, only through isPrinting
-        private static bool _isPrinting = false;
+        //// This value should never be accessed directly, only through isPrinting
+        //private static bool _isPrinting = false;
 
-        public static bool isPrinting
-        {
-            get { 
-                return _isPrinting;
-            }
-            set
-            {
-                _isPrinting = value;
-                if (_isPrinting) {
-                    // Change our status indicator to show that we are printing
-                    UIControl.changeStatusIndicator(UIControl.Status.Printing);
-                } 
-                else
-                {
-                    // Change the status indicator to show that we are ready to print again
-                    UIControl.changeStatusIndicator(UIControl.Status.Ready);
-                }
-            }
-        }
+        //public static bool isPrinting
+        //{
+        //    get { 
+        //        return _isPrinting;
+        //    }
+        //    set
+        //    {
+        //        _isPrinting = value;
+        //        if (_isPrinting) {
+        //            // Change our status indicator to show that we are printing
+        //            UIControl.changeStatusIndicator(UIControl.Status.Printing);
+        //        } 
+        //        else
+        //        {
+        //            // Change the status indicator to show that we are ready to print again
+        //            UIControl.changeStatusIndicator(UIControl.Status.Ready);
+        //        }
+        //    }
+        //}
+
+        public static bool isPrinting = false;
 
         public static AutoResetEvent reloadedEvent = new AutoResetEvent(false);
 
@@ -116,8 +118,8 @@ namespace DUNameplateGUI
 
             if (!isPrinting)
             {
-                // Changing isPrinting automatically changes the status indicator
                 isPrinting = true;
+                UIControl.changeStatusIndicator(UIControl.Status.Printing);
 
                 // Reset cancellationRequested to false, because it might be true due to a clearing of the queue
                 // while no printing was happening
@@ -144,12 +146,15 @@ namespace DUNameplateGUI
                         }
                     }
 
-                    // Home after queue completes or printing is cancelled
-                    home();
+                    // If homed successfully, set status to Ready as normal
+                    // If unsuccessful, don't change the status
+                    if (home())
+                    {
+                        UIControl.changeStatusIndicator(UIControl.Status.Ready);
+                    } 
 
-                    Log.Debug("Done printing");
+                    Log.Debug("Printing task complete");
 
-                    // Changing isPrinting automatically changes the status indicator
                     isPrinting = false;
 
                     // If the setting for resetting the jig after each print is enabled,
@@ -169,20 +174,23 @@ namespace DUNameplateGUI
             }
         }
 
-        public static void home()
+        // Homes the machine, waits until it is complete, and then returns true if it succeeded,
+        // and false if it did not
+        public static bool home()
         {
             SerialCom.sendString("<h>");
             if (SerialCom.waitForHome())
             {
                 // Homed properly
+                return true;
             } 
             else
             {
-                // Timed out
-                Log.Error("MachineControl - home - waitForHome timed out");
+                // Timed out or serial disconnected
+                Log.Error("MachineControl - home - waitForHome timed out / serial disconnected");
+                return false;
             }
             
-            //waitHomeDone();
         }
     }
 }
