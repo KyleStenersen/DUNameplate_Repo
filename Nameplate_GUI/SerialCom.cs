@@ -8,10 +8,7 @@ namespace DUNameplateGUI {
     public static class SerialCom
     {
         private static SerialPort serialPort1 = new SerialPort();
-        //public delegate void serialReciever(string stringIn);
-        private static bool plateIsDone = false;
-        private static bool eSTOP = false;
-        private static bool homeDone = false;
+
         public static AutoResetEvent resetEstopEvent = new AutoResetEvent(false);
 
         private static AutoResetEvent plateCompleteEvent = new AutoResetEvent(false);
@@ -67,38 +64,6 @@ namespace DUNameplateGUI {
             Log.Debug("Sending {string} down serial", stringToSend);
 
             if (Global.SerialOn) serialPort1.Write(stringToSend);
-        }
-
-        public static void checkIfPlateDone_Estop_Homed(ref bool donePlate, ref bool doneHome )
-        {
-            if (Global.SerialOn)
-            {
-                plateIsDone = false;
-                checkDataRecieved();
-                if (plateIsDone == true) donePlate = true;
-                if (homeDone == true) doneHome = true;
-                if (eSTOP == true)
-                {
-                    donePlate = true;
-                    UIControl.requestCancel();
-                    UIControl.changeStatusIndicator(UIControl.Status.Estopped);
-
-                    // Wait/Block this thread until the resetEstopEvent gets set from someone
-                    // pressing the estop button on the GUI
-                    // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
-                    
-                    Log.Debug("SerialCom - checkifplatedone - wait estop reset");
-                    resetEstopEvent.WaitOne();
-
-                    // And now we're ready again, so set it back
-                    UIControl.changeStatusIndicator(UIControl.Status.Ready);
-                    
-                    eSTOP = false;
-                }
-                return;
-            }
-
-            else donePlate = true;
         }
 
         // Waits until the machine sends the signal for the plate being complete, or until it is estopped, in which case it will
@@ -169,30 +134,6 @@ namespace DUNameplateGUI {
 
         // PRIVATE FUNCTIONS =========================================
 
-        private static void checkDataRecieved()
-        {
-            string stringIn = serialPort1.ReadLine();
-            //Log.Debug("SerialCom checkDataRecieved got {string}", stringIn); // dumps too much output into the log
-            respondInput(stringIn);
-        }
-
-        private static void respondInput(string stringRecieved)
-        {
-            char firstChar = stringRecieved[0];
-            char secondChar = stringRecieved[1];
-
-            switch (firstChar)
-            {
-                case 'z':
-                    {
-                        if (secondChar == '1') plateIsDone = true;
-                        if (secondChar == '2') eSTOP = true;
-                        if (secondChar == '3') homeDone = true;
-                        break;
-                    }
-            }
-        }
-
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             string stringReceived = serialPort1.ReadExisting();
@@ -231,35 +172,6 @@ namespace DUNameplateGUI {
                 homeCompleteEvent.Set();
                 homeCompleteEvent.Reset();
             }
-
-            //char firstChar = stringReceived[0];
-            //char secondChar = stringReceived[1];
-
-            //switch (firstChar)
-            //{
-            //    case 'z':
-            //        {
-            //            if (secondChar == '1')
-            //            {
-            //                Log.Debug("plateCompleteEvent set");
-            //                plateCompleteEvent.Set();
-            //                plateCompleteEvent.Reset();
-            //            }
-            //            if (secondChar == '2')
-            //            {
-            //                Log.Debug("estopReceivedEvent set");
-            //                estopReceivedEvent.Set();
-            //                estopReceivedEvent.Reset();
-            //            }
-            //            if (secondChar == '3')
-            //            {
-            //                Log.Debug("homeCompleteEvent set");
-            //                homeCompleteEvent.Set();
-            //                homeCompleteEvent.Reset();
-            //            }
-            //            break;
-            //        }
-            //}
         }
     }
 }

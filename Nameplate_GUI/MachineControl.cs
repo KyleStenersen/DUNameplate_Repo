@@ -54,64 +54,6 @@ namespace DUNameplateGUI
             SerialCom.sendString(tagText);
         }
 
-        //private static void printMultipleOfOneTag(Nameplate plateToPrint)
-        //{
-        //    int currentTagQuantity = plateToPrint.Quantity;
-
-        //    for (int i = 0; i < currentTagQuantity; i++)
-        //    {
-        //        // If cancellationRequested is true, throw an OperationCancelled exception to stop the printing here
-        //        // This exception will be caught by the code in startPrintingTaskIfNotPrinting
-        //        if (cancellationRequested == true)
-        //        {
-        //            cancellationRequested = false;
-        //            throw new OperationCanceledException();
-        //        }
-
-        //        // serialComF1.clearInputBuffer();
-        //        // Was doing before and after but only because
-        //        // of a bunch of messy serial output in arduino
-
-        //        printTag(plateToPrint);
-
-        //        //Jig.Position++;
-
-        //        waitPlateDone();
-
-        //        PlateQueue.DecrementTopPlateQuantity();
-
-        //        //if (Jig.Position == Jig.Capacity)
-        //        if (Jig.Position + 1 == Jig.Capacity)
-        //        {
-        //            home();
-
-        //            // If the tag is not the final tag being printed, ask the user to reload
-        //            if (i != currentTagQuantity - 1 || PlateQueue.Count != 0)
-        //            {
-        //                // Set the status to ReloadNeeded
-        //                UIControl.changeStatusIndicator(UIControl.Status.ReloadNeeded);
-
-        //                //MessageBox.Show("Please reload, press OK when done");
-
-        //                // Wait/Block this thread until the reloadedEvent gets set from someone
-        //                // pressing the reload button on the GUI, or by scanning a barcode with
-        //                // the right key combination
-        //                // Learn more about AutoResetEvents here:https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0
-        //                reloadedEvent.WaitOne();
-
-        //                // And now we're printing again, so set it back
-        //                UIControl.changeStatusIndicator(UIControl.Status.Printing);
-        //            }
-
-        //            Jig.Position = 0;
-        //        } 
-        //        else
-        //        {
-        //            Jig.Position++;
-        //        }
-        //    }
-        //}
-
         private static void printOneTagFromQueue()
         {
             // If cancellationRequested is true, throw an OperationCancelled exception to stop the printing here
@@ -186,32 +128,9 @@ namespace DUNameplateGUI
 
                 Task.Run(() =>
                 {
-                    // This should probably be removed so that the last position persists between prints
-                    // Maybe add a timer automatically reset jig.Position to 0 after a period of inactivity
-                    // Make sure the jig's position is set to zero to avoid weird behavior
-                    //jig.Position = 0;
-
                     // Go through each Nameplate in the queue and print them
                     while (PlateQueue.Count != 0)
                     {
-                        //// We peek the nameplate at the top of the queue, because we don't want to remove it from
-                        //// the UI and confuse the user if the plate had a large quantity
-                        //// The nameplate will be removed from the queue after the printMultipleOfOneTag
-                        //// function completes.
-                        //Nameplate currentPlate = PlateQueue.Peek();
-
-                        //// printMultipleOfOneTag will throw an OperationCancelledException if cancellationRequested is true
-                        //// This try-catch block will catch that exception, and stop this printing task
-                        //try
-                        //{
-                        //    printMultipleOfOneTag(currentPlate);
-                        //} 
-                        //catch (OperationCanceledException)
-                        //{
-                        //    Console.WriteLine("Catching OperationCanceledException from printMultipleOfOneTag, stopping printing now");
-                        //    break; // break out of this while loop, which will jump straight to the code at the end of printing
-                        //}
-
                         // printOneTagFromQueue will throw an OperationCancelledException if cancellationRequested is true
                         // This try-catch block will catch that exception, and stop this printing task
                         try
@@ -250,22 +169,6 @@ namespace DUNameplateGUI
             }
         }
 
-        private static void waitPlateDone()
-        {
-            Log.Debug("Waiting for plate to be complete...");
-
-            bool plateIsDone = false;
-            bool homeIsDone = false;
-
-            while (plateIsDone == false)
-            {
-                SerialCom.checkIfPlateDone_Estop_Homed(ref plateIsDone, ref homeIsDone);
-            }
-
-            Log.Debug("Plate complete");
-        }
-
-
         public static void home()
         {
             SerialCom.sendString("<h>");
@@ -281,21 +184,5 @@ namespace DUNameplateGUI
             
             //waitHomeDone();
         }
-
-        private static void waitHomeDone()
-        {
-            Log.Debug("Waiting for homing to be complete...");
-
-            bool homeIsDone = false;
-            bool plateIsDone = false;
-
-            while (homeIsDone == false)
-            {
-                SerialCom.checkIfPlateDone_Estop_Homed(ref plateIsDone, ref homeIsDone);
-            }
-
-            Log.Debug("home complete");
-        }
-
     }
 }
