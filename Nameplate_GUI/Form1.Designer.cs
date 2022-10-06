@@ -63,6 +63,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.jigLabel = new System.Windows.Forms.Label();
+            this.resetConnectionButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.statusPanel.SuspendLayout();
             this.jigIndicatorTableLayoutPanel.SuspendLayout();
@@ -133,10 +134,10 @@
             // clearTagBtn
             // 
             this.clearTagBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearTagBtn.Location = new System.Drawing.Point(590, 268);
+            this.clearTagBtn.Location = new System.Drawing.Point(463, 267);
             this.clearTagBtn.Margin = new System.Windows.Forms.Padding(2);
             this.clearTagBtn.Name = "clearTagBtn";
-            this.clearTagBtn.Size = new System.Drawing.Size(77, 36);
+            this.clearTagBtn.Size = new System.Drawing.Size(77, 38);
             this.clearTagBtn.TabIndex = 7;
             this.clearTagBtn.TabStop = false;
             this.clearTagBtn.Text = "Clear";
@@ -168,13 +169,13 @@
             // homeButton
             // 
             this.homeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeButton.Location = new System.Drawing.Point(671, 268);
+            this.homeButton.Location = new System.Drawing.Point(732, 267);
             this.homeButton.Margin = new System.Windows.Forms.Padding(2);
             this.homeButton.Name = "homeButton";
-            this.homeButton.Size = new System.Drawing.Size(140, 36);
+            this.homeButton.Size = new System.Drawing.Size(79, 38);
             this.homeButton.TabIndex = 7;
             this.homeButton.TabStop = false;
-            this.homeButton.Text = "Home/Reset";
+            this.homeButton.Text = "Home";
             this.homeButton.UseVisualStyleBackColor = true;
             this.homeButton.Click += new System.EventHandler(this.homeButton_Click);
             // 
@@ -426,6 +427,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.resetConnectionButton);
             this.panel1.Controls.Add(this.deleteSelectedBtn);
             this.panel1.Controls.Add(this.addToTopOfQueueBtn);
             this.panel1.Controls.Add(this.label2);
@@ -494,10 +496,10 @@
             // cancelButton
             // 
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(815, 268);
+            this.cancelButton.Location = new System.Drawing.Point(815, 267);
             this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(93, 36);
+            this.cancelButton.Size = new System.Drawing.Size(93, 38);
             this.cancelButton.TabIndex = 26;
             this.cancelButton.TabStop = false;
             this.cancelButton.Text = "Cancel";
@@ -514,6 +516,19 @@
             this.jigLabel.TabIndex = 28;
             this.jigLabel.Text = "8-Plate";
             this.jigLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // resetConnectionButton
+            // 
+            this.resetConnectionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetConnectionButton.Location = new System.Drawing.Point(626, 309);
+            this.resetConnectionButton.Margin = new System.Windows.Forms.Padding(2);
+            this.resetConnectionButton.Name = "resetConnectionButton";
+            this.resetConnectionButton.Size = new System.Drawing.Size(282, 38);
+            this.resetConnectionButton.TabIndex = 31;
+            this.resetConnectionButton.TabStop = false;
+            this.resetConnectionButton.Text = "Reset Machine Connection";
+            this.resetConnectionButton.UseVisualStyleBackColor = true;
+            this.resetConnectionButton.Click += new System.EventHandler(this.resetConnectionButton_Click);
             // 
             // MAIN_FORM
             // 
@@ -575,6 +590,7 @@
         private System.Windows.Forms.Panel jigIndicator5;
         private System.Windows.Forms.Panel jigIndicator4;
         private System.Windows.Forms.Button deleteSelectedBtn;
+        private System.Windows.Forms.Button resetConnectionButton;
     }
 }
 

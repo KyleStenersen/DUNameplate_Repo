@@ -10,7 +10,6 @@ namespace DUNameplateGUI
 {
     internal static class InputFixer
     {
-        // TODO: Fix stack overflow that happens when the replaceStr has the matchStr in it
 
         public static List<InputFixingRule> inputFixingRules;
 

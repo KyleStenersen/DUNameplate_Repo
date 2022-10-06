@@ -31,6 +31,9 @@ namespace DUNameplateGUI
             TopOfQueue
         }
 
+        // Stores the current status for checking later (just for when someone clicks the status)
+        public static Status currentStatus = Status.Ready;
+
         private static TextBox[] arrayOfTagTextBoxes;
 
         // Needed for clearTag, addCurrentTagToQueue, and setQuantity
@@ -167,19 +170,6 @@ namespace DUNameplateGUI
             Jig.Position = 0;
         }
 
-        // TODO: Replace with enabling and disabling settings
-        //public static void disableJigComboBox()
-        //{
-        //    // This is a delegate for disabling the combo box, because if we are on another thread,
-        //    // we need to Invoke to get back onto it
-        //    Action disableJigComboBox = delegate ()
-        //    {
-        //        jigComboBox.Enabled = false;
-        //    };
-
-        //    jigComboBox.Invoke(disableJigComboBox);
-        //}
-
         // This function is called when we start printing, to prevent the user from pressing the home button, or changing
         // the currently selected jig while printing.
         public static void disableSomeUIWhilePrinting()
@@ -212,20 +202,10 @@ namespace DUNameplateGUI
             homeButton.Invoke(enableUI);
         }
 
-        //public static void enableJigComboBox()
-        //{
-        //    // This is a delegate for enabling the combo box, because if we are on another thread,
-        //    // we need to Invoke to get back onto it
-        //    Action enableJigComboBox = delegate ()
-        //    {
-        //        jigComboBox.Enabled = true;
-        //    };
-
-        //    jigComboBox.Invoke(enableJigComboBox);
-        //}
-
         public static void changeStatusIndicator(Status status)
         {
+            currentStatus = status;
+
             // This is a delegate for changing the status indicator, this is needed
             // because this function will be called from other threads that are not
             // the main thread, so we will Invoke this delegate to jump back
@@ -368,6 +348,11 @@ namespace DUNameplateGUI
         public static void focusFirstTextBox()
         {
             arrayOfTagTextBoxes[0].Focus();
+        }
+
+        public static void resetConnection()
+        {
+            SerialCom.resetConnection();
         }
 
     }
