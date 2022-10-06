@@ -178,10 +178,14 @@ namespace DUNameplateGUI
         // and false if it did not
         public static bool home()
         {
+            UIControl.Status lastStatus = UIControl.currentStatus;
+
+            UIControl.changeStatusIndicator(UIControl.Status.Homing);
             SerialCom.sendString("<h>");
             if (SerialCom.waitForHome())
             {
                 // Homed properly
+                UIControl.changeStatusIndicator(lastStatus);
                 return true;
             } 
             else

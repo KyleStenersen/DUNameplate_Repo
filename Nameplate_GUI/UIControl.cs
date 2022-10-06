@@ -22,7 +22,8 @@ namespace DUNameplateGUI
             Ready,
             Printing,
             ReloadNeeded,
-            Estopped
+            Estopped,
+            Homing
         }
 
         public enum QueuePosition
@@ -233,6 +234,10 @@ namespace DUNameplateGUI
                     case Status.Estopped:
                         statusLabel.Text = "ESTOPPED";
                         statusLabel.BackColor = System.Drawing.Color.Red;
+                        break;
+                    case Status.Homing:
+                        statusLabel.Text = "HOMING";
+                        statusLabel.BackColor = System.Drawing.Color.Khaki;
                         break;
                 }
             };
