@@ -74,10 +74,10 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     if (eStopBit == 1) break;
     
     Serial.println("BEGIN LOOP");
-    Serial.print("xAbsolute = ");
-    Serial.println(xAbsolute);
-    Serial.print("yAbsolute = ");
-    Serial.println(yAbsolute); 
+    Serial.print(" - xAbsolute = ");
+    Serial.print(xAbsolute);
+    Serial.print(" - yAbsolute = ");
+    Serial.print(yAbsolute); 
        
     float angleToMove = textP.relativeAngleFromLetter(plateText[i]);    //get angle to move per letter from text library
     float letterLocation = textP.angleOfLetterFromMap(plateText[i]);   //get destination angle from text.h
@@ -97,7 +97,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     }
 
     Serial.print("angleToMove =");
-    Serial.println(angleToMove);
+    Serial.print(angleToMove);
     if (angleToMove == NEW_LINE)    //if newline character "!" then move one linespace in y and then go to start of next line from center (direction depends on line #)
     {
       motorP.yGo(LINE_SPACEING_GLOBAL, Y_ABS_POINTER);   //move down a line in y
@@ -105,13 +105,13 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
       
       float lineStart = xPlateCenter + (halfCurrentLine(lineNum) * plateSide);   //calc where to start next line in x
       
-      Serial.print("lineStart = ");
-      Serial.println(lineStart);
+      Serial.print(" - lineStart = ");
+      Serial.print(lineStart);
       float lineCurrent = xAbsolute;
-      Serial.print("lineCurrent = ");
-      Serial.println(lineCurrent);
+      Serial.print(" - lineCurrent = ");
+      Serial.print(lineCurrent);
       float moveToLineStart = lineStart - lineCurrent;
-      Serial.print("moveToLineStart = ");
+      Serial.print(" - moveToLineStart = ");
       Serial.println(moveToLineStart);      
       
       motorP.xGo(moveToLineStart, X_ABS_POINTER);   //move to start of next line in x
@@ -132,7 +132,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     encoderP.encoderSetup();
     Serial.print(" Destination = ");
     Serial.print(letterLocation);
-    Serial.print(" - ");
+    Serial.print(" - Letter: ");
     Serial.print(plateText[i]);
     Serial.print(" - angle to move = ");
     Serial.println(angleToMove);
@@ -144,10 +144,10 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
   } 
 
     Serial.println("END LOOP");
-    Serial.print("xAbsolute = ");
-    Serial.println(xAbsolute);
-    Serial.print("yAbsolute = ");
-    Serial.println(yAbsolute); 
+    Serial.print(" - xAbsolute = ");
+    Serial.print(xAbsolute);
+    Serial.print(" - yAbsolute = ");
+    Serial.print(yAbsolute); 
 
     killAllMotors();    //after all platetext is parsed/indented turn off motors.  
 }

@@ -76,12 +76,13 @@ const char RELAY_OFF = LOW;
 const char Z_STAMPING = LOW;
 
 //--- General Motor definitions
-int LETTER_RPM = 200;
+int LETTER_RPM = 100;   //was 200
 int Y_RPM = 180;
 int X_RPM = 180;
-int ACCEL_MULTIPLIER_XY = 1800;                   // Range:1(uber slow acceleration)-1600ish, acceleration, chosen by testing (~1500 max?)
-int ACCEL_MULTIPLIER_LETTER = 1800;               // was 1400 max
-int MICROSTEPS = 2;
+int ACCEL_MULTIPLIER_XY = 1800;                   // Range:1(uber slow acceleration)-1600ish, acceleration, chosen by testing (~1800 max?)
+int ACCEL_MULTIPLIER_LETTER = 3000;               // was 1800 max
+int XY_MICROSTEPS = 2;
+int L_MICROSTEPS = 32;    // Was 2
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds  
 
 
@@ -141,11 +142,11 @@ void Motor::yGo(float yInches, float* yAbsPosition)
   *yAbsPosition = *yAbsPosition + yInches;
 
   int MAGIC_Y_DISTANCE_CONVERTER =199;
-  stepper_Y.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*MICROSTEPS);    // smaller=smoother, (example: 25000-16ms)
-	y_Driver.microsteps(MICROSTEPS);                                                       // Microsteps Range: (1,2,4,8,16,32,64,128,256) TMC2209 says up to 64 but beyond is just interp. Speed limitations as go higher
-	int yStepsPerSec = Y_RPM*MICROSTEPS*RPM_TO_MICROSTEP_PER_SECOND_CONVERTER;						 // Convert rpm to steps/sec for the speedystepper.h library to use it
+  stepper_Y.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*XY_MICROSTEPS);    // smaller=smoother, (example: 25000-16ms)
+	y_Driver.microsteps(XY_MICROSTEPS);                                                       // Microsteps Range: (1,2,4,8,16,32,64,128,256) TMC2209 says up to 64 but beyond is just interp. Speed limitations as go higher
+	int yStepsPerSec = Y_RPM*XY_MICROSTEPS*RPM_TO_MICROSTEP_PER_SECOND_CONVERTER;						 // Convert rpm to steps/sec for the speedystepper.h library to use it
 	stepper_Y.setSpeedInStepsPerSecond(yStepsPerSec);
-	float ySteps = yInches*MAGIC_Y_DISTANCE_CONVERTER*MICROSTEPS;      			                              
+	float ySteps = yInches*MAGIC_Y_DISTANCE_CONVERTER*XY_MICROSTEPS;      			                              
 	stepper_Y.moveRelativeInSteps(ySteps);    
 }
 
@@ -157,11 +158,11 @@ void Motor::xGo(float xInches, float* xAbsPosition)
   xInches = -xInches;                                                             //This just adjustment so x is always positive from home 
 
   int MAGIC_X_DISTANCE_CONVERTER = 250;
-  stepper_X.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*MICROSTEPS);   
-  x_Driver.microsteps(MICROSTEPS);                                                  
-  int xStepsPerSec = X_RPM*MICROSTEPS*RPM_TO_MICROSTEP_PER_SECOND_CONVERTER;                                    
+  stepper_X.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*XY_MICROSTEPS);   
+  x_Driver.microsteps(XY_MICROSTEPS);                                                  
+  int xStepsPerSec = X_RPM*XY_MICROSTEPS*RPM_TO_MICROSTEP_PER_SECOND_CONVERTER;                                    
   stepper_X.setSpeedInStepsPerSecond(xStepsPerSec);
-  float xSteps = xInches*MAGIC_X_DISTANCE_CONVERTER*MICROSTEPS;                                           
+  float xSteps = xInches*MAGIC_X_DISTANCE_CONVERTER*XY_MICROSTEPS;                                           
   stepper_X.moveRelativeInSteps(xSteps);      
 }
 
@@ -174,11 +175,11 @@ void Motor::letterGo(float goDegree, float goalDegree)
   encoderM.encoderSetup();
   float angle1 = encoderM.getAngle();
   
-  stepper_Letter.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_LETTER*MICROSTEPS);   
-  letter_Driver.microsteps(MICROSTEPS);                                                  
-  int letterStepsPerSec = LETTER_RPM*(MICROSTEPS*3.333336);                                    
+  stepper_Letter.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_LETTER*L_MICROSTEPS);   
+  letter_Driver.microsteps(L_MICROSTEPS);                                                  
+  int letterStepsPerSec = LETTER_RPM*(L_MICROSTEPS*3.333336);                                    
   stepper_Letter.setSpeedInStepsPerSecond(letterStepsPerSec);  
-  float letterSteps = (goDegree/360)*MICROSTEPS*200;                                           
+  float letterSteps = (goDegree/360)*L_MICROSTEPS*200;                                           
   stepper_Letter.moveRelativeInSteps(letterSteps);
 
 
@@ -213,10 +214,10 @@ void Motor::letterGo(float goDegree, float goalDegree)
 
 
   //Crank the speed and accel way down to try additional tries make more accurate?
-  int SLOW_LETTER_RPM = 250;    // by testing at 16ms ~max 300   
-  int SLOW_LETTER_ACCEL = 1500;    // by testing at 16ms ~max 2000
+  int SLOW_LETTER_RPM = 50;    // by testing at 16ms ~max 300   
+  int SLOW_LETTER_ACCEL = 500;    // by testing at 16ms ~max 2000
   int SHARPER_MICROSTEPS = 32;
-  stepper_Letter.setAccelerationInStepsPerSecondPerSecond(SLOW_LETTER_ACCEL*MICROSTEPS);   
+  stepper_Letter.setAccelerationInStepsPerSecondPerSecond(SLOW_LETTER_ACCEL*L_MICROSTEPS);   
   letter_Driver.microsteps(SHARPER_MICROSTEPS);                                                  
   letterStepsPerSec = SLOW_LETTER_RPM*(SHARPER_MICROSTEPS*3.333336);                                    
   stepper_Letter.setSpeedInStepsPerSecond(letterStepsPerSec);
@@ -323,15 +324,15 @@ void Motor::stamp(){
 
 void Motor::xHome()
 {
-  stepper_X.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*MICROSTEPS);    
-  x_Driver.microsteps(MICROSTEPS);                                                                                     
+  stepper_X.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*XY_MICROSTEPS);    
+  x_Driver.microsteps(XY_MICROSTEPS);                                                                                     
   stepper_X.moveToHomeInSteps(1,600,100000,X_LIMIT_SWITCH);
 }
 
 void Motor::yHome()
 {
-  stepper_Y.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*MICROSTEPS);    
-  y_Driver.microsteps(MICROSTEPS);                                                                                     
+  stepper_Y.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*XY_MICROSTEPS);    
+  y_Driver.microsteps(XY_MICROSTEPS);                                                                                     
   stepper_Y.moveToHomeInSteps(-1,600,20000,Y_LIMIT_SWITCH);
 }
 
@@ -367,5 +368,5 @@ void Motor::changeVelocityLetter(int velo)
 
 void Motor::changeMicrosteps(int msteps)
 {
-  MICROSTEPS = msteps; 
+  L_MICROSTEPS = msteps; 
 }
