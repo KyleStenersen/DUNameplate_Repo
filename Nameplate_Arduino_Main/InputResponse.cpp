@@ -43,13 +43,13 @@ void InputResponse::chooseAction(const char* fullInputString)
     case 'a':{
     char * stringTokenIndex;    //First parse out location info    
     
-    stringTokenIndex = strtok(actionInfo,",");
+    stringTokenIndex = strtok(actionInfo,"^");
     X_ABS_PLATE_LOCATION_GLOBAL = atof(stringTokenIndex);  
 
-    stringTokenIndex = strtok(NULL, ",");
+    stringTokenIndex = strtok(NULL, "^");
     Y_ABS_PLATE_LOCATION_GLOBAL = atof(stringTokenIndex);
 
-    stringTokenIndex = strtok(NULL, ",");
+    stringTokenIndex = strtok(NULL, "^");
     strcpy(actionInfo, stringTokenIndex);
 
     Serial.println(actionInfo);
@@ -119,7 +119,6 @@ void InputResponse::chooseAction(const char* fullInputString)
     case 'h':{
     platesIR.xyHome();
     serialOpsIR.emptySerial();
-    Serial.println("z3");
     break;}
 //--------------------------
     case 'i':{
