@@ -31,6 +31,9 @@ namespace DUNameplateGUI
             TopOfQueue
         }
 
+        // Stores the current status for checking later (just for when someone clicks the status)
+        public static Status currentStatus = Status.Ready;
+
         private static TextBox[] arrayOfTagTextBoxes;
 
         // Needed for clearTag, addCurrentTagToQueue, and setQuantity
@@ -201,6 +204,8 @@ namespace DUNameplateGUI
 
         public static void changeStatusIndicator(Status status)
         {
+            currentStatus = status;
+
             // This is a delegate for changing the status indicator, this is needed
             // because this function will be called from other threads that are not
             // the main thread, so we will Invoke this delegate to jump back

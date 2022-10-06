@@ -22,10 +22,15 @@ namespace DUNameplateGUI {
 
         // PUBLIC FUNCTIONS ==============================================
 
-        public static void setupPort()
+        // Returns a bool on whether it succeeded or not
+        public static bool setupPort()
         {
             if (Global.SerialOn)
             {
+                serialPort1.Dispose();
+
+                serialPort1 = new SerialPort();
+
                 serialPort1.BaudRate = 115200;
                 serialPort1.PortName = "COM3";
                 serialPort1.ReadTimeout = 5000;
@@ -53,28 +58,47 @@ namespace DUNameplateGUI {
                     serialPort1.Open();
                     // Reset our disconnected event, as it is a ManualResetEvent and it will never reset itself
                     disconnectedEvent.Reset();
+                    return true;
                 }
                 catch (Exception ex)
                 {
                     Log.Error("Couldn't open serial port with exception: {ex}", ex);
                     MessageBox.Show("Failed to connect to the machine, make sure machine is powered on and check USB connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
-
+            }
+            else
+            {
+                return true;
             }
         }
 
         // Tries to re-setup our serial connection
         public static void resetConnection()
         {
-            setupPort();
+            Log.Error("SerialCom - resetConnection has been called");
+            // Set and reset our disconnected event to notify the printing task to stop
+            disconnectedEvent.Set();
+
+            // Sleep to make sure that the printing thread got the disconnected event
+            Thread.Sleep(20);
+
+            disconnectedEvent.Reset();
+
+            if (setupPort())
+            {
+                UIControl.changeStatusIndicator(UIControl.Status.Ready);
+            }
         }
 
         public static void sendSettings()
         {
-            if (Global.SerialOn) sendString("<p" + Properties.Settings.Default.xOffsetSet.ToString() + "," +
-                Properties.Settings.Default.yOffsetSet.ToString() + "," +
-                Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
-                Properties.Settings.Default.charSpaceingSet.ToString() + ">");
+            if (Global.SerialOn) {
+                sendString("<p" + Properties.Settings.Default.xOffsetSet.ToString() + "," +
+                    Properties.Settings.Default.yOffsetSet.ToString() + "," +
+                    Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
+                    Properties.Settings.Default.charSpaceingSet.ToString() + ">");
+            }
         }
 
         public static void sendString(string stringToSend)
@@ -140,18 +164,18 @@ namespace DUNameplateGUI {
 
                 return false;
             } 
-            else if (waitResult == 2)
+            else if (waitResult == 2) // Serial disconnected
             {
                 UIControl.requestCancel();
 
-                Log.Error("WaitForPlateDoneOrEstop timed out or serial disconnected, waitResult was {WaitResult}", waitResult);
+                Log.Error("WaitForPlateDoneOrEstop serial disconnected, waitResult was {WaitResult}", waitResult);
                 return false;
             }
-            else // Wait timed out or serial disconnected
+            else // Wait timed out
             {
                 UIControl.requestCancel();
 
-                Log.Error("WaitForPlateDoneOrEstop timed out or serial disconnected, waitResult was {WaitResult}", waitResult);
+                Log.Error("WaitForPlateDoneOrEstop timed out, waitResult was {WaitResult}", waitResult);
                 return false;
             }
         }
@@ -200,7 +224,7 @@ namespace DUNameplateGUI {
             // communications, so we're going to put the last character received at the beginning of
             // stringReceived, and then store our last character for the next time
             stringReceived = stringReceived.Insert(0, lastCharReceived.ToString());
-            Log.Debug("lastCharReceived is {lastCharReceived}", lastCharReceived);
+            //Log.Debug("lastCharReceived is {lastCharReceived}", lastCharReceived);
             Log.Debug("DataReceivedHandler has received {String}", stringReceived);
 
             lastCharReceived = stringReceived.ToCharArray()[stringReceived.Length - 1];

@@ -51,7 +51,7 @@ namespace DUNameplateGUI
             string tagText = plateToPrint.PrintableLines;
 
             //tagText = tagText.ToUpper(); // Not needed due to marking all the text fields to automatically uppercase everything
-            tagText = ("<" + "a" + Jig.XStartLocation + "," + Jig.YStartLocation + "," + tagText + ">");
+            tagText = ("<" + "a" + Jig.XStartLocation + "^" + Jig.YStartLocation + "^" + tagText + ">");
 
             SerialCom.sendString(tagText);
         }

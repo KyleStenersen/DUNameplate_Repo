@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Serilog;
 
 namespace DUNameplateGUI
 {
@@ -139,6 +140,11 @@ namespace DUNameplateGUI
         {
             UIControl.signalEstopResetClicked();
             UIControl.signalReloaded();
+
+            if (UIControl.currentStatus == UIControl.Status.Disconnected)
+            {
+                UIControl.resetConnection();
+            }
         }
 
         private void addToTopOfQueueBtn_Click(object sender, EventArgs e)
