@@ -12,6 +12,11 @@ namespace DUNameplateGUI
     {
         private static Nameplate[] savedPlates = new Nameplate[5];
 
+        public static void Initialize()
+        {
+            LoadFromSettings();
+        }
+
         public static void SaveCurrentPlateToSlot(int slotNumber, TextBox[] arrayOfTagTextBoxes)
         {
             try
@@ -37,6 +42,16 @@ namespace DUNameplateGUI
             {
                 selectedPlate.ToTextBoxes(arrayOfTagTextBoxes); 
             }
+        }
+
+        private static void SaveToSettings()
+        {
+
+        }
+
+        private static void LoadFromSettings()
+        {
+
         }
     }
 }
