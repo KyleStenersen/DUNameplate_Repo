@@ -360,6 +360,16 @@ namespace DUNameplateGUI
             SerialCom.resetConnection();
         }
 
+        public static void saveSlot(int slotNumber)
+        {
+            SaveSlotManager.SaveCurrentPlateToSlot(slotNumber, arrayOfTagTextBoxes);
+        }
+
+        public static void loadSlot(int slotNumber)
+        {
+            SaveSlotManager.LoadSlotToTextBoxes(slotNumber, arrayOfTagTextBoxes);
+        }
+
     }
 }
 

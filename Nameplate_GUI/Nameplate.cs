@@ -51,5 +51,13 @@ namespace DUNameplateGUI
 
             return newPlate;
         }
+
+        public void ToTextBoxes(TextBox[] textBoxes)
+        {
+            for (int i = 0; i < textBoxes.Length; i++)
+            {
+                textBoxes[i].Text = Lines[i];
+            }
+        }
     }
 }

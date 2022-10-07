@@ -245,5 +245,25 @@ namespace DUNameplateGUI
         {
             UIControl.resetConnection();
         }
+
+        private void saveSlot1Button_Click(object sender, EventArgs e)
+        {
+            UIControl.saveSlot(0);
+        }
+
+        private void loadSlot1Button_Click(object sender, EventArgs e)
+        {
+            UIControl.loadSlot(0);
+        }
+
+        private void saveSlot2Button_Click(object sender, EventArgs e)
+        {
+            UIControl.saveSlot(1);
+        }
+
+        private void loadSlot2Button_Click(object sender, EventArgs e)
+        {
+            UIControl.loadSlot(1);
+        }
     }
 }

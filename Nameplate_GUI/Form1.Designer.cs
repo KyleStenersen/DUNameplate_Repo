@@ -58,12 +58,18 @@
             this.jigIndicator3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.loadSlot2Button = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.saveSlot2Button = new System.Windows.Forms.Button();
+            this.loadSlot1Button = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.saveSlot1Button = new System.Windows.Forms.Button();
+            this.resetConnectionButton = new System.Windows.Forms.Button();
             this.deleteSelectedBtn = new System.Windows.Forms.Button();
             this.addToTopOfQueueBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.jigLabel = new System.Windows.Forms.Label();
-            this.resetConnectionButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.statusPanel.SuspendLayout();
             this.jigIndicatorTableLayoutPanel.SuspendLayout();
@@ -74,7 +80,7 @@
             // 
             this.tag1Line0Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line0Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line0Box.Location = new System.Drawing.Point(430, 120);
+            this.tag1Line0Box.Location = new System.Drawing.Point(520, 120);
             this.tag1Line0Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line0Box.Name = "tag1Line0Box";
             this.tag1Line0Box.Size = new System.Drawing.Size(346, 31);
@@ -86,7 +92,7 @@
             // 
             this.tag1Line1Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line1Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line1Box.Location = new System.Drawing.Point(450, 155);
+            this.tag1Line1Box.Location = new System.Drawing.Point(540, 155);
             this.tag1Line1Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line1Box.Name = "tag1Line1Box";
             this.tag1Line1Box.Size = new System.Drawing.Size(303, 31);
@@ -98,7 +104,7 @@
             // 
             this.tag1Line2Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line2Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line2Box.Location = new System.Drawing.Point(450, 190);
+            this.tag1Line2Box.Location = new System.Drawing.Point(540, 190);
             this.tag1Line2Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line2Box.Name = "tag1Line2Box";
             this.tag1Line2Box.Size = new System.Drawing.Size(303, 31);
@@ -110,7 +116,7 @@
             // 
             this.tag1Line3Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tag1Line3Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tag1Line3Box.Location = new System.Drawing.Point(430, 225);
+            this.tag1Line3Box.Location = new System.Drawing.Point(520, 225);
             this.tag1Line3Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line3Box.Name = "tag1Line3Box";
             this.tag1Line3Box.Size = new System.Drawing.Size(346, 31);
@@ -121,7 +127,7 @@
             // settingsBtn
             // 
             this.settingsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsBtn.Location = new System.Drawing.Point(348, 267);
+            this.settingsBtn.Location = new System.Drawing.Point(438, 267);
             this.settingsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.settingsBtn.Name = "settingsBtn";
             this.settingsBtn.Size = new System.Drawing.Size(102, 38);
@@ -134,7 +140,7 @@
             // clearTagBtn
             // 
             this.clearTagBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearTagBtn.Location = new System.Drawing.Point(463, 267);
+            this.clearTagBtn.Location = new System.Drawing.Point(553, 267);
             this.clearTagBtn.Margin = new System.Windows.Forms.Padding(2);
             this.clearTagBtn.Name = "clearTagBtn";
             this.clearTagBtn.Size = new System.Drawing.Size(77, 38);
@@ -148,7 +154,7 @@
             // 
             this.quantityLabel.AutoSize = true;
             this.quantityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityLabel.Location = new System.Drawing.Point(791, 140);
+            this.quantityLabel.Location = new System.Drawing.Point(881, 140);
             this.quantityLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(98, 25);
@@ -159,7 +165,7 @@
             // 
             this.labelAboveJig.AutoSize = true;
             this.labelAboveJig.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAboveJig.Location = new System.Drawing.Point(363, 155);
+            this.labelAboveJig.Location = new System.Drawing.Point(453, 155);
             this.labelAboveJig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelAboveJig.Name = "labelAboveJig";
             this.labelAboveJig.Size = new System.Drawing.Size(46, 25);
@@ -169,7 +175,7 @@
             // homeButton
             // 
             this.homeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeButton.Location = new System.Drawing.Point(732, 267);
+            this.homeButton.Location = new System.Drawing.Point(822, 267);
             this.homeButton.Margin = new System.Windows.Forms.Padding(2);
             this.homeButton.Name = "homeButton";
             this.homeButton.Size = new System.Drawing.Size(79, 38);
@@ -182,7 +188,7 @@
             // printQueueBtn
             // 
             this.printQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.printQueueBtn.Location = new System.Drawing.Point(902, 639);
+            this.printQueueBtn.Location = new System.Drawing.Point(992, 639);
             this.printQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.printQueueBtn.Name = "printQueueBtn";
             this.printQueueBtn.Size = new System.Drawing.Size(154, 36);
@@ -195,7 +201,7 @@
             // addToQueueBtn
             // 
             this.addToQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToQueueBtn.Location = new System.Drawing.Point(348, 639);
+            this.addToQueueBtn.Location = new System.Drawing.Point(438, 639);
             this.addToQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addToQueueBtn.Name = "addToQueueBtn";
             this.addToQueueBtn.Size = new System.Drawing.Size(158, 36);
@@ -208,7 +214,7 @@
             // tagQuantityBox
             // 
             this.tagQuantityBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tagQuantityBox.Location = new System.Drawing.Point(805, 170);
+            this.tagQuantityBox.Location = new System.Drawing.Point(895, 170);
             this.tagQuantityBox.Name = "tagQuantityBox";
             this.tagQuantityBox.Size = new System.Drawing.Size(70, 31);
             this.tagQuantityBox.TabIndex = 13;
@@ -228,7 +234,7 @@
             this.queuedPlatesListView.FullRowSelect = true;
             this.queuedPlatesListView.GridLines = true;
             this.queuedPlatesListView.HideSelection = false;
-            this.queuedPlatesListView.Location = new System.Drawing.Point(134, 354);
+            this.queuedPlatesListView.Location = new System.Drawing.Point(224, 354);
             this.queuedPlatesListView.Name = "queuedPlatesListView";
             this.queuedPlatesListView.Size = new System.Drawing.Size(1233, 280);
             this.queuedPlatesListView.TabIndex = 14;
@@ -250,7 +256,7 @@
             // 
             this.queueLabel.AutoSize = true;
             this.queueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.queueLabel.Location = new System.Drawing.Point(140, 326);
+            this.queueLabel.Location = new System.Drawing.Point(230, 326);
             this.queueLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.queueLabel.Name = "queueLabel";
             this.queueLabel.Size = new System.Drawing.Size(187, 25);
@@ -260,7 +266,7 @@
             // clearQueueBtn
             // 
             this.clearQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearQueueBtn.Location = new System.Drawing.Point(740, 639);
+            this.clearQueueBtn.Location = new System.Drawing.Point(830, 639);
             this.clearQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.clearQueueBtn.Name = "clearQueueBtn";
             this.clearQueueBtn.Size = new System.Drawing.Size(158, 36);
@@ -274,7 +280,7 @@
             // 
             this.statusPanel.BackColor = System.Drawing.Color.LimeGreen;
             this.statusPanel.Controls.Add(this.statusLabel);
-            this.statusPanel.Location = new System.Drawing.Point(926, 120);
+            this.statusPanel.Location = new System.Drawing.Point(1016, 120);
             this.statusPanel.Name = "statusPanel";
             this.statusPanel.Size = new System.Drawing.Size(382, 199);
             this.statusPanel.TabIndex = 17;
@@ -319,7 +325,7 @@
             this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator1, 0, 1);
             this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator2, 0, 2);
             this.jigIndicatorTableLayoutPanel.Controls.Add(this.jigIndicator3, 0, 3);
-            this.jigIndicatorTableLayoutPanel.Location = new System.Drawing.Point(126, 74);
+            this.jigIndicatorTableLayoutPanel.Location = new System.Drawing.Point(216, 74);
             this.jigIndicatorTableLayoutPanel.Name = "jigIndicatorTableLayoutPanel";
             this.jigIndicatorTableLayoutPanel.RowCount = 4;
             this.jigIndicatorTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -417,7 +423,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(121, 46);
+            this.label1.Location = new System.Drawing.Point(211, 46);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(206, 25);
@@ -427,6 +433,12 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.loadSlot2Button);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.saveSlot2Button);
+            this.panel1.Controls.Add(this.loadSlot1Button);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.saveSlot1Button);
             this.panel1.Controls.Add(this.resetConnectionButton);
             this.panel1.Controls.Add(this.deleteSelectedBtn);
             this.panel1.Controls.Add(this.addToTopOfQueueBtn);
@@ -451,15 +463,102 @@
             this.panel1.Controls.Add(this.labelAboveJig);
             this.panel1.Controls.Add(this.printQueueBtn);
             this.panel1.Controls.Add(this.jigLabel);
-            this.panel1.Location = new System.Drawing.Point(202, 170);
+            this.panel1.Location = new System.Drawing.Point(118, 170);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1500, 700);
+            this.panel1.Size = new System.Drawing.Size(1668, 700);
             this.panel1.TabIndex = 26;
+            // 
+            // loadSlot2Button
+            // 
+            this.loadSlot2Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadSlot2Button.Location = new System.Drawing.Point(110, 134);
+            this.loadSlot2Button.Margin = new System.Windows.Forms.Padding(2);
+            this.loadSlot2Button.Name = "loadSlot2Button";
+            this.loadSlot2Button.Size = new System.Drawing.Size(70, 38);
+            this.loadSlot2Button.TabIndex = 37;
+            this.loadSlot2Button.TabStop = false;
+            this.loadSlot2Button.Text = "Load";
+            this.loadSlot2Button.UseVisualStyleBackColor = true;
+            this.loadSlot2Button.Click += new System.EventHandler(this.loadSlot2Button_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(2, 141);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 25);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "2:";
+            // 
+            // saveSlot2Button
+            // 
+            this.saveSlot2Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveSlot2Button.Location = new System.Drawing.Point(36, 134);
+            this.saveSlot2Button.Margin = new System.Windows.Forms.Padding(2);
+            this.saveSlot2Button.Name = "saveSlot2Button";
+            this.saveSlot2Button.Size = new System.Drawing.Size(70, 38);
+            this.saveSlot2Button.TabIndex = 35;
+            this.saveSlot2Button.TabStop = false;
+            this.saveSlot2Button.Text = "Save";
+            this.saveSlot2Button.UseVisualStyleBackColor = true;
+            this.saveSlot2Button.Click += new System.EventHandler(this.saveSlot2Button_Click);
+            // 
+            // loadSlot1Button
+            // 
+            this.loadSlot1Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadSlot1Button.Location = new System.Drawing.Point(110, 92);
+            this.loadSlot1Button.Margin = new System.Windows.Forms.Padding(2);
+            this.loadSlot1Button.Name = "loadSlot1Button";
+            this.loadSlot1Button.Size = new System.Drawing.Size(70, 38);
+            this.loadSlot1Button.TabIndex = 34;
+            this.loadSlot1Button.TabStop = false;
+            this.loadSlot1Button.Text = "Load";
+            this.loadSlot1Button.UseVisualStyleBackColor = true;
+            this.loadSlot1Button.Click += new System.EventHandler(this.loadSlot1Button_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(2, 99);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 25);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "1:";
+            // 
+            // saveSlot1Button
+            // 
+            this.saveSlot1Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveSlot1Button.Location = new System.Drawing.Point(36, 92);
+            this.saveSlot1Button.Margin = new System.Windows.Forms.Padding(2);
+            this.saveSlot1Button.Name = "saveSlot1Button";
+            this.saveSlot1Button.Size = new System.Drawing.Size(70, 38);
+            this.saveSlot1Button.TabIndex = 32;
+            this.saveSlot1Button.TabStop = false;
+            this.saveSlot1Button.Text = "Save";
+            this.saveSlot1Button.UseVisualStyleBackColor = true;
+            this.saveSlot1Button.Click += new System.EventHandler(this.saveSlot1Button_Click);
+            // 
+            // resetConnectionButton
+            // 
+            this.resetConnectionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resetConnectionButton.Location = new System.Drawing.Point(716, 309);
+            this.resetConnectionButton.Margin = new System.Windows.Forms.Padding(2);
+            this.resetConnectionButton.Name = "resetConnectionButton";
+            this.resetConnectionButton.Size = new System.Drawing.Size(282, 38);
+            this.resetConnectionButton.TabIndex = 31;
+            this.resetConnectionButton.TabStop = false;
+            this.resetConnectionButton.Text = "Reset Machine Connection";
+            this.resetConnectionButton.UseVisualStyleBackColor = true;
+            this.resetConnectionButton.Click += new System.EventHandler(this.resetConnectionButton_Click);
             // 
             // deleteSelectedBtn
             // 
             this.deleteSelectedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteSelectedBtn.Location = new System.Drawing.Point(1060, 639);
+            this.deleteSelectedBtn.Location = new System.Drawing.Point(1150, 639);
             this.deleteSelectedBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteSelectedBtn.Name = "deleteSelectedBtn";
             this.deleteSelectedBtn.Size = new System.Drawing.Size(173, 36);
@@ -472,7 +571,7 @@
             // addToTopOfQueueBtn
             // 
             this.addToTopOfQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToTopOfQueueBtn.Location = new System.Drawing.Point(510, 639);
+            this.addToTopOfQueueBtn.Location = new System.Drawing.Point(600, 639);
             this.addToTopOfQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addToTopOfQueueBtn.Name = "addToTopOfQueueBtn";
             this.addToTopOfQueueBtn.Size = new System.Drawing.Size(226, 36);
@@ -486,7 +585,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1034, 92);
+            this.label2.Location = new System.Drawing.Point(1124, 92);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(156, 25);
@@ -496,7 +595,7 @@
             // cancelButton
             // 
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(815, 267);
+            this.cancelButton.Location = new System.Drawing.Point(905, 267);
             this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(93, 38);
@@ -509,26 +608,13 @@
             // jigLabel
             // 
             this.jigLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jigLabel.Location = new System.Drawing.Point(323, 180);
+            this.jigLabel.Location = new System.Drawing.Point(413, 180);
             this.jigLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.jigLabel.Name = "jigLabel";
             this.jigLabel.Size = new System.Drawing.Size(127, 25);
             this.jigLabel.TabIndex = 28;
             this.jigLabel.Text = "8-Plate";
             this.jigLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // resetConnectionButton
-            // 
-            this.resetConnectionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetConnectionButton.Location = new System.Drawing.Point(626, 309);
-            this.resetConnectionButton.Margin = new System.Windows.Forms.Padding(2);
-            this.resetConnectionButton.Name = "resetConnectionButton";
-            this.resetConnectionButton.Size = new System.Drawing.Size(282, 38);
-            this.resetConnectionButton.TabIndex = 31;
-            this.resetConnectionButton.TabStop = false;
-            this.resetConnectionButton.Text = "Reset Machine Connection";
-            this.resetConnectionButton.UseVisualStyleBackColor = true;
-            this.resetConnectionButton.Click += new System.EventHandler(this.resetConnectionButton_Click);
             // 
             // MAIN_FORM
             // 
@@ -591,6 +677,12 @@
         private System.Windows.Forms.Panel jigIndicator4;
         private System.Windows.Forms.Button deleteSelectedBtn;
         private System.Windows.Forms.Button resetConnectionButton;
+        private System.Windows.Forms.Button saveSlot1Button;
+        private System.Windows.Forms.Button loadSlot2Button;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button saveSlot2Button;
+        private System.Windows.Forms.Button loadSlot1Button;
+        private System.Windows.Forms.Label label3;
     }
 }
 
