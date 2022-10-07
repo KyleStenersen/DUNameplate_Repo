@@ -76,11 +76,11 @@ const char RELAY_OFF = LOW;
 const char Z_STAMPING = LOW;
 
 //--- General Motor definitions
-int LETTER_RPM = 100;   //was 200
+int LETTER_RPM = 150;   //was 200
 int Y_RPM = 180;
 int X_RPM = 180;
 int ACCEL_MULTIPLIER_XY = 1800;                   // Range:1(uber slow acceleration)-1600ish, acceleration, chosen by testing (~1800 max?)
-int ACCEL_MULTIPLIER_LETTER = 3000;               // was 1800 max
+int ACCEL_MULTIPLIER_LETTER = 5000;               // was 1800 max
 int XY_MICROSTEPS = 2;
 int L_MICROSTEPS = 32;    // Was 2
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds  
@@ -216,7 +216,7 @@ void Motor::letterGo(float goDegree, float goalDegree)
   //Crank the speed and accel way down to try additional tries make more accurate?
   int SLOW_LETTER_RPM = 50;    // by testing at 16ms ~max 300   
   int SLOW_LETTER_ACCEL = 500;    // by testing at 16ms ~max 2000
-  int SHARPER_MICROSTEPS = 32;
+  int SHARPER_MICROSTEPS = 64;
   stepper_Letter.setAccelerationInStepsPerSecondPerSecond(SLOW_LETTER_ACCEL*L_MICROSTEPS);   
   letter_Driver.microsteps(SHARPER_MICROSTEPS);                                                  
   letterStepsPerSec = SLOW_LETTER_RPM*(SHARPER_MICROSTEPS*3.333336);                                    
@@ -224,7 +224,7 @@ void Motor::letterGo(float goDegree, float goalDegree)
   
    
   int tooManyTries = 0;
-  while (angleError>0.2 || angleError<-0.2)   //Loop to retry and get closer to the target angle
+  while (angleError>0.1 || angleError<-0.1)   //Loop to retry and get closer to the target angle
   {     
     angle1 = encoderM.getAngle();
 

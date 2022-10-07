@@ -86,33 +86,33 @@ namespace DUNameplateGUI
                     break;
                 case 2: //JIG Settings #3 (4 @ a time on new jig) 
                     YStartLocations[0] = 0.108f;
-                    XStartLocations[0] = 1.91f;
+                    XStartLocations[0] = 1.89f;
                     YStartLocations[1] = 1.132f;
-                    XStartLocations[1] = 1.91f;
+                    XStartLocations[1] = 1.89f;
                     YStartLocations[2] = 2.14f;
-                    XStartLocations[2] = 1.91f;
+                    XStartLocations[2] = 1.89f;
                     YStartLocations[3] = 3.145f;
-                    XStartLocations[3] = 1.91f;
+                    XStartLocations[3] = 1.89f;
                     Capacity = 4;
                     break;
                 case 3: //JIG Settings #4 (8 @ a time with new jigs)
                     YStartLocations[0] = 0.108f;
-                    XStartLocations[0] = 1.91f;
+                    XStartLocations[0] = 1.89f;
                     YStartLocations[1] = 1.132f;
-                    XStartLocations[1] = 1.91f;
+                    XStartLocations[1] = 1.89f;
                     YStartLocations[2] = 2.14f;
-                    XStartLocations[2] = 1.91f;
+                    XStartLocations[2] = 1.89f;
                     YStartLocations[3] = 3.145f;
-                    XStartLocations[3] = 1.91f;
+                    XStartLocations[3] = 1.89f;
 
                     YStartLocations[4] = 0.108f;
-                    XStartLocations[4] = 4.737f;
+                    XStartLocations[4] = 4.717f;
                     YStartLocations[5] = 1.132f;
-                    XStartLocations[5] = 4.737f;
+                    XStartLocations[5] = 4.717f;
                     YStartLocations[6] = 2.14f;
-                    XStartLocations[6] = 4.737f;
+                    XStartLocations[6] = 4.717f;
                     YStartLocations[7] = 3.145f;
-                    XStartLocations[7] = 4.737f;
+                    XStartLocations[7] = 4.717f;
                     Capacity = 8;
                     break;
 

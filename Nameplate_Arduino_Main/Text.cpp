@@ -69,11 +69,11 @@ float Text::relativeAngleFromLetter(char letter)
 {
   if (letter == ' ')
   {
-    return 181;
+    return 200;
   }
   if (letter == '!')
   {
-    return 182;
+    return 202;
   }
   
   encoderT.encoderSetup();

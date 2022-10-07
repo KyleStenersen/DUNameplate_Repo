@@ -31,8 +31,8 @@ int SWITCH_SIDE = -1;
 int plateSide = 1;
 
 
-#define SPACE_BAR 181
-#define NEW_LINE 182
+#define SPACE_BAR 200
+#define NEW_LINE 202
 
 
 Motor motorP;
@@ -121,7 +121,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
       continue;
     }
     
-    if (angleToMove > 182 or angleToMove < -180)    //Error case where angle to move is out of possible bounds
+    if (angleToMove > 182 or angleToMove < -182)    //Error case where angle to move is out of possible bounds
     {
       Serial.print("ERROR... angleToMove = ");
       Serial.println(angleToMove);
