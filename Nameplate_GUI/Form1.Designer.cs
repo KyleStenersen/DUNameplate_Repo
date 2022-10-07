@@ -87,6 +87,7 @@
             this.tag1Line0Box.TabIndex = 2;
             this.tag1Line0Box.TextChanged += new System.EventHandler(this.tag1Line0Box_TextChanged);
             this.tag1Line0Box.DoubleClick += new System.EventHandler(this.tag1Line0Box_DoubleClicked);
+            this.tag1Line0Box.Leave += new System.EventHandler(this.textBox_FocusLeave);
             // 
             // tag1Line1Box
             // 
@@ -99,6 +100,7 @@
             this.tag1Line1Box.TabIndex = 3;
             this.tag1Line1Box.TextChanged += new System.EventHandler(this.tag1Line1Box_TextChanged);
             this.tag1Line1Box.DoubleClick += new System.EventHandler(this.tag1Line1Box_DoubleClicked);
+            this.tag1Line1Box.Leave += new System.EventHandler(this.textBox_FocusLeave);
             // 
             // tag1Line2Box
             // 
@@ -111,6 +113,7 @@
             this.tag1Line2Box.TabIndex = 4;
             this.tag1Line2Box.TextChanged += new System.EventHandler(this.tag1Line2Box_TextChanged);
             this.tag1Line2Box.DoubleClick += new System.EventHandler(this.tag1Line2Box_DoubleClicked);
+            this.tag1Line2Box.Leave += new System.EventHandler(this.textBox_FocusLeave);
             // 
             // tag1Line3Box
             // 
@@ -123,6 +126,7 @@
             this.tag1Line3Box.TabIndex = 5;
             this.tag1Line3Box.TextChanged += new System.EventHandler(this.tag1Line3Box_TextChanged);
             this.tag1Line3Box.DoubleClick += new System.EventHandler(this.tag1Line3Box_DoubleClicked);
+            this.tag1Line3Box.Leave += new System.EventHandler(this.textBox_FocusLeave);
             // 
             // settingsBtn
             // 

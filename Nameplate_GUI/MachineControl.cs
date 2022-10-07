@@ -69,6 +69,7 @@ namespace DUNameplateGUI
             // Grab a copy of the nameplate on the top of the queue, without removing it
             Nameplate currentPlate = PlateQueue.Peek();
 
+            // Create a stopwatch to time 
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             // Tell the machine to print that nameplate out

@@ -265,5 +265,14 @@ namespace DUNameplateGUI
         {
             UIControl.loadSlot(1);
         }
+
+        // When the focus is moved away from a text box, trim the text (remove spaces before and after)
+        private void textBox_FocusLeave(object sender, EventArgs e)
+        {
+            Log.Debug("Focus left {obj}", sender);
+            TextBox textBox = sender as TextBox;
+
+            textBox.Text = textBox.Text.Trim();
+        }
     }
 }
