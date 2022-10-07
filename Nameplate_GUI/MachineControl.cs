@@ -69,12 +69,18 @@ namespace DUNameplateGUI
             // Grab a copy of the nameplate on the top of the queue, without removing it
             Nameplate currentPlate = PlateQueue.Peek();
 
+            Stopwatch stopwatch = Stopwatch.StartNew();
+
             // Tell the machine to print that nameplate out
             printTag(currentPlate);
 
             // Block right here until the plate is done printing
             //waitPlateDone();
             SerialCom.waitForPlateDoneOrEstop();
+
+            stopwatch.Stop();
+
+            Log.Debug("Last tag printed in {TotalSeconds} seconds", stopwatch.Elapsed.TotalSeconds);
 
             // If cancellationRequested is true, throw an OperationCancelled exception to stop the printing here
             // This exception will be caught by the code in startPrintingTaskIfNotPrinting
