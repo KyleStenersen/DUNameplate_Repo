@@ -53,6 +53,8 @@ namespace DUNameplateGUI
             Application.Idle += new EventHandler(IdleTimer.OnWinFormsIdle);
 
             InputFixer.Initialize();
+
+            SpeedDialManager.Initialize();
         }
 
         // USER INPUT RESPONSE FUNCTIONS ============================================

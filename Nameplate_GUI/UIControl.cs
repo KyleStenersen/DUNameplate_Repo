@@ -362,12 +362,12 @@ namespace DUNameplateGUI
 
         public static void saveSlot(int slotNumber)
         {
-            SaveSlotManager.SaveCurrentPlateToSlot(slotNumber, arrayOfTagTextBoxes);
+            SpeedDialManager.SaveCurrentPlateToSlot(slotNumber, arrayOfTagTextBoxes);
         }
 
         public static void loadSlot(int slotNumber)
         {
-            SaveSlotManager.LoadSlotToTextBoxes(slotNumber, arrayOfTagTextBoxes);
+            SpeedDialManager.LoadSlotToTextBoxes(slotNumber, arrayOfTagTextBoxes);
         }
 
     }

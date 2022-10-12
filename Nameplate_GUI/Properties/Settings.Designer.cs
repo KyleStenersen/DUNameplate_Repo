@@ -166,5 +166,17 @@ namespace DUNameplateGUI.Properties {
                 this["inputFixingRules"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string speedDialPlates {
+            get {
+                return ((string)(this["speedDialPlates"]));
+            }
+            set {
+                this["speedDialPlates"] = value;
+            }
+        }
     }
 }

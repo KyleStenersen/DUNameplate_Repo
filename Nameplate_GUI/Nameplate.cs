@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace DUNameplateGUI
         public string[] Lines { get; set; }
         public int Quantity { get; set; }
 
+        [JsonIgnore]
         public string PrintableLines {
             get
             {
@@ -24,9 +26,11 @@ namespace DUNameplateGUI
                 return String.Concat(copyOfLines);
             }
         }
-        // Private constructor, cannot be used from elsewhere, is only used inside helper functions to create Nameplates
-        // in this class.
-        private Nameplate ()
+        
+        // This constructor was meant to be a private constructor, so that no other classes would be able to
+        // create Nameplates in any way other than by using the text boxes, but
+        // it is now public because we need to deserialize JSON with Nameplates in it
+        public Nameplate ()
         {
             Quantity = 0;
             Lines = new string[4];
