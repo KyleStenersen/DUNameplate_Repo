@@ -178,5 +178,17 @@ namespace DUNameplateGUI.Properties {
                 this["speedDialPlates"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM3")]
+        public string serialPort {
+            get {
+                return ((string)(this["serialPort"]));
+            }
+            set {
+                this["serialPort"] = value;
+            }
+        }
     }
 }

@@ -248,6 +248,14 @@ namespace DUNameplateGUI
             UIControl.resetConnection();
         }
 
+        // When the focus is moved away from a text box, trim the text (remove spaces before and after)
+        private void textBox_FocusLeave(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            textBox.Text = textBox.Text.Trim();
+        }
+
         private void saveSlot1Button_Click(object sender, EventArgs e)
         {
             UIControl.saveSlot(0);
@@ -268,12 +276,74 @@ namespace DUNameplateGUI
             UIControl.loadSlot(1);
         }
 
-        // When the focus is moved away from a text box, trim the text (remove spaces before and after)
-        private void textBox_FocusLeave(object sender, EventArgs e)
+        private void saveSlot3Button_Click(object sender, EventArgs e)
         {
-            TextBox textBox = sender as TextBox;
+            UIControl.saveSlot(2);
+        }
 
-            textBox.Text = textBox.Text.Trim();
+        private void loadSlot3Button_Click(object sender, EventArgs e)
+        {
+            UIControl.loadSlot(2);
+        }
+
+        private void saveSlot4Button_Click(object sender, EventArgs e)
+        {
+            UIControl.saveSlot(3);
+        }
+
+        private void loadSlot4Button_Click(object sender, EventArgs e)
+        {
+            UIControl.loadSlot(3);
+        }
+
+        private void saveSlot5Button_Click(object sender, EventArgs e)
+        {
+            UIControl.saveSlot(4);
+        }
+
+        private void loadSlot5Button_Click(object sender, EventArgs e)
+        {
+            UIControl.loadSlot(4);
+        }
+
+        private void saveSlot6Button_Click(object sender, EventArgs e)
+        {
+            UIControl.saveSlot(5);
+        }
+
+        private void loadSlot6Button_Click(object sender, EventArgs e)
+        {
+            UIControl.loadSlot(5);
+        }
+
+        private void saveSlot7Button_Click(object sender, EventArgs e)
+        {
+            UIControl.saveSlot(6);
+        }
+
+        private void loadSlot7Button_Click(object sender, EventArgs e)
+        {
+            UIControl.loadSlot(6);
+        }
+
+        private void saveSlot8Button_Click(object sender, EventArgs e)
+        {
+            UIControl.saveSlot(7);
+        }
+
+        private void loadSlot8Button_Click(object sender, EventArgs e)
+        {
+            UIControl.loadSlot(7);
+        }
+
+        private void saveSlot9Button_Click(object sender, EventArgs e)
+        {
+            UIControl.saveSlot(8);
+        }
+
+        private void loadSlot9Button_Click(object sender, EventArgs e)
+        {
+            UIControl.loadSlot(8);
         }
     }
 }

@@ -41,5 +41,8 @@
     <Setting Name="speedDialPlates" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="serialPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM3</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

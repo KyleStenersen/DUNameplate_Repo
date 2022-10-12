@@ -11,7 +11,7 @@ namespace DUNameplateGUI
 {
     internal static class SpeedDialManager
     {
-        private static Nameplate[] speedDialPlates = new Nameplate[5];
+        private static Nameplate[] speedDialPlates = new Nameplate[9];
 
         public static void Initialize()
         {

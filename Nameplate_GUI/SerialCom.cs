@@ -32,7 +32,7 @@ namespace DUNameplateGUI {
                 serialPort1 = new SerialPort();
 
                 serialPort1.BaudRate = 115200;
-                serialPort1.PortName = "COM3";
+                serialPort1.PortName = Properties.Settings.Default.serialPort;
                 serialPort1.ReadTimeout = 5000;
                 serialPort1.WriteTimeout = 5000;
 
@@ -63,7 +63,8 @@ namespace DUNameplateGUI {
                 catch (Exception ex)
                 {
                     Log.Error("Couldn't open serial port with exception: {ex}", ex);
-                    MessageBox.Show("Failed to connect to the machine, make sure machine is powered on and check USB connection", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to connect to the machine, make sure machine is powered on and check USB connection, make sure serial port is set correctly in settings", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    UIControl.changeStatusIndicator(UIControl.Status.Disconnected);
                     return false;
                 }
             }

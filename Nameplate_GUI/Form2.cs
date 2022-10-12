@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,11 @@ namespace DUNameplateGUI
         // Run once on opening of settings form2
         private void SETTINGS_FORM_Load(object sender, EventArgs e)
         {
+            serialPortComboBox.Text = Properties.Settings.Default.serialPort;
+
+            // Get all the serial ports and add them to the serial port combo box
+            serialPortComboBox.Items.AddRange(SerialPort.GetPortNames());
+
             //if (Properties.Settings.Default.xOffsetSet != float.Parse(xOffsetDefault.Text))
             xOffsetBox.Text = Properties.Settings.Default.xOffsetSet.ToString();
 
@@ -134,6 +140,8 @@ namespace DUNameplateGUI
             if (String.IsNullOrWhiteSpace(charSpaceingBox.Text) == false)
                 Properties.Settings.Default.charSpaceingSet = float.Parse(charSpaceingBox.Text);
 
+            Properties.Settings.Default.serialPort = serialPortComboBox.Text;
+
             // Save the selected jig index into the settings
             Properties.Settings.Default.selectedJig = jigComboBox.SelectedIndex;
 
@@ -199,16 +207,6 @@ namespace DUNameplateGUI
 
             Properties.Settings.Default.Save();
             SerialCom.sendSettings();
-        }
-
-        private void autoPrintQueueCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void resetJigCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void changeInputFixingRulesBtn_Click(object sender, EventArgs e)
