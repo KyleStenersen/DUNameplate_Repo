@@ -76,13 +76,13 @@ const char RELAY_OFF = LOW;
 const char Z_STAMPING = LOW;
 
 //--- General Motor definitions
-int LETTER_RPM = 150;   //was 200
+int LETTER_RPM = 200;   //was 200
 int Y_RPM = 180;
 int X_RPM = 180;
-int ACCEL_MULTIPLIER_XY = 1800;                   // Range:1(uber slow acceleration)-1600ish, acceleration, chosen by testing (~1800 max?)
-int ACCEL_MULTIPLIER_LETTER = 5000;               // was 1800 max
+int ACCEL_MULTIPLIER_XY = 1800;                   // Range:1 = uber slow acceleration, chosen by testing (~1800 max? at 2 ms)
+int ACCEL_MULTIPLIER_LETTER = 4000;               // 4000 max at 32ms?
 int XY_MICROSTEPS = 2;
-int L_MICROSTEPS = 32;    // Was 2
+int L_MICROSTEPS = 64;    // Was 2 but too slow
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds  
 
 
@@ -141,6 +141,9 @@ void Motor::yGo(float yInches, float* yAbsPosition)
 {
   *yAbsPosition = *yAbsPosition + yInches;
 
+  if(*yAbsPosition < 0 || *yAbsPosition > 5) eStopBit = 1;                       //Quick check if we are telling it to go beyond it's limits.
+  if(eStopBit == 1) exit;
+
   int MAGIC_Y_DISTANCE_CONVERTER =199;
   stepper_Y.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*XY_MICROSTEPS);    // smaller=smoother, (example: 25000-16ms)
 	y_Driver.microsteps(XY_MICROSTEPS);                                                       // Microsteps Range: (1,2,4,8,16,32,64,128,256) TMC2209 says up to 64 but beyond is just interp. Speed limitations as go higher
@@ -157,6 +160,9 @@ void Motor::xGo(float xInches, float* xAbsPosition)
   *xAbsPosition = *xAbsPosition + xInches;
   xInches = -xInches;                                                             //This just adjustment so x is always positive from home 
 
+  if(*xAbsPosition < 0 || *xAbsPosition > 7.5) eStopBit = 1;                      //Quick check if we are telling it to go beyond it's limits.
+  if(eStopBit == 1) exit;
+
   int MAGIC_X_DISTANCE_CONVERTER = 250;
   stepper_X.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*XY_MICROSTEPS);   
   x_Driver.microsteps(XY_MICROSTEPS);                                                  
@@ -170,6 +176,8 @@ void Motor::xGo(float xInches, float* xAbsPosition)
 
 void Motor::letterGo(float goDegree, float goalDegree) 
 {
+  if(eStopBit == 1) exit;
+  
   float angleToMove = goDegree;
   
   encoderM.encoderSetup();
@@ -186,7 +194,7 @@ void Motor::letterGo(float goDegree, float goalDegree)
   float angle2 = encoderM.getAngle();
 
   Serial.print("First angle2 - ");
-  Serial.println(angle2);
+  Serial.print(angle2);
   
   float angleMoved = angle2 - angle1;
   
@@ -196,7 +204,7 @@ void Motor::letterGo(float goDegree, float goalDegree)
   if (goalDegree != 0) angleGoal = goalDegree;
 
   Serial.print("First angleGoal - ");
-  Serial.println(angleGoal);  
+  Serial.print(angleGoal);  
  
   if (angleMoved > 180 || angleMoved < -180) 
   {
@@ -214,8 +222,8 @@ void Motor::letterGo(float goDegree, float goalDegree)
 
 
   //Crank the speed and accel way down to try additional tries make more accurate?
-  int SLOW_LETTER_RPM = 50;    // by testing at 16ms ~max 300   
-  int SLOW_LETTER_ACCEL = 500;    // by testing at 16ms ~max 2000
+  int SLOW_LETTER_RPM = 100; 
+  int SLOW_LETTER_ACCEL = 2000;
   int SHARPER_MICROSTEPS = 64;
   stepper_Letter.setAccelerationInStepsPerSecondPerSecond(SLOW_LETTER_ACCEL*L_MICROSTEPS);   
   letter_Driver.microsteps(SHARPER_MICROSTEPS);                                                  

@@ -5,20 +5,21 @@
 //    ACTIONS: CHOSEN PER THE FIRST CHAR OF INPUT STRING "actionDefiner"
 // (NOTE several of these are not used in standard machine function but only in manual testing by serial inputs
 //  stars (*) indicate the ones that are for testing)
-//    ‘a’ - parses out location info first, then sends plate text to - plates.printOne(rest of serial input string) - which prints one plate/tag per input
-// *‘b’ flip onboard LED on and off
-// *‘c’ plates.goToALetter(rest of serial input string [char]) - letter wheel
-// *‘d’ display GlobalSettings values by serial
-// *‘e’ encoder.encoder.getAngle() - prints current encoder angle to serial monitor
-// *‘f’ motor.changeAccelerationLetter(rest of input string [int]) - letter motor
-// *‘g’ motor.changeVelocityLetter(rest of input string [int]) - letter motor
-//    ‘h’ plates.xyHome() - build plate home
-// *‘i’ motor.changeMicrosteps(rest of input string [int]) - for all motors
-// *‘l’ plates.spinL(rest of input string [float]) - letterwheel move in degrees
-//    ‘p’ update GlobalSettings sent over serial from GUI
-// *‘s’ plates.stampTest() - stamp machine motion once
-// *‘x’ plates.spinX(rest of serial input string [float]) - move build plate in x by float inch value
-// *‘y’ plates.spinY(rest of serial input string [float]) - move build plate in y by float inch value
+//    ‘a’ PRINTONE - parses out location info first, then sends plate text to - plates.printOne(rest of serial input string) - which prints one plate/tag per input
+// *‘b’ LED - flip onboard LED on and off
+// *‘c’ GOTOLETTER - plates.goToALetter(rest of serial input string [char]) - letter wheel
+// *‘d’ SHOW SETTINGS - display GlobalSettings values by serial
+// *‘e’ GET ANGLE - encoder.encoder.getAngle() - prints current encoder angle to serial monitor
+// *‘f’ CHANGE ACCEL - motor.changeAccelerationLetter(rest of input string [int]) - letter motor
+// *‘g’ CHANGE VEL - motor.changeVelocityLetter(rest of input string [int]) - letter motor
+//    ‘h’ HOME - plates.xyHome() - build plate home
+// *‘i’ CHANGE MS - motor.changeMicrosteps(rest of input string [int]) - for all motors
+// *'j' LETTER DEGREE ADJUSTMENT - change adder to letter degree in plates go to letter to see effect
+// *‘l’ LETTER DEGREES - plates.spinL(rest of input string [float]) - letterwheel move in degrees
+//    ‘p’ CHANGE SETTINGS - update GlobalSettings sent over serial from GUI
+// *‘s’ STAMP - plates.stampTest() - stamp machine motion once
+// *‘x’ MOVE X - plates.spinX(rest of serial input string [float]) - move build plate in x by float inch value
+// *‘y’ MOVE Y - plates.spinY(rest of serial input string [float]) - move build plate in y by float inch value
 
 
 #include "InputResponse.h"
@@ -30,6 +31,7 @@ Motor motorIR;
 
 InputResponse::InputResponse(){}
 
+
 //PUBLIC FUNCTIONS================================================
 
 void InputResponse::chooseAction(const char* fullInputString) 
@@ -40,7 +42,7 @@ void InputResponse::chooseAction(const char* fullInputString)
   
   switch (actionDefiner)
   {
-    case 'a':{
+    case 'a':{  //PRINTONE
     char * stringTokenIndex;    //First parse out location info    
     
     stringTokenIndex = strtok(actionInfo,"^");
@@ -62,7 +64,7 @@ void InputResponse::chooseAction(const char* fullInputString)
     Serial.println("z1");   //Send "z" (signal) to GUI and "1" to say that a plate is done
     break;}
 //--------------------------
-    case 'b':{
+    case 'b':{  // LED
     if (digitalRead(13)== HIGH)
     {
       digitalWrite(13,LOW);
@@ -73,12 +75,12 @@ void InputResponse::chooseAction(const char* fullInputString)
     }
     break;}
 //--------------------------
-    case 'c':{    
+    case 'c':{  // GO LETTER   
     platesIR.goToALetter(actionInfo);
     serialOpsIR.emptySerial();
     break;}
 //--------------------------
-    case 'd':{
+    case 'd':{  //SHOW SETTINGS
     Serial.println("...");
     Serial.print("X_OFFSET_GLOBAL = ");
     Serial.println(X_OFFSET_GLOBAL);
@@ -94,34 +96,34 @@ void InputResponse::chooseAction(const char* fullInputString)
     Serial.println(LETTER_SPACEING_GLOBAL);
     Serial.println("...");    
     break;}
-//--------------------------
-    case 'e':{
+//--------------------------//GET ANGLE
+    case 'e':{  
     encoderIR.encoderSetup();
     Serial.println(encoderIR.getAngle());
     break;}
-//--------------------------
-    case 'f':{
+//--------------------------//CHANGE ACCEL
+    case 'f':{  
     int acceleration = atoi(actionInfo);
     motorIR.changeAccelLetter(acceleration);
     serialOpsIR.emptySerial();
     Serial.print("UPDATED ACCEL_L = ");
     Serial.println(acceleration);    
     break;}
-//--------------------------
-    case 'g':{
+//--------------------------//CHANGE VEL
+    case 'g':{  
     int velocity = atoi(actionInfo);
     motorIR.changeVelocityLetter(velocity);
     serialOpsIR.emptySerial();
     Serial.print("UPDATED VEL_L = ");
     Serial.println(velocity); 
     break;}
-//--------------------------    
-    case 'h':{
+//--------------------------//HOME    
+    case 'h':{  
     platesIR.xyHome();
     serialOpsIR.emptySerial();
     Serial.println("z3");
     break;}
-//--------------------------
+//--------------------------//CHANGE MICROSTEPS
     case 'i':{
     int msteps = atoi(actionInfo);
     motorIR.changeMicrosteps(msteps);
@@ -129,14 +131,22 @@ void InputResponse::chooseAction(const char* fullInputString)
     Serial.print("UPDATED MICRO = ");
     Serial.println(msteps);
     break;}
-//--------------------------
+//--------------------------//LETTER DEGREE ADJUST   
+    case 'j':{
+    float adjustment = atof(actionInfo);
+    platesIR.changeLetterDegreeAdjustment(adjustment);
+    serialOpsIR.emptySerial();
+    Serial.print("UPDATED LETTER DEGREE ADJUSTMENT= ");
+    Serial.println(adjustment); 
+    break;}
+//--------------------------//LETTER DEGREE
     case 'l':{
     float degreeL;
     degreeL = atof(actionInfo);
     platesIR.spinL(degreeL);
     serialOpsIR.emptySerial();
     break;}
-//--------------------------
+//--------------------------//CHANGE SETTINGS
     case 'p':{    
     char * stringTokenIndex;
   
@@ -154,19 +164,19 @@ void InputResponse::chooseAction(const char* fullInputString)
      
     serialOpsIR.emptySerial();
     break;}
-//--------------------------
-    case 's':{
+//--------------------------//STAMP
+    case 's':{  
     platesIR.stampTest();
     serialOpsIR.emptySerial();
     break;}
-//--------------------------   
+//--------------------------//X MOVE  
     case 'x':{
     float inchx;
     inchx = atof(actionInfo);
     platesIR.spinX(inchx);
     serialOpsIR.emptySerial();
     break;}
-//--------------------------
+//--------------------------//Y MOVE
     case 'y':{
     float inchy;
     inchy = atof(actionInfo);

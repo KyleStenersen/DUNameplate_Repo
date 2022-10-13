@@ -18,6 +18,7 @@ class Plates {
     void spinL(float lDeg);
     void killAllMotors();
     void motorsOn();
+    void changeLetterDegreeAdjustment(float degAdjustment);
     
   private: 
     float halfCurrentLine(int lineNumber);

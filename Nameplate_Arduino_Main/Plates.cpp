@@ -29,6 +29,7 @@ int lineLengthArray[5];
 int lineNum = 0;
 int SWITCH_SIDE = -1;
 int plateSide = 1;
+float letterDegAdjustment = 0;
 
 
 #define SPACE_BAR 200
@@ -73,11 +74,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
   {
     if (eStopBit == 1) break;
     
-    Serial.println("BEGIN LOOP");
-    Serial.print(" - xAbsolute = ");
-    Serial.print(xAbsolute);
-    Serial.print(" - yAbsolute = ");
-    Serial.print(yAbsolute); 
+    Serial.println("BEGIN LOOP"); 
        
     float angleToMove = textP.relativeAngleFromLetter(plateText[i]);    //get angle to move per letter from text library
     float letterLocation = textP.angleOfLetterFromMap(plateText[i]);   //get destination angle from text.h
@@ -89,15 +86,16 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     continue;
     }
       
+
+    //EDGE CASE #1 -----------   
     if (angleToMove == SPACE_BAR)   //if empty space, move one letterspace in x
     {
       motorP.xGo(plateSide*LETTER_SPACEING_GLOBAL, X_ABS_POINTER);
       i++;
       continue;
     }
-
-    Serial.print("angleToMove =");
-    Serial.print(angleToMove);
+    
+    //EDGE CASE #2 -----------
     if (angleToMove == NEW_LINE)    //if newline character "!" then move one linespace in y and then go to start of next line from center (direction depends on line #)
     {
       motorP.yGo(LINE_SPACEING_GLOBAL, Y_ABS_POINTER);   //move down a line in y
@@ -121,6 +119,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
       continue;
     }
     
+    //EDGE CASE #3 -----------
     if (angleToMove > 182 or angleToMove < -182)    //Error case where angle to move is out of possible bounds
     {
       Serial.print("ERROR... angleToMove = ");
@@ -130,6 +129,7 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     }
 
     encoderP.encoderSetup();
+    
     Serial.print(" Destination = ");
     Serial.print(letterLocation);
     Serial.print(" - Letter: ");
@@ -144,10 +144,6 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
   } 
 
     Serial.println("END LOOP");
-    Serial.print(" - xAbsolute = ");
-    Serial.print(xAbsolute);
-    Serial.print(" - yAbsolute = ");
-    Serial.print(yAbsolute); 
 
     killAllMotors();    //after all platetext is parsed/indented turn off motors.  
 }
@@ -209,7 +205,11 @@ void Plates::motorsOn_GoToPrintStart()
 }
 
 
-//FUNCTIONS FOR TESTING/MANUAL CONTROL===========================
+
+
+
+
+//================FUNCTIONS FOR TESTING/MANUAL CONTROL===========================
 
 void Plates::stampTest()
 {
@@ -253,7 +253,7 @@ void Plates::spinL(float lDeg)    // move letterwheel relative degree
 
 //-------------------------
 
-void Plates::goToALetter(char* letter)   // letter-wheel
+void Plates::goToALetter(char* letter)   // letter-wheel - not used in normal operation and whacked out with adjustment of letter degree for testing
 {
   motorP.letterOn();
   
@@ -261,6 +261,17 @@ void Plates::goToALetter(char* letter)   // letter-wheel
   float letterLocation = textP.angleOfLetterFromMap(letter[0]);
   encoderP.encoderSetup();
   float angle1 = encoderP.getAngle();
+
+    Serial.print(" - angle to move = ");
+    Serial.println(angleToMove);
+
+    //Testing add in letter degree adjustment usually 0 but can be changed to see effect
+    angleToMove = angleToMove + letterDegAdjustment;
+    letterLocation = letterLocation+ letterDegAdjustment;
+
+        Serial.print(" - angle to move after adjust = ");
+    Serial.println(angleToMove);
+  
   motorP.letterGo(angleToMove, letterLocation);
   float angle2 = encoderP.getAngle();
   float angleMoved = angle2 - angle1;
@@ -283,4 +294,11 @@ void Plates::goToALetter(char* letter)   // letter-wheel
   Serial.println(diff);
 
   motorP.letterOff();
+}
+
+
+// TESTING FUNCTIONS! ============================
+void Plates::changeLetterDegreeAdjustment(float degAdjustment)
+{
+  letterDegAdjustment = degAdjustment;
 }
