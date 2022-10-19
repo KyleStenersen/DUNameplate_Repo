@@ -35,6 +35,8 @@ void Encoder::encoderSetup(){
 
 float Encoder::getAngle()
 {
+  delay(15);
+  
   Wire.beginTransmission(0x36);
   Wire.write(0x0D);
   Wire.endTransmission();

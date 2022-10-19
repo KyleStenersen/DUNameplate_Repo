@@ -22,7 +22,7 @@ namespace DUNameplateGUI
         const float PLATE_SPACEING_MAX = 3.000F;
         const float LINE_SPACEING_MIN = 0.120F;
         const float LINE_SPACEING_MAX = 0.700F;
-        const float CHAR_SPACEING_MIN = 0.090F;
+        const float CHAR_SPACEING_MIN = 0.000F;
         const float CHAR_SPACEING_MAX = 0.120F;
 
 

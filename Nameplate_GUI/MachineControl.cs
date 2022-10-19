@@ -109,6 +109,8 @@ namespace DUNameplateGUI
                 Log.Debug("MachineCntrl - printonetag - wait reload");
                 reloadedEvent.WaitOne();
 
+                home();
+
                 // And now we're printing again, so set it back
                 UIControl.changeStatusIndicator(UIControl.Status.Printing);
 
@@ -126,6 +128,9 @@ namespace DUNameplateGUI
             if (!isPrinting)
             {
                 isPrinting = true;
+
+                home();
+
                 UIControl.changeStatusIndicator(UIControl.Status.Printing);
 
                 // Reset cancellationRequested to false, because it might be true due to a clearing of the queue

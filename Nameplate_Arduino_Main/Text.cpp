@@ -21,7 +21,7 @@ void Text::setupHashMap(void)
 {
   //Adjustment: [(+) <--],[(-) -->)]
   hashMap[0]('W',3.6);
-  hashMap[1]('S',12.5);
+  hashMap[1]('S',12.75);
   hashMap[2]('3',21.5);
   hashMap[3]('X',30.8);
   hashMap[4]('E',39.7);
@@ -57,7 +57,7 @@ void Text::setupHashMap(void)
   hashMap[34]('1',310.1);
   hashMap[35]('/',318.75);
   hashMap[36]('Q',327.6);
-  hashMap[37]('A',336.5);
+  hashMap[37]('A',336.25);
   hashMap[38]('2',345.8);
   hashMap[39]('Z',355.1);
 

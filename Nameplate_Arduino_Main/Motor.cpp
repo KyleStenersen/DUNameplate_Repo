@@ -190,7 +190,6 @@ void Motor::letterGo(float goDegree, float goalDegree)
   float letterSteps = (goDegree/360)*L_MICROSTEPS*200;                                           
   stepper_Letter.moveRelativeInSteps(letterSteps);
 
-
   float angle2 = encoderM.getAngle();
 
   Serial.print("First angle2 - ");
