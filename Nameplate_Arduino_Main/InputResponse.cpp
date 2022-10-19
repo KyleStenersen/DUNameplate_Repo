@@ -139,6 +139,11 @@ void InputResponse::chooseAction(const char* fullInputString)
     Serial.print("UPDATED LETTER DEGREE ADJUSTMENT= ");
     Serial.println(adjustment); 
     break;}
+//--------------------------//CHECK IF OK TO RECEIVE
+    case 'k':{
+    Serial.print("__");
+    break;
+    }
 //--------------------------//LETTER DEGREE
     case 'l':{
     float degreeL;

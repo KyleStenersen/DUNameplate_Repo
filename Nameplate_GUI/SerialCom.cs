@@ -16,6 +16,7 @@ namespace DUNameplateGUI {
         private static AutoResetEvent homeCompleteEvent = new AutoResetEvent(false);
         private static AutoResetEvent estopReceivedEvent = new AutoResetEvent(false);
         private static ManualResetEvent disconnectedEvent = new ManualResetEvent(false);
+        private static AutoResetEvent clearToSendEvent = new AutoResetEvent(false);
 
         // See DataReceivedHandler
         private static char lastCharReceived = ' ';
@@ -102,15 +103,50 @@ namespace DUNameplateGUI {
             }
         }
 
-        public static void sendString(string stringToSend)
+        public static void sendString(string stringToSend, bool checkIfClearToSend = true)
         {
             if (Global.SerialOn)
             {
                 try
                 {
-                    Log.Debug("SerialCom sendString waiting 10 ms before sending {string}", stringToSend);
+                    //Log.Debug("SerialCom sendString waiting 10 ms before sending {string}", stringToSend);
 
-                    Thread.Sleep(10);
+                    //Thread.Sleep(10);
+
+                    if(checkIfClearToSend)
+                    {
+                        Log.Debug("SerialCom waiting for the clear to send message before sending {string}", stringToSend);
+
+                        int retries = 1;
+
+                        // Repeat 5 times, waiting 50 milliseconds between each try
+                        while (retries < 6)
+                        {
+                            Log.Debug("Sending clear to send request now");
+
+                            // Send our request to ask if the machine is ready to receive a message right now
+                            serialPort1.Write("<k>");
+
+                            // If we got the clear to send, break out of the loop
+                            if (clearToSendEvent.WaitOne(50))
+                            {
+                                Log.Debug("SerialCom breaking out of waiting for clear to send loop");
+                                break;
+                            }
+                            else
+                            {
+                                retries++;
+                            }
+                        }
+
+                        Log.Debug("ClearToSendRetries: {retries}", retries);
+
+                        if (retries == 6)
+                        {
+                            Log.Error("SerialCom retried clear to send too many times, throwing exception");
+                            throw new InvalidOperationException(); // probably the wrong exception, but there is already code for handling this exception, so we're using it to signal disconnected
+                        }
+                    }
 
                     Log.Debug("Sending {string} down serial", stringToSend);
                     serialPort1.Write(stringToSend);
@@ -212,7 +248,7 @@ namespace DUNameplateGUI {
 
         public static void estopReset()
         {
-            sendString("**");
+            sendString("**", false);
         }
 
         // PRIVATE FUNCTIONS =========================================
@@ -253,7 +289,12 @@ namespace DUNameplateGUI {
             {
                 Log.Debug("homeCompleteEvent set");
                 homeCompleteEvent.Set();
-                homeCompleteEvent.Reset();
+                //homeCompleteEvent.Reset();
+            }
+            else if (stringReceived.Contains("__"))
+            {
+                Log.Debug("clearToSendEvent set");
+                clearToSendEvent.Set();
             }
         }
     }
