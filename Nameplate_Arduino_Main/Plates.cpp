@@ -88,8 +88,6 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
   while (i < strlen(plateText))   //loop through plate text chars responding to each individually (stamp or move)
   {
     if (eStopBit == 1) break;
-    
-    Serial.println("BEGIN LOOP"); 
        
     float angleToMove = textP.relativeAngleFromLetter(plateText[i]);    //get angle to move per letter from text library
     float letterLocation = textP.angleOfLetterFromMap(plateText[i]);   //get destination angle from text.h
@@ -119,15 +117,17 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
       lineNum++;
       
       float lineStart = xPlateCenter + (halfCurrentLine(lineNum) * plateSide);   //calc where to start next line in x
-      
-      Serial.print(" - lineStart = ");
-      Serial.print(lineStart);
       float lineCurrent = xAbsolute;
-      Serial.print(" - lineCurrent = ");
-      Serial.print(lineCurrent);
       float moveToLineStart = lineStart - lineCurrent;
-      Serial.print(" - moveToLineStart = ");
-      Serial.println(moveToLineStart);      
+
+// SERIAL FOR TESTING -----------------------      
+//      Serial.print(" - lineStart = ");
+//      Serial.print(lineStart);
+//      Serial.print(" - lineCurrent = ");
+//      Serial.print(lineCurrent);
+//      Serial.print(" - moveToLineStart = ");
+//      Serial.println(moveToLineStart);  
+// -------------------------------------------   
       
       motorP.xGo(moveToLineStart, X_ABS_POINTER);   //move to start of next line in x
       
@@ -146,19 +146,16 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     }
 
     encoderP.encoderSetup();
-    
-    Serial.print(" Destination = ");
-    Serial.print(letterLocation);
-    Serial.print(" - Letter: ");
-    Serial.print(plateText[i]);
-    Serial.print(" - angle to move = ");
-    Serial.println(angleToMove);
 
-    //motorP.letterGo(angleToMove, letterLocation);   //Default go to current letter char, stamp, and move over one letterspace for next
-    //motorP.stamp();
-    //motorP.xGo((plateSide*LETTER_SPACEING_GLOBAL), X_ABS_POINTER);
-//
-// TEST ZONE DANGER!    
+// SERIAL FOR TESTING -----------------------
+//    Serial.print(" Destination = ");
+//    Serial.print(letterLocation);
+//    Serial.print(" - Letter: ");
+//    Serial.print(plateText[i]);
+//    Serial.print(" - angle to move = ");
+//    Serial.println(angleToMove);
+//--------------------------------------------
+
     
     int angle1 = motorP.letterGoNonBlocking(angleToMove);   //Default go to current letter char, stamp, and move over one letterspace for next
 
@@ -167,7 +164,6 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
 
     if (!isFirstCharacterOfLine) 
     {
-      Serial.println("xGoNonBlocking now running");
       motorP.xGoNonBlocking((plateSide*LETTER_SPACEING_GLOBAL), X_ABS_POINTER);
     }
 
@@ -179,12 +175,8 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
 
     isFirstCharacterOfLine = false;
 
-// END TEST ZONE!
-
     i++;
   } 
-
-    Serial.println("END LOOP");
 
     killAllMotors();    //after all platetext is parsed/indented turn off motors.  
 }

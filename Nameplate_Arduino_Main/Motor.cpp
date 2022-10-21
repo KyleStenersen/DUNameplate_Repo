@@ -215,19 +215,13 @@ void Motor::letterGo(float goDegree, float goalDegree)
   stepper_Letter.moveRelativeInSteps(letterSteps);
 
   float angle2 = encoderM.getAngle();
-
-  Serial.print("First angle2 - ");
-  Serial.print(angle2);
   
   float angleMoved = angle2 - angle1;
   
   float angleGoal = angleToMove + angle1;
   if (angleGoal>360) angleGoal-=360;
   if (angleGoal<-360) angleGoal+=360;
-  if (goalDegree != 0) angleGoal = goalDegree;
-
-  Serial.print("First angleGoal - ");
-  Serial.print(angleGoal);  
+  if (goalDegree != 0) angleGoal = goalDegree;  
  
   if (angleMoved > 180 || angleMoved < -180) 
   {
@@ -240,8 +234,15 @@ void Motor::letterGo(float goDegree, float goalDegree)
 
   if (angleGoal<angle2) angleError = -1*angleError;
 
-  Serial.print("First angleError ");
-  Serial.println(angleError);
+
+// SERIAL FOR TESTING --------------------
+//  Serial.print("First angle2 - ");
+//  Serial.print(angle2);
+//  Serial.print("First angleGoal - ");
+//  Serial.print(angleGoal);
+//  Serial.print("First angleError ");
+//  Serial.println(angleError);
+//-----------------------------------------
 
 
   //Crank the speed and accel way down to try additional tries make more accurate?
@@ -258,32 +259,30 @@ void Motor::letterGo(float goDegree, float goalDegree)
   while (angleError>0.2 || angleError<-0.2)   //Loop to retry and get closer to the target angle
   {     
     angle1 = encoderM.getAngle();
-
-    Serial.print("Retry, angle1 = ");
-    Serial.print(angle1);
     
     angleToMove = angleError;
-
-    Serial.print(", still go ");
-    Serial.print(angleToMove);
       
     letterSteps = (angleToMove/360)*SHARPER_MICROSTEPS*200;                                    
     stepper_Letter.moveRelativeInSteps(letterSteps);
 
     angle2 = encoderM.getAngle();
-
-    Serial.print(", angle2 = ");
-    Serial.print(angle2);
      
     angleMoved = angle2 - angle1;
-
-    Serial.print(", went ");
-    Serial.print(angleMoved);
    
     angleError = abs(abs(angle2) - abs(angleGoal));
 
-    Serial.print(", angleError before = ");
-    Serial.print(angleError);
+// SERIAL FOR TESTING ----------------------
+//    Serial.print("Retry, angle1 = ");
+//    Serial.print(angle1);
+//    Serial.print(", still go ");
+//    Serial.print(angleToMove);
+//    Serial.print(", angle2 = ");
+//    Serial.print(angle2);
+//    Serial.print(", went ");
+//    Serial.print(angleMoved);
+//    Serial.print(", angleError before = ");
+//    Serial.print(angleError);
+// -----------------------------------------
     
     if(angleError>360 || angleError<-360)
     {
@@ -293,9 +292,11 @@ void Motor::letterGo(float goDegree, float goalDegree)
     }
   
     if (angleGoal<angle2) angleError = -1*angleError;
-    
-    Serial.print(", angleError = ");
-    Serial.println(angleError);
+
+// SERIAL FOR TESTING ----------------------
+//    Serial.print(", angleError = ");
+//    Serial.println(angleError);
+// -----------------------------------------
     
     tooManyTries++;
     if (tooManyTries > 10) 
@@ -345,9 +346,6 @@ void Motor::processRetries(float goDegree, float goalDegree, float angle1)
   //float letterSteps = (goDegree/360)*L_MICROSTEPS*200;
 
   float angle2 = encoderM.getAngle();
-
-  Serial.print("First angle2 - ");
-  Serial.print(angle2);
   
   float angleMoved = angle2 - angle1;
   
@@ -355,9 +353,6 @@ void Motor::processRetries(float goDegree, float goalDegree, float angle1)
   if (angleGoal>360) angleGoal-=360;
   if (angleGoal<-360) angleGoal+=360;
   if (goalDegree != 0) angleGoal = goalDegree;
-
-  Serial.print("First angleGoal - ");
-  Serial.print(angleGoal);  
  
   if (angleMoved > 180 || angleMoved < -180) 
   {
@@ -370,8 +365,14 @@ void Motor::processRetries(float goDegree, float goalDegree, float angle1)
 
   if (angleGoal<angle2) angleError = -1*angleError;
 
-  Serial.print("First angleError ");
-  Serial.println(angleError);
+// SERIAL FOR TESTING ----------------------
+//  Serial.print("First angle2 - ");
+//  Serial.print(angle2);
+//  Serial.print("First angleGoal - ");
+//  Serial.print(angleGoal); 
+//  Serial.print("First angleError ");
+//  Serial.println(angleError);
+//  ----------------------------------------
 
 
   //Crank the speed and accel way down to try additional tries make more accurate?
@@ -388,32 +389,30 @@ void Motor::processRetries(float goDegree, float goalDegree, float angle1)
   while (angleError>0.2 || angleError<-0.2)   //Loop to retry and get closer to the target angle
   {     
     angle1 = encoderM.getAngle();
-
-    Serial.print("Retry, angle1 = ");
-    Serial.print(angle1);
-    
+  
     angleToMove = angleError;
-
-    Serial.print(", still go ");
-    Serial.print(angleToMove);
       
     letterSteps = (angleToMove/360)*SHARPER_MICROSTEPS*200;                                    
     stepper_Letter.moveRelativeInSteps(letterSteps);
 
     angle2 = encoderM.getAngle();
-
-    Serial.print(", angle2 = ");
-    Serial.print(angle2);
-     
+      
     angleMoved = angle2 - angle1;
-
-    Serial.print(", went ");
-    Serial.print(angleMoved);
    
     angleError = abs(abs(angle2) - abs(angleGoal));
 
-    Serial.print(", angleError before = ");
-    Serial.print(angleError);
+// SERIAL FOR TESTING ----------------------
+//    Serial.print("Retry, angle1 = ");
+//    Serial.print(angle1);
+//    Serial.print(", still go ");
+//    Serial.print(angleToMove);
+//    Serial.print(", angle2 = ");
+//    Serial.print(angle2);
+//    Serial.print(", went ");
+//    Serial.print(angleMoved);
+//    Serial.print(", angleError before = ");
+//    Serial.print(angleError);
+// -----------------------------------------
     
     if(angleError>360 || angleError<-360)
     {
@@ -423,9 +422,11 @@ void Motor::processRetries(float goDegree, float goalDegree, float angle1)
     }
   
     if (angleGoal<angle2) angleError = -1*angleError;
-    
-    Serial.print(", angleError = ");
-    Serial.println(angleError);
+
+// SERIAL FOR TESTING ----------------------
+//    Serial.print(", angleError = ");
+//    Serial.println(angleError);
+//------------------------------------------
     
     tooManyTries++;
     if (tooManyTries > 10) 

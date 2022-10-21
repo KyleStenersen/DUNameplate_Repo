@@ -35,7 +35,7 @@ void Encoder::encoderSetup(){
 
 float Encoder::getAngle()
 {
-delay(11);
+delay(15);
 
 //  float check_1 = 400;
 //  float check_2 = 500;
