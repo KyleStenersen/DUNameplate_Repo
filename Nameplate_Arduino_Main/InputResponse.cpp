@@ -14,7 +14,7 @@
 // *‘g’ CHANGE VEL - motor.changeVelocityLetter(rest of input string [int]) - letter motor
 //    ‘h’ HOME - plates.xyHome() - build plate home
 // *‘i’ CHANGE MS - motor.changeMicrosteps(rest of input string [int]) - for all motors
-// *'j' LETTER DEGREE ADJUSTMENT - change adder to letter degree in plates go to letter to see effect
+// *‘j’ LETTER DEGREE ADJUSTMENT - change adder to letter degree in plates go to letter to see effect
 // *‘l’ LETTER DEGREES - plates.spinL(rest of input string [float]) - letterwheel move in degrees
 //    ‘p’ CHANGE SETTINGS - update GlobalSettings sent over serial from GUI
 // *‘s’ STAMP - plates.stampTest() - stamp machine motion once

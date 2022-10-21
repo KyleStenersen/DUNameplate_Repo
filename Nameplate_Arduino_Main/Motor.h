@@ -14,6 +14,7 @@ class Motor
     void motorSetupAll();
     
     void xGo(float xInches, float* xAbsPosition = 0);
+    void xGoNonBlocking(float xInches, float* xAbsPosition = 0);
     void xOff();
     void xOn();    
     void xHome();
@@ -24,6 +25,8 @@ class Motor
     void yHome();
 
     void letterGo(float goDegree, float goalDegree=0);
+    int letterGoNonBlocking(float goDegree); 
+    void processRetries(float goDegree, float goalDegree, float angle1); 
     void letterOff();
     void letterOn();
 
@@ -32,6 +35,7 @@ class Motor
     void stampMotorOff();
 
     void warmUp();
+    void processXAndLetterMovement();
 
     void changeAccelLetter(int accel);
     void changeVelocityLetter(int velo);
