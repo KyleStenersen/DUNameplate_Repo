@@ -11,11 +11,17 @@ namespace DUNameplateGUI
 {
     internal static class SpeedDialManager
     {
-        private static Nameplate[] speedDialPlates = new Nameplate[9];
+        private static Nameplate[] speedDialPlates = new Nameplate[6];
 
-        public static void Initialize()
+        private static Label[] speedDialLabels;
+
+        public static void Initialize(Label[] arrayOfSpeedDialLabels)
         {
             LoadFromSettings();
+
+            speedDialLabels = arrayOfSpeedDialLabels;
+
+            UpdateLabels();
         }
 
         public static void SaveCurrentPlateToSlot(int slotNumber, TextBox[] arrayOfTagTextBoxes)
@@ -28,6 +34,8 @@ namespace DUNameplateGUI
                 speedDialPlates[slotNumber] = currentPlate;
 
                 SaveToSettings();
+
+                UpdateLabels();
             }
             catch (ArgumentException)
             {
@@ -45,6 +53,15 @@ namespace DUNameplateGUI
             {
                 selectedPlate.ToTextBoxes(arrayOfTagTextBoxes);
             }
+        }
+
+        public static void ClearAllSlots()
+        {
+            speedDialPlates = new Nameplate[6];
+
+            SaveToSettings();
+
+            UpdateLabels();
         }
 
         // This class is here so that we can serialize our savedPlates to a JSON string, and then
@@ -92,6 +109,21 @@ namespace DUNameplateGUI
                 Log.Error("Invalid JSON in settings: {ex}", ex);
             }
 
+        }
+
+        private static void UpdateLabels()
+        {
+            for (int i = 0; i < speedDialLabels.Length; i++)
+            {
+                if (speedDialPlates[i] != null) 
+                {
+                    speedDialLabels[i].Text = speedDialPlates[i].Lines[0];
+                }
+                else
+                {
+                    speedDialLabels[i].Text = "";
+                }
+            }
         }
     }
 }

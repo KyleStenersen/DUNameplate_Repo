@@ -214,5 +214,10 @@ namespace DUNameplateGUI
             InputRuleForm inputRuleForm = new InputRuleForm();
             inputRuleForm.ShowDialog();
         }
+
+        private void clearSpeedDialPlatesButton_Click(object sender, EventArgs e)
+        {
+            SpeedDialManager.ClearAllSlots();
+        }
     }
 }

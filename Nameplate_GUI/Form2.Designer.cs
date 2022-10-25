@@ -67,6 +67,7 @@
             this.changeInputFixingRulesBtn = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.serialPortComboBox = new System.Windows.Forms.ComboBox();
+            this.clearSpeedDialPlatesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.resetJigIdleTimeBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -450,7 +451,7 @@
             // 
             // changeInputFixingRulesBtn
             // 
-            this.changeInputFixingRulesBtn.Location = new System.Drawing.Point(24, 494);
+            this.changeInputFixingRulesBtn.Location = new System.Drawing.Point(22, 474);
             this.changeInputFixingRulesBtn.Name = "changeInputFixingRulesBtn";
             this.changeInputFixingRulesBtn.Size = new System.Drawing.Size(189, 23);
             this.changeInputFixingRulesBtn.TabIndex = 18;
@@ -479,11 +480,22 @@
             this.serialPortComboBox.TabIndex = 19;
             this.serialPortComboBox.TabStop = false;
             // 
+            // clearSpeedDialPlatesButton
+            // 
+            this.clearSpeedDialPlatesButton.Location = new System.Drawing.Point(22, 512);
+            this.clearSpeedDialPlatesButton.Name = "clearSpeedDialPlatesButton";
+            this.clearSpeedDialPlatesButton.Size = new System.Drawing.Size(189, 23);
+            this.clearSpeedDialPlatesButton.TabIndex = 21;
+            this.clearSpeedDialPlatesButton.Text = "Clear All Speed Dial Plates";
+            this.clearSpeedDialPlatesButton.UseVisualStyleBackColor = true;
+            this.clearSpeedDialPlatesButton.Click += new System.EventHandler(this.clearSpeedDialPlatesButton_Click);
+            // 
             // SETTINGS_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(250, 611);
+            this.Controls.Add(this.clearSpeedDialPlatesButton);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.serialPortComboBox);
             this.Controls.Add(this.changeInputFixingRulesBtn);
@@ -576,5 +588,6 @@
         private System.Windows.Forms.Button changeInputFixingRulesBtn;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox serialPortComboBox;
+        private System.Windows.Forms.Button clearSpeedDialPlatesButton;
     }
 }

@@ -54,7 +54,9 @@ namespace DUNameplateGUI
 
             InputFixer.Initialize();
 
-            SpeedDialManager.Initialize();
+            Label[] arrayOfSpeedDialLabels = new Label[6] { speedDialLabel1, speedDialLabel2, speedDialLabel3, speedDialLabel4, speedDialLabel5, speedDialLabel6 };
+
+            SpeedDialManager.Initialize(arrayOfSpeedDialLabels);
         }
 
         // USER INPUT RESPONSE FUNCTIONS ============================================
@@ -314,36 +316,6 @@ namespace DUNameplateGUI
         private void loadSlot6Button_Click(object sender, EventArgs e)
         {
             UIControl.loadSlot(5);
-        }
-
-        private void saveSlot7Button_Click(object sender, EventArgs e)
-        {
-            UIControl.saveSlot(6);
-        }
-
-        private void loadSlot7Button_Click(object sender, EventArgs e)
-        {
-            UIControl.loadSlot(6);
-        }
-
-        private void saveSlot8Button_Click(object sender, EventArgs e)
-        {
-            UIControl.saveSlot(7);
-        }
-
-        private void loadSlot8Button_Click(object sender, EventArgs e)
-        {
-            UIControl.loadSlot(7);
-        }
-
-        private void saveSlot9Button_Click(object sender, EventArgs e)
-        {
-            UIControl.saveSlot(8);
-        }
-
-        private void loadSlot9Button_Click(object sender, EventArgs e)
-        {
-            UIControl.loadSlot(8);
         }
     }
 }

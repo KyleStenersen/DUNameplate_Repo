@@ -58,6 +58,22 @@
             this.jigIndicator3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.speedDialLabel4 = new System.Windows.Forms.Label();
+            this.speedDialLabel3 = new System.Windows.Forms.Label();
+            this.speedDialLabel2 = new System.Windows.Forms.Label();
+            this.speedDialLabel1 = new System.Windows.Forms.Label();
+            this.loadSlot6Button = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.saveSlot6Button = new System.Windows.Forms.Button();
+            this.loadSlot5Button = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.saveSlot5Button = new System.Windows.Forms.Button();
+            this.loadSlot4Button = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.saveSlot4Button = new System.Windows.Forms.Button();
+            this.loadSlot3Button = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.saveSlot3Button = new System.Windows.Forms.Button();
             this.loadSlot2Button = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.saveSlot2Button = new System.Windows.Forms.Button();
@@ -70,27 +86,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.jigLabel = new System.Windows.Forms.Label();
-            this.loadSlot3Button = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.saveSlot3Button = new System.Windows.Forms.Button();
-            this.loadSlot4Button = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.saveSlot4Button = new System.Windows.Forms.Button();
-            this.loadSlot5Button = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.saveSlot5Button = new System.Windows.Forms.Button();
-            this.loadSlot6Button = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.saveSlot6Button = new System.Windows.Forms.Button();
-            this.loadSlot7Button = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.saveSlot7Button = new System.Windows.Forms.Button();
-            this.loadSlot8Button = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.saveSlot8Button = new System.Windows.Forms.Button();
-            this.loadSlot9Button = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.saveSlot9Button = new System.Windows.Forms.Button();
+            this.speedDialLabel5 = new System.Windows.Forms.Label();
+            this.speedDialLabel6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.statusPanel.SuspendLayout();
             this.jigIndicatorTableLayoutPanel.SuspendLayout();
@@ -458,15 +455,12 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.Controls.Add(this.loadSlot9Button);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.saveSlot9Button);
-            this.panel1.Controls.Add(this.loadSlot8Button);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.saveSlot8Button);
-            this.panel1.Controls.Add(this.loadSlot7Button);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.saveSlot7Button);
+            this.panel1.Controls.Add(this.speedDialLabel6);
+            this.panel1.Controls.Add(this.speedDialLabel5);
+            this.panel1.Controls.Add(this.speedDialLabel4);
+            this.panel1.Controls.Add(this.speedDialLabel3);
+            this.panel1.Controls.Add(this.speedDialLabel2);
+            this.panel1.Controls.Add(this.speedDialLabel1);
             this.panel1.Controls.Add(this.loadSlot6Button);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.saveSlot6Button);
@@ -514,10 +508,202 @@
             this.panel1.Size = new System.Drawing.Size(1668, 700);
             this.panel1.TabIndex = 26;
             // 
+            // speedDialLabel4
+            // 
+            this.speedDialLabel4.AutoSize = true;
+            this.speedDialLabel4.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedDialLabel4.Location = new System.Drawing.Point(4, 251);
+            this.speedDialLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.speedDialLabel4.Name = "speedDialLabel4";
+            this.speedDialLabel4.Size = new System.Drawing.Size(192, 18);
+            this.speedDialLabel4.TabIndex = 62;
+            this.speedDialLabel4.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
+            // 
+            // speedDialLabel3
+            // 
+            this.speedDialLabel3.AutoSize = true;
+            this.speedDialLabel3.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedDialLabel3.Location = new System.Drawing.Point(4, 191);
+            this.speedDialLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.speedDialLabel3.Name = "speedDialLabel3";
+            this.speedDialLabel3.Size = new System.Drawing.Size(192, 18);
+            this.speedDialLabel3.TabIndex = 61;
+            this.speedDialLabel3.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
+            // 
+            // speedDialLabel2
+            // 
+            this.speedDialLabel2.AutoSize = true;
+            this.speedDialLabel2.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedDialLabel2.Location = new System.Drawing.Point(4, 131);
+            this.speedDialLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.speedDialLabel2.Name = "speedDialLabel2";
+            this.speedDialLabel2.Size = new System.Drawing.Size(192, 18);
+            this.speedDialLabel2.TabIndex = 60;
+            this.speedDialLabel2.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
+            // 
+            // speedDialLabel1
+            // 
+            this.speedDialLabel1.AutoSize = true;
+            this.speedDialLabel1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedDialLabel1.Location = new System.Drawing.Point(4, 72);
+            this.speedDialLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.speedDialLabel1.Name = "speedDialLabel1";
+            this.speedDialLabel1.Size = new System.Drawing.Size(192, 18);
+            this.speedDialLabel1.TabIndex = 59;
+            this.speedDialLabel1.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
+            // 
+            // loadSlot6Button
+            // 
+            this.loadSlot6Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadSlot6Button.Location = new System.Drawing.Point(110, 390);
+            this.loadSlot6Button.Margin = new System.Windows.Forms.Padding(2);
+            this.loadSlot6Button.Name = "loadSlot6Button";
+            this.loadSlot6Button.Size = new System.Drawing.Size(70, 38);
+            this.loadSlot6Button.TabIndex = 49;
+            this.loadSlot6Button.TabStop = false;
+            this.loadSlot6Button.Text = "Load";
+            this.loadSlot6Button.UseVisualStyleBackColor = true;
+            this.loadSlot6Button.Click += new System.EventHandler(this.loadSlot6Button_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(2, 397);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 25);
+            this.label8.TabIndex = 48;
+            this.label8.Text = "6:";
+            // 
+            // saveSlot6Button
+            // 
+            this.saveSlot6Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveSlot6Button.Location = new System.Drawing.Point(36, 390);
+            this.saveSlot6Button.Margin = new System.Windows.Forms.Padding(2);
+            this.saveSlot6Button.Name = "saveSlot6Button";
+            this.saveSlot6Button.Size = new System.Drawing.Size(70, 38);
+            this.saveSlot6Button.TabIndex = 47;
+            this.saveSlot6Button.TabStop = false;
+            this.saveSlot6Button.Text = "Save";
+            this.saveSlot6Button.UseVisualStyleBackColor = true;
+            this.saveSlot6Button.Click += new System.EventHandler(this.saveSlot6Button_Click);
+            // 
+            // loadSlot5Button
+            // 
+            this.loadSlot5Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadSlot5Button.Location = new System.Drawing.Point(110, 330);
+            this.loadSlot5Button.Margin = new System.Windows.Forms.Padding(2);
+            this.loadSlot5Button.Name = "loadSlot5Button";
+            this.loadSlot5Button.Size = new System.Drawing.Size(70, 38);
+            this.loadSlot5Button.TabIndex = 46;
+            this.loadSlot5Button.TabStop = false;
+            this.loadSlot5Button.Text = "Load";
+            this.loadSlot5Button.UseVisualStyleBackColor = true;
+            this.loadSlot5Button.Click += new System.EventHandler(this.loadSlot5Button_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(2, 337);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(30, 25);
+            this.label7.TabIndex = 45;
+            this.label7.Text = "5:";
+            // 
+            // saveSlot5Button
+            // 
+            this.saveSlot5Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveSlot5Button.Location = new System.Drawing.Point(36, 330);
+            this.saveSlot5Button.Margin = new System.Windows.Forms.Padding(2);
+            this.saveSlot5Button.Name = "saveSlot5Button";
+            this.saveSlot5Button.Size = new System.Drawing.Size(70, 38);
+            this.saveSlot5Button.TabIndex = 44;
+            this.saveSlot5Button.TabStop = false;
+            this.saveSlot5Button.Text = "Save";
+            this.saveSlot5Button.UseVisualStyleBackColor = true;
+            this.saveSlot5Button.Click += new System.EventHandler(this.saveSlot5Button_Click);
+            // 
+            // loadSlot4Button
+            // 
+            this.loadSlot4Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadSlot4Button.Location = new System.Drawing.Point(110, 271);
+            this.loadSlot4Button.Margin = new System.Windows.Forms.Padding(2);
+            this.loadSlot4Button.Name = "loadSlot4Button";
+            this.loadSlot4Button.Size = new System.Drawing.Size(70, 38);
+            this.loadSlot4Button.TabIndex = 43;
+            this.loadSlot4Button.TabStop = false;
+            this.loadSlot4Button.Text = "Load";
+            this.loadSlot4Button.UseVisualStyleBackColor = true;
+            this.loadSlot4Button.Click += new System.EventHandler(this.loadSlot4Button_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(2, 278);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(30, 25);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "4:";
+            // 
+            // saveSlot4Button
+            // 
+            this.saveSlot4Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveSlot4Button.Location = new System.Drawing.Point(36, 271);
+            this.saveSlot4Button.Margin = new System.Windows.Forms.Padding(2);
+            this.saveSlot4Button.Name = "saveSlot4Button";
+            this.saveSlot4Button.Size = new System.Drawing.Size(70, 38);
+            this.saveSlot4Button.TabIndex = 41;
+            this.saveSlot4Button.TabStop = false;
+            this.saveSlot4Button.Text = "Save";
+            this.saveSlot4Button.UseVisualStyleBackColor = true;
+            this.saveSlot4Button.Click += new System.EventHandler(this.saveSlot4Button_Click);
+            // 
+            // loadSlot3Button
+            // 
+            this.loadSlot3Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadSlot3Button.Location = new System.Drawing.Point(110, 211);
+            this.loadSlot3Button.Margin = new System.Windows.Forms.Padding(2);
+            this.loadSlot3Button.Name = "loadSlot3Button";
+            this.loadSlot3Button.Size = new System.Drawing.Size(70, 38);
+            this.loadSlot3Button.TabIndex = 40;
+            this.loadSlot3Button.TabStop = false;
+            this.loadSlot3Button.Text = "Load";
+            this.loadSlot3Button.UseVisualStyleBackColor = true;
+            this.loadSlot3Button.Click += new System.EventHandler(this.loadSlot3Button_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(2, 218);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(30, 25);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "3:";
+            // 
+            // saveSlot3Button
+            // 
+            this.saveSlot3Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveSlot3Button.Location = new System.Drawing.Point(36, 211);
+            this.saveSlot3Button.Margin = new System.Windows.Forms.Padding(2);
+            this.saveSlot3Button.Name = "saveSlot3Button";
+            this.saveSlot3Button.Size = new System.Drawing.Size(70, 38);
+            this.saveSlot3Button.TabIndex = 38;
+            this.saveSlot3Button.TabStop = false;
+            this.saveSlot3Button.Text = "Save";
+            this.saveSlot3Button.UseVisualStyleBackColor = true;
+            this.saveSlot3Button.Click += new System.EventHandler(this.saveSlot3Button_Click);
+            // 
             // loadSlot2Button
             // 
             this.loadSlot2Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadSlot2Button.Location = new System.Drawing.Point(110, 134);
+            this.loadSlot2Button.Location = new System.Drawing.Point(110, 151);
             this.loadSlot2Button.Margin = new System.Windows.Forms.Padding(2);
             this.loadSlot2Button.Name = "loadSlot2Button";
             this.loadSlot2Button.Size = new System.Drawing.Size(70, 38);
@@ -531,7 +717,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(2, 141);
+            this.label4.Location = new System.Drawing.Point(2, 158);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 25);
@@ -541,7 +727,7 @@
             // saveSlot2Button
             // 
             this.saveSlot2Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveSlot2Button.Location = new System.Drawing.Point(36, 134);
+            this.saveSlot2Button.Location = new System.Drawing.Point(36, 151);
             this.saveSlot2Button.Margin = new System.Windows.Forms.Padding(2);
             this.saveSlot2Button.Name = "saveSlot2Button";
             this.saveSlot2Button.Size = new System.Drawing.Size(70, 38);
@@ -662,264 +848,27 @@
             this.jigLabel.Text = "8-Plate";
             this.jigLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // loadSlot3Button
+            // speedDialLabel5
             // 
-            this.loadSlot3Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadSlot3Button.Location = new System.Drawing.Point(110, 176);
-            this.loadSlot3Button.Margin = new System.Windows.Forms.Padding(2);
-            this.loadSlot3Button.Name = "loadSlot3Button";
-            this.loadSlot3Button.Size = new System.Drawing.Size(70, 38);
-            this.loadSlot3Button.TabIndex = 40;
-            this.loadSlot3Button.TabStop = false;
-            this.loadSlot3Button.Text = "Load";
-            this.loadSlot3Button.UseVisualStyleBackColor = true;
-            this.loadSlot3Button.Click += new System.EventHandler(this.loadSlot3Button_Click);
+            this.speedDialLabel5.AutoSize = true;
+            this.speedDialLabel5.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedDialLabel5.Location = new System.Drawing.Point(4, 310);
+            this.speedDialLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.speedDialLabel5.Name = "speedDialLabel5";
+            this.speedDialLabel5.Size = new System.Drawing.Size(192, 18);
+            this.speedDialLabel5.TabIndex = 63;
+            this.speedDialLabel5.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
             // 
-            // label5
+            // speedDialLabel6
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(2, 183);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(30, 25);
-            this.label5.TabIndex = 39;
-            this.label5.Text = "3:";
-            // 
-            // saveSlot3Button
-            // 
-            this.saveSlot3Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveSlot3Button.Location = new System.Drawing.Point(36, 176);
-            this.saveSlot3Button.Margin = new System.Windows.Forms.Padding(2);
-            this.saveSlot3Button.Name = "saveSlot3Button";
-            this.saveSlot3Button.Size = new System.Drawing.Size(70, 38);
-            this.saveSlot3Button.TabIndex = 38;
-            this.saveSlot3Button.TabStop = false;
-            this.saveSlot3Button.Text = "Save";
-            this.saveSlot3Button.UseVisualStyleBackColor = true;
-            this.saveSlot3Button.Click += new System.EventHandler(this.saveSlot3Button_Click);
-            // 
-            // loadSlot4Button
-            // 
-            this.loadSlot4Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadSlot4Button.Location = new System.Drawing.Point(110, 218);
-            this.loadSlot4Button.Margin = new System.Windows.Forms.Padding(2);
-            this.loadSlot4Button.Name = "loadSlot4Button";
-            this.loadSlot4Button.Size = new System.Drawing.Size(70, 38);
-            this.loadSlot4Button.TabIndex = 43;
-            this.loadSlot4Button.TabStop = false;
-            this.loadSlot4Button.Text = "Load";
-            this.loadSlot4Button.UseVisualStyleBackColor = true;
-            this.loadSlot4Button.Click += new System.EventHandler(this.loadSlot4Button_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(2, 225);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 25);
-            this.label6.TabIndex = 42;
-            this.label6.Text = "4:";
-            // 
-            // saveSlot4Button
-            // 
-            this.saveSlot4Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveSlot4Button.Location = new System.Drawing.Point(36, 218);
-            this.saveSlot4Button.Margin = new System.Windows.Forms.Padding(2);
-            this.saveSlot4Button.Name = "saveSlot4Button";
-            this.saveSlot4Button.Size = new System.Drawing.Size(70, 38);
-            this.saveSlot4Button.TabIndex = 41;
-            this.saveSlot4Button.TabStop = false;
-            this.saveSlot4Button.Text = "Save";
-            this.saveSlot4Button.UseVisualStyleBackColor = true;
-            this.saveSlot4Button.Click += new System.EventHandler(this.saveSlot4Button_Click);
-            // 
-            // loadSlot5Button
-            // 
-            this.loadSlot5Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadSlot5Button.Location = new System.Drawing.Point(110, 260);
-            this.loadSlot5Button.Margin = new System.Windows.Forms.Padding(2);
-            this.loadSlot5Button.Name = "loadSlot5Button";
-            this.loadSlot5Button.Size = new System.Drawing.Size(70, 38);
-            this.loadSlot5Button.TabIndex = 46;
-            this.loadSlot5Button.TabStop = false;
-            this.loadSlot5Button.Text = "Load";
-            this.loadSlot5Button.UseVisualStyleBackColor = true;
-            this.loadSlot5Button.Click += new System.EventHandler(this.loadSlot5Button_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(2, 267);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(30, 25);
-            this.label7.TabIndex = 45;
-            this.label7.Text = "5:";
-            // 
-            // saveSlot5Button
-            // 
-            this.saveSlot5Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveSlot5Button.Location = new System.Drawing.Point(36, 260);
-            this.saveSlot5Button.Margin = new System.Windows.Forms.Padding(2);
-            this.saveSlot5Button.Name = "saveSlot5Button";
-            this.saveSlot5Button.Size = new System.Drawing.Size(70, 38);
-            this.saveSlot5Button.TabIndex = 44;
-            this.saveSlot5Button.TabStop = false;
-            this.saveSlot5Button.Text = "Save";
-            this.saveSlot5Button.UseVisualStyleBackColor = true;
-            this.saveSlot5Button.Click += new System.EventHandler(this.saveSlot5Button_Click);
-            // 
-            // loadSlot6Button
-            // 
-            this.loadSlot6Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadSlot6Button.Location = new System.Drawing.Point(110, 302);
-            this.loadSlot6Button.Margin = new System.Windows.Forms.Padding(2);
-            this.loadSlot6Button.Name = "loadSlot6Button";
-            this.loadSlot6Button.Size = new System.Drawing.Size(70, 38);
-            this.loadSlot6Button.TabIndex = 49;
-            this.loadSlot6Button.TabStop = false;
-            this.loadSlot6Button.Text = "Load";
-            this.loadSlot6Button.UseVisualStyleBackColor = true;
-            this.loadSlot6Button.Click += new System.EventHandler(this.loadSlot6Button_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(2, 309);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(30, 25);
-            this.label8.TabIndex = 48;
-            this.label8.Text = "6:";
-            // 
-            // saveSlot6Button
-            // 
-            this.saveSlot6Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveSlot6Button.Location = new System.Drawing.Point(36, 302);
-            this.saveSlot6Button.Margin = new System.Windows.Forms.Padding(2);
-            this.saveSlot6Button.Name = "saveSlot6Button";
-            this.saveSlot6Button.Size = new System.Drawing.Size(70, 38);
-            this.saveSlot6Button.TabIndex = 47;
-            this.saveSlot6Button.TabStop = false;
-            this.saveSlot6Button.Text = "Save";
-            this.saveSlot6Button.UseVisualStyleBackColor = true;
-            this.saveSlot6Button.Click += new System.EventHandler(this.saveSlot6Button_Click);
-            // 
-            // loadSlot7Button
-            // 
-            this.loadSlot7Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadSlot7Button.Location = new System.Drawing.Point(110, 344);
-            this.loadSlot7Button.Margin = new System.Windows.Forms.Padding(2);
-            this.loadSlot7Button.Name = "loadSlot7Button";
-            this.loadSlot7Button.Size = new System.Drawing.Size(70, 38);
-            this.loadSlot7Button.TabIndex = 52;
-            this.loadSlot7Button.TabStop = false;
-            this.loadSlot7Button.Text = "Load";
-            this.loadSlot7Button.UseVisualStyleBackColor = true;
-            this.loadSlot7Button.Click += new System.EventHandler(this.loadSlot7Button_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(2, 351);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(30, 25);
-            this.label9.TabIndex = 51;
-            this.label9.Text = "7:";
-            // 
-            // saveSlot7Button
-            // 
-            this.saveSlot7Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveSlot7Button.Location = new System.Drawing.Point(36, 344);
-            this.saveSlot7Button.Margin = new System.Windows.Forms.Padding(2);
-            this.saveSlot7Button.Name = "saveSlot7Button";
-            this.saveSlot7Button.Size = new System.Drawing.Size(70, 38);
-            this.saveSlot7Button.TabIndex = 50;
-            this.saveSlot7Button.TabStop = false;
-            this.saveSlot7Button.Text = "Save";
-            this.saveSlot7Button.UseVisualStyleBackColor = true;
-            this.saveSlot7Button.Click += new System.EventHandler(this.saveSlot7Button_Click);
-            // 
-            // loadSlot8Button
-            // 
-            this.loadSlot8Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadSlot8Button.Location = new System.Drawing.Point(110, 386);
-            this.loadSlot8Button.Margin = new System.Windows.Forms.Padding(2);
-            this.loadSlot8Button.Name = "loadSlot8Button";
-            this.loadSlot8Button.Size = new System.Drawing.Size(70, 38);
-            this.loadSlot8Button.TabIndex = 55;
-            this.loadSlot8Button.TabStop = false;
-            this.loadSlot8Button.Text = "Load";
-            this.loadSlot8Button.UseVisualStyleBackColor = true;
-            this.loadSlot8Button.Click += new System.EventHandler(this.loadSlot8Button_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(2, 393);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(30, 25);
-            this.label10.TabIndex = 54;
-            this.label10.Text = "8:";
-            // 
-            // saveSlot8Button
-            // 
-            this.saveSlot8Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveSlot8Button.Location = new System.Drawing.Point(36, 386);
-            this.saveSlot8Button.Margin = new System.Windows.Forms.Padding(2);
-            this.saveSlot8Button.Name = "saveSlot8Button";
-            this.saveSlot8Button.Size = new System.Drawing.Size(70, 38);
-            this.saveSlot8Button.TabIndex = 53;
-            this.saveSlot8Button.TabStop = false;
-            this.saveSlot8Button.Text = "Save";
-            this.saveSlot8Button.UseVisualStyleBackColor = true;
-            this.saveSlot8Button.Click += new System.EventHandler(this.saveSlot8Button_Click);
-            // 
-            // loadSlot9Button
-            // 
-            this.loadSlot9Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadSlot9Button.Location = new System.Drawing.Point(110, 428);
-            this.loadSlot9Button.Margin = new System.Windows.Forms.Padding(2);
-            this.loadSlot9Button.Name = "loadSlot9Button";
-            this.loadSlot9Button.Size = new System.Drawing.Size(70, 38);
-            this.loadSlot9Button.TabIndex = 58;
-            this.loadSlot9Button.TabStop = false;
-            this.loadSlot9Button.Text = "Load";
-            this.loadSlot9Button.UseVisualStyleBackColor = true;
-            this.loadSlot9Button.Click += new System.EventHandler(this.loadSlot9Button_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(2, 435);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(30, 25);
-            this.label11.TabIndex = 57;
-            this.label11.Text = "9:";
-            // 
-            // saveSlot9Button
-            // 
-            this.saveSlot9Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveSlot9Button.Location = new System.Drawing.Point(36, 428);
-            this.saveSlot9Button.Margin = new System.Windows.Forms.Padding(2);
-            this.saveSlot9Button.Name = "saveSlot9Button";
-            this.saveSlot9Button.Size = new System.Drawing.Size(70, 38);
-            this.saveSlot9Button.TabIndex = 56;
-            this.saveSlot9Button.TabStop = false;
-            this.saveSlot9Button.Text = "Save";
-            this.saveSlot9Button.UseVisualStyleBackColor = true;
-            this.saveSlot9Button.Click += new System.EventHandler(this.saveSlot9Button_Click);
+            this.speedDialLabel6.AutoSize = true;
+            this.speedDialLabel6.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedDialLabel6.Location = new System.Drawing.Point(4, 370);
+            this.speedDialLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.speedDialLabel6.Name = "speedDialLabel6";
+            this.speedDialLabel6.Size = new System.Drawing.Size(192, 18);
+            this.speedDialLabel6.TabIndex = 64;
+            this.speedDialLabel6.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
             // 
             // MAIN_FORM
             // 
@@ -988,15 +937,6 @@
         private System.Windows.Forms.Button saveSlot2Button;
         private System.Windows.Forms.Button loadSlot1Button;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button loadSlot9Button;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button saveSlot9Button;
-        private System.Windows.Forms.Button loadSlot8Button;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button saveSlot8Button;
-        private System.Windows.Forms.Button loadSlot7Button;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button saveSlot7Button;
         private System.Windows.Forms.Button loadSlot6Button;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button saveSlot6Button;
@@ -1009,6 +949,12 @@
         private System.Windows.Forms.Button loadSlot3Button;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button saveSlot3Button;
+        private System.Windows.Forms.Label speedDialLabel1;
+        private System.Windows.Forms.Label speedDialLabel2;
+        private System.Windows.Forms.Label speedDialLabel4;
+        private System.Windows.Forms.Label speedDialLabel3;
+        private System.Windows.Forms.Label speedDialLabel6;
+        private System.Windows.Forms.Label speedDialLabel5;
     }
 }
 
