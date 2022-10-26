@@ -20,8 +20,8 @@ Text::Text(){}
 void Text::setupHashMap(void)
 {
   //Adjustment: [(+) <--],[(-) -->)]
-  hashMap[0]('W',4);
-  hashMap[1]('S',12.5);
+  hashMap[0]('W',3.75);
+  hashMap[1]('S',12.75);
   hashMap[2]('3',22);
   hashMap[3]('X',31);
   hashMap[4]('E',40);
@@ -35,23 +35,23 @@ void Text::setupHashMap(void)
   hashMap[12]('T',112);
   hashMap[13]('G',121.25);
   hashMap[14]('6',130);
-  hashMap[15]('B',139.5);
-  hashMap[16]('Y',148.25);
-  hashMap[17]('H',157);
+  hashMap[15]('B',139.25);
+  hashMap[16]('Y',148.5);
+  hashMap[17]('H',157.25);
   hashMap[18](',',166.1);
   hashMap[19]('N',175);  
-  hashMap[20]('7',184);
+  hashMap[20]('7',184.25);
   hashMap[21]('J',193);
   hashMap[22]('U',202);
   hashMap[23]('M',211);
   hashMap[24]('8',220);
-  hashMap[25]('K',229);
+  hashMap[25]('K',228.75);
   hashMap[26]('I',238);
   hashMap[27]('#',247);
-  hashMap[28]('9',256);
+  hashMap[28]('9',256.25);
   hashMap[29]('L',265);
   hashMap[30]('0',274);
-  hashMap[31]('.',283);
+  hashMap[31]('.',283.25);
   hashMap[32]('P',292);
   hashMap[33]('-',301);
   hashMap[34]('1',310);

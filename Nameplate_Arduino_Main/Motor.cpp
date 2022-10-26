@@ -79,7 +79,7 @@ const char Z_STAMPING = LOW;
 int LETTER_RPM = 200;   //was 200
 int Y_RPM = 180;
 int X_RPM = 180;
-int ACCEL_MULTIPLIER_XY = 1800;                   // Range:1 = uber slow acceleration, chosen by testing (~1800 max? at 2 ms)
+int ACCEL_MULTIPLIER_XY = 1500;                   // Range:1 = uber slow acceleration, chosen by testing (~1800 max? at 2 ms)
 int ACCEL_MULTIPLIER_LETTER = 4000;               // 4000 max at 32ms?
 int XY_MICROSTEPS = 2;
 int L_MICROSTEPS = 32;    // Was 2 but too slow
@@ -157,11 +157,11 @@ void Motor::yGo(float yInches, float* yAbsPosition)
 
 void Motor::xGo(float xInches, float* xAbsPosition) 
 {
-  Serial.print("xAbsPosition before: ");
-  Serial.println(*xAbsPosition);
+//  Serial.print("xAbsPosition before: ");
+//  Serial.println(*xAbsPosition);
   *xAbsPosition = *xAbsPosition + xInches;
-  Serial.print("xAbsPosition after: ");
-  Serial.println(*xAbsPosition);
+//  Serial.print("xAbsPosition after: ");
+//  Serial.println(*xAbsPosition);
   xInches = -xInches;                                                             //This just adjustment so x is always positive from home 
 
   if(*xAbsPosition < 0 || *xAbsPosition > 7.5) eStopBit = 1;                      //Quick check if we are telling it to go beyond it's limits.
