@@ -129,13 +129,16 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
 //      Serial.println(moveToLineStart);  
 // -------------------------------------------   
       
-      motorP.xGo(moveToLineStart, X_ABS_POINTER);   //move to start of next line in x
+      if (lineNum < 4 && lineLengthArray[lineNum] > 0)
+      {
+        motorP.xGo(moveToLineStart, X_ABS_POINTER);   //move to start of next line in x
+      }
       
       plateSide = plateSide * SWITCH_SIDE;    //flip direction/side of print/plate for next line
       i++;
       continue;
     }
-    
+     
     //EDGE CASE #3 -----------
     if (angleToMove > 182 or angleToMove < -182)    //Error case where angle to move is out of possible bounds
     {

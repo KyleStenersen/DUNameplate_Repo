@@ -91,7 +91,7 @@ namespace DUNameplateGUI
                     XStartLocations[1] = 1.91f;
                     YStartLocations[2] = 2.15f;
                     XStartLocations[2] = 1.91f;
-                    YStartLocations[3] = 3.166f;
+                    YStartLocations[3] = 3.156f;
                     XStartLocations[3] = 1.91f;
                     Capacity = 4;
                     break;
@@ -102,16 +102,16 @@ namespace DUNameplateGUI
                     XStartLocations[1] = 1.91f;
                     YStartLocations[2] = 2.15f;
                     XStartLocations[2] = 1.91f;
-                    YStartLocations[3] = 3.166f;
+                    YStartLocations[3] = 3.156f;
                     XStartLocations[3] = 1.91f;
 
-                    YStartLocations[4] = 0.143f;
+                    YStartLocations[4] = 0.1275f;
                     XStartLocations[4] = 4.717f;
-                    YStartLocations[5] = 1.17f;
+                    YStartLocations[5] = 1.1625f;
                     XStartLocations[5] = 4.717f;
-                    YStartLocations[6] = 2.1835f;
+                    YStartLocations[6] = 2.1735f;
                     XStartLocations[6] = 4.717f;
-                    YStartLocations[7] = 3.134f;
+                    YStartLocations[7] = 3.1775f;
                     XStartLocations[7] = 4.717f;
                     Capacity = 8;
                     break;

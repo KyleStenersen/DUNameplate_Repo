@@ -129,6 +129,9 @@ namespace DUNameplateGUI
             {
                 isPrinting = true;
 
+                // Reset serial events to prevent any previous event triggering from skipping our waiting for events
+                SerialCom.resetEvents();
+
                 home();
 
                 UIControl.changeStatusIndicator(UIControl.Status.Printing);

@@ -251,6 +251,19 @@ namespace DUNameplateGUI {
             sendString("**", false);
         }
 
+        // Reset events just in case that they were set beforehand, for example, if the machine was printing,
+        // but the GUI was not expecting it, which sets us up for disaster as then the next time it waits on printing will get
+        // let through immediately
+        public static void resetEvents()
+        {
+            Log.Debug("SerialCom - resetEvents has been called");
+
+            plateCompleteEvent.Reset();
+            estopReceivedEvent.Reset();
+            homeCompleteEvent.Reset();
+            clearToSendEvent.Reset();
+        }
+
         // PRIVATE FUNCTIONS =========================================
 
         private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -277,13 +290,13 @@ namespace DUNameplateGUI {
             {
                 Log.Debug("plateCompleteEvent set");
                 plateCompleteEvent.Set();
-                plateCompleteEvent.Reset();
+                //plateCompleteEvent.Reset();
             }
             else if (stringReceived.Contains("z2"))
             {
                 Log.Debug("estopReceivedEvent set");
                 estopReceivedEvent.Set();
-                estopReceivedEvent.Reset();
+                //estopReceivedEvent.Reset();
             }
             else if (stringReceived.Contains("z3"))
             {

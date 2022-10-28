@@ -80,7 +80,7 @@ int LETTER_RPM = 200;   //was 200
 int Y_RPM = 180;
 int X_RPM = 180;
 int ACCEL_MULTIPLIER_XY = 1500;                   // Range:1 = uber slow acceleration, chosen by testing (~1800 max? at 2 ms)
-int ACCEL_MULTIPLIER_LETTER = 4000;               // 4000 max at 32ms?
+int ACCEL_MULTIPLIER_LETTER = 5000;               // 4000 max at 32ms?
 int XY_MICROSTEPS = 2;
 int L_MICROSTEPS = 32;    // Was 2 but too slow
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds  
@@ -153,28 +153,6 @@ void Motor::yGo(float yInches, float* yAbsPosition)
 	stepper_Y.moveRelativeInSteps(ySteps);    
 }
 
-//--------------------------
-
-void Motor::xGo(float xInches, float* xAbsPosition) 
-{
-//  Serial.print("xAbsPosition before: ");
-//  Serial.println(*xAbsPosition);
-  *xAbsPosition = *xAbsPosition + xInches;
-//  Serial.print("xAbsPosition after: ");
-//  Serial.println(*xAbsPosition);
-  xInches = -xInches;                                                             //This just adjustment so x is always positive from home 
-
-  if(*xAbsPosition < 0 || *xAbsPosition > 7.5) eStopBit = 1;                      //Quick check if we are telling it to go beyond it's limits.
-  if(eStopBit == 1) return;
-
-  int MAGIC_X_DISTANCE_CONVERTER = 250;
-  stepper_X.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*XY_MICROSTEPS);   
-  x_Driver.microsteps(XY_MICROSTEPS);                                                  
-  int xStepsPerSec = X_RPM*XY_MICROSTEPS*RPM_TO_MICROSTEP_PER_SECOND_CONVERTER;                                    
-  stepper_X.setSpeedInStepsPerSecond(xStepsPerSec);
-  float xSteps = xInches*MAGIC_X_DISTANCE_CONVERTER*XY_MICROSTEPS;                                           
-  stepper_X.moveRelativeInSteps(xSteps);      
-}
 
 // NON-BLOCKING XGO
 //--------------------------
@@ -196,116 +174,7 @@ void Motor::xGoNonBlocking(float xInches, float* xAbsPosition)
   stepper_X.setupRelativeMoveInSteps(xSteps);      
 }
 
-//--------------------------
 
-void Motor::letterGo(float goDegree, float goalDegree) 
-{
-  if(eStopBit == 1) return;
-  
-  float angleToMove = goDegree;
-  
-  encoderM.encoderSetup();
-  float angle1 = encoderM.getAngle();
-  
-  stepper_Letter.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_LETTER*L_MICROSTEPS);   
-  letter_Driver.microsteps(L_MICROSTEPS);                                                  
-  int letterStepsPerSec = LETTER_RPM*(L_MICROSTEPS*3.333336);                                    
-  stepper_Letter.setSpeedInStepsPerSecond(letterStepsPerSec);  
-  float letterSteps = (goDegree/360)*L_MICROSTEPS*200;                                           
-  stepper_Letter.moveRelativeInSteps(letterSteps);
-
-  float angle2 = encoderM.getAngle();
-  
-  float angleMoved = angle2 - angle1;
-  
-  float angleGoal = angleToMove + angle1;
-  if (angleGoal>360) angleGoal-=360;
-  if (angleGoal<-360) angleGoal+=360;
-  if (goalDegree != 0) angleGoal = goalDegree;  
- 
-  if (angleMoved > 180 || angleMoved < -180) 
-  {
-    angleMoved = (360 - abs(angleMoved));
-
-    if (angleToMove<0) angleMoved = -1*angleMoved;
-  }
-  
-  float angleError = abs(abs(angle2) - abs(angleGoal));
-
-  if (angleGoal<angle2) angleError = -1*angleError;
-
-
-// SERIAL FOR TESTING --------------------
-//  Serial.print("First angle2 - ");
-//  Serial.print(angle2);
-//  Serial.print("First angleGoal - ");
-//  Serial.print(angleGoal);
-//  Serial.print("First angleError ");
-//  Serial.println(angleError);
-//-----------------------------------------
-
-
-  //Crank the speed and accel way down to try additional tries make more accurate?
-  int SLOW_LETTER_RPM = 100; 
-  int SLOW_LETTER_ACCEL = 2000;
-  int SHARPER_MICROSTEPS = 64;
-  stepper_Letter.setAccelerationInStepsPerSecondPerSecond(SLOW_LETTER_ACCEL*L_MICROSTEPS);   
-  letter_Driver.microsteps(SHARPER_MICROSTEPS);                                                  
-  letterStepsPerSec = SLOW_LETTER_RPM*(SHARPER_MICROSTEPS*3.333336);                                    
-  stepper_Letter.setSpeedInStepsPerSecond(letterStepsPerSec);
-  
-   
-  int tooManyTries = 0;
-  while (angleError>0.2 || angleError<-0.2)   //Loop to retry and get closer to the target angle
-  {     
-    angle1 = encoderM.getAngle();
-    
-    angleToMove = angleError;
-      
-    letterSteps = (angleToMove/360)*SHARPER_MICROSTEPS*200;                                    
-    stepper_Letter.moveRelativeInSteps(letterSteps);
-
-    angle2 = encoderM.getAngle();
-     
-    angleMoved = angle2 - angle1;
-   
-    angleError = abs(abs(angle2) - abs(angleGoal));
-
-// SERIAL FOR TESTING ----------------------
-//    Serial.print("Retry, angle1 = ");
-//    Serial.print(angle1);
-//    Serial.print(", still go ");
-//    Serial.print(angleToMove);
-//    Serial.print(", angle2 = ");
-//    Serial.print(angle2);
-//    Serial.print(", went ");
-//    Serial.print(angleMoved);
-//    Serial.print(", angleError before = ");
-//    Serial.print(angleError);
-// -----------------------------------------
-    
-    if(angleError>360 || angleError<-360)
-    {
-      angleError = (360- abs(angleError));
-      
-      if (angleToMove<0) angleError = -1*angleError;
-    }
-  
-    if (angleGoal<angle2) angleError = -1*angleError;
-
-// SERIAL FOR TESTING ----------------------
-//    Serial.print(", angleError = ");
-//    Serial.println(angleError);
-// -----------------------------------------
-    
-    tooManyTries++;
-    if (tooManyTries > 10) 
-    {
-      Serial.println("too Many tries, abort");
-      return;  
-    }
-  }
-}
 
 // "NON-BLOCKING LETTER"
 //-------------------------------------------------------------------
@@ -539,4 +408,153 @@ void Motor::changeVelocityLetter(int velo)
 void Motor::changeMicrosteps(int msteps)
 {
   L_MICROSTEPS = msteps; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////
+// BLOCKING X AND LETTER MOVES KEPT FOR TESTING AND BACKWARDS COMPATABILITY
+//--------------------------
+
+void Motor::xGo(float xInches, float* xAbsPosition) 
+{
+//  Serial.print("xAbsPosition before: ");
+//  Serial.println(*xAbsPosition);
+  *xAbsPosition = *xAbsPosition + xInches;
+//  Serial.print("xAbsPosition after: ");
+//  Serial.println(*xAbsPosition);
+  xInches = -xInches;                                                             //This just adjustment so x is always positive from home 
+
+  if(*xAbsPosition < 0 || *xAbsPosition > 7.5) eStopBit = 1;                      //Quick check if we are telling it to go beyond it's limits.
+  if(eStopBit == 1) return;
+
+  int MAGIC_X_DISTANCE_CONVERTER = 250;
+  stepper_X.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*XY_MICROSTEPS);   
+  x_Driver.microsteps(XY_MICROSTEPS);                                                  
+  int xStepsPerSec = X_RPM*XY_MICROSTEPS*RPM_TO_MICROSTEP_PER_SECOND_CONVERTER;                                    
+  stepper_X.setSpeedInStepsPerSecond(xStepsPerSec);
+  float xSteps = xInches*MAGIC_X_DISTANCE_CONVERTER*XY_MICROSTEPS;                                           
+  stepper_X.moveRelativeInSteps(xSteps);      
+}
+
+//--------------------------
+
+void Motor::letterGo(float goDegree, float goalDegree) 
+{
+  if(eStopBit == 1) return;
+  
+  float angleToMove = goDegree;
+  
+  encoderM.encoderSetup();
+  float angle1 = encoderM.getAngle();
+  
+  stepper_Letter.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_LETTER*L_MICROSTEPS);   
+  letter_Driver.microsteps(L_MICROSTEPS);                                                  
+  int letterStepsPerSec = LETTER_RPM*(L_MICROSTEPS*3.333336);                                    
+  stepper_Letter.setSpeedInStepsPerSecond(letterStepsPerSec);  
+  float letterSteps = (goDegree/360)*L_MICROSTEPS*200;                                           
+  stepper_Letter.moveRelativeInSteps(letterSteps);
+
+  float angle2 = encoderM.getAngle();
+  
+  float angleMoved = angle2 - angle1;
+  
+  float angleGoal = angleToMove + angle1;
+  if (angleGoal>360) angleGoal-=360;
+  if (angleGoal<-360) angleGoal+=360;
+  if (goalDegree != 0) angleGoal = goalDegree;  
+ 
+  if (angleMoved > 180 || angleMoved < -180) 
+  {
+    angleMoved = (360 - abs(angleMoved));
+
+    if (angleToMove<0) angleMoved = -1*angleMoved;
+  }
+  
+  float angleError = abs(abs(angle2) - abs(angleGoal));
+
+  if (angleGoal<angle2) angleError = -1*angleError;
+
+
+// SERIAL FOR TESTING --------------------
+//  Serial.print("First angle2 - ");
+//  Serial.print(angle2);
+//  Serial.print("First angleGoal - ");
+//  Serial.print(angleGoal);
+//  Serial.print("First angleError ");
+//  Serial.println(angleError);
+//-----------------------------------------
+
+
+  //Crank the speed and accel way down to try additional tries make more accurate?
+  int SLOW_LETTER_RPM = 100; 
+  int SLOW_LETTER_ACCEL = 2000;
+  int SHARPER_MICROSTEPS = 64;
+  stepper_Letter.setAccelerationInStepsPerSecondPerSecond(SLOW_LETTER_ACCEL*L_MICROSTEPS);   
+  letter_Driver.microsteps(SHARPER_MICROSTEPS);                                                  
+  letterStepsPerSec = SLOW_LETTER_RPM*(SHARPER_MICROSTEPS*3.333336);                                    
+  stepper_Letter.setSpeedInStepsPerSecond(letterStepsPerSec);
+  
+   
+  int tooManyTries = 0;
+  while (angleError>0.2 || angleError<-0.2)   //Loop to retry and get closer to the target angle
+  {     
+    angle1 = encoderM.getAngle();
+    
+    angleToMove = angleError;
+      
+    letterSteps = (angleToMove/360)*SHARPER_MICROSTEPS*200;                                    
+    stepper_Letter.moveRelativeInSteps(letterSteps);
+
+    angle2 = encoderM.getAngle();
+     
+    angleMoved = angle2 - angle1;
+   
+    angleError = abs(abs(angle2) - abs(angleGoal));
+
+// SERIAL FOR TESTING ----------------------
+//    Serial.print("Retry, angle1 = ");
+//    Serial.print(angle1);
+//    Serial.print(", still go ");
+//    Serial.print(angleToMove);
+//    Serial.print(", angle2 = ");
+//    Serial.print(angle2);
+//    Serial.print(", went ");
+//    Serial.print(angleMoved);
+//    Serial.print(", angleError before = ");
+//    Serial.print(angleError);
+// -----------------------------------------
+    
+    if(angleError>360 || angleError<-360)
+    {
+      angleError = (360- abs(angleError));
+      
+      if (angleToMove<0) angleError = -1*angleError;
+    }
+  
+    if (angleGoal<angle2) angleError = -1*angleError;
+
+// SERIAL FOR TESTING ----------------------
+//    Serial.print(", angleError = ");
+//    Serial.println(angleError);
+// -----------------------------------------
+    
+    tooManyTries++;
+    if (tooManyTries > 10) 
+    {
+      Serial.println("too Many tries, abort");
+      return;  
+    }
+  }
 }
