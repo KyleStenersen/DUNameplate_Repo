@@ -44,6 +44,8 @@ namespace DUNameplateGUI
         // This function just adds the plate passed into the function to the end of the QueuedPlates list
         public static void Enqueue(Nameplate plateToAdd)
         {
+            Log.Debug("Enqueueing {@plate} to the queue", plateToAdd);
+
             //QueuedPlates.Enqueue(plateToAdd);
             QueuedPlates.Add(plateToAdd);
 

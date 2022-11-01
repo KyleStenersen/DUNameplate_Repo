@@ -17,9 +17,9 @@ namespace DUNameplateGUI
 
         public static void Initialize(Label[] arrayOfSpeedDialLabels)
         {
-            LoadFromSettings();
-
             speedDialLabels = arrayOfSpeedDialLabels;
+
+            LoadFromSettings();
 
             UpdateLabels();
         }

@@ -22,7 +22,7 @@ namespace DUNameplateGUI
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Console()
-                .WriteTo.File(Environment.GetFolderPath(Environment.SpecialFolder.Desktop).ToString() + "/DUNameplateGUILogs/log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File(Environment.GetFolderPath(Environment.SpecialFolder.Desktop).ToString() + "/DUNameplateGUILogs/log.txt", rollingInterval: RollingInterval.Day, retainedFileCountLimit: 7)
                 .CreateLogger();
 
             Log.Information("DUNameplateGUI starting up");

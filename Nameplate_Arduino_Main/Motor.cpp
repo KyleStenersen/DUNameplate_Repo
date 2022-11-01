@@ -77,11 +77,11 @@ const char Z_STAMPING = LOW;
 
 //--- General Motor definitions
 int LETTER_RPM = 200;   //was 200
-int Y_RPM = 180;
-int X_RPM = 180;
-int ACCEL_MULTIPLIER_XY = 1500;                   // Range:1 = uber slow acceleration, chosen by testing (~1800 max? at 2 ms)
+int Y_RPM = 180;    //was 180
+int X_RPM = 180;    //was 180
+int ACCEL_MULTIPLIER_XY = 1500;         // was 1500          // Range:1 = uber slow acceleration, chosen by testing (~1800 max? at 2 ms)
 int ACCEL_MULTIPLIER_LETTER = 5000;               // 4000 max at 32ms?
-int XY_MICROSTEPS = 2;
+int XY_MICROSTEPS = 2;    // was 2
 int L_MICROSTEPS = 32;    // Was 2 but too slow
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds  
 
