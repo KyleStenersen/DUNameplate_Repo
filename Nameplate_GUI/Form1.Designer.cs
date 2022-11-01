@@ -58,6 +58,8 @@
             this.jigIndicator3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.speedDialLabel6 = new System.Windows.Forms.Label();
+            this.speedDialLabel5 = new System.Windows.Forms.Label();
             this.speedDialLabel4 = new System.Windows.Forms.Label();
             this.speedDialLabel3 = new System.Windows.Forms.Label();
             this.speedDialLabel2 = new System.Windows.Forms.Label();
@@ -86,8 +88,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.jigLabel = new System.Windows.Forms.Label();
-            this.speedDialLabel5 = new System.Windows.Forms.Label();
-            this.speedDialLabel6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.statusPanel.SuspendLayout();
             this.jigIndicatorTableLayoutPanel.SuspendLayout();
@@ -97,7 +97,7 @@
             // tag1Line0Box
             // 
             this.tag1Line0Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tag1Line0Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tag1Line0Box.Font = new System.Drawing.Font("Lucida Console", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tag1Line0Box.Location = new System.Drawing.Point(520, 120);
             this.tag1Line0Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line0Box.Name = "tag1Line0Box";
@@ -110,7 +110,7 @@
             // tag1Line1Box
             // 
             this.tag1Line1Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tag1Line1Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tag1Line1Box.Font = new System.Drawing.Font("Lucida Console", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tag1Line1Box.Location = new System.Drawing.Point(540, 155);
             this.tag1Line1Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line1Box.Name = "tag1Line1Box";
@@ -123,7 +123,7 @@
             // tag1Line2Box
             // 
             this.tag1Line2Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tag1Line2Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tag1Line2Box.Font = new System.Drawing.Font("Lucida Console", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tag1Line2Box.Location = new System.Drawing.Point(540, 190);
             this.tag1Line2Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line2Box.Name = "tag1Line2Box";
@@ -136,7 +136,7 @@
             // tag1Line3Box
             // 
             this.tag1Line3Box.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tag1Line3Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tag1Line3Box.Font = new System.Drawing.Font("Lucida Console", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tag1Line3Box.Location = new System.Drawing.Point(520, 225);
             this.tag1Line3Box.Margin = new System.Windows.Forms.Padding(2);
             this.tag1Line3Box.Name = "tag1Line3Box";
@@ -508,6 +508,28 @@
             this.panel1.Size = new System.Drawing.Size(1668, 700);
             this.panel1.TabIndex = 26;
             // 
+            // speedDialLabel6
+            // 
+            this.speedDialLabel6.AutoSize = true;
+            this.speedDialLabel6.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedDialLabel6.Location = new System.Drawing.Point(4, 370);
+            this.speedDialLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.speedDialLabel6.Name = "speedDialLabel6";
+            this.speedDialLabel6.Size = new System.Drawing.Size(16, 18);
+            this.speedDialLabel6.TabIndex = 64;
+            this.speedDialLabel6.Text = ".";
+            // 
+            // speedDialLabel5
+            // 
+            this.speedDialLabel5.AutoSize = true;
+            this.speedDialLabel5.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.speedDialLabel5.Location = new System.Drawing.Point(4, 310);
+            this.speedDialLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.speedDialLabel5.Name = "speedDialLabel5";
+            this.speedDialLabel5.Size = new System.Drawing.Size(16, 18);
+            this.speedDialLabel5.TabIndex = 63;
+            this.speedDialLabel5.Text = ".";
+            // 
             // speedDialLabel4
             // 
             this.speedDialLabel4.AutoSize = true;
@@ -515,9 +537,9 @@
             this.speedDialLabel4.Location = new System.Drawing.Point(4, 251);
             this.speedDialLabel4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.speedDialLabel4.Name = "speedDialLabel4";
-            this.speedDialLabel4.Size = new System.Drawing.Size(192, 18);
+            this.speedDialLabel4.Size = new System.Drawing.Size(16, 18);
             this.speedDialLabel4.TabIndex = 62;
-            this.speedDialLabel4.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
+            this.speedDialLabel4.Text = ".";
             // 
             // speedDialLabel3
             // 
@@ -526,9 +548,9 @@
             this.speedDialLabel3.Location = new System.Drawing.Point(4, 191);
             this.speedDialLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.speedDialLabel3.Name = "speedDialLabel3";
-            this.speedDialLabel3.Size = new System.Drawing.Size(192, 18);
+            this.speedDialLabel3.Size = new System.Drawing.Size(16, 18);
             this.speedDialLabel3.TabIndex = 61;
-            this.speedDialLabel3.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
+            this.speedDialLabel3.Text = ".";
             // 
             // speedDialLabel2
             // 
@@ -537,9 +559,9 @@
             this.speedDialLabel2.Location = new System.Drawing.Point(4, 131);
             this.speedDialLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.speedDialLabel2.Name = "speedDialLabel2";
-            this.speedDialLabel2.Size = new System.Drawing.Size(192, 18);
+            this.speedDialLabel2.Size = new System.Drawing.Size(16, 18);
             this.speedDialLabel2.TabIndex = 60;
-            this.speedDialLabel2.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
+            this.speedDialLabel2.Text = ".";
             // 
             // speedDialLabel1
             // 
@@ -548,9 +570,9 @@
             this.speedDialLabel1.Location = new System.Drawing.Point(4, 72);
             this.speedDialLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.speedDialLabel1.Name = "speedDialLabel1";
-            this.speedDialLabel1.Size = new System.Drawing.Size(192, 18);
+            this.speedDialLabel1.Size = new System.Drawing.Size(16, 18);
             this.speedDialLabel1.TabIndex = 59;
-            this.speedDialLabel1.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
+            this.speedDialLabel1.Text = ".";
             // 
             // loadSlot6Button
             // 
@@ -847,28 +869,6 @@
             this.jigLabel.TabIndex = 28;
             this.jigLabel.Text = "8-Plate";
             this.jigLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // speedDialLabel5
-            // 
-            this.speedDialLabel5.AutoSize = true;
-            this.speedDialLabel5.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.speedDialLabel5.Location = new System.Drawing.Point(4, 310);
-            this.speedDialLabel5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.speedDialLabel5.Name = "speedDialLabel5";
-            this.speedDialLabel5.Size = new System.Drawing.Size(192, 18);
-            this.speedDialLabel5.TabIndex = 63;
-            this.speedDialLabel5.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
-            // 
-            // speedDialLabel6
-            // 
-            this.speedDialLabel6.AutoSize = true;
-            this.speedDialLabel6.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.speedDialLabel6.Location = new System.Drawing.Point(4, 370);
-            this.speedDialLabel6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.speedDialLabel6.Name = "speedDialLabel6";
-            this.speedDialLabel6.Size = new System.Drawing.Size(192, 18);
-            this.speedDialLabel6.TabIndex = 64;
-            this.speedDialLabel6.Text = "WWWWWWWWWWWWWWWWWWWWWWW";
             // 
             // MAIN_FORM
             // 

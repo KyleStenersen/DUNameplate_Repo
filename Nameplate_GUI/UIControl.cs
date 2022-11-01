@@ -23,7 +23,8 @@ namespace DUNameplateGUI
             Printing,
             ReloadNeeded,
             Estopped,
-            Homing
+            Homing,
+            Cancelling
         }
 
         public enum QueuePosition
@@ -111,12 +112,16 @@ namespace DUNameplateGUI
         // currently printing right now.
         public static void clearQueue()
         {
-            requestCancel();
+            //requestCancel();
             PlateQueue.Clear();
         }
         public static void requestCancel()
         {
             MachineControl.cancellationRequested = true;
+            if (MachineControl.isPrinting)
+            {
+                changeStatusIndicator(Status.Cancelling);
+            }
         }
 
         public static void printQueue()
@@ -239,6 +244,11 @@ namespace DUNameplateGUI
                         statusLabel.Text = "HOMING";
                         statusLabel.BackColor = System.Drawing.Color.Khaki;
                         break;
+                    case Status.Cancelling:
+                        statusLabel.Text = "CANCELLING AFTER THIS PRINT";
+                        statusLabel.BackColor = System.Drawing.Color.MediumVioletRed;
+                        break;
+
                 }
             };
 
