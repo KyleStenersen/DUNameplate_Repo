@@ -298,15 +298,15 @@ void Plates::goToALetter(char* letter)   // letter-wheel - not used in normal op
   encoderP.encoderSetup();
   float angle1 = encoderP.getAngle();
 
-    Serial.print(" - angle to move = ");
-    Serial.println(angleToMove);
+  Serial.print(" - angle to move = ");
+  Serial.println(angleToMove);
 
     //Testing add in letter degree adjustment usually 0 but can be changed to see effect
-    angleToMove = angleToMove + letterDegAdjustment;
-    letterLocation = letterLocation+ letterDegAdjustment;
+    //angleToMove = angleToMove + letterDegAdjustment;
+    //letterLocation = letterLocation+ letterDegAdjustment;
 
-        Serial.print(" - angle to move after adjust = ");
-    Serial.println(angleToMove);
+  //Serial.print(" - angle to move after adjust = ");
+  //Serial.println(angleToMove);
   
   motorP.letterGo(angleToMove, letterLocation);
   float angle2 = encoderP.getAngle();

@@ -81,7 +81,7 @@ int Y_RPM = 180;    //was 180
 int X_RPM = 180;    //was 180
 int ACCEL_MULTIPLIER_XY = 1500;         // was 1500          // Range:1 = uber slow acceleration, chosen by testing (~1800 max? at 2 ms)
 int ACCEL_MULTIPLIER_LETTER = 5000;               // 4000 max at 32ms?
-int XY_MICROSTEPS = 2;    // was 2
+int XY_MICROSTEPS = 16;    // was 2
 int L_MICROSTEPS = 32;    // Was 2 but too slow
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds  
 
@@ -357,14 +357,14 @@ void Motor::xHome()
 {
   stepper_X.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*XY_MICROSTEPS);    
   x_Driver.microsteps(XY_MICROSTEPS);                                                                                     
-  stepper_X.moveToHomeInSteps(1,600,100000,X_LIMIT_SWITCH);
+  stepper_X.moveToHomeInSteps(1,9600,100000,X_LIMIT_SWITCH); //2nd arg was 1200
 }
 
 void Motor::yHome()
 {
   stepper_Y.setAccelerationInStepsPerSecondPerSecond(ACCEL_MULTIPLIER_XY*XY_MICROSTEPS);    
   y_Driver.microsteps(XY_MICROSTEPS);                                                                                     
-  stepper_Y.moveToHomeInSteps(-1,600,20000,Y_LIMIT_SWITCH);
+  stepper_Y.moveToHomeInSteps(-1,9600,20000,Y_LIMIT_SWITCH);
 }
 
 // "WARMUP"
