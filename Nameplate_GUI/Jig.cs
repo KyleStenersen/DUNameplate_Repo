@@ -85,34 +85,34 @@ namespace DUNameplateGUI
                     Capacity = 2;
                     break;
                 case 2: //JIG Settings #3 (4 @ a time on new jig) 
-                    YStartLocations[0] = 0.128f;
-                    XStartLocations[0] = 1.91f;
-                    YStartLocations[1] = 1.14f;
-                    XStartLocations[1] = 1.91f;
-                    YStartLocations[2] = 2.15f;
-                    XStartLocations[2] = 1.91f;
-                    YStartLocations[3] = 3.156f;
-                    XStartLocations[3] = 1.91f;
+                    YStartLocations[0] = 0.115f;
+                    XStartLocations[0] = 1.897f;
+                    YStartLocations[1] = 1.129f;
+                    XStartLocations[1] = 1.897f;
+                    YStartLocations[2] = 2.137f;
+                    XStartLocations[2] = 1.897f;
+                    YStartLocations[3] = 3.138f;
+                    XStartLocations[3] = 1.897f;
                     Capacity = 4;
                     break;
                 case 3: //JIG Settings #4 (8 @ a time with new jigs)
-                    YStartLocations[0] = 0.128f;
-                    XStartLocations[0] = 1.91f;
-                    YStartLocations[1] = 1.14f;
-                    XStartLocations[1] = 1.91f;
-                    YStartLocations[2] = 2.15f;
-                    XStartLocations[2] = 1.91f;
-                    YStartLocations[3] = 3.156f;
-                    XStartLocations[3] = 1.91f;
+                    YStartLocations[0] = 0.115f;
+                    XStartLocations[0] = 1.897f;
+                    YStartLocations[1] = 1.129f;
+                    XStartLocations[1] = 1.897f;
+                    YStartLocations[2] = 2.137f;
+                    XStartLocations[2] = 1.897f;
+                    YStartLocations[3] = 3.138f;
+                    XStartLocations[3] = 1.897f;
 
-                    YStartLocations[4] = 0.1275f;
-                    XStartLocations[4] = 4.717f;
-                    YStartLocations[5] = 1.1625f;
-                    XStartLocations[5] = 4.717f;
-                    YStartLocations[6] = 2.1735f;
-                    XStartLocations[6] = 4.717f;
-                    YStartLocations[7] = 3.1775f;
-                    XStartLocations[7] = 4.717f;
+                    YStartLocations[4] = 0.094f;
+                    XStartLocations[4] = 4.6865f;
+                    YStartLocations[5] = 1.127f;
+                    XStartLocations[5] = 4.6865f;
+                    YStartLocations[6] = 2.1305f;
+                    XStartLocations[6] = 4.6865f;
+                    YStartLocations[7] = 3.1345f;
+                    XStartLocations[7] = 4.6865f;
                     Capacity = 8;
                     break;
 
