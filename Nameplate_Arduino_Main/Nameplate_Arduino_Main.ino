@@ -46,7 +46,8 @@ void setup()
   pinMode(13, OUTPUT);
   digitalWrite(13,LOW);
   text.setupHashMap();
-  motor.motorSetupAll();
+  motor.setupAll();
+  motor.updateAll();
   encoder.encoderSetup();
   motor.warmUp();
   // Set X-Motor DIAG pin to INPUT

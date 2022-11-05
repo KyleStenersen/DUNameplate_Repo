@@ -45,7 +45,7 @@ Plates::Plates(){}
 //PUBLIC FUNCTIONS================================================================
 
 void Plates::printOne(char* plateText)    //Primary function to increment through characters of a plate/tag and stamp/move for each one
-{
+{ 
   if (eStopBit == 1) return;
   
   char copyString[strlen(plateText)+1];   
@@ -160,14 +160,14 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
 //--------------------------------------------
 
     
-    int angle1 = motorP.letterGoNonBlocking(angleToMove);   //Default go to current letter char, stamp, and move over one letterspace for next
+    int angle1 = motorP.setupLetterGoNonBlocking(angleToMove);   //Default go to current letter char, stamp, and move over one letterspace for next
 
     //Serial.print("isFirstCharacterOfLine: ");
     //Serial.println(isFirstCharacterOfLine);
 
     if (!isFirstCharacterOfLine) 
     {
-      motorP.xGoNonBlocking((plateSide*LETTER_SPACEING_GLOBAL), X_ABS_POINTER);
+      motorP.setupXGoNonBlocking((plateSide*LETTER_SPACEING_GLOBAL), X_ABS_POINTER);
     }
 
     motorP.processXAndLetterMovement();
@@ -190,6 +190,10 @@ void Plates::xyHome()
 {
   motorP.xOn();
   motorP.yOn();
+
+  motorP.setupXYSyncGoAlmostHome(xAbsolute, yAbsolute);
+  motorP.processXAndYMovement(); 
+  
   motorP.yHome();
   motorP.xHome();
   
@@ -234,10 +238,11 @@ void Plates::motorsOn_GoToPrintStart()
 {
   motorP.stampMotorOn();
   motorP.xOn();
-  motorP.xGo(xRelativePlateLocation, X_ABS_POINTER);  
-  motorP.yOn(); 
-  motorP.yGo(yRelativePlateLocation, Y_ABS_POINTER); 
+  motorP.yOn();
   motorP.letterOn();
+  motorP.setupXGoNonBlocking(xRelativePlateLocation, X_ABS_POINTER);   
+  motorP.setupYGoNonBlocking(yRelativePlateLocation, Y_ABS_POINTER); 
+  motorP.processXAndYMovement();
 }
 
 
