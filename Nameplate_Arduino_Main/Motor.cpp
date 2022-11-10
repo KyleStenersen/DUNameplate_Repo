@@ -77,12 +77,12 @@ const char RELAY_OFF = LOW;
 const char Z_STAMPING = LOW;
 
 //--- General Motor definitions
-int LETTER_RPM = 200;   //was 200
+int LETTER_RPM = 180;   //was 200
 int Y_RPM = 180;    //was 180
 int X_RPM = 180;    //was 180
 int ACCEL_MULTIPLIER_XY = 1500;         // was 1500          // Range:1 = uber slow acceleration, chosen by testing (~1800 max? at 2 ms)
-int ACCEL_MULTIPLIER_LETTER = 5000;               // 4000 max at 32ms?
-int XY_MICROSTEPS = 16;    // was 2
+int ACCEL_MULTIPLIER_LETTER = 5800;               // 6000 max at 16ms?
+int XY_MICROSTEPS = 32;    // was 2
 int L_MICROSTEPS = 32;    // Was 2 but too slow
 const int RPM_TO_MICROSTEP_PER_SECOND_CONVERTER = (200/60);  //This is 200steps/rev over 60seconds
 int MAGIC_X_DISTANCE_CONVERTER = 250;
@@ -266,8 +266,8 @@ void Motor::processRetries(float goDegree, float goalDegree, float angle1)
 //  --------
 
   //Crank the speed and accel way down to try additional tries make more accurate?
-  int SLOW_LETTER_RPM = 100; 
-  int SLOW_LETTER_ACCEL = 2000;
+  int SLOW_LETTER_RPM = 150; 
+  int SLOW_LETTER_ACCEL = 3000;
   int SHARPER_MICROSTEPS = 64;
   stepper_Letter.setAccelerationInStepsPerSecondPerSecond(SLOW_LETTER_ACCEL*L_MICROSTEPS);   
   letter_Driver.microsteps(SHARPER_MICROSTEPS);                                                  
@@ -276,7 +276,7 @@ void Motor::processRetries(float goDegree, float goalDegree, float angle1)
   
    
   int tooManyTries = 0;
-  while (angleError>0.2 || angleError<-0.2)   //Loop to retry and get closer to the target angle
+  while (angleError>0.15 || angleError<-0.15)   //Loop to retry and get closer to the target angle
   {     
     angle1 = encoderM.getAngle();
   
@@ -325,6 +325,10 @@ void Motor::processRetries(float goDegree, float goalDegree, float angle1)
       return;  
     }
   }
+
+  Serial.print(" Retries  ");
+  Serial.println(tooManyTries);
+  
   updateAll();
 }
 
@@ -408,14 +412,18 @@ void Motor::stamp(){
 //------------------------------------------------------------------- 
 
 void Motor::xHome()
-{                                                                                    
-  stepper_X.moveToHomeInSteps(1,12000,800000,X_LIMIT_SWITCH);
+{
+  int maxSteps = (XY_MICROSTEPS * 50000);
+  int homeSpeed = (XY_MICROSTEPS * 500);                                                                                   
+  stepper_X.moveToHomeInSteps(1,homeSpeed,maxSteps,X_LIMIT_SWITCH);
   updateAll();
 }
 
 void Motor::yHome()
-{                                                                                   
-  stepper_Y.moveToHomeInSteps(-1,12000,160000,Y_LIMIT_SWITCH);
+{ 
+  int maxSteps = (XY_MICROSTEPS * 10,000);
+  int homeSpeed = (XY_MICROSTEPS * 500);                                                                                  
+  stepper_Y.moveToHomeInSteps(-1,homeSpeed,maxSteps,Y_LIMIT_SWITCH);
   updateAll();
 }
 

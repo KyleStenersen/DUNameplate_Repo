@@ -73,7 +73,7 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.095")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.105")]
         public float charSpaceingSet {
             get {
                 return ((float)(this["charSpaceingSet"]));

@@ -275,7 +275,7 @@
             this.charSpaceingDefault.Name = "charSpaceingDefault";
             this.charSpaceingDefault.Size = new System.Drawing.Size(34, 13);
             this.charSpaceingDefault.TabIndex = 2;
-            this.charSpaceingDefault.Text = "0.095";
+            this.charSpaceingDefault.Text = "0.105";
             // 
             // label16
             // 
