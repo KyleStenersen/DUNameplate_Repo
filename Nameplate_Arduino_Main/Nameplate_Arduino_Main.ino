@@ -35,7 +35,7 @@ float Y_OFFSET_GLOBAL = 0;
 float X_ABS_PLATE_LOCATION_GLOBAL = 1.91;
 float Y_ABS_PLATE_LOCATION_GLOBAL = 0.128;
 float LINE_SPACEING_GLOBAL = 0.145;
-float LETTER_SPACEING_GLOBAL = 0.095;
+float LETTER_SPACEING_GLOBAL = 0.105;
 bool eStopBit = 0;
 
 // ------------------

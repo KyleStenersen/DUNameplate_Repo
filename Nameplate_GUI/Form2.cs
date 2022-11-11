@@ -186,8 +186,8 @@ namespace DUNameplateGUI
             Properties.Settings.Default.charSpaceingSet = float.Parse(charSpaceingDefault.Text);
             charSpaceingBox.Text = charSpaceingDefault.Text;
 
-            Properties.Settings.Default.selectedJig = 0;
-            jigComboBox.SelectedIndex = 0;
+            Properties.Settings.Default.selectedJig = 3;
+            jigComboBox.SelectedIndex = 3;
 
             // Set the global Jig class's values to the new jig
             Jig.setValues(jigComboBox.SelectedIndex);
