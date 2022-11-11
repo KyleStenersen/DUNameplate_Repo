@@ -192,7 +192,7 @@ void Plates::xyHome()
   motorP.yOn();
 
   motorP.setupXYSyncGoAlmostHome(xAbsolute, yAbsolute);
-  motorP.processXAndYMovement(); 
+  motorP.processXAndYMovementForHome(); 
   
   motorP.yHome();
   motorP.xHome();

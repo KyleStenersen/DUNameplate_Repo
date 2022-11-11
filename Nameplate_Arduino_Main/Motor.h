@@ -23,6 +23,7 @@ class Motor
 
     void processXAndLetterMovement();
     void processXAndYMovement(); 
+    void processXAndYMovementForHome(); 
 
     void xOff();
     void xOn();

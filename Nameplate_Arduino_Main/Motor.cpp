@@ -358,6 +358,21 @@ void Motor::processXAndYMovement()
   } 
 }
 
+void Motor::processXAndYMovementForHome() 
+{
+  while(!stepper_X.motionComplete() || !stepper_Y.motionComplete())
+  {
+    if(eStopBit == 1) return;
+    
+    if (digitalRead(X_LIMIT_SWITCH) == LOW || digitalRead(Y_LIMIT_SWITCH) == LOW) {
+      return;
+    }
+    
+    stepper_X.processMovement();
+    stepper_Y.processMovement();   
+  } 
+}
+
 
 
 // "ON/OFF" functions to allow motors to turn by hand
@@ -421,7 +436,7 @@ void Motor::xHome()
 
 void Motor::yHome()
 { 
-  int maxSteps = (XY_MICROSTEPS * 10,000);
+  int maxSteps = (XY_MICROSTEPS * 10000);
   int homeSpeed = (XY_MICROSTEPS * 500);                                                                                  
   stepper_Y.moveToHomeInSteps(-1,homeSpeed,maxSteps,Y_LIMIT_SWITCH);
   updateAll();
@@ -437,8 +452,6 @@ void Motor::setupXYSyncGoAlmostHome(float xAbs, float yAbs)
     
   float ySteps = -yAbs*0.99*MAGIC_Y_DISTANCE_CONVERTER*XY_MICROSTEPS;                                          
   stepper_Y.setupRelativeMoveInSteps(ySteps); 
-
-  processXAndYMovement();
 }
 
 
