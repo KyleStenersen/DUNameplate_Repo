@@ -19,7 +19,7 @@ Text::Text(){}
 
 void Text::setupHashMap(void)
 {
-  //Adjustment: [(+) <--],[(-) -->)]
+  //Adjustment: [(+) <--],[(-) -->)]... very roughly: 1deg = ~0.047" and 0.5deg = ~.028" 
   hashMap[0]('W',3.75);
   hashMap[1]('S',12.75);
   hashMap[2]('3',22);
