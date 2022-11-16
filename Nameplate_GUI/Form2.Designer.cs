@@ -37,10 +37,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.yOffsetDefault = new System.Windows.Forms.Label();
-            this.plateSpaceingBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.plateSpaceingDefault = new System.Windows.Forms.Label();
             this.lineSpaceingBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -51,7 +47,6 @@
             this.charSpaceingDefault = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.resetDefaultsBtn = new System.Windows.Forms.Button();
@@ -73,7 +68,7 @@
             // 
             // settingsSaveCloseBtn
             // 
-            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(24, 550);
+            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(32, 505);
             this.settingsSaveCloseBtn.Margin = new System.Windows.Forms.Padding(2);
             this.settingsSaveCloseBtn.Name = "settingsSaveCloseBtn";
             this.settingsSaveCloseBtn.Size = new System.Drawing.Size(83, 24);
@@ -84,7 +79,7 @@
             // 
             // xOffsetBox
             // 
-            this.xOffsetBox.Location = new System.Drawing.Point(23, 66);
+            this.xOffsetBox.Location = new System.Drawing.Point(18, 66);
             this.xOffsetBox.Margin = new System.Windows.Forms.Padding(2);
             this.xOffsetBox.Name = "xOffsetBox";
             this.xOffsetBox.Size = new System.Drawing.Size(76, 20);
@@ -94,7 +89,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 50);
+            this.label1.Location = new System.Drawing.Point(16, 50);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(223, 13);
@@ -104,7 +99,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(111, 71);
+            this.label2.Location = new System.Drawing.Point(106, 71);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
@@ -114,7 +109,7 @@
             // xOffsetDefault
             // 
             this.xOffsetDefault.AutoSize = true;
-            this.xOffsetDefault.Location = new System.Drawing.Point(157, 71);
+            this.xOffsetDefault.Location = new System.Drawing.Point(152, 71);
             this.xOffsetDefault.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.xOffsetDefault.Name = "xOffsetDefault";
             this.xOffsetDefault.Size = new System.Drawing.Size(22, 13);
@@ -123,7 +118,7 @@
             // 
             // yOffsetBox
             // 
-            this.yOffsetBox.Location = new System.Drawing.Point(23, 114);
+            this.yOffsetBox.Location = new System.Drawing.Point(18, 114);
             this.yOffsetBox.Margin = new System.Windows.Forms.Padding(2);
             this.yOffsetBox.Name = "yOffsetBox";
             this.yOffsetBox.Size = new System.Drawing.Size(76, 20);
@@ -133,7 +128,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 98);
+            this.label4.Location = new System.Drawing.Point(16, 98);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(223, 13);
@@ -143,7 +138,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(111, 119);
+            this.label5.Location = new System.Drawing.Point(106, 119);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
@@ -153,55 +148,16 @@
             // yOffsetDefault
             // 
             this.yOffsetDefault.AutoSize = true;
-            this.yOffsetDefault.Location = new System.Drawing.Point(157, 119);
+            this.yOffsetDefault.Location = new System.Drawing.Point(152, 119);
             this.yOffsetDefault.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.yOffsetDefault.Name = "yOffsetDefault";
             this.yOffsetDefault.Size = new System.Drawing.Size(22, 13);
             this.yOffsetDefault.TabIndex = 2;
             this.yOffsetDefault.Text = "0.0";
             // 
-            // plateSpaceingBox
-            // 
-            this.plateSpaceingBox.Location = new System.Drawing.Point(23, 160);
-            this.plateSpaceingBox.Margin = new System.Windows.Forms.Padding(2);
-            this.plateSpaceingBox.Name = "plateSpaceingBox";
-            this.plateSpaceingBox.Size = new System.Drawing.Size(76, 20);
-            this.plateSpaceingBox.TabIndex = 1;
-            this.plateSpaceingBox.Leave += new System.EventHandler(this.plateSpaceingBox_Leave);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 145);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(122, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "NAMEPLATE SPACING";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(111, 165);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 13);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Default:";
-            // 
-            // plateSpaceingDefault
-            // 
-            this.plateSpaceingDefault.AutoSize = true;
-            this.plateSpaceingDefault.Location = new System.Drawing.Point(157, 165);
-            this.plateSpaceingDefault.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.plateSpaceingDefault.Name = "plateSpaceingDefault";
-            this.plateSpaceingDefault.Size = new System.Drawing.Size(22, 13);
-            this.plateSpaceingDefault.TabIndex = 2;
-            this.plateSpaceingDefault.Text = "0.9";
-            // 
             // lineSpaceingBox
             // 
-            this.lineSpaceingBox.Location = new System.Drawing.Point(23, 210);
+            this.lineSpaceingBox.Location = new System.Drawing.Point(18, 156);
             this.lineSpaceingBox.Margin = new System.Windows.Forms.Padding(2);
             this.lineSpaceingBox.Name = "lineSpaceingBox";
             this.lineSpaceingBox.Size = new System.Drawing.Size(76, 20);
@@ -211,7 +167,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(21, 195);
+            this.label10.Location = new System.Drawing.Point(16, 141);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(81, 13);
@@ -221,7 +177,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(111, 215);
+            this.label11.Location = new System.Drawing.Point(106, 161);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(44, 13);
@@ -231,7 +187,7 @@
             // lineSpaceingDefault
             // 
             this.lineSpaceingDefault.AutoSize = true;
-            this.lineSpaceingDefault.Location = new System.Drawing.Point(157, 215);
+            this.lineSpaceingDefault.Location = new System.Drawing.Point(152, 161);
             this.lineSpaceingDefault.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lineSpaceingDefault.Name = "lineSpaceingDefault";
             this.lineSpaceingDefault.Size = new System.Drawing.Size(34, 13);
@@ -240,7 +196,7 @@
             // 
             // charSpaceingBox
             // 
-            this.charSpaceingBox.Location = new System.Drawing.Point(23, 259);
+            this.charSpaceingBox.Location = new System.Drawing.Point(18, 205);
             this.charSpaceingBox.Margin = new System.Windows.Forms.Padding(2);
             this.charSpaceingBox.Name = "charSpaceingBox";
             this.charSpaceingBox.Size = new System.Drawing.Size(76, 20);
@@ -250,7 +206,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(21, 244);
+            this.label13.Location = new System.Drawing.Point(16, 190);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(123, 13);
@@ -260,7 +216,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(111, 264);
+            this.label14.Location = new System.Drawing.Point(106, 210);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(44, 13);
@@ -270,7 +226,7 @@
             // charSpaceingDefault
             // 
             this.charSpaceingDefault.AutoSize = true;
-            this.charSpaceingDefault.Location = new System.Drawing.Point(157, 264);
+            this.charSpaceingDefault.Location = new System.Drawing.Point(152, 210);
             this.charSpaceingDefault.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.charSpaceingDefault.Name = "charSpaceingDefault";
             this.charSpaceingDefault.Size = new System.Drawing.Size(34, 13);
@@ -280,7 +236,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(198, 71);
+            this.label16.Location = new System.Drawing.Point(193, 71);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(18, 13);
@@ -290,27 +246,17 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(198, 119);
+            this.label17.Location = new System.Drawing.Point(193, 119);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(18, 13);
             this.label17.TabIndex = 2;
             this.label17.Text = "in.";
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(198, 165);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(18, 13);
-            this.label18.TabIndex = 2;
-            this.label18.Text = "in.";
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(198, 215);
+            this.label19.Location = new System.Drawing.Point(193, 161);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(18, 13);
@@ -320,7 +266,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(198, 264);
+            this.label20.Location = new System.Drawing.Point(193, 210);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(18, 13);
@@ -329,7 +275,7 @@
             // 
             // resetDefaultsBtn
             // 
-            this.resetDefaultsBtn.Location = new System.Drawing.Point(124, 550);
+            this.resetDefaultsBtn.Location = new System.Drawing.Point(132, 505);
             this.resetDefaultsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.resetDefaultsBtn.Name = "resetDefaultsBtn";
             this.resetDefaultsBtn.Size = new System.Drawing.Size(89, 24);
@@ -341,7 +287,7 @@
             // autoPrintQueueCheckBox
             // 
             this.autoPrintQueueCheckBox.AutoSize = true;
-            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(16, 422);
+            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(11, 368);
             this.autoPrintQueueCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.autoPrintQueueCheckBox.Name = "autoPrintQueueCheckBox";
             this.autoPrintQueueCheckBox.Size = new System.Drawing.Size(133, 17);
@@ -352,7 +298,7 @@
             // resetJigAfterQueueCompleteCheckBox
             // 
             this.resetJigAfterQueueCompleteCheckBox.AutoSize = true;
-            this.resetJigAfterQueueCompleteCheckBox.Location = new System.Drawing.Point(16, 452);
+            this.resetJigAfterQueueCompleteCheckBox.Location = new System.Drawing.Point(11, 398);
             this.resetJigAfterQueueCompleteCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.resetJigAfterQueueCompleteCheckBox.Name = "resetJigAfterQueueCompleteCheckBox";
             this.resetJigAfterQueueCompleteCheckBox.Size = new System.Drawing.Size(228, 17);
@@ -369,7 +315,7 @@
             "2-Plate",
             "4-Plate",
             "8-Plate"});
-            this.jigComboBox.Location = new System.Drawing.Point(22, 305);
+            this.jigComboBox.Location = new System.Drawing.Point(17, 251);
             this.jigComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.jigComboBox.Name = "jigComboBox";
             this.jigComboBox.Size = new System.Drawing.Size(92, 21);
@@ -379,7 +325,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 290);
+            this.label3.Location = new System.Drawing.Point(16, 236);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 13);
@@ -389,7 +335,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(121, 308);
+            this.label6.Location = new System.Drawing.Point(116, 254);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
@@ -399,7 +345,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 338);
+            this.label9.Location = new System.Drawing.Point(16, 284);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(178, 13);
@@ -409,7 +355,7 @@
             // resetJigAfterIdleCheckBox
             // 
             this.resetJigAfterIdleCheckBox.AutoSize = true;
-            this.resetJigAfterIdleCheckBox.Location = new System.Drawing.Point(16, 392);
+            this.resetJigAfterIdleCheckBox.Location = new System.Drawing.Point(11, 338);
             this.resetJigAfterIdleCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.resetJigAfterIdleCheckBox.Name = "resetJigAfterIdleCheckBox";
             this.resetJigAfterIdleCheckBox.Size = new System.Drawing.Size(175, 17);
@@ -419,7 +365,7 @@
             // 
             // resetJigIdleTimeBox
             // 
-            this.resetJigIdleTimeBox.Location = new System.Drawing.Point(22, 354);
+            this.resetJigIdleTimeBox.Location = new System.Drawing.Point(17, 300);
             this.resetJigIdleTimeBox.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -442,7 +388,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(121, 357);
+            this.label12.Location = new System.Drawing.Point(116, 303);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(102, 13);
@@ -451,7 +397,7 @@
             // 
             // changeInputFixingRulesBtn
             // 
-            this.changeInputFixingRulesBtn.Location = new System.Drawing.Point(22, 474);
+            this.changeInputFixingRulesBtn.Location = new System.Drawing.Point(30, 429);
             this.changeInputFixingRulesBtn.Name = "changeInputFixingRulesBtn";
             this.changeInputFixingRulesBtn.Size = new System.Drawing.Size(189, 23);
             this.changeInputFixingRulesBtn.TabIndex = 18;
@@ -462,7 +408,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(21, 9);
+            this.label15.Location = new System.Drawing.Point(16, 9);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(78, 13);
@@ -473,7 +419,7 @@
             // 
             this.serialPortComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.serialPortComboBox.FormattingEnabled = true;
-            this.serialPortComboBox.Location = new System.Drawing.Point(22, 24);
+            this.serialPortComboBox.Location = new System.Drawing.Point(17, 24);
             this.serialPortComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.serialPortComboBox.Name = "serialPortComboBox";
             this.serialPortComboBox.Size = new System.Drawing.Size(92, 21);
@@ -482,7 +428,7 @@
             // 
             // clearSpeedDialPlatesButton
             // 
-            this.clearSpeedDialPlatesButton.Location = new System.Drawing.Point(22, 512);
+            this.clearSpeedDialPlatesButton.Location = new System.Drawing.Point(30, 467);
             this.clearSpeedDialPlatesButton.Name = "clearSpeedDialPlatesButton";
             this.clearSpeedDialPlatesButton.Size = new System.Drawing.Size(189, 23);
             this.clearSpeedDialPlatesButton.TabIndex = 21;
@@ -494,7 +440,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 611);
+            this.ClientSize = new System.Drawing.Size(250, 542);
             this.Controls.Add(this.clearSpeedDialPlatesButton);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.serialPortComboBox);
@@ -512,24 +458,19 @@
             this.Controls.Add(this.charSpaceingDefault);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.lineSpaceingDefault);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.plateSpaceingDefault);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.yOffsetDefault);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.xOffsetDefault);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.charSpaceingBox);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.lineSpaceingBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.plateSpaceingBox);
             this.Controls.Add(this.yOffsetBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.xOffsetBox);
@@ -558,10 +499,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label yOffsetDefault;
-        private System.Windows.Forms.TextBox plateSpaceingBox;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label plateSpaceingDefault;
         private System.Windows.Forms.TextBox lineSpaceingBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -572,7 +509,6 @@
         private System.Windows.Forms.Label charSpaceingDefault;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button resetDefaultsBtn;

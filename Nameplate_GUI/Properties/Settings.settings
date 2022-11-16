@@ -8,9 +8,6 @@
     <Setting Name="yOffsetSet" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="plateSpaceingSet" Type="System.Single" Scope="User">
-      <Value Profile="(Default)">0.9</Value>
-    </Setting>
     <Setting Name="lineSpaceingSet" Type="System.Single" Scope="User">
       <Value Profile="(Default)">0.145</Value>
     </Setting>
@@ -21,7 +18,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="autoPrintQueue" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="resetJigAfterQueueCompletes" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -30,7 +27,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="resetJigAfterIdle" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="idleTimeBeforeReset" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">60</Value>

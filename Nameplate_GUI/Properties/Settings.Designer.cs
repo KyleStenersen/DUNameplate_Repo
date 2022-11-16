@@ -49,18 +49,6 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.9")]
-        public float plateSpaceingSet {
-            get {
-                return ((float)(this["plateSpaceingSet"]));
-            }
-            set {
-                this["plateSpaceingSet"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.145")]
         public float lineSpaceingSet {
             get {
@@ -97,7 +85,7 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool autoPrintQueue {
             get {
                 return ((bool)(this["autoPrintQueue"]));
@@ -133,7 +121,7 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool resetJigAfterIdle {
             get {
                 return ((bool)(this["resetJigAfterIdle"]));

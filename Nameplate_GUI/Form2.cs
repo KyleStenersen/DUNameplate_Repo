@@ -18,8 +18,6 @@ namespace DUNameplateGUI
         const float X_OFFSET_MAX = 3.400F;
         const float Y_OFFSET_MIN = 0.000F;
         const float Y_OFFSET_MAX = 1.900F;
-        const float PLATE_SPACEING_MIN = 0.120F;
-        const float PLATE_SPACEING_MAX = 3.000F;
         const float LINE_SPACEING_MIN = 0.120F;
         const float LINE_SPACEING_MAX = 0.700F;
         const float CHAR_SPACEING_MIN = 0.000F;
@@ -44,9 +42,6 @@ namespace DUNameplateGUI
 
             //if (Properties.Settings.Default.yOffsetSet != float.Parse(yOffsetDefault.Text))
             yOffsetBox.Text = Properties.Settings.Default.yOffsetSet.ToString();
-
-            //if (Properties.Settings.Default.plateSpaceingSet != float.Parse(plateSpaceingDefault.Text))
-            plateSpaceingBox.Text = Properties.Settings.Default.plateSpaceingSet.ToString();
 
             //if (Properties.Settings.Default.lineSpaceingSet != float.Parse(lineSpaceingDefault.Text))
             lineSpaceingBox.Text = Properties.Settings.Default.lineSpaceingSet.ToString();
@@ -77,11 +72,6 @@ namespace DUNameplateGUI
             checkSettings.textBoxEntryError(ref yOffsetBox, Y_OFFSET_MAX, Y_OFFSET_MIN);
         }
 
-        private void plateSpaceingBox_Leave(object sender, EventArgs e)
-        {
-            checkSettings.textBoxEntryError(ref plateSpaceingBox, PLATE_SPACEING_MAX, PLATE_SPACEING_MIN);
-        }
-
         private void lineSpaceingBox_Leave(object sender, EventArgs e)
         {
             checkSettings.textBoxEntryError(ref lineSpaceingBox, LINE_SPACEING_MAX, LINE_SPACEING_MIN);
@@ -107,12 +97,6 @@ namespace DUNameplateGUI
                 return;
             }
 
-            if (checkSettings.textBoxEntryError(ref plateSpaceingBox, PLATE_SPACEING_MAX, PLATE_SPACEING_MIN) == true)
-            {
-                MessageBox.Show("Invalid Setting Value; out of bounds, or not number");
-                return;
-            }
-
             if (checkSettings.textBoxEntryError(ref lineSpaceingBox, LINE_SPACEING_MAX, LINE_SPACEING_MIN) == true)
             {
                 MessageBox.Show("Invalid Setting Value; out of bounds, or not number");
@@ -130,9 +114,6 @@ namespace DUNameplateGUI
 
             if (String.IsNullOrWhiteSpace(yOffsetBox.Text) == false)
                 Properties.Settings.Default.yOffsetSet = float.Parse(yOffsetBox.Text);
-
-            if (String.IsNullOrWhiteSpace(plateSpaceingBox.Text) == false)
-                Properties.Settings.Default.plateSpaceingSet = float.Parse(plateSpaceingBox.Text);
 
             if (String.IsNullOrWhiteSpace(lineSpaceingBox.Text) == false)
                 Properties.Settings.Default.lineSpaceingSet = float.Parse(lineSpaceingBox.Text);
@@ -176,9 +157,6 @@ namespace DUNameplateGUI
             
             Properties.Settings.Default.yOffsetSet = float.Parse(yOffsetDefault.Text);
             yOffsetBox.Text = yOffsetDefault.Text;
-
-            Properties.Settings.Default.plateSpaceingSet = float.Parse(plateSpaceingDefault.Text);
-            plateSpaceingBox.Text = plateSpaceingDefault.Text;
            
             Properties.Settings.Default.lineSpaceingSet = float.Parse(lineSpaceingDefault.Text);
             lineSpaceingBox.Text = lineSpaceingDefault.Text;
@@ -195,15 +173,16 @@ namespace DUNameplateGUI
             Properties.Settings.Default.idleTimeBeforeReset = 60;
             resetJigIdleTimeBox.Value = 60;
 
+            Properties.Settings.Default.resetJigAfterIdle = false;
+            resetJigAfterIdleCheckBox.Checked = false;
+
             IdleTimer.RefreshSettings();
 
-            Properties.Settings.Default.autoPrintQueue = true;
-            autoPrintQueueCheckBox.Checked = true;
+            Properties.Settings.Default.autoPrintQueue = false;
+            autoPrintQueueCheckBox.Checked = false;
 
             Properties.Settings.Default.resetJigAfterQueueCompletes = false;
             resetJigAfterQueueCompleteCheckBox.Checked = false;
-
-            
 
             Properties.Settings.Default.Save();
             SerialCom.sendSettings();
