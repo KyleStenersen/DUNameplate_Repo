@@ -317,5 +317,17 @@ namespace DUNameplateGUI
         {
             UIControl.loadSlot(5);
         }
+
+        private void queuedPlatesListView_DoubleClicked(object sender, MouseEventArgs e)
+        {
+            ListViewHitTestInfo info = queuedPlatesListView.HitTest(e.X, e.Y);
+            ListViewItem item = info.Item;
+
+            if (item != null)
+            {
+                //MessageBox.Show("The selected item name is: " + item.Text + " and the number is " + item.Index); // For debugging only, remove later
+                //PlateQueue.OpenPlateEditor
+            }
+        }
     }
 }

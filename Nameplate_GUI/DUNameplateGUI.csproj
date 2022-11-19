@@ -113,6 +113,12 @@
     <Compile Include="IdleTimer.cs" />
     <Compile Include="InputFixer.cs" />
     <Compile Include="MachineControl.cs" />
+    <Compile Include="PlateEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlateEditorForm.Designer.cs">
+      <DependentUpon>PlateEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PlateQueue.cs" />
     <Compile Include="EditTextBox.cs" />
     <Compile Include="Form1.cs">
@@ -142,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputRuleForm.resx">
       <DependentUpon>InputRuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlateEditorForm.resx">
+      <DependentUpon>PlateEditorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

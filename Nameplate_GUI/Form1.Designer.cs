@@ -268,6 +268,7 @@
             this.queuedPlatesListView.TabStop = false;
             this.queuedPlatesListView.UseCompatibleStateImageBehavior = false;
             this.queuedPlatesListView.View = System.Windows.Forms.View.Details;
+            this.queuedPlatesListView.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.queuedPlatesListView_DoubleClicked);
             // 
             // TagContents
             // 
