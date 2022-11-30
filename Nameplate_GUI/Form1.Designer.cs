@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MAIN_FORM));
             this.tag1Line0Box = new System.Windows.Forms.TextBox();
             this.tag1Line1Box = new System.Windows.Forms.TextBox();
             this.tag1Line2Box = new System.Windows.Forms.TextBox();
@@ -58,6 +59,7 @@
             this.jigIndicator3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.inputFixingRulesEnabledCheckBox = new System.Windows.Forms.CheckBox();
             this.speedDialLabel6 = new System.Windows.Forms.Label();
             this.speedDialLabel5 = new System.Windows.Forms.Label();
             this.speedDialLabel4 = new System.Windows.Forms.Label();
@@ -88,7 +90,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
             this.jigLabel = new System.Windows.Forms.Label();
-            this.inputFixingRulesEnabledCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).BeginInit();
             this.statusPanel.SuspendLayout();
             this.jigIndicatorTableLayoutPanel.SuspendLayout();
@@ -516,6 +517,21 @@
             this.panel1.Size = new System.Drawing.Size(1668, 700);
             this.panel1.TabIndex = 26;
             // 
+            // inputFixingRulesEnabledCheckBox
+            // 
+            this.inputFixingRulesEnabledCheckBox.AutoSize = true;
+            this.inputFixingRulesEnabledCheckBox.BackColor = System.Drawing.SystemColors.Control;
+            this.inputFixingRulesEnabledCheckBox.Checked = true;
+            this.inputFixingRulesEnabledCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.inputFixingRulesEnabledCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputFixingRulesEnabledCheckBox.Location = new System.Drawing.Point(592, 78);
+            this.inputFixingRulesEnabledCheckBox.Name = "inputFixingRulesEnabledCheckBox";
+            this.inputFixingRulesEnabledCheckBox.Size = new System.Drawing.Size(203, 28);
+            this.inputFixingRulesEnabledCheckBox.TabIndex = 65;
+            this.inputFixingRulesEnabledCheckBox.Text = "Input Fixing Enabled";
+            this.inputFixingRulesEnabledCheckBox.UseVisualStyleBackColor = false;
+            this.inputFixingRulesEnabledCheckBox.CheckedChanged += new System.EventHandler(this.inputFixingRulesEnabledCheckBox_CheckedChanged);
+            // 
             // speedDialLabel6
             // 
             this.speedDialLabel6.AutoSize = true;
@@ -878,21 +894,6 @@
             this.jigLabel.Text = "8-Plate";
             this.jigLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // inputFixingRulesEnabledCheckBox
-            // 
-            this.inputFixingRulesEnabledCheckBox.AutoSize = true;
-            this.inputFixingRulesEnabledCheckBox.BackColor = System.Drawing.SystemColors.Control;
-            this.inputFixingRulesEnabledCheckBox.Checked = true;
-            this.inputFixingRulesEnabledCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.inputFixingRulesEnabledCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inputFixingRulesEnabledCheckBox.Location = new System.Drawing.Point(592, 78);
-            this.inputFixingRulesEnabledCheckBox.Name = "inputFixingRulesEnabledCheckBox";
-            this.inputFixingRulesEnabledCheckBox.Size = new System.Drawing.Size(203, 28);
-            this.inputFixingRulesEnabledCheckBox.TabIndex = 65;
-            this.inputFixingRulesEnabledCheckBox.Text = "Input Fixing Enabled";
-            this.inputFixingRulesEnabledCheckBox.UseVisualStyleBackColor = false;
-            this.inputFixingRulesEnabledCheckBox.CheckedChanged += new System.EventHandler(this.inputFixingRulesEnabledCheckBox_CheckedChanged);
-            // 
             // MAIN_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -901,6 +902,7 @@
             this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.panel1);
             this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1200, 500);
             this.Name = "MAIN_FORM";

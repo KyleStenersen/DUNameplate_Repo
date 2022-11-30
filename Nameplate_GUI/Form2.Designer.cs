@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SETTINGS_FORM));
             this.settingsSaveCloseBtn = new System.Windows.Forms.Button();
             this.xOffsetBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -476,6 +477,7 @@
             this.Controls.Add(this.xOffsetBox);
             this.Controls.Add(this.resetDefaultsBtn);
             this.Controls.Add(this.settingsSaveCloseBtn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "SETTINGS_FORM";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
