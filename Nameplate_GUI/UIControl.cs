@@ -59,8 +59,11 @@ namespace DUNameplateGUI
         private static Button homeButton;
         private static Button settingsButton;
 
+        // Needed for enableInputFixing
+        private static CheckBox inputFixingEnabledCheckBox;
+
         // These function arguments have unique names, due to C# not being happy about the use of this.duplicateName
-        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, Label selectedJigLabel, Label statusIndicator, Panel[] jigIndicatorPanels, Button homeBtn, Button settingsBtn, TableLayoutPanel jigIndicatorTableLayout)
+        public static void Initialize(TextBox[] textBoxes, NumericUpDown quantityBox, Label selectedJigLabel, Label statusIndicator, Panel[] jigIndicatorPanels, Button homeBtn, Button settingsBtn, TableLayoutPanel jigIndicatorTableLayout, CheckBox inputFixingEnabledCheck)
         {
             arrayOfTagTextBoxes = textBoxes;
             tagQuantityBox = quantityBox;
@@ -70,6 +73,7 @@ namespace DUNameplateGUI
             homeButton = homeBtn;
             settingsButton = settingsBtn;
             jigIndicatorTableLayoutPanel = jigIndicatorTableLayout;
+            inputFixingEnabledCheckBox = inputFixingEnabledCheck;
 
             // Subscribe jigPositionChanged to the event from the Jig
             Jig.PositionChanged += jigPositionChanged;
@@ -106,6 +110,9 @@ namespace DUNameplateGUI
 
             // Focus the first text box
             arrayOfTagTextBoxes[0].Focus();
+
+            // Enable input fixing again if it has been disabled
+            enableInputFixing();
         }
 
         // This function clears the PlateQueue, but also requests a cancellation if we are
@@ -378,6 +385,11 @@ namespace DUNameplateGUI
         public static void loadSlot(int slotNumber)
         {
             SpeedDialManager.LoadSlotToTextBoxes(slotNumber, arrayOfTagTextBoxes);
+        }
+
+        public static void enableInputFixing()
+        {
+            inputFixingEnabledCheckBox.Checked = true;
         }
 
     }

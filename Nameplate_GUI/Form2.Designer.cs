@@ -340,7 +340,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 13;
-            this.label6.Text = "Default: 1-Plate";
+            this.label6.Text = "Default: 8-Plate";
             // 
             // label9
             // 

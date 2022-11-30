@@ -28,7 +28,7 @@ namespace DUNameplateGUI
             arrayOfJigIndicatorPanels = new Panel[8] { jigIndicator0, jigIndicator1, jigIndicator2, jigIndicator3, jigIndicator4, jigIndicator5, jigIndicator6, jigIndicator7 };
 
             // UIControl's functions will not work unless it has access to several main UI elements
-            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigLabel, statusLabel, arrayOfJigIndicatorPanels, homeButton, settingsBtn, jigIndicatorTableLayoutPanel);
+            UIControl.Initialize(arrayOfTagTextBoxes, tagQuantityBox, jigLabel, statusLabel, arrayOfJigIndicatorPanels, homeButton, settingsBtn, jigIndicatorTableLayoutPanel, inputFixingRulesEnabledCheckBox);
 
             // Initialize our HotkeyHandler
             hotkeyHandler = new HotkeyHandler(this);
@@ -328,6 +328,11 @@ namespace DUNameplateGUI
                 //MessageBox.Show("The selected item name is: " + item.Text + " and the number is " + item.Index); // For debugging only, remove later
                 //PlateQueue.OpenPlateEditor
             }
+        }
+
+        private void inputFixingRulesEnabledCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            InputFixer.isEnabled = inputFixingRulesEnabledCheckBox.Checked;
         }
     }
 }

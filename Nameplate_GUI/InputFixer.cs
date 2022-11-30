@@ -10,8 +10,9 @@ namespace DUNameplateGUI
 {
     internal static class InputFixer
     {
-
         public static List<InputFixingRule> inputFixingRules;
+
+        public static bool isEnabled = true;
 
         public static void Initialize()
         {
@@ -23,6 +24,11 @@ namespace DUNameplateGUI
         // Fixes invalid input, is run after text is changed in any of the text boxes
         public static void fixInvalidInput(ref TextBox tagTextBox)
         {
+            if (!isEnabled)
+            {
+                return;
+            }
+
             string text = tagTextBox.Text;
 
             int selectionStartIndex = tagTextBox.SelectionStart;
@@ -34,6 +40,8 @@ namespace DUNameplateGUI
                     selectionStartIndex += rule.replaceStr.Length - rule.matchStr.Length;
                 }
             }
+
+            text = addDashesTo10DigitPhoneNumbers(text, ref selectionStartIndex);
 
             tagTextBox.Text = text;
 
@@ -115,6 +123,25 @@ namespace DUNameplateGUI
             inputFixingRules.Add(new InputFixingRule("&", "AND"));
 
             saveToSettings(); // Save to settings right away, otherwise these changes will go away once the program is restarted
+        }
+
+        private static String addDashesTo10DigitPhoneNumbers(String text, ref int selectionStartIndex)
+        {
+            long outputNumber;
+
+            string trimmedText = text.Trim(); // Trim out the white space, because if there is a space at the start, it will throw off our length check
+
+            bool isNumber = Int64.TryParse(trimmedText, out outputNumber); // Potential issue if the area code somehow starts with 0, this will cut that off
+            if (isNumber && (trimmedText.Length == 10))
+            {
+                selectionStartIndex += 2; // Add two to our selection index, as we are about to add two characters
+
+                return outputNumber.ToString("###-###-####");
+            }
+            else
+            {
+                return text;
+            }
         }
     }
 
