@@ -326,7 +326,7 @@ namespace DUNameplateGUI
             if (item != null)
             {
                 //MessageBox.Show("The selected item name is: " + item.Text + " and the number is " + item.Index); // For debugging only, remove later
-                //PlateQueue.OpenPlateEditor
+                PlateQueue.OpenPlateEditor(item.Index);
             }
         }
 

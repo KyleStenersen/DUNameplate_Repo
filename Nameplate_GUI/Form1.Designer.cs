@@ -239,6 +239,11 @@
             // 
             this.tagQuantityBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tagQuantityBox.Location = new System.Drawing.Point(895, 170);
+            this.tagQuantityBox.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             this.tagQuantityBox.Minimum = new decimal(new int[] {
             1,
             0,

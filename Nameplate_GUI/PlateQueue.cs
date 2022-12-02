@@ -122,6 +122,25 @@ namespace DUNameplateGUI
             }
         }
 
+        public static void EditSpecificPlate(Nameplate nameplateToEdit, Nameplate editedNameplate)
+        {
+            Nameplate nameplateFromQueue = QueuedPlates.Find(x => x.Equals(nameplateToEdit));
+
+            if (nameplateFromQueue != null)
+            {
+                Log.Debug("Editing {@plateToEdit} into {@editedPlate}", nameplateFromQueue, editedNameplate);
+
+                nameplateFromQueue.Lines = editedNameplate.Lines;
+                nameplateFromQueue.Quantity = editedNameplate.Quantity;
+
+                UpdateListView();
+            }
+            else
+            {
+                Log.Warning("Couldn't find plate ({@plate}) to edit, may have been deleted", nameplateToEdit);
+            }
+        }
+
         // This function will remove the plate at the selected plate's index from the queue, and then update
         // the list view to reflect this new change.
         public static void DeleteSelectedPlate()
@@ -222,6 +241,17 @@ namespace DUNameplateGUI
                     queuedPlatesListView.Items.Add(listItem);
                 }
             }
+        }
+
+        private static Nameplate GetIndex(int index)
+        {
+            return QueuedPlates[index];
+        }
+
+        public static void OpenPlateEditor(int index)
+        {
+            PlateEditorForm editor = new PlateEditorForm(GetIndex(index));
+            editor.ShowDialog();
         }
     }
 }

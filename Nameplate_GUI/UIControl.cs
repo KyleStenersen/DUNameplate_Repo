@@ -392,6 +392,12 @@ namespace DUNameplateGUI
             inputFixingEnabledCheckBox.Checked = true;
         }
 
+        public static void nameplateToTextBoxes(Nameplate nameplate)
+        {
+            nameplate.ToTextBoxes(arrayOfTagTextBoxes);
+
+            tagQuantityBox.Value = nameplate.Quantity;
+        }
     }
 }
 

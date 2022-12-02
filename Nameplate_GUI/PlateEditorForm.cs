@@ -14,6 +14,7 @@ namespace DUNameplateGUI
     {
         TextBox[] ArrayOfTagTextBoxes;
         Nameplate NameplateToModify;
+
         public PlateEditorForm(Nameplate nameplateToModify)
         {
             InitializeComponent();
@@ -25,6 +26,26 @@ namespace DUNameplateGUI
             ArrayOfTagTextBoxes = new TextBox[4] { tag1Line0Box, tag1Line1Box, tag1Line2Box, tag1Line3Box };
 
             NameplateToModify.ToTextBoxes(ArrayOfTagTextBoxes);
+
+            tagQuantityBox.Value = NameplateToModify.Quantity;
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            Nameplate editedNameplate = Nameplate.FromTextBoxes(ArrayOfTagTextBoxes, (int)tagQuantityBox.Value); // Casted to an int, as the value is decimal
+
+            PlateQueue.EditSpecificPlate(NameplateToModify, editedNameplate); // Edit the plate from the queue
+
+            Close();
+        }
+
+        private void pasteToMainScreenBtn_Click(object sender, EventArgs e)
+        {
+            Nameplate nameplate = Nameplate.FromTextBoxes(ArrayOfTagTextBoxes, (int)tagQuantityBox.Value);
+
+            UIControl.nameplateToTextBoxes(nameplate);
+
+            Close();
         }
     }
 }
