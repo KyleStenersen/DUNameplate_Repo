@@ -143,6 +143,8 @@ namespace DUNameplateGUI
             // Error handling here, because FromTextBoxes can throw an exception if the text in the boxes is invalid
             try
             {
+                center2LineTag();
+
                 Nameplate newPlate = Nameplate.FromTextBoxes(arrayOfTagTextBoxes, currentTagQuantity);
 
                 switch (queuePosition)
@@ -390,6 +392,17 @@ namespace DUNameplateGUI
         public static void enableInputFixing()
         {
             inputFixingEnabledCheckBox.Checked = true;
+        }
+
+        private static void center2LineTag()
+        {
+            if (inputFixingEnabledCheckBox.Checked == true && !String.IsNullOrWhiteSpace(arrayOfTagTextBoxes[0].Text) && !String.IsNullOrWhiteSpace(arrayOfTagTextBoxes[1].Text) && String.IsNullOrWhiteSpace(arrayOfTagTextBoxes[2].Text) && String.IsNullOrWhiteSpace(arrayOfTagTextBoxes[3].Text))
+            {
+                arrayOfTagTextBoxes[2].Text = arrayOfTagTextBoxes[1].Text;
+                arrayOfTagTextBoxes[1].Text = arrayOfTagTextBoxes[0].Text;
+                arrayOfTagTextBoxes[0].Text = "";
+
+            }
         }
 
         public static void nameplateToTextBoxes(Nameplate nameplate)

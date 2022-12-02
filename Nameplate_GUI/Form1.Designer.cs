@@ -215,7 +215,7 @@
             this.printQueueBtn.Location = new System.Drawing.Point(992, 639);
             this.printQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.printQueueBtn.Name = "printQueueBtn";
-            this.printQueueBtn.Size = new System.Drawing.Size(154, 36);
+            this.printQueueBtn.Size = new System.Drawing.Size(154, 61);
             this.printQueueBtn.TabIndex = 11;
             this.printQueueBtn.TabStop = false;
             this.printQueueBtn.Text = "Print Queue";
@@ -228,7 +228,7 @@
             this.addToQueueBtn.Location = new System.Drawing.Point(438, 639);
             this.addToQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addToQueueBtn.Name = "addToQueueBtn";
-            this.addToQueueBtn.Size = new System.Drawing.Size(158, 36);
+            this.addToQueueBtn.Size = new System.Drawing.Size(158, 59);
             this.addToQueueBtn.TabIndex = 12;
             this.addToQueueBtn.TabStop = false;
             this.addToQueueBtn.Text = "Add to Queue";
@@ -301,7 +301,7 @@
             // clearQueueBtn
             // 
             this.clearQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearQueueBtn.Location = new System.Drawing.Point(830, 639);
+            this.clearQueueBtn.Location = new System.Drawing.Point(830, 650);
             this.clearQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.clearQueueBtn.Name = "clearQueueBtn";
             this.clearQueueBtn.Size = new System.Drawing.Size(158, 36);
@@ -841,7 +841,7 @@
             // deleteSelectedBtn
             // 
             this.deleteSelectedBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteSelectedBtn.Location = new System.Drawing.Point(1150, 639);
+            this.deleteSelectedBtn.Location = new System.Drawing.Point(1150, 650);
             this.deleteSelectedBtn.Margin = new System.Windows.Forms.Padding(2);
             this.deleteSelectedBtn.Name = "deleteSelectedBtn";
             this.deleteSelectedBtn.Size = new System.Drawing.Size(173, 36);
@@ -854,7 +854,7 @@
             // addToTopOfQueueBtn
             // 
             this.addToTopOfQueueBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addToTopOfQueueBtn.Location = new System.Drawing.Point(600, 639);
+            this.addToTopOfQueueBtn.Location = new System.Drawing.Point(600, 650);
             this.addToTopOfQueueBtn.Margin = new System.Windows.Forms.Padding(2);
             this.addToTopOfQueueBtn.Name = "addToTopOfQueueBtn";
             this.addToTopOfQueueBtn.Size = new System.Drawing.Size(226, 36);

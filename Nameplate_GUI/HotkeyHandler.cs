@@ -74,6 +74,15 @@ namespace DUNameplateGUI
                         UIControl.addCurrentTagToQueue(UIControl.QueuePosition.TopOfQueue);
                         afterHotkey(args);
                         break;
+                    case Keys.P:
+                        UIControl.saveSlot(6);
+                        afterHotkey(args);
+                        break;
+                    case Keys.A:
+                        UIControl.loadSlot(6);
+                        afterHotkey(args);
+                        break;
+
                     // These are set to weird arbitrary keys due to not being able to
                     // create barcodes that do Ctrl + all of the numbers
                     case Keys.O:

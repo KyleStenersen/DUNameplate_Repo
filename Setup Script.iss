@@ -56,13 +56,12 @@ Source: "C:\Users\ksten\Desktop\DUNampelate_Repo\Nameplate_GUI\bin\Release\Syste
 Source: "C:\Users\ksten\Desktop\DUNampelate_Repo\Nameplate_GUI\bin\Release\System.Threading.Tasks.Extensions.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\ksten\Desktop\DUNampelate_Repo\Nameplate_GUI\bin\Release\System.ValueTuple.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\ksten\Desktop\DUNampelate_Repo\Nameplate_GUI\bin\Release\System.ValueTuple.xml"; DestDir: "{app}"; Flags: ignoreversion
-; Source: "icon.ico"; DestDir: "{app}"; Flags: ignoreversion
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}";         
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon; 
-; IconFilename: "{app}\icon.ico"
+
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: unchecked nowait postinstall skipifsilent
