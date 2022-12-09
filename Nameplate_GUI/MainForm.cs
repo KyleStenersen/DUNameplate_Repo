@@ -6,19 +6,19 @@ using Serilog;
 
 namespace DUNameplateGUI
 {
-    public partial class MAIN_FORM : Form
+    public partial class MainForm : Form
     {
         TextBox[] arrayOfTagTextBoxes;
         Panel[] arrayOfJigIndicatorPanels;
 
         HotkeyHandler hotkeyHandler;
 
-        public MAIN_FORM()
+        public MainForm()
         {
             InitializeComponent();
         }
 
-        private void MAIN_FORM_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             // This code is run on startup, after the form is loaded
 
@@ -39,7 +39,7 @@ namespace DUNameplateGUI
             PlateQueue.SetListView(queuedPlatesListView);
 
             // Initialize the Jig to the current setting from the settings form
-            Jig.setValues(Properties.Settings.Default.selectedJig);
+            JigManager.setValues(Properties.Settings.Default.selectedJig);
 
             SerialCom.setupPort();
             SerialCom.sendSettings();
@@ -94,7 +94,7 @@ namespace DUNameplateGUI
 
         private void settingsBtn_Click(object sender, EventArgs e)
         {
-            SETTINGS_FORM settings_form = new SETTINGS_FORM();
+            SettingsForm settings_form = new SettingsForm();
             settings_form.ShowDialog();
         }
 
@@ -160,7 +160,7 @@ namespace DUNameplateGUI
         {
             if (!MachineControl.isPrinting)
             {
-                Jig.Position = 0;
+                JigManager.Position = 0;
             }
         }
 
@@ -168,7 +168,7 @@ namespace DUNameplateGUI
         {
             if (!MachineControl.isPrinting)
             {
-                Jig.Position = 1;
+                JigManager.Position = 1;
             }
         }
 
@@ -176,7 +176,7 @@ namespace DUNameplateGUI
         {
             if (!MachineControl.isPrinting)
             {
-                Jig.Position = 2;
+                JigManager.Position = 2;
             }
         }
 
@@ -184,7 +184,7 @@ namespace DUNameplateGUI
         {
             if (!MachineControl.isPrinting)
             {
-                Jig.Position = 3;
+                JigManager.Position = 3;
             }
         }
 
@@ -192,7 +192,7 @@ namespace DUNameplateGUI
         {
             if (!MachineControl.isPrinting)
             {
-                Jig.Position = 4;
+                JigManager.Position = 4;
             }
         }
 
@@ -200,7 +200,7 @@ namespace DUNameplateGUI
         {
             if (!MachineControl.isPrinting)
             {
-                Jig.Position = 5;
+                JigManager.Position = 5;
             }
         }
 
@@ -208,7 +208,7 @@ namespace DUNameplateGUI
         {
             if (!MachineControl.isPrinting)
             {
-                Jig.Position = 6;
+                JigManager.Position = 6;
             }
         }
 
@@ -216,7 +216,7 @@ namespace DUNameplateGUI
         {
             if (!MachineControl.isPrinting)
             {
-                Jig.Position = 7;
+                JigManager.Position = 7;
             }
         }
 

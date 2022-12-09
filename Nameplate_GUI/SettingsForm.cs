@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DUNameplateGUI
 {
-    public partial class SETTINGS_FORM : Form
+    public partial class SettingsForm : Form
     {
         CheckSettings checkSettings = new CheckSettings();
 
@@ -24,13 +24,13 @@ namespace DUNameplateGUI
         const float CHAR_SPACEING_MAX = 0.120F;
 
 
-        public SETTINGS_FORM()
+        public SettingsForm()
         {
             InitializeComponent();
         }
 
         // Run once on opening of settings form2
-        private void SETTINGS_FORM_Load(object sender, EventArgs e)
+        private void SettingsForm_Load(object sender, EventArgs e)
         {
             serialPortComboBox.Text = Properties.Settings.Default.serialPort;
 
@@ -127,7 +127,7 @@ namespace DUNameplateGUI
             Properties.Settings.Default.selectedJig = jigComboBox.SelectedIndex;
 
             // Set the global Jig class's values to the new jig
-            Jig.setValues(jigComboBox.SelectedIndex);
+            JigManager.setValues(jigComboBox.SelectedIndex);
 
             // Save idleTimeBeforeReset into settings
             Properties.Settings.Default.idleTimeBeforeReset = (int) resetJigIdleTimeBox.Value;
@@ -168,7 +168,7 @@ namespace DUNameplateGUI
             jigComboBox.SelectedIndex = 3;
 
             // Set the global Jig class's values to the new jig
-            Jig.setValues(jigComboBox.SelectedIndex);
+            JigManager.setValues(jigComboBox.SelectedIndex);
 
             Properties.Settings.Default.idleTimeBeforeReset = 60;
             resetJigIdleTimeBox.Value = 60;

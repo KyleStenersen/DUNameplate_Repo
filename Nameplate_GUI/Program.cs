@@ -32,7 +32,7 @@ namespace DUNameplateGUI
 
             try
             {
-                Application.Run(new MAIN_FORM()); // Form1
+                Application.Run(new MainForm()); // Form1
             }
             catch (Exception ex)
             {

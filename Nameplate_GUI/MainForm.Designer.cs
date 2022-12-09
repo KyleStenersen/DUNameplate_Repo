@@ -1,6 +1,6 @@
 ﻿namespace DUNameplateGUI
 {
-    partial class MAIN_FORM
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MAIN_FORM));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tag1Line0Box = new System.Windows.Forms.TextBox();
             this.tag1Line1Box = new System.Windows.Forms.TextBox();
             this.tag1Line2Box = new System.Windows.Forms.TextBox();
@@ -914,7 +914,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DU Nameplate GUI";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.MAIN_FORM_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tagQuantityBox)).EndInit();
             this.statusPanel.ResumeLayout(false);
             this.jigIndicatorTableLayoutPanel.ResumeLayout(false);

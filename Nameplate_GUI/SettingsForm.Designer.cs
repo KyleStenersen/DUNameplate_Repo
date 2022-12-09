@@ -1,6 +1,6 @@
 ﻿namespace DUNameplateGUI
 {
-    partial class SETTINGS_FORM
+    partial class SettingsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SETTINGS_FORM));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.settingsSaveCloseBtn = new System.Windows.Forms.Button();
             this.xOffsetBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -483,7 +483,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.SETTINGS_FORM_Load);
+            this.Load += new System.EventHandler(this.SettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.resetJigIdleTimeBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

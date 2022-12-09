@@ -45,7 +45,7 @@ namespace DUNameplateGUI
             if (!MachineControl.isPrinting)
             {
                 Log.Debug("Timer's up, machine is not printing, resetting jig position");
-                Jig.Position = 0;
+                JigManager.Position = 0;
             }
         }
 

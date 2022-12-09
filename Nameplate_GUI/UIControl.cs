@@ -76,7 +76,7 @@ namespace DUNameplateGUI
             inputFixingEnabledCheckBox = inputFixingEnabledCheck;
 
             // Subscribe jigPositionChanged to the event from the Jig
-            Jig.PositionChanged += jigPositionChanged;
+            JigManager.PositionChanged += jigPositionChanged;
         }
 
         private static void jigPositionChanged(object sender, PositionChangedEventArgs e)
@@ -182,7 +182,7 @@ namespace DUNameplateGUI
         public static void home()
         {
             MachineControl.home();
-            Jig.Position = 0;
+            JigManager.Position = 0;
         }
 
         // This function is called when we start printing, to prevent the user from pressing the home button, or changing
@@ -318,7 +318,7 @@ namespace DUNameplateGUI
             {
                 String selectedJigString = "";
 
-                switch (Jig.currentlySelectedJig)
+                switch (JigManager.currentlySelectedJig)
                 {
                     case 0:
                         selectedJigString = "1-Plate";

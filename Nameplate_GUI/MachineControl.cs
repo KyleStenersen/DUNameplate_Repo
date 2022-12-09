@@ -51,7 +51,7 @@ namespace DUNameplateGUI
             string tagText = plateToPrint.PrintableLines;
 
             //tagText = tagText.ToUpper(); // Not needed due to marking all the text fields to automatically uppercase everything
-            tagText = ("<" + "a" + Jig.XStartLocation + "^" + Jig.YStartLocation + "^" + tagText + ">");
+            tagText = ("<" + "a" + JigManager.XStartLocation + "^" + JigManager.YStartLocation + "^" + tagText + ">");
 
             SerialCom.sendString(tagText);
         }
@@ -95,7 +95,7 @@ namespace DUNameplateGUI
             PlateQueue.DecrementSpecificPlateQuantity(currentPlate);
 
             // If there is no more room in the jig, home, and then tell the user to reload the machine
-            if (Jig.Position + 1 == Jig.Capacity)
+            if (JigManager.Position + 1 == JigManager.Capacity)
             {
                 home();
 
@@ -114,11 +114,11 @@ namespace DUNameplateGUI
                 // And now we're printing again, so set it back
                 UIControl.changeStatusIndicator(UIControl.Status.Printing);
 
-                Jig.Position = 0;
+                JigManager.Position = 0;
             }
             else
             {
-                Jig.Position++;
+                JigManager.Position++;
             }
         }
 
@@ -176,7 +176,7 @@ namespace DUNameplateGUI
                     // reset the jig.
                     if (Properties.Settings.Default.resetJigAfterQueueCompletes)
                     {
-                        Jig.Position = 0;
+                        JigManager.Position = 0;
                     }
 
                     // Re-enable the UI that was disabled when we started printing

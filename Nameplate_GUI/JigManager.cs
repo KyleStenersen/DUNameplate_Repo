@@ -6,8 +6,81 @@ using System.Threading.Tasks;
 
 namespace DUNameplateGUI
 {
+    internal class Jig
+    {  
+        public int Capacity { get; set; }
+
+        public float[] YStartLocations { get; set; }
+
+        public float[] XStartLocations { get; set; }
+
+        // Empty constructor used in CreateDefaultJig and possibly in System.Text.JSON when deserializing and serializing
+        public Jig() { }
+
+        public Jig(int capacity, float[] yStartLocations, float[] xStartLocations)
+        {
+            Capacity = capacity;
+            YStartLocations = yStartLocations;
+            XStartLocations = xStartLocations;
+        }
+
+        public static Jig CreateDefaultJig(int jigNumber)
+        {
+            Jig newJig = new Jig();
+
+            switch (jigNumber)
+            {
+                case 0: //JIG Settings #1 (1 @ a time on old jig)
+                    newJig.YStartLocations[0] = 0.46f;
+                    newJig.XStartLocations[0] = 1.86f;
+                    newJig.Capacity = 1;
+                    break;
+                case 1: //JIG Settings #2 (2 @ a time on old jig)
+                    newJig.YStartLocations[0] = 0.46f;
+                    newJig.XStartLocations[0] = 1.86f;
+                    newJig.YStartLocations[1] = 2.24f;
+                    newJig.XStartLocations[1] = 1.86f;
+                    newJig.Capacity = 2;
+                    break;
+                case 2: //JIG Settings #3 (4 @ a time on new jig) 
+                    newJig.YStartLocations[0] = 0.115f;
+                    newJig.XStartLocations[0] = 1.897f;
+                    newJig.YStartLocations[1] = 1.129f;
+                    newJig.XStartLocations[1] = 1.897f;
+                    newJig.YStartLocations[2] = 2.137f;
+                    newJig.XStartLocations[2] = 1.897f;
+                    newJig.YStartLocations[3] = 3.138f;
+                    newJig.XStartLocations[3] = 1.897f;
+                    newJig.Capacity = 4;
+                    break;
+                case 3: //JIG Settings #4 (8 @ a time with new jigs)
+                    newJig.YStartLocations[0] = 0.115f;
+                    newJig.XStartLocations[0] = 1.897f;
+                    newJig.YStartLocations[1] = 1.129f;
+                    newJig.XStartLocations[1] = 1.897f;
+                    newJig.YStartLocations[2] = 2.137f;
+                    newJig.XStartLocations[2] = 1.897f;
+                    newJig.YStartLocations[3] = 3.138f;
+                    newJig.XStartLocations[3] = 1.897f;
+
+                    newJig.YStartLocations[4] = 0.094f;
+                    newJig.XStartLocations[4] = 4.6865f;
+                    newJig.YStartLocations[5] = 1.1125f;
+                    newJig.XStartLocations[5] = 4.6865f;
+                    newJig.YStartLocations[6] = 2.115f;
+                    newJig.XStartLocations[6] = 4.6865f;
+                    newJig.YStartLocations[7] = 3.1145f;
+                    newJig.XStartLocations[7] = 4.6865f;
+                    newJig.Capacity = 8;
+                    break;
+            }
+
+            return newJig;
+        }
+    }
+
     // Not quite sure if this should be static, maybe it should be contained inside MachineControl instead?
-    internal static class Jig
+    internal static class JigManager
     {
         public static int Capacity { get; set; }
 
@@ -51,8 +124,6 @@ namespace DUNameplateGUI
                 return XStartLocations[Position];
             }
         }
-
-        public static float YStart { get; set; }
 
         // This is used for other classes to be able to get the currently selected jig (currently UIControl)
         public static int currentlySelectedJig;
