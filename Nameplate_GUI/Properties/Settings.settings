@@ -24,7 +24,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="selectedJig" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="resetJigAfterIdle" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -40,6 +40,9 @@
     </Setting>
     <Setting Name="serialPort" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM3</Value>
+    </Setting>
+    <Setting Name="savedJigs" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

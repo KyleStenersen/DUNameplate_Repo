@@ -318,7 +318,7 @@ namespace DUNameplateGUI
             {
                 String selectedJigString = "";
 
-                switch (JigManager.currentlySelectedJig)
+                switch (JigManager.CurrentlySelectedJig)
                 {
                     case 0:
                         selectedJigString = "1-Plate";

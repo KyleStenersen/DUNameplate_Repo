@@ -64,12 +64,13 @@
             this.label15 = new System.Windows.Forms.Label();
             this.serialPortComboBox = new System.Windows.Forms.ComboBox();
             this.clearSpeedDialPlatesButton = new System.Windows.Forms.Button();
+            this.openJigEditorBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.resetJigIdleTimeBox)).BeginInit();
             this.SuspendLayout();
             // 
             // settingsSaveCloseBtn
             // 
-            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(32, 505);
+            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(32, 544);
             this.settingsSaveCloseBtn.Margin = new System.Windows.Forms.Padding(2);
             this.settingsSaveCloseBtn.Name = "settingsSaveCloseBtn";
             this.settingsSaveCloseBtn.Size = new System.Drawing.Size(83, 24);
@@ -276,7 +277,7 @@
             // 
             // resetDefaultsBtn
             // 
-            this.resetDefaultsBtn.Location = new System.Drawing.Point(132, 505);
+            this.resetDefaultsBtn.Location = new System.Drawing.Point(132, 544);
             this.resetDefaultsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.resetDefaultsBtn.Name = "resetDefaultsBtn";
             this.resetDefaultsBtn.Size = new System.Drawing.Size(89, 24);
@@ -398,7 +399,7 @@
             // 
             // changeInputFixingRulesBtn
             // 
-            this.changeInputFixingRulesBtn.Location = new System.Drawing.Point(30, 429);
+            this.changeInputFixingRulesBtn.Location = new System.Drawing.Point(30, 468);
             this.changeInputFixingRulesBtn.Name = "changeInputFixingRulesBtn";
             this.changeInputFixingRulesBtn.Size = new System.Drawing.Size(189, 23);
             this.changeInputFixingRulesBtn.TabIndex = 18;
@@ -429,7 +430,7 @@
             // 
             // clearSpeedDialPlatesButton
             // 
-            this.clearSpeedDialPlatesButton.Location = new System.Drawing.Point(30, 467);
+            this.clearSpeedDialPlatesButton.Location = new System.Drawing.Point(30, 506);
             this.clearSpeedDialPlatesButton.Name = "clearSpeedDialPlatesButton";
             this.clearSpeedDialPlatesButton.Size = new System.Drawing.Size(189, 23);
             this.clearSpeedDialPlatesButton.TabIndex = 21;
@@ -437,11 +438,22 @@
             this.clearSpeedDialPlatesButton.UseVisualStyleBackColor = true;
             this.clearSpeedDialPlatesButton.Click += new System.EventHandler(this.clearSpeedDialPlatesButton_Click);
             // 
-            // SETTINGS_FORM
+            // openJigEditorBtn
+            // 
+            this.openJigEditorBtn.Location = new System.Drawing.Point(30, 430);
+            this.openJigEditorBtn.Name = "openJigEditorBtn";
+            this.openJigEditorBtn.Size = new System.Drawing.Size(189, 23);
+            this.openJigEditorBtn.TabIndex = 22;
+            this.openJigEditorBtn.Text = "Open Jig Editor";
+            this.openJigEditorBtn.UseVisualStyleBackColor = true;
+            this.openJigEditorBtn.Click += new System.EventHandler(this.openJigEditorBtn_Click);
+            // 
+            // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 542);
+            this.ClientSize = new System.Drawing.Size(250, 582);
+            this.Controls.Add(this.openJigEditorBtn);
             this.Controls.Add(this.clearSpeedDialPlatesButton);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.serialPortComboBox);
@@ -479,7 +491,7 @@
             this.Controls.Add(this.settingsSaveCloseBtn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "SETTINGS_FORM";
+            this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
             this.TopMost = true;
@@ -527,5 +539,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox serialPortComboBox;
         private System.Windows.Forms.Button clearSpeedDialPlatesButton;
+        private System.Windows.Forms.Button openJigEditorBtn;
     }
 }

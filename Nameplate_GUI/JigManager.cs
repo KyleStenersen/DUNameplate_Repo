@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace DUNameplateGUI
@@ -15,7 +17,11 @@ namespace DUNameplateGUI
         public float[] XStartLocations { get; set; }
 
         // Empty constructor used in CreateDefaultJig and possibly in System.Text.JSON when deserializing and serializing
-        public Jig() { }
+        public Jig() 
+        {
+            YStartLocations = new float[8];
+            XStartLocations = new float[8];
+        }
 
         public Jig(int capacity, float[] yStartLocations, float[] xStartLocations)
         {
@@ -77,11 +83,36 @@ namespace DUNameplateGUI
 
             return newJig;
         }
+
+        // Deep copies the jig by copying the arrays, integers are not reference types so they don't need to be copied.
+        // This is only needed in the jig editor, as we want a deep copy of each of jigs
+        // so that we can modify them without modifying the existing array of jigs
+        public Jig DeepCopy()
+        {
+            Jig newJig = new Jig();
+            Array.Copy(this.XStartLocations, newJig.XStartLocations, this.XStartLocations.Length);
+            Array.Copy(this.YStartLocations, newJig.YStartLocations, this.YStartLocations.Length);
+            newJig.Capacity = this.Capacity;
+
+            return newJig;
+        }
     }
 
-    // Not quite sure if this should be static, maybe it should be contained inside MachineControl instead?
     internal static class JigManager
     {
+        public static Jig[] Jigs = new Jig[4];
+
+        // This is used for selecting the current jig from Jigs, as well as letting other classes get the currently selected jig (currently UIControl)
+        public static int CurrentlySelectedJig { get; set; }
+
+        public static Jig CurrentJig
+        {
+            get
+            {
+                return Jigs[CurrentlySelectedJig];
+            }
+        }
+
         public static int Capacity { get; set; }
 
         private static int _position { get; set; }
@@ -104,15 +135,15 @@ namespace DUNameplateGUI
         // The PositionChangedArgs class is declared below this class in this file
         public static event EventHandler<PositionChangedEventArgs> PositionChanged;
 
-        private static float[] YStartLocations { get; set; } = new float[8];
+        //private static float[] YStartLocations { get; set; } = new float[8];
 
-        private static float[] XStartLocations { get; set; } = new float[8];
+        //private static float[] XStartLocations { get; set; } = new float[8];
 
         // This variable will always return the YStartLocation for the current position
         public static float YStartLocation {
             get
             {
-                return YStartLocations[Position];
+                return CurrentJig.YStartLocations[Position];
             }
         }
 
@@ -121,73 +152,89 @@ namespace DUNameplateGUI
         {
             get
             {
-                return XStartLocations[Position];
+                return CurrentJig.XStartLocations[Position];
             }
         }
 
-        // This is used for other classes to be able to get the currently selected jig (currently UIControl)
-        public static int currentlySelectedJig;
+        // This should be called at the start of the program, so that it can load the previously saved jigs, or otherwise set them to default
+        public static void Initialize()
+        {
+            LoadFromSettings();
+        }
 
-        public static void setValues(int jigNumber)
+        public static void SetJig(int jigNumber)
         {
             // Set Position to 0 to prevent bugs
             Position = 0;
 
-            currentlySelectedJig = jigNumber;
+            CurrentlySelectedJig = jigNumber;
 
             // Update the jig on the main form
             UIControl.updateJigDisplay();
+        }
 
-            Array.Clear(YStartLocations,0,8);
-            Array.Clear(XStartLocations,0,8);
+        private static void SetJigToDefault(int jigNumber)
+        {
+            Jigs[jigNumber] = Jig.CreateDefaultJig(jigNumber);
+        }
 
-            switch (jigNumber)
-            {                
-                case 0: //JIG Settings #1 (1 @ a time on old jig)
-                    YStartLocations[0] = 0.46f;
-                    XStartLocations[0] = 1.86f;
-                    Capacity = 1;
-                    break;
-                case 1: //JIG Settings #2 (2 @ a time on old jig)
-                    YStartLocations[0] = 0.46f;
-                    XStartLocations[0] = 1.86f;
-                    YStartLocations[1] = 2.24f;
-                    XStartLocations[1] = 1.86f;
-                    Capacity = 2;
-                    break;
-                case 2: //JIG Settings #3 (4 @ a time on new jig) 
-                    YStartLocations[0] = 0.115f;
-                    XStartLocations[0] = 1.897f;
-                    YStartLocations[1] = 1.129f;
-                    XStartLocations[1] = 1.897f;
-                    YStartLocations[2] = 2.137f;
-                    XStartLocations[2] = 1.897f;
-                    YStartLocations[3] = 3.138f;
-                    XStartLocations[3] = 1.897f;
-                    Capacity = 4;
-                    break;
-                case 3: //JIG Settings #4 (8 @ a time with new jigs)
-                    YStartLocations[0] = 0.115f;
-                    XStartLocations[0] = 1.897f;
-                    YStartLocations[1] = 1.129f;
-                    XStartLocations[1] = 1.897f;
-                    YStartLocations[2] = 2.137f;
-                    XStartLocations[2] = 1.897f;
-                    YStartLocations[3] = 3.138f;
-                    XStartLocations[3] = 1.897f;
-
-                    YStartLocations[4] = 0.094f;
-                    XStartLocations[4] = 4.6865f;
-                    YStartLocations[5] = 1.1125f;
-                    XStartLocations[5] = 4.6865f;
-                    YStartLocations[6] = 2.115f;
-                    XStartLocations[6] = 4.6865f;
-                    YStartLocations[7] = 3.1145f;
-                    XStartLocations[7] = 4.6865f;
-                    Capacity = 8;
-                    break;
-
+        private static void SetAllJigsToDefault()
+        {
+            for (int i = 0; i < Jigs.Length; i++)
+            {
+                SetJigToDefault(i);
             }
+        }
+
+        class JigsContainer
+        {
+            public Jig[] Jigs { get; set; } // { get; set; } is required, unless it will be ignored when serializing to JSON
+        }
+
+        public static void SaveToSettings()
+        {
+            JigsContainer jigsContainer = new JigsContainer();
+            jigsContainer.Jigs = Jigs;
+
+            string serializedString = JsonSerializer.Serialize(jigsContainer);
+
+            Log.Debug("JigManager - SaveToSettings - Saving JSON: {SerializedString}", serializedString);
+
+            Properties.Settings.Default.savedJigs = serializedString;
+            Properties.Settings.Default.Save();
+        }
+
+        public static void LoadFromSettings()
+        {
+            string jigContainerJSON = Properties.Settings.Default.savedJigs;
+
+            Log.Debug("Loading jigs from settings: {jigContainerJSON}", jigContainerJSON);
+
+            try
+            {
+                JigsContainer jigsContainer = JsonSerializer.Deserialize<JigsContainer>(jigContainerJSON);
+
+                Jigs = jigsContainer.Jigs;
+            }
+            catch (ArgumentNullException ex) // If the JSON is invalid or missing, reset to defaults
+            {
+                Log.Error("savedJigs in settings is null, causing exception {ex}", ex); 
+                SetAllJigsToDefault();
+                SaveToSettings();
+            }
+            catch (JsonException ex)
+            {
+                Log.Error("Invalid savedJigs JSON in settings: {ex}", ex);
+                SetAllJigsToDefault();
+                SaveToSettings();
+            }
+            catch (NotSupportedException ex)
+            {
+                Log.Error("Invalid savedJigs JSON in settings: {ex}", ex);
+                SetAllJigsToDefault();
+                SaveToSettings();
+            }
+
         }
     }
 

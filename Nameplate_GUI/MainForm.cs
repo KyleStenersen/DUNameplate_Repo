@@ -39,7 +39,8 @@ namespace DUNameplateGUI
             PlateQueue.SetListView(queuedPlatesListView);
 
             // Initialize the Jig to the current setting from the settings form
-            JigManager.setValues(Properties.Settings.Default.selectedJig);
+            JigManager.Initialize();
+            JigManager.SetJig(Properties.Settings.Default.selectedJig);
 
             SerialCom.setupPort();
             SerialCom.sendSettings();

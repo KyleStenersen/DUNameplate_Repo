@@ -127,7 +127,7 @@ namespace DUNameplateGUI
             Properties.Settings.Default.selectedJig = jigComboBox.SelectedIndex;
 
             // Set the global Jig class's values to the new jig
-            JigManager.setValues(jigComboBox.SelectedIndex);
+            JigManager.SetJig(jigComboBox.SelectedIndex);
 
             // Save idleTimeBeforeReset into settings
             Properties.Settings.Default.idleTimeBeforeReset = (int) resetJigIdleTimeBox.Value;
@@ -168,7 +168,7 @@ namespace DUNameplateGUI
             jigComboBox.SelectedIndex = 3;
 
             // Set the global Jig class's values to the new jig
-            JigManager.setValues(jigComboBox.SelectedIndex);
+            JigManager.SetJig(jigComboBox.SelectedIndex);
 
             Properties.Settings.Default.idleTimeBeforeReset = 60;
             resetJigIdleTimeBox.Value = 60;
@@ -197,6 +197,12 @@ namespace DUNameplateGUI
         private void clearSpeedDialPlatesButton_Click(object sender, EventArgs e)
         {
             SpeedDialManager.ClearAllSlots();
+        }
+
+        private void openJigEditorBtn_Click(object sender, EventArgs e)
+        {
+            JigEditorForm jigEditorForm = new JigEditorForm();
+            jigEditorForm.ShowDialog();
         }
     }
 }

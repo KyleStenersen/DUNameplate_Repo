@@ -109,7 +109,7 @@ namespace DUNameplateGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
         public int selectedJig {
             get {
                 return ((int)(this["selectedJig"]));
@@ -176,6 +176,18 @@ namespace DUNameplateGUI.Properties {
             }
             set {
                 this["serialPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string savedJigs {
+            get {
+                return ((string)(this["savedJigs"]));
+            }
+            set {
+                this["savedJigs"] = value;
             }
         }
     }

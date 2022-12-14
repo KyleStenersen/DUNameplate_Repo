@@ -78,7 +78,7 @@ namespace DUNameplateGUI
 
             string serializedString = JsonSerializer.Serialize(speedDialPlatesContainer);
 
-            Log.Debug("SaveSlotManager - SaveToSettings - Saving JSON: {SerializedString}", serializedString);
+            Log.Debug("SpeedDialManager - SaveToSettings - Saving JSON: {SerializedString}", serializedString);
 
             Properties.Settings.Default.speedDialPlates = serializedString;
             Properties.Settings.Default.Save();
@@ -98,15 +98,15 @@ namespace DUNameplateGUI
             }
             catch (ArgumentNullException ex)
             {
-                Log.Warning("speedDialPlates in settings is null, causing exception {ex}", ex);
+                Log.Error("speedDialPlates in settings is null, causing exception {ex}", ex);
             }
             catch (JsonException ex)
             {
-                Log.Error("Invalid JSON in settings: {ex}", ex);
+                Log.Error("Invalid speedDialPlates JSON in settings: {ex}", ex);
             }
             catch (NotSupportedException ex)
             {
-                Log.Error("Invalid JSON in settings: {ex}", ex);
+                Log.Error("Invalid speedDialPlates JSON in settings: {ex}", ex);
             }
 
         }
