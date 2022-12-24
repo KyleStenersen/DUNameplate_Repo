@@ -99,7 +99,8 @@ namespace DUNameplateGUI {
                 sendString("<p" + Properties.Settings.Default.xOffsetSet.ToString() + "," +
                     Properties.Settings.Default.yOffsetSet.ToString() + "," +
                     Properties.Settings.Default.lineSpaceingSet.ToString() + "," +
-                    Properties.Settings.Default.charSpaceingSet.ToString() + ">");
+                    Properties.Settings.Default.charSpaceingSet.ToString() +
+                    Properties.Settings.Default.stampDelaySet.ToString() + ">");
             }
         }
 

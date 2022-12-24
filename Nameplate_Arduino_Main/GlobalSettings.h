@@ -14,6 +14,7 @@ extern float X_ABS_PLATE_LOCATION_GLOBAL;
 extern float Y_ABS_PLATE_LOCATION_GLOBAL;
 extern float LINE_SPACEING_GLOBAL;
 extern float LETTER_SPACEING_GLOBAL;
+extern int STAMP_DELAY_GLOBAL;
 extern bool eStopBit;
 
 #endif

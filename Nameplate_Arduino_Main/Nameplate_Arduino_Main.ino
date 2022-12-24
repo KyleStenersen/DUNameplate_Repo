@@ -1,4 +1,4 @@
-
+ 
 // DOUBLE U HUNTING SUPPLY - NAMEPLATE MACHINE 
 // ------------------------------------------------
 // This file is the Main Entry-Point for the program and contains: 
@@ -36,6 +36,7 @@ float X_ABS_PLATE_LOCATION_GLOBAL = 1.91;
 float Y_ABS_PLATE_LOCATION_GLOBAL = 0.128;
 float LINE_SPACEING_GLOBAL = 0.145;
 float LETTER_SPACEING_GLOBAL = 0.105;
+int STAMP_DELAY_GLOBAL = 150; //100 for first machine, 150 for second?
 bool eStopBit = 0;
 
 // ------------------
@@ -54,8 +55,11 @@ void setup()
   pinMode(10, INPUT);
   // Set Y-Motor DIAG pin to INPUT
   pinMode(4, INPUT);
- // attachInterrupt(10,stall,RISING);
- // attachInterrupt(4,stall,RISING);
+  // Set estop interrupt pin
+  pinMode(43, INPUT_PULLUP);
+  //attachInterrupt(10,estop,RISING);
+  //attachInterrupt(4,estop,RISING);
+  attachInterrupt(43,estop,FALLING);
  eStopBit = 0;
 }
 // ------------------
@@ -83,6 +87,15 @@ void loop()
 // ------------------------------------------------
 
 void estop(){
+  // Debounce the estop button interrupt
+  if (digitalRead(43) == LOW)
+    {
+      int timer_1 = millis();
+      int timer_2 = 0;
+      while ((timer_2 - timer_1) < 500) timer_2 = millis();
+      if (digitalRead(43) != LOW) return;
+    }
+  
   Serial.println("z2"); //Send signal to GUI so it can respond to estop condition
   
   plates.killAllMotors();

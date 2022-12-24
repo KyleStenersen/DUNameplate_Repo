@@ -94,6 +94,8 @@ void InputResponse::chooseAction(const char* fullInputString)
     Serial.println(LINE_SPACEING_GLOBAL);
     Serial.print("LETTER_SPACEING_GLOBAL = ");
     Serial.println(LETTER_SPACEING_GLOBAL);
+    Serial.print("STAMP_DELAY_GLOBAL = ");
+    Serial.println(STAMP_DELAY_GLOBAL);
     Serial.println("...");    
     break;}
 //--------------------------//GET ANGLE
@@ -166,6 +168,9 @@ void InputResponse::chooseAction(const char* fullInputString)
 
     stringTokenIndex = strtok(NULL, ",");
     LETTER_SPACEING_GLOBAL = atof(stringTokenIndex);
+
+    stringTokenIndex = strtok(NULL, ",");
+    STAMP_DELAY_GLOBAL = atoi(stringTokenIndex);   
      
     serialOpsIR.emptySerial();
     break;}

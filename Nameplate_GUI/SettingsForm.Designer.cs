@@ -65,12 +65,18 @@
             this.serialPortComboBox = new System.Windows.Forms.ComboBox();
             this.clearSpeedDialPlatesButton = new System.Windows.Forms.Button();
             this.openJigEditorBtn = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.stampDelayDefault = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.stampDelayBox = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.resetJigIdleTimeBox)).BeginInit();
             this.SuspendLayout();
             // 
             // settingsSaveCloseBtn
             // 
-            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(32, 544);
+            this.settingsSaveCloseBtn.Location = new System.Drawing.Point(32, 596);
             this.settingsSaveCloseBtn.Margin = new System.Windows.Forms.Padding(2);
             this.settingsSaveCloseBtn.Name = "settingsSaveCloseBtn";
             this.settingsSaveCloseBtn.Size = new System.Drawing.Size(83, 24);
@@ -277,7 +283,7 @@
             // 
             // resetDefaultsBtn
             // 
-            this.resetDefaultsBtn.Location = new System.Drawing.Point(132, 544);
+            this.resetDefaultsBtn.Location = new System.Drawing.Point(132, 596);
             this.resetDefaultsBtn.Margin = new System.Windows.Forms.Padding(2);
             this.resetDefaultsBtn.Name = "resetDefaultsBtn";
             this.resetDefaultsBtn.Size = new System.Drawing.Size(89, 24);
@@ -289,7 +295,7 @@
             // autoPrintQueueCheckBox
             // 
             this.autoPrintQueueCheckBox.AutoSize = true;
-            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(11, 368);
+            this.autoPrintQueueCheckBox.Location = new System.Drawing.Point(11, 420);
             this.autoPrintQueueCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.autoPrintQueueCheckBox.Name = "autoPrintQueueCheckBox";
             this.autoPrintQueueCheckBox.Size = new System.Drawing.Size(133, 17);
@@ -300,7 +306,7 @@
             // resetJigAfterQueueCompleteCheckBox
             // 
             this.resetJigAfterQueueCompleteCheckBox.AutoSize = true;
-            this.resetJigAfterQueueCompleteCheckBox.Location = new System.Drawing.Point(11, 398);
+            this.resetJigAfterQueueCompleteCheckBox.Location = new System.Drawing.Point(11, 450);
             this.resetJigAfterQueueCompleteCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.resetJigAfterQueueCompleteCheckBox.Name = "resetJigAfterQueueCompleteCheckBox";
             this.resetJigAfterQueueCompleteCheckBox.Size = new System.Drawing.Size(228, 17);
@@ -317,7 +323,7 @@
             "2-Plate",
             "4-Plate",
             "8-Plate"});
-            this.jigComboBox.Location = new System.Drawing.Point(17, 251);
+            this.jigComboBox.Location = new System.Drawing.Point(17, 303);
             this.jigComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.jigComboBox.Name = "jigComboBox";
             this.jigComboBox.Size = new System.Drawing.Size(92, 21);
@@ -327,7 +333,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 236);
+            this.label3.Location = new System.Drawing.Point(16, 288);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 13);
@@ -337,7 +343,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(116, 254);
+            this.label6.Location = new System.Drawing.Point(116, 306);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
@@ -347,7 +353,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 284);
+            this.label9.Location = new System.Drawing.Point(16, 336);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(178, 13);
@@ -357,7 +363,7 @@
             // resetJigAfterIdleCheckBox
             // 
             this.resetJigAfterIdleCheckBox.AutoSize = true;
-            this.resetJigAfterIdleCheckBox.Location = new System.Drawing.Point(11, 338);
+            this.resetJigAfterIdleCheckBox.Location = new System.Drawing.Point(11, 390);
             this.resetJigAfterIdleCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.resetJigAfterIdleCheckBox.Name = "resetJigAfterIdleCheckBox";
             this.resetJigAfterIdleCheckBox.Size = new System.Drawing.Size(175, 17);
@@ -367,7 +373,7 @@
             // 
             // resetJigIdleTimeBox
             // 
-            this.resetJigIdleTimeBox.Location = new System.Drawing.Point(17, 300);
+            this.resetJigIdleTimeBox.Location = new System.Drawing.Point(17, 352);
             this.resetJigIdleTimeBox.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -390,7 +396,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(116, 303);
+            this.label12.Location = new System.Drawing.Point(116, 355);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(102, 13);
@@ -399,7 +405,7 @@
             // 
             // changeInputFixingRulesBtn
             // 
-            this.changeInputFixingRulesBtn.Location = new System.Drawing.Point(30, 468);
+            this.changeInputFixingRulesBtn.Location = new System.Drawing.Point(30, 520);
             this.changeInputFixingRulesBtn.Name = "changeInputFixingRulesBtn";
             this.changeInputFixingRulesBtn.Size = new System.Drawing.Size(189, 23);
             this.changeInputFixingRulesBtn.TabIndex = 18;
@@ -430,7 +436,7 @@
             // 
             // clearSpeedDialPlatesButton
             // 
-            this.clearSpeedDialPlatesButton.Location = new System.Drawing.Point(30, 506);
+            this.clearSpeedDialPlatesButton.Location = new System.Drawing.Point(30, 558);
             this.clearSpeedDialPlatesButton.Name = "clearSpeedDialPlatesButton";
             this.clearSpeedDialPlatesButton.Size = new System.Drawing.Size(189, 23);
             this.clearSpeedDialPlatesButton.TabIndex = 21;
@@ -440,7 +446,7 @@
             // 
             // openJigEditorBtn
             // 
-            this.openJigEditorBtn.Location = new System.Drawing.Point(30, 430);
+            this.openJigEditorBtn.Location = new System.Drawing.Point(30, 482);
             this.openJigEditorBtn.Name = "openJigEditorBtn";
             this.openJigEditorBtn.Size = new System.Drawing.Size(189, 23);
             this.openJigEditorBtn.TabIndex = 22;
@@ -448,11 +454,72 @@
             this.openJigEditorBtn.UseVisualStyleBackColor = true;
             this.openJigEditorBtn.Click += new System.EventHandler(this.openJigEditorBtn_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(191, 257);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(20, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "ms";
+            // 
+            // stampDelayDefault
+            // 
+            this.stampDelayDefault.AutoSize = true;
+            this.stampDelayDefault.Location = new System.Drawing.Point(150, 257);
+            this.stampDelayDefault.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.stampDelayDefault.Name = "stampDelayDefault";
+            this.stampDelayDefault.Size = new System.Drawing.Size(25, 13);
+            this.stampDelayDefault.TabIndex = 25;
+            this.stampDelayDefault.Text = "100";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(104, 257);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(44, 13);
+            this.label18.TabIndex = 26;
+            this.label18.Text = "Default:";
+            // 
+            // label21
+            // 
+            this.label21.Location = new System.Drawing.Point(0, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(100, 23);
+            this.label21.TabIndex = 27;
+            // 
+            // stampDelayBox
+            // 
+            this.stampDelayBox.Location = new System.Drawing.Point(16, 252);
+            this.stampDelayBox.Margin = new System.Windows.Forms.Padding(2);
+            this.stampDelayBox.Name = "stampDelayBox";
+            this.stampDelayBox.Size = new System.Drawing.Size(76, 20);
+            this.stampDelayBox.TabIndex = 23;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(16, 237);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(73, 13);
+            this.label22.TabIndex = 28;
+            this.label22.Text = "STAMP TIME";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 582);
+            this.ClientSize = new System.Drawing.Size(250, 636);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.stampDelayDefault);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.stampDelayBox);
             this.Controls.Add(this.openJigEditorBtn);
             this.Controls.Add(this.clearSpeedDialPlatesButton);
             this.Controls.Add(this.label15);
@@ -540,5 +607,11 @@
         private System.Windows.Forms.ComboBox serialPortComboBox;
         private System.Windows.Forms.Button clearSpeedDialPlatesButton;
         private System.Windows.Forms.Button openJigEditorBtn;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label stampDelayDefault;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox stampDelayBox;
+        private System.Windows.Forms.Label label22;
     }
 }

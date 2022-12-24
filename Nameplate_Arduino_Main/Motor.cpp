@@ -69,7 +69,8 @@ SpeedyStepper stepper_Letter;
 //--- Z Stamp definitions
 const int Z_STAMP_LIMIT_SWITCH = 32;      
 const int STAMP_CLUTCH_RELAY = 36;
-const int AC_MOTOR_RELAY = 34;     
+const int AC_MOTOR_RELAY = 34;
+const int STAMP_DELAY = 150;     
 
 //--- Switch state definitions
 const char RELAY_ON = HIGH;
@@ -115,8 +116,8 @@ void Motor::setupAll()
   x_Driver.toff(4);                  // Enables driver in software (TMCStepper.h)
   x_Driver.rms_current(MOTOR_RMS_CURRENT_X);
   x_Driver.pwm_autoscale(true);      // Needed for stealthChop (TMCStepper.h) 
-  x_Driver.TCOOLTHRS(113);           // Essentially velocity threshold, stallguard because doesnt work during acceleration?
-  x_Driver.SGTHRS(255);              // 0-255, 0 doesn't stall, 255 would stall at the slightest touch or less. 
+  x_Driver.TCOOLTHRS((3089838.00*pow(float((RPM_TO_MICROSTEP_PER_SECOND_CONVERTER*X_RPM)*XY_MICROSTEPS),-1.00161534))*1.5);        //was ~118, Essentially velocity threshold, stallguard because doesnt work during acceleration? from Valar_1000 Daniel Frenkel https://github.com/daniel-frenkel/Valar-Systems/blob/master/Devices/VAL-1000/VAL-1000-Window/Memory.h (3089838.00*pow(float(max_speed_steps_sec*64),-1.00161534))*1.5
+  x_Driver.SGTHRS(30);              // 0-255, 0 doesn't stall, 255 would stall at the slightest touch or less. 
   
   stepper_Y.connectToPins(STEP_PIN_Y, DIR_PIN_Y); 
   SERIAL_PORT_Y.begin(115200);        
@@ -124,8 +125,8 @@ void Motor::setupAll()
   y_Driver.toff(4);                  
   y_Driver.rms_current(MOTOR_RMS_CURRENT_Y); 
   y_Driver.pwm_autoscale(true);          
-  y_Driver.TCOOLTHRS(113); 
-  y_Driver.SGTHRS(255);
+  y_Driver.TCOOLTHRS((3089838.00*pow(float((RPM_TO_MICROSTEP_PER_SECOND_CONVERTER*Y_RPM)*XY_MICROSTEPS),-1.00161534))*1.5); 
+  y_Driver.SGTHRS(30);
 
   stepper_Letter.connectToPins(STEP_PIN_LETTER, DIR_PIN_LETTER); 
   SERIAL_PORT_LETTER.begin(115200);        
@@ -167,7 +168,6 @@ void Motor::updateAll()
 void Motor::setupXGoNonBlocking(float xInches, float* xAbsPosition) 
 {
   *xAbsPosition = *xAbsPosition + xInches;
-  xInches = -xInches;                                                             //This just adjustment so x is always positive from home 
 
   if(*xAbsPosition < 0 || *xAbsPosition > 7.5) eStopBit = 1;                      //Quick check if we are telling it to go beyond it's limits.
   if(eStopBit == 1) return;
@@ -407,13 +407,13 @@ void Motor::stamp(){
     if (eStopBit == 1) return; 
       
     digitalWrite(STAMP_CLUTCH_RELAY, RELAY_ON);
-    delay(100);
+    delay(STAMP_DELAY);
     
     int timer_1 = millis(); // Initiate timeout to check/abort if estop button has been pressed causing infinite loop here
     while (digitalRead(Z_STAMP_LIMIT_SWITCH)== Z_STAMPING)
     { 
       int timer_2 = millis();
-      if ((timer_2 - timer_1)> 100) eStopBit = 1;
+      if ((timer_2 - timer_1)> (STAMP_DELAY+100)) eStopBit = 1;
       if (eStopBit == 1) break;
     }
     
@@ -430,7 +430,7 @@ void Motor::xHome()
 {
   int maxSteps = (XY_MICROSTEPS * 50000);
   int homeSpeed = (XY_MICROSTEPS * 500);                                                                                   
-  stepper_X.moveToHomeInSteps(1,homeSpeed,maxSteps,X_LIMIT_SWITCH);
+  stepper_X.moveToHomeInSteps(-1,homeSpeed,maxSteps,X_LIMIT_SWITCH);
   updateAll();
 }
 
@@ -443,8 +443,7 @@ void Motor::yHome()
 }
 
 void Motor::setupXYSyncGoAlmostHome(float xAbs, float yAbs)
-{
-  xAbs = -xAbs;                                                             //This just adjustment so x is always positive from home 
+{ 
   if(eStopBit == 1) return;
 
   float xSteps = -xAbs*0.99*MAGIC_X_DISTANCE_CONVERTER*XY_MICROSTEPS;                                           
@@ -520,7 +519,6 @@ void Motor::xGo(float xInches, float* xAbsPosition)
   *xAbsPosition = *xAbsPosition + xInches;
 //  Serial.print("xAbsPosition after: ");
 //  Serial.println(*xAbsPosition);
-  xInches = -xInches;                                                             //This just adjustment so x is always positive from home 
 
   if(*xAbsPosition < 0 || *xAbsPosition > 7.5) eStopBit = 1;                      //Quick check if we are telling it to go beyond it's limits.
   if(eStopBit == 1) return;

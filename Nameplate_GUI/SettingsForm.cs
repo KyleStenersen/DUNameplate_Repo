@@ -22,7 +22,9 @@ namespace DUNameplateGUI
         const float LINE_SPACEING_MAX = 0.700F;
         const float CHAR_SPACEING_MIN = 0.000F;
         const float CHAR_SPACEING_MAX = 0.120F;
-
+        const int STAMP_DELAY_MIN = 0;
+        const int STAMP_DELAY_MAX = 100000;
+   
 
         public SettingsForm()
         {
@@ -48,6 +50,9 @@ namespace DUNameplateGUI
 
             //if (Properties.Settings.Default.charSpaceingSet != float.Parse(charSpaceingDefault.Text))
             charSpaceingBox.Text = Properties.Settings.Default.charSpaceingSet.ToString();
+
+            //if (Properties.Settings.Default.stampDelaySet != float.Parse(stampDelayDefault.Text))
+            stampDelayBox.Text = Properties.Settings.Default.stampDelaySet.ToString();
 
             jigComboBox.SelectedIndex = Properties.Settings.Default.selectedJig;
 
@@ -82,6 +87,11 @@ namespace DUNameplateGUI
             checkSettings.textBoxEntryError(ref charSpaceingBox, CHAR_SPACEING_MAX, CHAR_SPACEING_MIN);
         }
 
+        private void stampDelayBox_Leave(object sender, EventArgs e)
+        {
+            checkSettings.textBoxEntryError(ref stampDelayBox, STAMP_DELAY_MAX, STAMP_DELAY_MIN);
+        }
+
         private void settingsSaveCloseBtn_Click(object sender, EventArgs e)
         {
 
@@ -109,6 +119,12 @@ namespace DUNameplateGUI
                 return;
             }
 
+            if (checkSettings.textBoxEntryError(ref stampDelayBox, STAMP_DELAY_MAX, STAMP_DELAY_MIN) == true)
+            {
+                MessageBox.Show("Invalid Setting Value; out of bounds, or not number");
+                return;
+            }
+
             if (String.IsNullOrWhiteSpace(xOffsetBox.Text) == false)
                 Properties.Settings.Default.xOffsetSet = float.Parse(xOffsetBox.Text);
 
@@ -120,6 +136,9 @@ namespace DUNameplateGUI
 
             if (String.IsNullOrWhiteSpace(charSpaceingBox.Text) == false)
                 Properties.Settings.Default.charSpaceingSet = float.Parse(charSpaceingBox.Text);
+
+            if (String.IsNullOrWhiteSpace(stampDelayBox.Text) == false)
+                Properties.Settings.Default.stampDelaySet = int.Parse(stampDelayBox.Text);
 
             Properties.Settings.Default.serialPort = serialPortComboBox.Text;
 
@@ -164,6 +183,9 @@ namespace DUNameplateGUI
             Properties.Settings.Default.charSpaceingSet = float.Parse(charSpaceingDefault.Text);
             charSpaceingBox.Text = charSpaceingDefault.Text;
 
+            Properties.Settings.Default.stampDelaySet = int.Parse(stampDelayDefault.Text);
+            stampDelayBox.Text = stampDelayDefault.Text;
+
             Properties.Settings.Default.selectedJig = 3;
             jigComboBox.SelectedIndex = 3;
 
@@ -204,5 +226,6 @@ namespace DUNameplateGUI
             JigEditorForm jigEditorForm = new JigEditorForm();
             jigEditorForm.ShowDialog();
         }
+
     }
 }
