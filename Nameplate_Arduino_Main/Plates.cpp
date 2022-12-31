@@ -39,6 +39,7 @@ float letterDegAdjustment = 0;
 Motor motorP;
 Text textP;
 Encoder encoderP;
+Estop estopP;
 
 Plates::Plates(){}
 
@@ -46,6 +47,7 @@ Plates::Plates(){}
 
 void Plates::printOne(char* plateText)    //Primary function to increment through characters of a plate/tag and stamp/move for each one
 { 
+  if(ESTOP_INTERRUPT_FLAG == 1) estopP.debounce();
   if (eStopBit == 1) return;
   
   char copyString[strlen(plateText)+1];   
@@ -87,6 +89,8 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
   
   while (i < strlen(plateText))   //loop through plate text chars responding to each individually (stamp or move)
   {
+    Serial.println("in plateText loop");
+    if(ESTOP_INTERRUPT_FLAG == 1) estopP.debounce();
     if (eStopBit == 1) break;
        
     float angleToMove = textP.relativeAngleFromLetter(plateText[i]);    //get angle to move per letter from text library
@@ -161,9 +165,6 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
 
     
     int angle1 = motorP.setupLetterGoNonBlocking(angleToMove);   //Default go to current letter char, stamp, and move over one letterspace for next
-
-    //Serial.print("isFirstCharacterOfLine: ");
-    //Serial.println(isFirstCharacterOfLine);
 
     if (!isFirstCharacterOfLine) 
     {

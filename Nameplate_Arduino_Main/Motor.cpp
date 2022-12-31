@@ -30,6 +30,7 @@
 #include "Motor.h"
 
 Encoder encoderM;
+Estop estopM;
 
 //--- X definitions
 const int X_LIMIT_SWITCH = 28;
@@ -133,8 +134,7 @@ void Motor::setupAll()
   letter_Driver.begin();                  
   letter_Driver.toff(5);                  
   letter_Driver.rms_current(MOTOR_RMS_CURRENT_LETTER);
-  letter_Driver.pwm_autoscale(true);        
-
+  letter_Driver.pwm_autoscale(true);  
 }
 
 
@@ -170,6 +170,7 @@ void Motor::setupXGoNonBlocking(float xInches, float* xAbsPosition)
   *xAbsPosition = *xAbsPosition + xInches;
 
   if(*xAbsPosition < 0 || *xAbsPosition > 7.5) eStopBit = 1;                      //Quick check if we are telling it to go beyond it's limits.
+  if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
   if(eStopBit == 1) return;
 
   float xSteps = xInches*MAGIC_X_DISTANCE_CONVERTER*XY_MICROSTEPS;                                           
@@ -182,7 +183,8 @@ void Motor::yGo(float yInches, float* yAbsPosition)
 {
   *yAbsPosition = *yAbsPosition + yInches;
 
-  if(*yAbsPosition < 0 || *yAbsPosition > 5) eStopBit = 1;                       //Quick check if we are telling it to go beyond it's limits.
+  if(*yAbsPosition < 0 || *yAbsPosition > 5) eStopBit = 1;  //Quick check if we are telling it to go beyond it's limits.
+  if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
   if(eStopBit == 1) return;
 
   float ySteps = yInches*MAGIC_Y_DISTANCE_CONVERTER*XY_MICROSTEPS;       			                              
@@ -196,6 +198,7 @@ void Motor::setupYGoNonBlocking(float yInches, float* yAbsPosition)
   *yAbsPosition = *yAbsPosition + yInches;
 
   if(*yAbsPosition < 0 || *yAbsPosition > 5) eStopBit = 1;                       //Quick check if we are telling it to go beyond it's limits.
+  if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
   if(eStopBit == 1) return;
 
   float ySteps = yInches*MAGIC_Y_DISTANCE_CONVERTER*XY_MICROSTEPS;                                       
@@ -208,6 +211,7 @@ void Motor::setupYGoNonBlocking(float yInches, float* yAbsPosition)
 
 int Motor::setupLetterGoNonBlocking(float goDegree) 
 {
+  if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
   if(eStopBit == 1) return 0;
   
   float angleToMove = goDegree;
@@ -227,6 +231,7 @@ int Motor::setupLetterGoNonBlocking(float goDegree)
 
 void Motor::processRetries(float goDegree, float goalDegree, float angle1) 
 {
+  if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
   if(eStopBit == 1) return;
   
   float angleToMove = goDegree;
@@ -340,6 +345,7 @@ void Motor::processXAndLetterMovement()
 {
   while(!stepper_Letter.motionComplete() || !stepper_X.motionComplete()) 
   {
+    if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
     if (eStopBit == 1) return;
     stepper_Letter.processMovement();
     stepper_X.processMovement();
@@ -351,6 +357,7 @@ void Motor::processXAndYMovement()
 {
   while(!stepper_X.motionComplete() || !stepper_Y.motionComplete())
   {
+    if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
     if(eStopBit == 1) return;
     
     stepper_X.processMovement();
@@ -362,6 +369,7 @@ void Motor::processXAndYMovementForHome()
 {
   while(!stepper_X.motionComplete() || !stepper_Y.motionComplete())
   {
+    if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
     if(eStopBit == 1) return;
     
     if (digitalRead(X_LIMIT_SWITCH) == LOW || digitalRead(Y_LIMIT_SWITCH) == LOW) {
@@ -404,6 +412,7 @@ void Motor::stampMotorOff()
 //-------------------------------------------------------------------       
 
 void Motor::stamp(){
+    if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
     if (eStopBit == 1) return; 
       
     digitalWrite(STAMP_CLUTCH_RELAY, RELAY_ON);
@@ -414,7 +423,9 @@ void Motor::stamp(){
     { 
       int timer_2 = millis();
       if ((timer_2 - timer_1)> (STAMP_DELAY+100)) eStopBit = 1;
+      if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
       if (eStopBit == 1) break;
+      Serial.println("in stamp");
     }
     
     digitalWrite(STAMP_CLUTCH_RELAY, RELAY_OFF);
@@ -444,6 +455,7 @@ void Motor::yHome()
 
 void Motor::setupXYSyncGoAlmostHome(float xAbs, float yAbs)
 { 
+  if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
   if(eStopBit == 1) return;
 
   float xSteps = -xAbs*0.99*MAGIC_X_DISTANCE_CONVERTER*XY_MICROSTEPS;                                           
@@ -521,6 +533,7 @@ void Motor::xGo(float xInches, float* xAbsPosition)
 //  Serial.println(*xAbsPosition);
 
   if(*xAbsPosition < 0 || *xAbsPosition > 7.5) eStopBit = 1;                      //Quick check if we are telling it to go beyond it's limits.
+  if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
   if(eStopBit == 1) return;
 
   float xSteps = xInches*MAGIC_X_DISTANCE_CONVERTER*XY_MICROSTEPS;                                           
@@ -531,6 +544,7 @@ void Motor::xGo(float xInches, float* xAbsPosition)
 
 void Motor::letterGo(float goDegree, float goalDegree) 
 { 
+  if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
   if(eStopBit == 1) return;
   
   float angleToMove = goDegree;

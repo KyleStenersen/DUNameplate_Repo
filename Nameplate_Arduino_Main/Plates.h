@@ -5,6 +5,7 @@
 #include "Motor.h"
 #include "Text.h"
 #include "GlobalSettings.h"
+#include "Estop.h"
 
 class Plates {
   public:

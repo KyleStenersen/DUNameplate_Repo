@@ -6,6 +6,7 @@
 #include <TMCStepper.h>
 #include "Encoder.h"
 #include "GlobalSettings.h"
+#include "Estop.h"
 
 class Motor
 {

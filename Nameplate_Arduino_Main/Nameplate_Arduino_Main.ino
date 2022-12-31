@@ -16,6 +16,7 @@
 #include "InputResponse.h"
 #include "Encoder.h"
 #include "GlobalSettings.h"
+#include "Estop.h"
 
 Motor motor;
 Plates plates;
@@ -23,7 +24,7 @@ SerialOps serialOps;
 InputResponse inputResponse;
 Encoder encoder;
 Text text;
-int estop_pin = 3;
+Estop estop;
 
 // ------------------
 // Global Machine Setting Variables Initialized (GlobalSettings.h)
@@ -37,7 +38,9 @@ float Y_ABS_PLATE_LOCATION_GLOBAL = 0.128;
 float LINE_SPACEING_GLOBAL = 0.145;
 float LETTER_SPACEING_GLOBAL = 0.105;
 int STAMP_DELAY_GLOBAL = 150; //100 for first machine, 150 for second?
+bool ESTOP_INTERRUPT_FLAG = 0;
 bool eStopBit = 0;
+int ESTOP_PIN = 48;
 
 // ------------------
 void setup() 
@@ -56,11 +59,11 @@ void setup()
   // Set Y-Motor DIAG pin to INPUT
   pinMode(4, INPUT);
   // Set estop interrupt pin
-  pinMode(43, INPUT_PULLUP);
-  //attachInterrupt(10,estop,RISING);
-  //attachInterrupt(4,estop,RISING);
-  attachInterrupt(43,estop,FALLING);
- eStopBit = 0;
+  pinMode(ESTOP_PIN, INPUT_PULLUP);
+  //attachInterrupt(10,estopInterrupt,RISING);
+  //attachInterrupt(4,estopInterrupt,RISING);
+  attachInterrupt(ESTOP_PIN,estopInterrupt,FALLING);
+  eStopBit = 0;  
 }
 // ------------------
 
@@ -70,8 +73,9 @@ void setup()
 
 void loop() 
 {
-  if (eStopBit == 1) estop();
-  eStopBit = 0; 
+  if (ESTOP_INTERRUPT_FLAG == 1) estop.debounce();
+  if (eStopBit == 1) emergencyStop();
+  eStopBit = 0;
   
   if(Serial.available()) {     
     inputResponse.chooseAction(serialOps.grabInput());
@@ -83,19 +87,17 @@ void loop()
 
 
 
-//Estop Routine
+//Estop Routines
 // ------------------------------------------------
 
-void estop(){
-  // Debounce the estop button interrupt
-  if (digitalRead(43) == LOW)
-    {
-      int timer_1 = millis();
-      int timer_2 = 0;
-      while ((timer_2 - timer_1) < 500) timer_2 = millis();
-      if (digitalRead(43) != LOW) return;
-    }
-  
+void estopInterrupt()
+{ 
+  ESTOP_INTERRUPT_FLAG = 1;
+}
+
+
+void emergencyStop()
+{  
   Serial.println("z2"); //Send signal to GUI so it can respond to estop condition
   
   plates.killAllMotors();
@@ -104,6 +106,7 @@ void estop(){
   char char2 = 0;
   while (char1 != '*' and char2 != '*')
   { 
+    Serial.println("stuck in ** estop");
     char2 = char1;
     char1 = Serial.read();   
   }
