@@ -113,7 +113,13 @@ namespace DUNameplateGUI
             }
         }
 
-        public static int Capacity { get; set; }
+        public static int Capacity
+        {
+            get
+            {
+                return CurrentJig.Capacity;
+            }
+        }
 
         private static int _position { get; set; }
         public static int Position

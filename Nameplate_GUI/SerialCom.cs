@@ -79,6 +79,7 @@ namespace DUNameplateGUI {
         public static void resetConnection()
         {
             Log.Error("SerialCom - resetConnection has been called");
+
             // Set and reset our disconnected event to notify the printing task to stop
             disconnectedEvent.Set();
 
@@ -171,12 +172,18 @@ namespace DUNameplateGUI {
             }
 
         }
-            // Waits until the machine sends the signal for the plate being complete, or until it is estopped, in which case it will
-            // wait until someone clicks on the status button to un-estop. 
-            // This function will request a cancellation if it has been estopped or if it times out
+
+        // Waits until the machine sends the signal for the plate being complete, or until it is estopped, in which case it will
+        // wait until someone clicks on the status button to un-estop. 
+        // This function will request a cancellation if it has been estopped or if it times out
         public static bool waitForPlateDoneOrEstop()
         {
             Log.Debug("Waiting for plate to be complete...");
+
+            if (!Global.SerialOn)
+            {
+                return true;
+            }
 
             int waitResult = WaitHandle.WaitAny(new WaitHandle[] { plateCompleteEvent, estopReceivedEvent, disconnectedEvent }, 100000);
 
@@ -222,6 +229,11 @@ namespace DUNameplateGUI {
         {
             Log.Debug("SerialCom - waitForHome - Waiting for home...");
 
+            if (!Global.SerialOn)
+            {
+                return true;
+            }
+
             int waitResult = WaitHandle.WaitAny(new WaitHandle[] { homeCompleteEvent, disconnectedEvent }, 20000);
 
             if (waitResult == 0)
@@ -240,11 +252,6 @@ namespace DUNameplateGUI {
                 return false;
             }
 
-        }
-
-        public static void clearInputBuffer()
-        {
-            if (Global.SerialOn) serialPort1.DiscardInBuffer();
         }
 
         public static void estopReset()
