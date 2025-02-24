@@ -1,4 +1,4 @@
 //Read me for DUNameplateGUI
 //
-// DOCs in progress here...
-// https://docs.google.com/document/d/1_oq8iH_CVOjiAbTLnlu-CH5VA1dKojt_xugpabbArGk/edit?usp=sharing
+// DOCS on usb stick and here
+// https://drive.google.com/drive/folders/1IanxrlJZ19-fxTR1nvS5KSe6nycqiNyv?usp=sharing
