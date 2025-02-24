@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Serilog;
@@ -127,21 +128,15 @@ namespace DUNameplateGUI
 
         private static String addDashesTo10DigitPhoneNumbers(String text, ref int selectionStartIndex)
         {
-            long outputNumber;
+            string pattern = @"(\d{3})(\d{3})(\d{4})";
+            string replacement = "$1-$2-$3";
 
-            string trimmedText = text.Trim(); // Trim out the white space, because if there is a space at the start, it will throw off our length check
+            MatchCollection matches = Regex.Matches(text, pattern);
 
-            bool isNumber = Int64.TryParse(trimmedText, out outputNumber); // Potential issue if the area code somehow starts with 0, this will cut that off
-            if (isNumber && (trimmedText.Length == 10))
-            {
-                selectionStartIndex += 2; // Add two to our selection index, as we are about to add two characters
+            // For each match, increase the selection index by two, as we are about to add two characters, which will throw off the cursor if we don't compensate
+            selectionStartIndex += matches.Count * 2;
 
-                return outputNumber.ToString("###-###-####");
-            }
-            else
-            {
-                return text;
-            }
+            return Regex.Replace(text, pattern, replacement);
         }
     }
 

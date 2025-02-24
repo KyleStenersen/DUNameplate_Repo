@@ -5,6 +5,7 @@
 // - Some initial setup for machine components,
 // - the Main loop that just checks for updates to input, and
 // - the stallguard ISR that shuts the machine down if a motor stalls
+// - and the ESTOP routines. (NOTE: ** in terminal to get out of ESTOP)
 // ------------------------------------------------
 // Code constructed by Kingdom Automation (Kyle Stenersen) - started in 12/2021
 // ------------------------------------------------

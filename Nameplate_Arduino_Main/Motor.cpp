@@ -40,7 +40,7 @@ const int X_LIMIT_SWITCH = 28;
 #define SERIAL_PORT_X Serial1     // Due pins (18 & 19)
 #define DRIVER_ADDRESS_X 0b00     // TMC2209 Driver address according to MS1 and MS2
 #define SENSE_RESISTOR_X 0.11f    // Match to your driver // SilentStepStick series use 0.11
-int MOTOR_RMS_CURRENT_X = 1300;    // Range: 0 to ~600mA for small original motors (Y & X motors) (TMCStepper.h)
+int MOTOR_RMS_CURRENT_X = 1300;    // Range: 0 to ~600mA for small original motors (Y & X motors) (TMCStepper.h) [0-1300mA for new motors]
 TMC2209Stepper x_Driver(&SERIAL_PORT_X, SENSE_RESISTOR_X, DRIVER_ADDRESS_X);
 SpeedyStepper stepper_X;
 
@@ -82,7 +82,7 @@ const char Z_STAMPING = LOW;
 int LETTER_RPM = 180;   //was 200
 int Y_RPM = 180;    //was 180
 int X_RPM = 180;    //was 180
-int ACCEL_MULTIPLIER_XY = 1500;         // was 1500          // Range:1 = uber slow acceleration, chosen by testing (~1800 max? at 2 ms)
+int ACCEL_MULTIPLIER_XY = 1500;         // Range:1 = uber slow acceleration, chosen by testing (~1800 max? at 2 ms)
 int ACCEL_MULTIPLIER_LETTER = 5800;               // 6000 max at 16ms?
 int XY_MICROSTEPS = 32;    // was 2
 int L_MICROSTEPS = 32;    // Was 2 but too slow
@@ -231,14 +231,12 @@ int Motor::setupLetterGoNonBlocking(float goDegree)
 
 void Motor::processRetries(float goDegree, float goalDegree, float angle1) 
 {
+  // Serial.println("--Process Retries-- ");
   if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
   if(eStopBit == 1) return;
   
-  float angleToMove = goDegree;
-  
- // encoderM.encoderSetup(); 
-                                             
-  //int letterStepsPerSec = LETTER_RPM*(L_MICROSTEPS*3.333336);                                    
+  float angleToMove = goDegree;              
+
   float letterSteps = (goDegree/360)*L_MICROSTEPS*200;        
 
   float angle2 = encoderM.getAngle();
@@ -297,16 +295,18 @@ void Motor::processRetries(float goDegree, float goalDegree, float angle1)
     angleError = abs(abs(angle2) - abs(angleGoal));
 
 // SERIAL FOR TESTING ---------
-//    Serial.print("Retry, angle1 = ");
-//    Serial.print(angle1);
-//    Serial.print(", still go ");
-//    Serial.print(angleToMove);
-//    Serial.print(", angle2 = ");
-//    Serial.print(angle2);
-//    Serial.print(", went ");
-//    Serial.print(angleMoved);
-//    Serial.print(", angleError before = ");
-//    Serial.print(angleError);
+  //  Serial.print("Retry, #");
+  //  Serial.print(tooManyTries);
+  //  Serial.print(", angle1 = ");
+  //  Serial.print(angle1);
+  //  Serial.print(", still go ");
+  //  Serial.print(angleToMove);
+  //  Serial.print(", angle2 = ");
+  //  Serial.print(angle2);
+  //  Serial.print(", went ");
+  //  Serial.print(angleMoved);
+  //  Serial.print(", angleError before = ");
+  //  Serial.print(angleError);
 // ----------
     
     if(angleError>360 || angleError<-360)
@@ -319,8 +319,8 @@ void Motor::processRetries(float goDegree, float goalDegree, float angle1)
     if (angleGoal<angle2) angleError = -1*angleError;
 
 // SERIAL FOR TESTING --------
-//    Serial.print(", angleError = ");
-//    Serial.println(angleError);
+  //  Serial.print(", angleError = ");
+  //  Serial.println(angleError);
 //--------------
   
     tooManyTries++;
@@ -425,7 +425,6 @@ void Motor::stamp(){
       if ((timer_2 - timer_1)> (STAMP_DELAY+100)) eStopBit = 1;
       if(ESTOP_INTERRUPT_FLAG == 1) estopM.debounce();
       if (eStopBit == 1) break;
-      Serial.println("in stamp");
     }
     
     digitalWrite(STAMP_CLUTCH_RELAY, RELAY_OFF);
@@ -576,13 +575,14 @@ void Motor::letterGo(float goDegree, float goalDegree)
   if (angleGoal<angle2) angleError = -1*angleError;
 
 
-// SERIAL FOR TESTING --------------------
-//  Serial.print("First angle2 - ");
-//  Serial.print(angle2);
-//  Serial.print("First angleGoal - ");
-//  Serial.print(angleGoal);
-//  Serial.print("First angleError ");
-//  Serial.println(angleError);
+//SERIAL FOR TESTING --------------------
+ Serial.print("---------SpinLdeg----------");
+ Serial.print("First angle2 - ");
+ Serial.print(angle2);
+ Serial.print(", First angleGoal - ");
+ Serial.print(angleGoal);
+ Serial.print(", First angleError ");
+ Serial.println(angleError);
 //-----------------------------------------
 
 
@@ -613,16 +613,14 @@ void Motor::letterGo(float goDegree, float goalDegree)
     angleError = abs(abs(angle2) - abs(angleGoal));
 
 // SERIAL FOR TESTING ----------------------
-//    Serial.print("Retry, angle1 = ");
-//    Serial.print(angle1);
-//    Serial.print(", still go ");
-//    Serial.print(angleToMove);
-//    Serial.print(", angle2 = ");
-//    Serial.print(angle2);
-//    Serial.print(", went ");
-//    Serial.print(angleMoved);
-//    Serial.print(", angleError before = ");
-//    Serial.print(angleError);
+   Serial.print(" Retry, angle1 = ");
+   Serial.print(angle1);
+   Serial.print(", still go ");
+   Serial.print(angleToMove);
+   Serial.print(", angle2 = ");
+   Serial.print(angle2);
+   Serial.print(", went ");
+   Serial.print(angleMoved);
 // -----------------------------------------
     
     if(angleError>360 || angleError<-360)
@@ -635,8 +633,8 @@ void Motor::letterGo(float goDegree, float goalDegree)
     if (angleGoal<angle2) angleError = -1*angleError;
 
 // SERIAL FOR TESTING ----------------------
-//    Serial.print(", angleError = ");
-//    Serial.println(angleError);
+   Serial.print(", angleError = ");
+   Serial.println(angleError);
 // -----------------------------------------
     
     tooManyTries++;
@@ -647,4 +645,5 @@ void Motor::letterGo(float goDegree, float goalDegree)
     }
   }
   updateAll();
+   Serial.println("----------- ");
 }

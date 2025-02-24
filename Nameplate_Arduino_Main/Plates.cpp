@@ -73,13 +73,14 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
   xRelativePlateLocation = (xPlateCenter - halfCurrentLine(lineNum)) - xAbsolute;
   yRelativePlateLocation = (Y_OFFSET_GLOBAL + Y_ABS_PLATE_LOCATION_GLOBAL) - yAbsolute;
 
-  Serial.print("xPlateCenter: ");
-  Serial.println(xPlateCenter);
-  Serial.print("xRelativePlateLocation: ");
-  Serial.println(xRelativePlateLocation);
-  Serial.print("yRelativePlateLocation: ");
-  Serial.println(yRelativePlateLocation);
-
+// FOR TESTING -------------------------
+  // Serial.print("xPlateCenter: ");
+  // Serial.println(xPlateCenter);
+  // Serial.print("xRelativePlateLocation: ");
+  // Serial.println(xRelativePlateLocation);
+  // Serial.print("yRelativePlateLocation: ");
+  // Serial.println(yRelativePlateLocation);
+// FOR TESTING -------------------------
 
   
   motorsOn_GoToPrintStart();
@@ -155,12 +156,12 @@ void Plates::printOne(char* plateText)    //Primary function to increment throug
     encoderP.encoderSetup();
 
 // SERIAL FOR TESTING -----------------------
-//    Serial.print(" Destination = ");
-//    Serial.print(letterLocation);
-//    Serial.print(" - Letter: ");
-//    Serial.print(plateText[i]);
-//    Serial.print(" - angle to move = ");
-//    Serial.println(angleToMove);
+  //  Serial.print(" Destination = ");
+  //  Serial.print(letterLocation);
+  //  Serial.print(" - Letter: ");
+  //  Serial.print(plateText[i]);
+  //  Serial.print(" - angle to move = ");
+  //  Serial.println(angleToMove);
 //--------------------------------------------
 
     

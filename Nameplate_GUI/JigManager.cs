@@ -37,46 +37,46 @@ namespace DUNameplateGUI
             switch (jigNumber)
             {
                 case 0: //JIG Settings #1 (1 @ a time on old jig)
-                    newJig.YStartLocations[0] = 0.46f;
+                    newJig.YStartLocations[0] = 0.5022f;
                     newJig.XStartLocations[0] = 1.86f;
                     newJig.Capacity = 1;
                     break;
                 case 1: //JIG Settings #2 (2 @ a time on old jig)
-                    newJig.YStartLocations[0] = 0.46f;
+                    newJig.YStartLocations[0] = 0.5022f;
                     newJig.XStartLocations[0] = 1.86f;
                     newJig.YStartLocations[1] = 2.24f;
                     newJig.XStartLocations[1] = 1.86f;
                     newJig.Capacity = 2;
                     break;
                 case 2: //JIG Settings #3 (4 @ a time on new jig) 
-                    newJig.YStartLocations[0] = 0.115f;
-                    newJig.XStartLocations[0] = 1.897f;
-                    newJig.YStartLocations[1] = 1.129f;
-                    newJig.XStartLocations[1] = 1.897f;
-                    newJig.YStartLocations[2] = 2.137f;
-                    newJig.XStartLocations[2] = 1.897f;
-                    newJig.YStartLocations[3] = 3.138f;
-                    newJig.XStartLocations[3] = 1.897f;
+                    newJig.YStartLocations[0] = 0.1618f; //First tag on 4tag jig Y start location
+                    newJig.XStartLocations[0] = 1.3143f; //First tag on 4tag jig X start location
+                    newJig.YStartLocations[1] = 1.1605f; //Second tag on 4tag jig Y start location... etc.
+                    newJig.XStartLocations[1] = 1.3143f;
+                    newJig.YStartLocations[2] = 2.167f;
+                    newJig.XStartLocations[2] = 1.3143f;
+                    newJig.YStartLocations[3] = 3.168f;
+                    newJig.XStartLocations[3] = 1.3143f;
                     newJig.Capacity = 4;
                     break;
                 case 3: //JIG Settings #4 (8 @ a time with new jigs)
-                    newJig.YStartLocations[0] = 0.115f;
-                    newJig.XStartLocations[0] = 1.897f;
-                    newJig.YStartLocations[1] = 1.129f;
-                    newJig.XStartLocations[1] = 1.897f;
-                    newJig.YStartLocations[2] = 2.137f;
-                    newJig.XStartLocations[2] = 1.897f;
-                    newJig.YStartLocations[3] = 3.138f;
-                    newJig.XStartLocations[3] = 1.897f;
+                    newJig.YStartLocations[0] = 0.1618f;
+                    newJig.XStartLocations[0] = 1.3143f;
+                    newJig.YStartLocations[1] = 1.1605f;
+                    newJig.XStartLocations[1] = 1.3143f;
+                    newJig.YStartLocations[2] = 2.167f;
+                    newJig.XStartLocations[2] = 1.3143f;
+                    newJig.YStartLocations[3] = 3.168f;
+                    newJig.XStartLocations[3] = 1.3143f;
 
-                    newJig.YStartLocations[4] = 0.094f;
-                    newJig.XStartLocations[4] = 4.6865f;
-                    newJig.YStartLocations[5] = 1.1125f;
-                    newJig.XStartLocations[5] = 4.6865f;
-                    newJig.YStartLocations[6] = 2.115f;
-                    newJig.XStartLocations[6] = 4.6865f;
-                    newJig.YStartLocations[7] = 3.1145f;
-                    newJig.XStartLocations[7] = 4.6865f;
+                    newJig.YStartLocations[4] = 0.1693f;
+                    newJig.XStartLocations[4] = 4.0836f;
+                    newJig.YStartLocations[5] = 1.1618f;
+                    newJig.XStartLocations[5] = 4.0826f;
+                    newJig.YStartLocations[6] = 2.1633f;
+                    newJig.XStartLocations[6] = 4.0691f;
+                    newJig.YStartLocations[7] = 3.1738f;
+                    newJig.XStartLocations[7] = 4.0716f;
                     newJig.Capacity = 8;
                     break;
             }

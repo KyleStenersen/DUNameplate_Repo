@@ -14,9 +14,9 @@ namespace DUNameplateGUI
     {
         CheckSettings checkSettings = new CheckSettings();
 
-        const float X_OFFSET_MIN = 0.000F;
+        const float X_OFFSET_MIN = -3.400F;
         const float X_OFFSET_MAX = 3.400F;
-        const float Y_OFFSET_MIN = 0.000F;
+        const float Y_OFFSET_MIN = -1.900F;
         const float Y_OFFSET_MAX = 1.900F;
         const float LINE_SPACEING_MIN = 0.120F;
         const float LINE_SPACEING_MAX = 0.700F;
@@ -226,6 +226,5 @@ namespace DUNameplateGUI
             JigEditorForm jigEditorForm = new JigEditorForm();
             jigEditorForm.ShowDialog();
         }
-
     }
 }

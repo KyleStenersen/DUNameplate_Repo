@@ -13,29 +13,6 @@ namespace DUNameplateGUI
     // This class is where all the main printing functions belong.
     internal static class MachineControl
     {
-        //// This value should never be accessed directly, only through isPrinting
-        //private static bool _isPrinting = false;
-
-        //public static bool isPrinting
-        //{
-        //    get { 
-        //        return _isPrinting;
-        //    }
-        //    set
-        //    {
-        //        _isPrinting = value;
-        //        if (_isPrinting) {
-        //            // Change our status indicator to show that we are printing
-        //            UIControl.changeStatusIndicator(UIControl.Status.Printing);
-        //        } 
-        //        else
-        //        {
-        //            // Change the status indicator to show that we are ready to print again
-        //            UIControl.changeStatusIndicator(UIControl.Status.Ready);
-        //        }
-        //    }
-        //}
-
         public static bool isPrinting = false;
 
         public static AutoResetEvent reloadedEvent = new AutoResetEvent(false);

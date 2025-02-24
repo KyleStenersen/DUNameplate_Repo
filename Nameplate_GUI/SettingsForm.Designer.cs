@@ -101,9 +101,9 @@
             this.label1.Location = new System.Drawing.Point(16, 50);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(223, 13);
+            this.label1.Size = new System.Drawing.Size(267, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "X OFFSET (adjustment of text location on tag)";
+            this.label1.Text = "X OFFSET (adjustment of text location on tag. [+=right])";
             // 
             // label2
             // 
@@ -140,9 +140,9 @@
             this.label4.Location = new System.Drawing.Point(16, 98);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(223, 13);
+            this.label4.Size = new System.Drawing.Size(273, 13);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Y OFFSET (adjustment of text location on tag)";
+            this.label4.Text = "Y OFFSET (adjustment of text location on tag. [+=down])";
             // 
             // label5
             // 
@@ -524,7 +524,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 636);
+            this.ClientSize = new System.Drawing.Size(293, 636);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label7);

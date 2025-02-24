@@ -7,19 +7,19 @@
 //  stars (*) indicate the ones that are for testing)
 //    ‘a’ PRINTONE - parses out location info first, then sends plate text to - plates.printOne(rest of serial input string) - which prints one plate/tag per input
 // *‘b’ LED - flip onboard LED on and off
-// *‘c’ GOTOLETTER - plates.goToALetter(rest of serial input string [char]) - letter wheel
-// *‘d’ SHOW SETTINGS - display GlobalSettings values by serial
-// *‘e’ GET ANGLE - encoder.encoder.getAngle() - prints current encoder angle to serial monitor
-// *‘f’ CHANGE ACCEL - motor.changeAccelerationLetter(rest of input string [int]) - letter motor
-// *‘g’ CHANGE VEL - motor.changeVelocityLetter(rest of input string [int]) - letter motor
+// *‘c’ GOTOLETTER - plates.goToALetter(rest of serial input string [char]) - letter wheel [example: type <cA> to go to A on letter wheel]
+// *‘d’ SHOW SETTINGS - display GlobalSettings values by serial [type <d>]
+// *‘e’ GET ANGLE - encoder.encoder.getAngle() - prints current encoder angle to serial monitor [type <e>]
+// *‘f’ CHANGE ACCEL - motor.changeAccelerationLetter(rest of input string [int]) - letter motor [example: type <f100> to set letter motor acceleration to 100] [range: 1-6000, slow-fast]
+// *‘g’ CHANGE VEL - motor.changeVelocityLetter(rest of input string [int]) - letter motor [example: type <g100> to set letter motor velocity to 100rpm] [range: 0-180]
 //    ‘h’ HOME - plates.xyHome() - build plate home
-// *‘i’ CHANGE MS - motor.changeMicrosteps(rest of input string [int]) - for all motors
-// *‘j’ LETTER DEGREE ADJUSTMENT - change adder to letter degree in plates go to letter to see effect
-// *‘l’ LETTER DEGREES - plates.spinL(rest of input string [float]) - letterwheel move in degrees
+// *‘i’ CHANGE MS - motor.changeMicrosteps(rest of input string [int]) - for all motors [example: type <i64> to change all motors microstep setting to 64] [range: 1,2,4,8,16,32,64]
+// *‘j’ LETTER DEGREE ADJUSTMENT - change adder to letter degree in plates go to letter to see effect [example: type <j0.25> to shift all letters by 0.25 degrees]
+// *‘l’ LETTER DEGREES - plates.spinL(rest of input string [float]) - letterwheel move in degrees [example: type <l250> to spin the letter wheel 250 degrees]
 //    ‘p’ CHANGE SETTINGS - update GlobalSettings sent over serial from GUI
-// *‘s’ STAMP - plates.stampTest() - stamp machine motion once
-// *‘x’ MOVE X - plates.spinX(rest of serial input string [float]) - move build plate in x by float inch value
-// *‘y’ MOVE Y - plates.spinY(rest of serial input string [float]) - move build plate in y by float inch value
+// *‘s’ STAMP - plates.stampTest() - stamp machine motion once [type <s>]
+// *‘x’ MOVE X - plates.spinX(rest of serial input string [float]) - move build plate in x by float inch value [example: type <x1.1> to move the build plate in x 1.1 inches]
+// *‘y’ MOVE Y - plates.spinY(rest of serial input string [float]) - move build plate in y by float inch value [example: type <y1.1> to move the build plate in y 1.1 inches]
 
 
 #include "InputResponse.h"
@@ -101,6 +101,7 @@ void InputResponse::chooseAction(const char* fullInputString)
 //--------------------------//GET ANGLE
     case 'e':{  
     encoderIR.encoderSetup();
+    Serial.println("");
     Serial.println(encoderIR.getAngle());
     break;}
 //--------------------------//CHANGE ACCEL
